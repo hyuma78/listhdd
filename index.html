@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo Hard Disk</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        #summary-section {
+            background-color: #f7f9fc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        #summary-section h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #3498db;
+        }
+        #summary-section p {
+            margin: 5px 0;
+            color: #555;
+        }
+        #search-container {
+            margin-bottom: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #searchInput {
+            flex-grow: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+        #searchButton {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        #searchButton:hover {
+            background-color: #2980b9;
+        }
+        #searchButton:active {
+            transform: scale(0.98);
+        }
+        #results-container {
+            list-style: none;
+            padding: 0;
+        }
+        .hdd-section {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background-color: #fafbfd;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .hdd-section:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .hdd-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 0;
+            padding: 18px 25px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            background-color: #f7f9fc;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hdd-title:hover {
+            background-color: #f0f4f8;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .file-list.visible {
+            display: block;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .file-item {
+            background-color: #fff;
+            padding: 15px 25px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .file-name {
+            font-weight: 500;
+            font-size: 1.1em;
+            word-wrap: break-word;
+        }
+        .file-details {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+        }
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+        .alert-message {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .arrow-icon {
+            font-size: 1em;
+            transition: transform 0.3s;
+        }
+        .visible .arrow-icon {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Catalogo dei tuoi Hard Disk</h1>
+
+        <div id="summary-section">
+            <h2>Riepilogo File Video</h2>
+            <p id="total-video-files">Totale file video: 0</p>
+            <div id="video-extensions-summary"></div>
+        </div>
+
+        <div id="search-container">
+            <input type="text" id="searchInput" placeholder="Cerca un file...">
+            <button id="searchButton">Cerca</button>
+        </div>
+        <div id="results-container">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const resultsContainer = document.getElementById('results-container');
+            const totalVideoFilesElement = document.getElementById('total-video-files');
+            const videoExtensionsSummaryElement = document.getElementById('video-extensions-summary');
+            
+            // Mappa dei nomi degli hard disk ai loro file JSON nella cartella 'data/'
+            const HDD_JSON_MAP = {
+                "Arietty": "data/Arietty.json",
+                "Hikvision2TB": "data/Hikvision2TB.json",
+                "Maxtor15G": "data/Maxtor15G.json",
+                "Nami": "data/Nami.json",
+                "Rufy": "data/Rufy.json",
+                "Seagate0FM": "data/Seagate0FM.json",
+                "Seagate1TB": "data/Seagate1TB.json",
+                "Seagate878": "data/Seagate878.json",
+                "SeagateGMF": "data/SeagateGMF.json",
+                "SeagateR9H": "data/seagate_r9h.json",
+                "SEE_TAU": "data/SEE_TAU.json",
+                "SOA": "data/SOA.json",
+                "TR3NTON": "data/TR3NTON.json",
+                "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
+                "WD207": "data/WD207.json",
+                "Zoro": "data/Zoro.json",
+            };
+
+            let database = {}; // Questo oggetto conterrà tutti i dati JSON caricati
+
+            async function loadDatabase() {
+                resultsContainer.innerHTML = 'Caricamento database...';
+                let totalFilesCount = 0; // Inizializza il conteggio totale
+
+                const fetchPromises = [];
+                for (const hddName in HDD_JSON_MAP) {
+                    const jsonPath = HDD_JSON_MAP[hddName];
+                    fetchPromises.push(
+                        fetch(jsonPath)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`Errore HTTP! status: ${response.status} per ${jsonPath}`);
+                                }
+                                return response.json();
+                            })
+                            .then(files => {
+                                database[hddName] = files;
+                                totalFilesCount += files.length;
+                            })
+                            .catch(error => {
+                                console.error(`Errore nel caricamento del file JSON per ${hddName} (${jsonPath}):`, error);
+                                resultsContainer.innerHTML += `<div class="error-message">Impossibile caricare i dati per l'HDD: ${hddName}. Controlla il percorso o lo script Python.</div>`;
+                            })
+                    );
+                }
+
+                // Attendi che tutte le promesse di fetch siano risolte
+                await Promise.allSettled(fetchPromises);
+                
+                totalVideoFilesElement.textContent = `Totale file video: ${totalFilesCount}`;
+                updateSummary(); // Aggiorna il riepilogo dopo il caricamento completo
+                renderResults(); // Visualizza tutti i risultati iniziali
+            }
+
+            function updateSummary() {
+                const videoExtensions = ['mkv', 'avi', 'mp4', 'mov', 'flv', 'wmv', 'webm', 'mpeg', 'mpg']; // Estensioni video comuni
+                const extensionCounts = {};
+                let totalVideoFiles = 0;
+
+                for (const hddName in database) {
+                    // Controlla se database[hddName] esiste e non è null/undefined
+                    if (database[hddName]) {
+                        database[hddName].forEach(file => {
+                            const fileName = file.nome.toLowerCase();
+                            const parts = fileName.split('.');
+                            if (parts.length > 1) {
+                                const extension = parts.pop();
+                                if (videoExtensions.includes(extension)) {
+                                    totalVideoFiles++;
+                                    extensionCounts[extension] = (extensionCounts[extension] || 0) + 1;
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                totalVideoFilesElement.textContent = `Totale file video: ${totalVideoFiles}`;
+                videoExtensionsSummaryElement.innerHTML = '';
+                if (totalVideoFiles === 0) {
+                    videoExtensionsSummaryElement.innerHTML = 'Nessun file video trovato o database non caricato.';
+                } else {
+                    for (const ext in extensionCounts) {
+                        const p = document.createElement('p');
+                        p.textContent = `.${ext}: ${extensionCounts[ext]}`;
+                        videoExtensionsSummaryElement.appendChild(p);
+                    }
+                }
+            }
+
+            function renderResults(query = '') {
+                resultsContainer.innerHTML = '';
+                const lowerCaseQuery = query.toLowerCase();
+                let totalResultsFound = false;
+
+                // Splitta la query in parole chiave per una ricerca più flessibile
+                const keywords = lowerCaseQuery.split(' ').filter(word => word.length > 0);
+
+                // Se non c'è una query di ricerca, mostra tutti i file raggruppati
+                if (query === '') {
+                    for (const hddName in database) {
+                        const files = database[hddName];
+                        if (files && files.length > 0) { // Assicurati che l'array di file esista e non sia vuoto
+                            const hddSection = document.createElement('div');
+                            hddSection.classList.add('hdd-section');
+                            const hddTitle = document.createElement('h2');
+                            hddTitle.classList.add('hdd-title');
+                            hddTitle.innerHTML = `<span>${hddName} (${files.length} file)</span> <span class="arrow-icon">&#9654;</span>`;
+                            hddTitle.addEventListener('click', () => {
+                                const fileList = hddTitle.nextElementSibling;
+                                fileList.classList.toggle('visible');
+                                hddTitle.querySelector('.arrow-icon').classList.toggle('rotate'); // Aggiungi una classe per ruotare l'icona
+                            });
+                            hddSection.appendChild(hddTitle);
+
+                            const filesList = document.createElement('ul');
+                            filesList.classList.add('file-list');
+                            
+                            files.forEach(file => {
+                                const fileItem = document.createElement('li');
+                                fileItem.classList.add('file-item');
+                                fileItem.innerHTML = `
+                                    <div class="file-name">${file.nome}</div>
+                                    <div class="file-details">
+                                        Dimensione: ${file.dimensione}
+                                        <br>
+                                        Percorso: ${file.percorso_completo}
+                                    </div>
+                                `;
+                                filesList.appendChild(fileItem);
+                            });
+
+                            hddSection.appendChild(filesList);
+                            resultsContainer.appendChild(hddSection);
+                            totalResultsFound = true;
+                        }
+                    }
+                    if (!totalResultsFound) {
+                        resultsContainer.innerHTML = `<div class="no-results">Nessun file caricato nel database. Controlla i tuoi file JSON e lo script Python.</div>`;
+                    }
+                } else { // Se c'è una query di ricerca, filtra i file
+                    for (const hddName in database) {
+                        const files = database[hddName];
+                        if (files) { // Assicurati che l'array di file esista
+                            const filteredFiles = files.filter(file => 
+                                keywords.every(keyword => 
+                                    file.nome.toLowerCase().includes(keyword) || 
+                                    file.percorso_completo.toLowerCase().includes(keyword)
+                                )
+                            );
+        
+                            if (filteredFiles.length > 0) {
+                                const hddSection = document.createElement('div');
+                                hddSection.classList.add('hdd-section');
+                                const hddTitle = document.createElement('h2');
+                                hddTitle.classList.add('hdd-title');
+                                hddTitle.innerHTML = `<span>${hddName} (${filteredFiles.length} file)</span> <span class="arrow-icon">&#9654;</span>`;
+                                hddTitle.addEventListener('click', () => {
+                                    const fileList = hddTitle.nextElementSibling;
+                                    fileList.classList.toggle('visible');
+                                    hddTitle.querySelector('.arrow-icon').classList.toggle('rotate');
+                                });
+                                hddSection.appendChild(hddTitle);
+            
+                                const filesList = document.createElement('ul');
+                                filesList.classList.add('file-list', 'visible'); // Mostra la lista aperta per i risultati della ricerca
+                                
+                                filteredFiles.forEach(file => {
+                                    const fileItem = document.createElement('li');
+                                    fileItem.classList.add('file-item');
+                                    fileItem.innerHTML = `
+                                        <div class="file-name">${file.nome}</div>
+                                        <div class="file-details">
+                                            Dimensione: ${file.dimensione}
+                                            <br>
+                                            Percorso: ${file.percorso_completo}
+                                        </div>
+                                    `;
+                                    filesList.appendChild(fileItem);
+                                });
+            
+                                hddSection.appendChild(filesList);
+                                resultsContainer.appendChild(hddSection);
+                                totalResultsFound = true;
+                            }
+                        }
+                    }
+                }
+
+                if (!totalResultsFound && query !== '') {
+                    resultsContainer.innerHTML = `<div class="no-results">Nessun risultato trovato per "${query}".</div>`;
+                } else if (!totalResultsFound && query === '') {
+                    // Questo caso dovrebbe essere gestito da loadDatabase se non ci sono files
+                    // resultsContainer.innerHTML = `<div class="no-results">Nessun file caricato nel database.</div>`;
+                }
+            }
+
+            function handleSearch() {
+                const query = searchInput.value.trim();
+                if (query === '') {
+                    resultsContainer.innerHTML = `<div class="no-results alert-message">Per favore, inserisci un termine di ricerca.</div>`;
+                    // Quando la query è vuota, ricarica tutti i risultati
+                    renderResults(''); 
+                    return;
+                }
+                renderResults(query);
+            }
+
+            searchButton.addEventListener('click', handleSearch);
+
+            searchInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleSearch();
+                }
+            });
+
+            // Avvia il caricamento del database all'inizio
+            loadDatabase();
+        });
+    </script>
+</body>
+</html>
