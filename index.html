@@ -335,13 +335,17 @@
                         if (!isNaN(totalGB)) {
                             let sizeCategory;
                             // Associa la dimensione formattata a una capacità commerciale standard
-                            if (totalGB >= 10 && totalGB < 20) {
-                                sizeCategory = '20 GB';
-                            } else if (totalGB >= 450 && totalGB < 550) {
+                            if (totalGB >= 180 && totalGB <= 210) {
+                                sizeCategory = '200 GB';
+                            } else if (totalGB >= 290 && totalGB <= 330) {
+                                sizeCategory = '320 GB';
+                            } else if (totalGB >= 450 && totalGB <= 510) {
                                 sizeCategory = '500 GB';
-                            } else if (totalGB >= 900 && totalGB < 1100) {
+                            } else if (totalGB >= 690 && totalGB <= 760) {
+                                sizeCategory = '750 GB';
+                            } else if (totalGB >= 900 && totalGB <= 1100) {
                                 sizeCategory = '1 TB';
-                            } else if (totalGB >= 1800 && totalGB < 2200) {
+                            } else if (totalGB >= 1800 && totalGB <= 2200) {
                                 sizeCategory = '2 TB';
                             } else {
                                 // Per le altre dimensioni, usa il valore esatto arrotondato
