@@ -1,377 +1,388 @@
-[
-    {
-        "nome": "Jack Tramiel Interview Uncut.mkv",
-        "dimensione": "0.18 GB",
-        "percorso_completo": "F:\\.Trash-1000\\files\\Extra\\Jack Tramiel Interview Uncut.mkv"
-    },
-    {
-        "nome": "Spinning Hardware.mkv",
-        "dimensione": "0.01 GB",
-        "percorso_completo": "F:\\.Trash-1000\\files\\Extra\\Spinning Hardware.mkv"
-    },
-    {
-        "nome": "Catch-22.1x01.Episodio.01.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv",
-        "dimensione": "1.91 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x01.Episodio.01.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv"
-    },
-    {
-        "nome": "Catch-22.1x02.Episodio.02.ITA.ENG.1080p.WEBMux..H264-Morpheus.mkv",
-        "dimensione": "1.96 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x02.Episodio.02.ITA.ENG.1080p.WEBMux..H264-Morpheus.mkv"
-    },
-    {
-        "nome": "Catch-22.1x03.Episodio.03.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv",
-        "dimensione": "1.77 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x03.Episodio.03.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv"
-    },
-    {
-        "nome": "Catch-22.1x04.Episodio.04.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv",
-        "dimensione": "1.75 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x04.Episodio.04.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv"
-    },
-    {
-        "nome": "Catch-22.1x05.Episodio.5.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv",
-        "dimensione": "2.74 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x05.Episodio.5.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv"
-    },
-    {
-        "nome": "Catch-22.1x06.Episodio.6.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv",
-        "dimensione": "3.18 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x06.Episodio.6.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv"
-    },
-    {
-        "nome": "Romolo+Giuly.S01.E01.E02.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
-        "dimensione": "3.08 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E01.E02.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
-    },
-    {
-        "nome": "Romolo+Giuly.S01.E03.E04.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
-        "dimensione": "2.93 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E03.E04.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
-    },
-    {
-        "nome": "Romolo+Giuly.S01.E05.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
-        "dimensione": "1.65 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E05.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
-    },
-    {
-        "nome": "Romolo+Giuly.S01.E06.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
-        "dimensione": "1.46 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E06.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
-    },
-    {
-        "nome": "Romolo+Giuly.S01.E07.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
-        "dimensione": "1.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E07.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
-    },
-    {
-        "nome": "Romolo+Giuly.S01.E08.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
-        "dimensione": "1.60 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E08.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
-    },
-    {
-        "nome": "8.Bit.Generation.-.The.Commodore Wars.1080p.BluRayITA.ENG.SUB.ITA.mkv",
-        "dimensione": "0.91 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\8 Bit Generation - The Commodore Wars\\8.Bit.Generation.-.The.Commodore Wars.1080p.BluRayITA.ENG.SUB.ITA.mkv"
-    },
-    {
-        "nome": "Critters 2 1988 BluRay 10Bit 1080p AC3 H265-d3g.mkv",
-        "dimensione": "2.13 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 2 1988 BluRay 10Bit 1080p AC3 H265-d3g.mkv"
-    },
-    {
-        "nome": "Critters 3 (1991) BluRay 10Bit 1080p AC-3 H265-d3g.mkv",
-        "dimensione": "2.11 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 3 (1991) BluRay 10Bit 1080p AC-3 H265-d3g.mkv"
-    },
-    {
-        "nome": "Critters 4 (1992) BluRay 10Bit 1080p AC-3 H265-d3g.mkv",
-        "dimensione": "2.36 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 4 (1992) BluRay 10Bit 1080p AC-3 H265-d3g.mkv"
-    },
-    {
-        "nome": "Game.Changers.Inside.The.Video.Game.Wars.2019.1080p.WEB-DL.x264.ITA-ENG.[Hyuma].mkv",
-        "dimensione": "5.09 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Game Changers - Inside The Video Game Wars [2019]\\Game.Changers.Inside.The.Video.Game.Wars.2019.1080p.WEB-DL.x264.ITA-ENG.[Hyuma].mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x01.Minimum.Viable.Product.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.42 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x01.Minimum.Viable.Product.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x02.The.Cap.Table.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.47 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x02.The.Cap.Table.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x03.Articles.of.Incorporation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x03.Articles.of.Incorporation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x04.Fiduciary.Duties.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x04.Fiduciary.Duties.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x05.Signaling.Risk.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x05.Signaling.Risk.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x06.Third.Party.Insourcing.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x06.Third.Party.Insourcing.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x07.Proof.of.Concept.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x07.Proof.of.Concept.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.1x08.Optimal.Tip-to-Tip.Efficiency.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x08.Optimal.Tip-to-Tip.Efficiency.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x01.Sand.Hill.Shuffle.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.38 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x01.Sand.Hill.Shuffle.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x02.Runaway.Dvaluation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.35 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x02.Runaway.Dvaluation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x03.Bad.Money.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.36 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x03.Bad.Money.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x04.The.Lady.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x04.The.Lady.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x05.Server.Space.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x05.Server.Space.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x06.Homicide.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x06.Homicide.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x07.Adult.Content.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x07.Adult.Content.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x08.While.Hat.Black.Hat.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.36 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x08.While.Hat.Black.Hat.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x09.Binding.Arbitration.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.38 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x09.Binding.Arbitration.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.2x10.Two.Days.of.the.Condor.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.36 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x10.Two.Days.of.the.Condor.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x01.Founder.Friendly.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x01.Founder.Friendly.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x02.Two.in.the.Box.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x02.Two.in.the.Box.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x03.Meinetzhagen.s.Haversack.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x03.Meinetzhagen.s.Haversack.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x04.Maleant.Data.Systems.Solutions.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.41 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x04.Maleant.Data.Systems.Solutions.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x05.The.Empty.Chair.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x05.The.Empty.Chair.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x06.Bachman.Insanity.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x06.Bachman.Insanity.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x07.To.Build.a.Better.Beta.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x07.To.Build.a.Better.Beta.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x08.Bachman.s.Earning.s.Over-Ride.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.40 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x08.Bachman.s.Earning.s.Over-Ride.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x09.Daily.Active.Users.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.42 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x09.Daily.Active.Users.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.3x10.The.Uptick.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.42 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x10.The.Uptick.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x01.Success.Failure.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.36 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x01.Success.Failure.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x02.Terms.of.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.38 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x02.Terms.of.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x03.Intellectual.Property.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x03.Intellectual.Property.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x04.Teambuilding.Exercise.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.38 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x04.Teambuilding.Exercise.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x05.The.Blood.Boy.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x05.The.Blood.Boy.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x06.Custom.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.38 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x06.Custom.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x07.The.Patent.Troll.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x07.The.Patent.Troll.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x08.The.Keenan.Vortex.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.37 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x08.The.Keenan.Vortex.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x09.Hooli-Con.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.38 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x09.Hooli-Con.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.4x10.Server.Error.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "0.38 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x10.Server.Error.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x01.Episodio.1.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.65 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x01.Episodio.1.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x02.Episodio.2.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.55 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x02.Episodio.2.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x03.Episodio.3.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.55 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x03.Episodio.3.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x04.Episodio.4.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.49 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x04.Episodio.4.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x05.Episodio.5.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.62 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x05.Episodio.5.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x06.Episodio.6.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.77 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x06.Episodio.6.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x07.Episodio.7.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.63 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x07.Episodio.7.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Silicon.Valley.5x08.Fifty-One.Percent.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
-        "dimensione": "1.77 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x08.Fifty-One.Percent.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x01.Prairie.Gothic.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "3.02 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x01.Prairie.Gothic.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x02.Something.Wicked.This.Way.Comes.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "2.90 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x02.Something.Wicked.This.Way.Comes.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x03.Resist.Not.Evil.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "3.36 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x03.Resist.Not.Evil.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x04.Consequences.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "2.97 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x04.Consequences.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x05.Jack.and.Coke.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "3.07 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x05.Jack.and.Coke.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x06.The.Bagman.Cometh.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "2.30 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x06.The.Bagman.Cometh.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x07.Age.of.Anxiety.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "3.25 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x07.Age.of.Anxiety.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x08.Subterranean.Fire.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "3.29 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x08.Subterranean.Fire.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x09.Wild.Flower.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "3.19 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x09.Wild.Flower.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
-    },
-    {
-        "nome": "Tin.Star.2x10.The.Unseen.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
-        "dimensione": "2.99 GB",
-        "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x10.The.Unseen.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+{
+    "catalogo_video": [
+        {
+            "nome": "Jack Tramiel Interview Uncut.mkv",
+            "dimensione": "0.18 GB",
+            "percorso_completo": "F:\\.Trash-1000\\files\\Extra\\Jack Tramiel Interview Uncut.mkv"
+        },
+        {
+            "nome": "Spinning Hardware.mkv",
+            "dimensione": "0.01 GB",
+            "percorso_completo": "F:\\.Trash-1000\\files\\Extra\\Spinning Hardware.mkv"
+        },
+        {
+            "nome": "Catch-22.1x01.Episodio.01.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv",
+            "dimensione": "1.91 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x01.Episodio.01.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv"
+        },
+        {
+            "nome": "Catch-22.1x02.Episodio.02.ITA.ENG.1080p.WEBMux..H264-Morpheus.mkv",
+            "dimensione": "1.96 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x02.Episodio.02.ITA.ENG.1080p.WEBMux..H264-Morpheus.mkv"
+        },
+        {
+            "nome": "Catch-22.1x03.Episodio.03.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv",
+            "dimensione": "1.77 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x03.Episodio.03.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv"
+        },
+        {
+            "nome": "Catch-22.1x04.Episodio.04.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv",
+            "dimensione": "1.75 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x04.Episodio.04.ITA.ENG.1080p.WEBMux.H264-Morpheus.mkv"
+        },
+        {
+            "nome": "Catch-22.1x05.Episodio.5.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv",
+            "dimensione": "2.74 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x05.Episodio.5.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv"
+        },
+        {
+            "nome": "Catch-22.1x06.Episodio.6.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv",
+            "dimensione": "3.18 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Catch-22.1x06.Episodio.6.ITA.ENG.1080p.AMZN.WEB-DLMux.H.264-Morpheus.mkv"
+        },
+        {
+            "nome": "Romolo+Giuly.S01.E01.E02.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
+            "dimensione": "3.08 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E01.E02.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
+        },
+        {
+            "nome": "Romolo+Giuly.S01.E03.E04.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
+            "dimensione": "2.93 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E03.E04.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
+        },
+        {
+            "nome": "Romolo+Giuly.S01.E05.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
+            "dimensione": "1.65 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E05.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
+        },
+        {
+            "nome": "Romolo+Giuly.S01.E06.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
+            "dimensione": "1.46 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E06.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
+        },
+        {
+            "nome": "Romolo+Giuly.S01.E07.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
+            "dimensione": "1.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E07.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
+        },
+        {
+            "nome": "Romolo+Giuly.S01.E08.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv",
+            "dimensione": "1.60 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Romolo+Giuly.S01.E08.2018.HDTV.iTALiAN.AAC.1080p.H264-SpyRo.mkv"
+        },
+        {
+            "nome": "8.Bit.Generation.-.The.Commodore Wars.1080p.BluRayITA.ENG.SUB.ITA.mkv",
+            "dimensione": "0.91 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\8 Bit Generation - The Commodore Wars\\8.Bit.Generation.-.The.Commodore Wars.1080p.BluRayITA.ENG.SUB.ITA.mkv"
+        },
+        {
+            "nome": "Critters 1986 BluRay 10Bit 1080p DD5.1 H265.ITA-ENG.mkv",
+            "dimensione": "2.22 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 1986 BluRay 10Bit 1080p DD5.1 H265.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Critters 2 1988 BluRay 10Bit 1080p AC3 H265-d3g.mkv",
+            "dimensione": "2.13 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 2 1988 BluRay 10Bit 1080p AC3 H265-d3g.mkv"
+        },
+        {
+            "nome": "Critters 3 (1991) BluRay 10Bit 1080p AC-3 H265-d3g.mkv",
+            "dimensione": "2.11 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 3 (1991) BluRay 10Bit 1080p AC-3 H265-d3g.mkv"
+        },
+        {
+            "nome": "Critters 4 (1992) BluRay 10Bit 1080p AC-3 H265-d3g.mkv",
+            "dimensione": "2.36 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 4 (1992) BluRay 10Bit 1080p AC-3 H265-d3g.mkv"
+        },
+        {
+            "nome": "Game.Changers.Inside.The.Video.Game.Wars.2019.1080p.WEB-DL.x264.ITA-ENG.[Hyuma].mkv",
+            "dimensione": "5.09 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Game Changers - Inside The Video Game Wars [2019]\\Game.Changers.Inside.The.Video.Game.Wars.2019.1080p.WEB-DL.x264.ITA-ENG.[Hyuma].mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x01.Minimum.Viable.Product.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.42 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x01.Minimum.Viable.Product.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x02.The.Cap.Table.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.47 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x02.The.Cap.Table.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x03.Articles.of.Incorporation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x03.Articles.of.Incorporation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x04.Fiduciary.Duties.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x04.Fiduciary.Duties.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x05.Signaling.Risk.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x05.Signaling.Risk.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x06.Third.Party.Insourcing.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x06.Third.Party.Insourcing.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x07.Proof.of.Concept.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x07.Proof.of.Concept.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.1x08.Optimal.Tip-to-Tip.Efficiency.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.1x08.Optimal.Tip-to-Tip.Efficiency.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x01.Sand.Hill.Shuffle.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.38 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x01.Sand.Hill.Shuffle.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x02.Runaway.Dvaluation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.35 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x02.Runaway.Dvaluation.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x03.Bad.Money.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.36 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x03.Bad.Money.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x04.The.Lady.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x04.The.Lady.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x05.Server.Space.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x05.Server.Space.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x06.Homicide.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x06.Homicide.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x07.Adult.Content.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x07.Adult.Content.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x08.While.Hat.Black.Hat.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.36 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x08.While.Hat.Black.Hat.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x09.Binding.Arbitration.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.38 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x09.Binding.Arbitration.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.2x10.Two.Days.of.the.Condor.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.36 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.2x10.Two.Days.of.the.Condor.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x01.Founder.Friendly.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x01.Founder.Friendly.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x02.Two.in.the.Box.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x02.Two.in.the.Box.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x03.Meinetzhagen.s.Haversack.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x03.Meinetzhagen.s.Haversack.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x04.Maleant.Data.Systems.Solutions.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.41 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x04.Maleant.Data.Systems.Solutions.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x05.The.Empty.Chair.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x05.The.Empty.Chair.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x06.Bachman.Insanity.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x06.Bachman.Insanity.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x07.To.Build.a.Better.Beta.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x07.To.Build.a.Better.Beta.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x08.Bachman.s.Earning.s.Over-Ride.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.40 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x08.Bachman.s.Earning.s.Over-Ride.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x09.Daily.Active.Users.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.42 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x09.Daily.Active.Users.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.3x10.The.Uptick.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.42 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.3x10.The.Uptick.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x01.Success.Failure.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.36 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x01.Success.Failure.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x02.Terms.of.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.38 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x02.Terms.of.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x03.Intellectual.Property.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x03.Intellectual.Property.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x04.Teambuilding.Exercise.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.38 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x04.Teambuilding.Exercise.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x05.The.Blood.Boy.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x05.The.Blood.Boy.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x06.Custom.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.38 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x06.Custom.Service.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x07.The.Patent.Troll.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x07.The.Patent.Troll.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x08.The.Keenan.Vortex.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.37 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x08.The.Keenan.Vortex.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x09.Hooli-Con.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.38 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x09.Hooli-Con.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.4x10.Server.Error.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "0.38 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.4x10.Server.Error.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x01.Episodio.1.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.65 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x01.Episodio.1.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x02.Episodio.2.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.55 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x02.Episodio.2.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x03.Episodio.3.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.55 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x03.Episodio.3.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x04.Episodio.4.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.49 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x04.Episodio.4.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x05.Episodio.5.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.62 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x05.Episodio.5.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x06.Episodio.6.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.77 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x06.Episodio.6.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x07.Episodio.7.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.63 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x07.Episodio.7.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Silicon.Valley.5x08.Fifty-One.Percent.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv",
+            "dimensione": "1.77 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Silicon Valley S01-S05\\Silicon.Valley.5x08.Fifty-One.Percent.ITA-ENG.BDMux.1080p.x265.ITA-ENG.SUB.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x01.Prairie.Gothic.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "3.02 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x01.Prairie.Gothic.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x02.Something.Wicked.This.Way.Comes.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "2.90 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x02.Something.Wicked.This.Way.Comes.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x03.Resist.Not.Evil.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "3.36 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x03.Resist.Not.Evil.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x04.Consequences.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "2.97 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x04.Consequences.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x05.Jack.and.Coke.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "3.07 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x05.Jack.and.Coke.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x06.The.Bagman.Cometh.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "2.30 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x06.The.Bagman.Cometh.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x07.Age.of.Anxiety.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "3.25 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x07.Age.of.Anxiety.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x08.Subterranean.Fire.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "3.29 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x08.Subterranean.Fire.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x09.Wild.Flower.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "3.19 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x09.Wild.Flower.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        },
+        {
+            "nome": "Tin.Star.2x10.The.Unseen.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv",
+            "dimensione": "2.99 GB",
+            "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x10.The.Unseen.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
+        }
+    ],
+    "informazioni_disco": {
+        "totale": "465.76 GB",
+        "libero": "363.15 GB"
     }
-]
+}
