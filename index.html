@@ -199,7 +199,6 @@
                 "SeagateGMF": "data/SeagateGMF.json",
                 "SeagateR9H": "data/SeagateR9H.json",
                 "Franky": "data/franky.json",
-                "usopp": "data/usopp.json",
                 "SOA": "data/SOA.json",
                 "TR3NTON": "data/TR3NTON.json",
                 "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
@@ -225,14 +224,16 @@
                                 return response.json();
                             })
                             .then(data => {
-                                // Assume that the first element of the JSON array contains the disk info
-                                if (data && data.length > 0 && data[0].informazioni_disco) {
+                                // Assume that the last element of the JSON array contains the disk info
+                                const lastElement = data[data.length - 1];
+                                if (data && data.length > 0 && lastElement.informazioni_disco) {
                                     database[hddName] = {
-                                        files: data.slice(1), // Exclude the first element
-                                        diskInfo: data[0].informazioni_disco
+                                        files: data.slice(0, -1), // All elements except the last one
+                                        diskInfo: lastElement.informazioni_disco
                                     };
-                                    totalFilesCount += data.slice(1).length;
+                                    totalFilesCount += data.length - 1;
                                 } else {
+                                    // If no disk info, treat all elements as files
                                     database[hddName] = { files: data, diskInfo: null };
                                     totalFilesCount += data.length;
                                 }
