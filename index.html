@@ -197,7 +197,7 @@
                 "Seagate1TB": "data/Seagate1TB.json",
                 "Seagate878": "data/Seagate878.json",
                 "SeagateGMF": "data/SeagateGMF.json",
-                "SeagateR9H": "data/SeagateR9H.json", // Errore corretto qui
+                "SeagateR9H": "data/SeagateR9H.json", // Percorso corretto
                 "Franky": "data/franky.json",
                 "SOA": "data/SOA.json",
                 "TR3NTON": "data/TR3NTON.json",
@@ -246,6 +246,8 @@
                             .catch(error => {
                                 console.error(`Errore nel caricamento del file JSON per ${hddName} (${jsonPath}):`, error);
                                 resultsContainer.innerHTML += `<div class="error-message">Impossibile caricare i dati per l'HDD: ${hddName}. Controlla il percorso o lo script Python.</div>`;
+                                // Ensure a safe default is set in the database to prevent further errors
+                                database[hddName] = { files: [], diskInfo: null };
                             })
                     );
                 }
