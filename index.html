@@ -135,6 +135,13 @@
             color: #777;
             margin-top: 5px;
         }
+        .hdd-details {
+            font-size: 0.8em;
+            font-weight: normal;
+            color: #555;
+            margin-left: auto;
+            text-align: right;
+        }
         .no-results {
             text-align: center;
             color: #666;
@@ -179,35 +186,35 @@
             const totalVideoFilesElement = document.getElementById('total-video-files');
             const videoExtensionsSummaryElement = document.getElementById('video-extensions-summary');
             
-            // Mappa dei nomi degli hard disk ai loro file JSON nella cartella 'data/'
+            // Mappa dei nomi degli hard disk ai loro file JSON e alla loro capacità
             const HDD_JSON_MAP = {
-                "Arietty": "data/Arietty.json",
-                "Hikvision2TB": "data/Hikvision2TB.json",
-                "Maxtor15G": "data/Maxtor15G.json",
-                "Nami": "data/Nami.json",
-                "Rufy": "data/Rufy.json",
-                "Seagate0FM": "data/Seagate0FM.json",
-                "Seagate1TB": "data/Seagate1TB.json",
-                "Seagate878": "data/Seagate878.json",
-                "SeagateGMF": "data/SeagateGMF.json",
-                "SeagateR9H": "data/seagate_r9h.json",
-                "Franky": "data/franky.json",
-                "SOA": "data/SOA.json",
-                "TR3NTON": "data/TR3NTON.json",
-                "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
-                "WD207": "data/WD207.json",
-                "Zoro": "data/Zoro.json",
+                "Arietty": { path: "data/Arietty.json", capacity: "2TB" },
+                "Hikvision2TB": { path: "data/Hikvision2TB.json", capacity: "2TB" },
+                "Maxtor15G": { path: "data/Maxtor15G.json", capacity: "500GB" },
+                "Nami": { path: "data/Nami.json", capacity: "500GB" },
+                "Rufy": { path: "data/Rufy.json", capacity: "500GB" },
+                "Seagate0FM": { path: "data/Seagate0FM.json", capacity: "500GB" },
+                "Seagate1TB": { path: "data/Seagate1TB.json", capacity: "1TB" },
+                "Seagate878": { path: "data/Seagate878.json", capacity: "500GB" },
+                "SeagateGMF": { path: "data/SeagateGMF.json", capacity: "500GB" },
+                "SeagateR9H": { path: "data/seagate_r9h.json", capacity: "500GB" },
+                "Franky": { path: "data/franky.json", capacity: "500GB" },
+                "SOA": { path: "data/SOA.json", capacity: "2TB" },
+                "TR3NTON": { path: "data/TR3NTON.json", capacity: "1TB" },
+                "WD_Sarah_2TB": { path: "data/WD_Sarah_2TB.json", capacity: "2TB" },
+                "WD207": { path: "data/WD207.json", capacity: "500GB" },
+                "Zoro": { path: "data/Zoro.json", capacity: "500GB" }
             };
 
             let database = {}; // Questo oggetto conterrà tutti i dati JSON caricati
 
             async function loadDatabase() {
                 resultsContainer.innerHTML = 'Caricamento database...';
-                let totalFilesCount = 0; // Inizializza il conteggio totale
+                let totalFilesCount = 0;
 
                 const fetchPromises = [];
                 for (const hddName in HDD_JSON_MAP) {
-                    const jsonPath = HDD_JSON_MAP[hddName];
+                    const jsonPath = HDD_JSON_MAP[hddName].path;
                     fetchPromises.push(
                         fetch(jsonPath)
                             .then(response => {
@@ -227,21 +234,19 @@
                     );
                 }
 
-                // Attendi che tutte le promesse di fetch siano risolte
                 await Promise.allSettled(fetchPromises);
                 
                 totalVideoFilesElement.textContent = `Totale file video: ${totalFilesCount}`;
-                updateSummary(); // Aggiorna il riepilogo dopo il caricamento completo
-                renderResults(); // Visualizza tutti i risultati iniziali
+                updateSummary();
+                renderResults();
             }
 
             function updateSummary() {
-                const videoExtensions = ['mkv', 'avi', 'mp4', 'mov', 'flv', 'wmv', 'webm', 'mpeg', 'mpg']; // Estensioni video comuni
+                const videoExtensions = ['mkv', 'avi', 'mp4', 'mov', 'flv', 'wmv', 'webm', 'mpeg', 'mpg'];
                 const extensionCounts = {};
                 let totalVideoFiles = 0;
 
                 for (const hddName in database) {
-                    // Controlla se database[hddName] esiste e non è null/undefined
                     if (database[hddName]) {
                         database[hddName].forEach(file => {
                             const fileName = file.nome.toLowerCase();
@@ -270,28 +275,81 @@
                 }
             }
 
+            // --- Funzioni per il calcolo dello spazio ---
+            function parseSizeToBytes(sizeString) {
+                const units = { 'gb': 1024 ** 3, 'tb': 1024 ** 4 };
+                const parts = sizeString.match(/^(\d+(\.\d+)?)\s*(gb|tb)$/i);
+                if (!parts) return 0;
+                const value = parseFloat(parts[1]);
+                const unit = parts[3].toLowerCase();
+                return value * units[unit];
+            }
+            
+            function formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            function calculateHddSpace() {
+                const hddStats = {};
+
+                for (const hddName in database) {
+                    const files = database[hddName];
+                    if (files) {
+                        let occupiedBytes = 0;
+                        files.forEach(file => {
+                            const sizeParts = file.dimensione.match(/^(\d+(\.\d+)?)\s*(KB|MB|GB|TB)$/i);
+                            if (sizeParts) {
+                                const value = parseFloat(sizeParts[1]);
+                                const unit = sizeParts[3].toLowerCase();
+                                const unitsInBytes = { 'kb': 1024, 'mb': 1024 ** 2, 'gb': 1024 ** 3, 'tb': 1024 ** 4 };
+                                occupiedBytes += value * unitsInBytes[unit];
+                            }
+                        });
+
+                        const totalCapacityString = HDD_JSON_MAP[hddName].capacity;
+                        const totalCapacityBytes = parseSizeToBytes(totalCapacityString);
+                        const freeBytes = totalCapacityBytes - occupiedBytes;
+
+                        hddStats[hddName] = {
+                            occupied: formatBytes(occupiedBytes),
+                            free: formatBytes(freeBytes),
+                            total: totalCapacityString
+                        };
+                    }
+                }
+                return hddStats;
+            }
+            // ---------------------------------------------
+
             function renderResults(query = '') {
                 resultsContainer.innerHTML = '';
                 const lowerCaseQuery = query.toLowerCase();
                 let totalResultsFound = false;
-
-                // Splitta la query in parole chiave per una ricerca più flessibile
                 const keywords = lowerCaseQuery.split(' ').filter(word => word.length > 0);
+                const hddSpaceStats = calculateHddSpace();
 
-                // Se non c'è una query di ricerca, mostra tutti i file raggruppati
                 if (query === '') {
                     for (const hddName in database) {
                         const files = database[hddName];
-                        if (files && files.length > 0) { // Assicurati che l'array di file esista e non sia vuoto
+                        if (files && files.length > 0) {
+                            const stats = hddSpaceStats[hddName];
                             const hddSection = document.createElement('div');
                             hddSection.classList.add('hdd-section');
                             const hddTitle = document.createElement('h2');
                             hddTitle.classList.add('hdd-title');
-                            hddTitle.innerHTML = `<span>${hddName} (${files.length} file)</span> <span class="arrow-icon">&#9654;</span>`;
+                            hddTitle.innerHTML = `
+                                <span>${hddName} (${files.length} file)</span> 
+                                <span class="hdd-details">Totale: ${stats.total} | Occupato: ${stats.occupied} | Libero: ${stats.free}</span>
+                                <span class="arrow-icon">&#9654;</span>
+                            `;
                             hddTitle.addEventListener('click', () => {
                                 const fileList = hddTitle.nextElementSibling;
                                 fileList.classList.toggle('visible');
-                                hddTitle.querySelector('.arrow-icon').classList.toggle('rotate'); // Aggiungi una classe per ruotare l'icona
+                                hddTitle.querySelector('.arrow-icon').classList.toggle('rotate');
                             });
                             hddSection.appendChild(hddTitle);
 
@@ -320,10 +378,10 @@
                     if (!totalResultsFound) {
                         resultsContainer.innerHTML = `<div class="no-results">Nessun file caricato nel database. Controlla i tuoi file JSON e lo script Python.</div>`;
                     }
-                } else { // Se c'è una query di ricerca, filtra i file
+                } else {
                     for (const hddName in database) {
                         const files = database[hddName];
-                        if (files) { // Assicurati che l'array di file esista
+                        if (files) {
                             const filteredFiles = files.filter(file => 
                                 keywords.every(keyword => 
                                     file.nome.toLowerCase().includes(keyword) || 
@@ -345,7 +403,7 @@
                                 hddSection.appendChild(hddTitle);
             
                                 const filesList = document.createElement('ul');
-                                filesList.classList.add('file-list', 'visible'); // Mostra la lista aperta per i risultati della ricerca
+                                filesList.classList.add('file-list', 'visible');
                                 
                                 filteredFiles.forEach(file => {
                                     const fileItem = document.createElement('li');
@@ -372,8 +430,7 @@
                 if (!totalResultsFound && query !== '') {
                     resultsContainer.innerHTML = `<div class="no-results">Nessun risultato trovato per "${query}".</div>`;
                 } else if (!totalResultsFound && query === '') {
-                    // Questo caso dovrebbe essere gestito da loadDatabase se non ci sono files
-                    // resultsContainer.innerHTML = `<div class="no-results">Nessun file caricato nel database.</div>`;
+                    // This case should be handled by loadDatabase if there are no files
                 }
             }
 
@@ -381,8 +438,7 @@
                 const query = searchInput.value.trim();
                 if (query === '') {
                     resultsContainer.innerHTML = `<div class="no-results alert-message">Per favore, inserisci un termine di ricerca.</div>`;
-                    // Quando la query è vuota, ricarica tutti i risultati
-                    renderResults(''); 
+                    renderResults('');
                     return;
                 }
                 renderResults(query);
@@ -397,7 +453,6 @@
                 }
             });
 
-            // Avvia il caricamento del database all'inizio
             loadDatabase();
         });
     </script>
