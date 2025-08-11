@@ -68,6 +68,10 @@
             display: flex;
             justify-content: space-between;
         }
+        #hdd-size-summary .size-item {
+            display: flex;
+            justify-content: space-between;
+        }
         #search-container {
             margin-bottom: 30px;
             text-align: center;
@@ -202,9 +206,7 @@
                     <p id="total-space-occupied">Totale spazio occupato: 0 GB</p>
                     <p id="total-space-free">Totale spazio libero: 0 GB</p>
                     <div id="hdd-size-summary">
-                        <p>HDD da 500 GB: 0</p>
-                        <p>HDD da 1 TB: 0</p>
-                        <p>HDD da 2 TB: 0</p>
+                        <p>Conteggio in base alle dimensioni del disco...</p>
                     </div>
                 </div>
             </div>
@@ -306,9 +308,7 @@
                 let totalOccupiedGB = 0;
                 let totalFreeGB = 0;
 
-                let hddCount500GB = 0;
-                let hddCount1TB = 0;
-                let hddCount2TB = 0;
+                const hddSizeCounts = {};
 
                 for (const hddName in database) {
                     const hddData = database[hddName];
@@ -332,15 +332,11 @@
                         totalOccupiedGB += isNaN(occupiedGB) ? 0 : occupiedGB;
                         totalFreeGB += parseFloat(hddData.diskInfo.libero) || 0;
 
-                        // Categorizzazione degli HDD
                         if (!isNaN(totalGB)) {
-                            if (totalGB > 450 && totalGB <= 500) {
-                                hddCount500GB++;
-                            } else if (totalGB > 900 && totalGB <= 1000) {
-                                hddCount1TB++;
-                            } else if (totalGB > 1800 && totalGB <= 2000) {
-                                hddCount2TB++;
-                            }
+                            // Arrotonda la capacità per raggruppare i dischi
+                            const roundedSize = Math.round(totalGB); 
+                            const sizeKey = `${roundedSize} GB`;
+                            hddSizeCounts[sizeKey] = (hddSizeCounts[sizeKey] || 0) + 1;
                         }
                     }
                 }
@@ -362,11 +358,13 @@
                 totalSpaceOccupiedElement.textContent = `Totale spazio occupato: ${totalOccupiedGB.toFixed(2)} GB`;
                 totalSpaceFreeElement.textContent = `Totale spazio libero: ${totalFreeGB.toFixed(2)} GB`;
 
-                hddSizeSummaryElement.innerHTML = `
-                    <p>HDD da 500 GB: ${hddCount500GB}</p>
-                    <p>HDD da 1 TB: ${hddCount1TB}</p>
-                    <p>HDD da 2 TB: ${hddCount2TB}</p>
-                `;
+                hddSizeSummaryElement.innerHTML = '';
+                for (const size in hddSizeCounts) {
+                    const p = document.createElement('p');
+                    p.classList.add('size-item');
+                    p.innerHTML = `<span>HDD da ${size}</span><span>${hddSizeCounts[size]}</span>`;
+                    hddSizeSummaryElement.appendChild(p);
+                }
             }
 
             function renderResults(query = '') {
