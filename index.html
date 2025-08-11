@@ -216,8 +216,9 @@
             <input type="text" id="searchInput" placeholder="Cerca un file...">
             <button id="searchButton">Cerca</button>
         </div>
-        <div id="results-container">
-        </div>
+        
+        <div id="categorized-results-container"></div>
+        <div id="results-container"></div>
     </div>
 
     <script>
@@ -225,6 +226,7 @@
             const searchInput = document.getElementById('searchInput');
             const searchButton = document.getElementById('searchButton');
             const resultsContainer = document.getElementById('results-container');
+            const categorizedResultsContainer = document.getElementById('categorized-results-container');
             
             const totalVideoFilesElement = document.getElementById('total-video-files');
             const videoExtensionsSummaryElement = document.getElementById('video-extensions-summary');
@@ -247,13 +249,18 @@
                 "Seagate878": "data/Seagate878.json",
                 "SeagateGMF": "data/SeagateGMF.json",
                 "SeagateR9H": "data/SeagateR9H.json",
-                 "WD207": "data/WD207.json",
-                 "Maxtor15G": "data/Maxtor15G.json",
+                "WD207": "data/WD207.json",
+                "Maxtor15G": "data/Maxtor15G.json",
                 "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
-
             };
 
             let database = {};
+            let categorizedDatabase = {
+                'Film': [],
+                'Serie TV': [],
+                'Anime': [],
+                'Cartoni Animati': []
+            };
 
             async function loadDatabase() {
                 resultsContainer.innerHTML = 'Caricamento database...';
@@ -303,6 +310,64 @@
                 renderResults();
             }
 
+            function categorizeFiles() {
+                // Svuota le categorie per evitare duplicati ad ogni ricaricamento
+                categorizedDatabase = {
+                    'Film': [],
+                    'Serie TV': [],
+                    'Anime': [],
+                    'Cartoni Animati': []
+                };
+
+                const animeKeywords = ['my hero academia', 'one piece', 'naruto', 'dragon ball', 'hunter x hunter', 'death note', 'aot', 'attack on titan']; // Esempi di parole chiave per anime
+                
+                for (const hddName in database) {
+                    const hddData = database[hddName];
+                    if (hddData && hddData.files && Array.isArray(hddData.files)) {
+                        hddData.files.forEach(file => {
+                            const fileName = file.nome.toLowerCase();
+                            const fileExtension = fileName.split('.').pop();
+                            
+                            // Ignora i file non video
+                            if (!['mkv', 'avi', 'mp4', 'mov', 'flv', 'wmv', 'webm', 'mpeg', 'mpg'].includes(fileExtension)) {
+                                return;
+                            }
+
+                            // Aggiunge la provenienza (HDD) al file
+                            const fileWithHdd = { ...file, hdd: hddName };
+
+                            let isAnime = false;
+                            for (const keyword of animeKeywords) {
+                                if (fileName.includes(keyword)) {
+                                    isAnime = true;
+                                    break;
+                                }
+                            }
+
+                            // Logica di categorizzazione
+                            if (fileName.match(/s\d+e\d+/i) || fileName.includes('stagione') || fileName.includes('season')) {
+                                if (isAnime) {
+                                    categorizedDatabase['Anime'].push(fileWithHdd);
+                                } else {
+                                    categorizedDatabase['Serie TV'].push(fileWithHdd);
+                                }
+                            } else if (isAnime) {
+                                categorizedDatabase['Anime'].push(fileWithHdd);
+                            } else if (fileName.includes('cartone') || fileName.includes('cartoon') || fileName.includes('animated')) {
+                                categorizedDatabase['Cartoni Animati'].push(fileWithHdd);
+                            } else {
+                                categorizedDatabase['Film'].push(fileWithHdd);
+                            }
+                        });
+                    }
+                }
+                
+                // Ordina i file in ogni categoria per nome
+                for (const category in categorizedDatabase) {
+                    categorizedDatabase[category].sort((a, b) => a.nome.localeCompare(b.nome));
+                }
+            }
+
             function updateSummary() {
                 const videoExtensions = ['mkv', 'avi', 'mp4', 'mov', 'flv', 'wmv', 'webm', 'mpeg', 'mpg'];
                 const extensionCounts = {};
@@ -337,7 +402,9 @@
                         if (!isNaN(totalGB)) {
                             let sizeCategory;
                             // Associa la dimensione formattata a una capacità commerciale standard
-                            if (totalGB >= 180 && totalGB <= 210) {
+                            if (totalGB >= 10 && totalGB < 16) {
+                                sizeCategory = '15 GB';
+                            } else if (totalGB >= 180 && totalGB <= 210) {
                                 sizeCategory = '200 GB';
                             } else if (totalGB >= 290 && totalGB <= 330) {
                                 sizeCategory = '320 GB';
@@ -389,6 +456,60 @@
                     p.innerHTML = `<span>HDD da ${size}</span><span>${hddSizeCounts[size]}</span>`;
                     hddSizeSummaryElement.appendChild(p);
                 }
+                
+                categorizeFiles();
+                renderCategorizedResults();
+            }
+            
+            function createCollapsibleSection(title, files, container) {
+                if (files.length === 0) return;
+
+                const section = document.createElement('div');
+                section.classList.add('hdd-section');
+
+                const titleElement = document.createElement('h2');
+                titleElement.classList.add('hdd-title');
+                titleElement.innerHTML = `
+                    <span>${title} (${files.length} file)</span>
+                    <span class="arrow-icon">&#9654;</span>
+                `;
+                section.appendChild(titleElement);
+
+                const fileList = document.createElement('ul');
+                fileList.classList.add('file-list');
+
+                titleElement.addEventListener('click', () => {
+                    fileList.classList.toggle('visible');
+                    titleElement.querySelector('.arrow-icon').classList.toggle('rotate');
+                });
+
+                files.forEach(file => {
+                    const fileItem = document.createElement('li');
+                    fileItem.classList.add('file-item');
+                    fileItem.innerHTML = `
+                        <div class="file-name">${file.nome}</div>
+                        <div class="file-details">
+                            Dimensione: ${file.dimensione}
+                            <br>
+                            Percorso: ${file.percorso_completo} (da HDD: ${file.hdd})
+                        </div>
+                    `;
+                    fileList.appendChild(fileItem);
+                });
+                
+                section.appendChild(fileList);
+                container.appendChild(section);
+            }
+
+            function renderCategorizedResults() {
+                categorizedResultsContainer.innerHTML = '';
+                
+                const sortedCategories = Object.keys(categorizedDatabase).sort();
+
+                sortedCategories.forEach(category => {
+                    const files = categorizedDatabase[category];
+                    createCollapsibleSection(category, files, categorizedResultsContainer);
+                });
             }
 
             function renderResults(query = '') {
@@ -396,56 +517,18 @@
                 const lowerCaseQuery = query.toLowerCase();
                 let totalResultsFound = false;
                 const keywords = lowerCaseQuery.split(' ').filter(word => word.length > 0);
-
+                
                 if (query === '') {
+                    // Mostra i risultati categorizzati per default quando la ricerca è vuota
+                    categorizedResultsContainer.style.display = 'block';
+                    resultsContainer.style.display = 'none';
+
                     for (const hddName in database) {
                         const hddData = database[hddName];
                         const files = (hddData && hddData.files && Array.isArray(hddData.files)) ? hddData.files : [];
                         const diskInfo = hddData ? hddData.diskInfo : null;
 
                         if (files.length > 0 || diskInfo) {
-                            const hddSection = document.createElement('div');
-                            hddSection.classList.add('hdd-section');
-                            const hddTitle = document.createElement('h2');
-                            hddTitle.classList.add('hdd-title');
-                            
-                            let hddDetailsHtml = '';
-                            if (diskInfo) {
-                                hddDetailsHtml = `<span class="hdd-details">Totale: ${diskInfo.totale} | Libero: ${diskInfo.libero}</span>`;
-                            }
-                            
-                            hddTitle.innerHTML = `
-                                <span>${hddName} (${files.length} file)</span>
-                                ${hddDetailsHtml}
-                                <span class="arrow-icon">&#9654;</span>
-                            `;
-                            
-                            hddTitle.addEventListener('click', () => {
-                                const fileList = hddTitle.nextElementSibling;
-                                fileList.classList.toggle('visible');
-                                hddTitle.querySelector('.arrow-icon').classList.toggle('rotate');
-                            });
-                            hddSection.appendChild(hddTitle);
-
-                            const filesList = document.createElement('ul');
-                            filesList.classList.add('file-list');
-                            
-                            files.forEach(file => {
-                                const fileItem = document.createElement('li');
-                                fileItem.classList.add('file-item');
-                                fileItem.innerHTML = `
-                                    <div class="file-name">${file.nome}</div>
-                                    <div class="file-details">
-                                        Dimensione: ${file.dimensione}
-                                        <br>
-                                        Percorso: ${file.percorso_completo}
-                                    </div>
-                                `;
-                                filesList.appendChild(fileItem);
-                            });
-
-                            hddSection.appendChild(filesList);
-                            resultsContainer.appendChild(hddSection);
                             totalResultsFound = true;
                         }
                     }
@@ -453,6 +536,10 @@
                         resultsContainer.innerHTML = `<div class="no-results">Nessun file caricato nel database. Controlla i tuoi file JSON e lo script Python.</div>`;
                     }
                 } else {
+                    // Nascondi i risultati categorizzati quando si esegue una ricerca
+                    categorizedResultsContainer.style.display = 'none';
+                    resultsContainer.style.display = 'block';
+
                     for (const hddName in database) {
                         const hddData = database[hddName];
                         const files = (hddData && hddData.files && Array.isArray(hddData.files)) ? hddData.files : [];
@@ -511,7 +598,6 @@
             function handleSearch() {
                 const query = searchInput.value.trim();
                 if (query === '') {
-                    resultsContainer.innerHTML = `<div class="no-results alert-message">Per favore, inserisci un termine di ricerca.</div>`;
                     renderResults('');
                     return;
                 }
