@@ -211,6 +211,7 @@
             async function loadDatabase() {
                 resultsContainer.innerHTML = 'Caricamento database...';
                 let totalFilesCount = 0;
+                let loadedHddsCount = 0;
 
                 const fetchPromises = [];
                 for (const hddName in HDD_JSON_MAP) {
@@ -224,34 +225,35 @@
                                 return response.json();
                             })
                             .then(data => {
-                                // Aggiunto un controllo per assicurarsi che i dati siano un array
-                                if (Array.isArray(data)) {
+                                let files = [];
+                                let diskInfo = null;
+
+                                // Nuova logica per gestire la struttura { "catalogo_video": [...], "informazioni_disco": {...} }
+                                if (data && typeof data === 'object') {
+                                    if (data.catalogo_video && Array.isArray(data.catalogo_video)) {
+                                        files = data.catalogo_video;
+                                    }
+                                    if (data.informazioni_disco) {
+                                        diskInfo = data.informazioni_disco;
+                                    }
+                                } else if (Array.isArray(data)) {
+                                    // Logica di fallback per la vecchia struttura
                                     const lastElement = data[data.length - 1];
                                     if (lastElement && lastElement.informazioni_disco) {
-                                        database[hddName] = {
-                                            files: data.slice(0, -1), // Tutti gli elementi tranne l'ultimo
-                                            diskInfo: lastElement.informazioni_disco
-                                        };
-                                        totalFilesCount += data.length - 1;
+                                        files = data.slice(0, -1);
+                                        diskInfo = lastElement.informazioni_disco;
                                     } else {
-                                        // Se non ci sono informazioni sul disco, considera tutti gli elementi come file
-                                        database[hddName] = { files: data, diskInfo: null };
-                                        totalFilesCount += data.length;
-                                    }
-                                } else {
-                                    // Gestione del caso in cui il JSON non è un array (es. solo l'oggetto informazioni_disco)
-                                    if (data && data.informazioni_disco) {
-                                        database[hddName] = { files: [], diskInfo: data.informazioni_disco };
-                                    } else {
-                                        // Il file JSON non è valido o vuoto
-                                        database[hddName] = { files: [], diskInfo: null };
+                                        files = data;
                                     }
                                 }
+
+                                database[hddName] = { files, diskInfo };
+                                totalFilesCount += files.length;
+                                loadedHddsCount++;
                             })
                             .catch(error => {
                                 console.error(`Errore nel caricamento del file JSON per ${hddName} (${jsonPath}):`, error);
-                                resultsContainer.innerHTML += `<div class="error-message">Impossibile caricare i dati per l'HDD: ${hddName}. Controlla il percorso o lo script Python.</div>`;
-                                // Assicurati che venga impostato un valore di default sicuro
+                                // Imposta un valore di default sicuro per prevenire errori
                                 database[hddName] = { files: [], diskInfo: null };
                             })
                     );
@@ -271,7 +273,6 @@
 
                 for (const hddName in database) {
                     const hddData = database[hddName];
-                    // Aggiunto un controllo per assicurarsi che hddData e hddData.files esistano e siano array
                     if (hddData && hddData.files && Array.isArray(hddData.files)) {
                         hddData.files.forEach(file => {
                             const fileName = file.nome.toLowerCase();
@@ -413,7 +414,7 @@
                 if (!totalResultsFound && query !== '') {
                     resultsContainer.innerHTML = `<div class="no-results">Nessun risultato trovato per "${query}".</div>`;
                 } else if (!totalResultsFound && query === '') {
-                    // This case should be handled by loadDatabase if there are no files
+                    // Questo caso dovrebbe essere gestito da loadDatabase se non ci sono file
                 }
             }
 
