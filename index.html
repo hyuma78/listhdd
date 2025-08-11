@@ -197,7 +197,7 @@
                 "Seagate1TB": "data/Seagate1TB.json",
                 "Seagate878": "data/Seagate878.json",
                 "SeagateGMF": "data/SeagateGMF.json",
-                "SeagateR9H": "data/SeagateR9H.json",
+                "SeagateR9H": "data/Seagate9RH.json",
                 "Franky": "data/franky.json",
                 "SOA": "data/SOA.json",
                 "TR3NTON": "data/TR3NTON.json",
@@ -226,7 +226,7 @@
                             .then(data => {
                                 // Assume that the last element of the JSON array contains the disk info
                                 const lastElement = data[data.length - 1];
-                                if (data && data.length > 0 && lastElement.informazioni_disco) {
+                                if (data && data.length > 0 && lastElement && lastElement.informazioni_disco) {
                                     database[hddName] = {
                                         files: data.slice(0, -1), // All elements except the last one
                                         diskInfo: lastElement.informazioni_disco
@@ -258,8 +258,9 @@
                 let totalVideoFiles = 0;
 
                 for (const hddName in database) {
-                    if (database[hddName] && database[hddName].files) {
-                        database[hddName].files.forEach(file => {
+                    const hddData = database[hddName];
+                    if (hddData && hddData.files) {
+                        hddData.files.forEach(file => {
                             const fileName = file.nome.toLowerCase();
                             const parts = fileName.split('.');
                             if (parts.length > 1) {
@@ -295,7 +296,7 @@
                 if (query === '') {
                     for (const hddName in database) {
                         const hddData = database[hddName];
-                        const files = hddData ? hddData.files : [];
+                        const files = hddData && hddData.files ? hddData.files : [];
                         const diskInfo = hddData ? hddData.diskInfo : null;
 
                         if (files.length > 0 || diskInfo) {
@@ -350,7 +351,7 @@
                 } else {
                     for (const hddName in database) {
                         const hddData = database[hddName];
-                        const files = hddData ? hddData.files : [];
+                        const files = hddData && hddData.files ? hddData.files : [];
 
                         const filteredFiles = files.filter(file => 
                             keywords.every(keyword => 
