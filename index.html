@@ -333,10 +333,17 @@
                         totalFreeGB += parseFloat(hddData.diskInfo.libero) || 0;
 
                         if (!isNaN(totalGB)) {
-                            // Arrotonda la capacità per raggruppare i dischi
-                            const roundedSize = Math.round(totalGB); 
-                            const sizeKey = `${roundedSize} GB`;
-                            hddSizeCounts[sizeKey] = (hddSizeCounts[sizeKey] || 0) + 1;
+                            // Categorizzazione basata su range di capacità commerciale
+                            let sizeCategory = 'Altre dimensioni';
+                            if (totalGB >= 450 && totalGB < 600) {
+                                sizeCategory = '500 GB';
+                            } else if (totalGB >= 900 && totalGB < 1100) {
+                                sizeCategory = '1 TB';
+                            } else if (totalGB >= 1800 && totalGB < 2200) {
+                                sizeCategory = '2 TB';
+                            }
+                            
+                            hddSizeCounts[sizeCategory] = (hddSizeCounts[sizeCategory] || 0) + 1;
                         }
                     }
                 }
@@ -359,7 +366,14 @@
                 totalSpaceFreeElement.textContent = `Totale spazio libero: ${totalFreeGB.toFixed(2)} GB`;
 
                 hddSizeSummaryElement.innerHTML = '';
-                for (const size in hddSizeCounts) {
+                // Ordina le chiavi prima di visualizzarle
+                const sortedHddSizes = Object.keys(hddSizeCounts).sort((a, b) => {
+                    if (a === 'Altre dimensioni') return 1;
+                    if (b === 'Altre dimensioni') return -1;
+                    return parseFloat(a) - parseFloat(b);
+                });
+                
+                for (const size of sortedHddSizes) {
                     const p = document.createElement('p');
                     p.classList.add('size-item');
                     p.innerHTML = `<span>HDD da ${size}</span><span>${hddSizeCounts[size]}</span>`;
