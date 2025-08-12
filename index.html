@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             margin: 0;
             padding: 20px;
         }
+
         .container {
             width: 90%;
             max-width: 1200px;
@@ -19,59 +21,70 @@
             padding: 30px;
             background: #fff;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             text-align: center;
             color: #2c3e50;
             margin-bottom: 30px;
             font-size: 2.5em;
         }
+
         #summary-section {
             background-color: #f7f9fc;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
+
         #summary-section h2 {
             margin-top: 0;
             font-size: 1.5em;
             color: #3498db;
         }
+
         .summary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
+
         .summary-card {
             background: #fff;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
+
         .summary-card h3 {
             margin-top: 0;
             margin-bottom: 10px;
             font-size: 1.2em;
             color: #2c3e50;
         }
+
         .summary-card p {
             margin: 5px 0;
             font-size: 1em;
             color: #555;
         }
+
         #video-extensions-summary {
             margin-top: 10px;
         }
+
         .extension-item {
             display: flex;
             justify-content: space-between;
         }
+
         #hdd-size-summary .size-item {
             display: flex;
             justify-content: space-between;
         }
+
         #search-container {
             margin-bottom: 30px;
             text-align: center;
@@ -79,6 +92,7 @@
             justify-content: center;
             align-items: center;
         }
+
         #searchInput {
             flex-grow: 1;
             padding: 12px;
@@ -87,6 +101,7 @@
             border-radius: 8px;
             margin-right: 10px;
         }
+
         #searchButton {
             padding: 12px 24px;
             font-size: 16px;
@@ -97,27 +112,33 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.1s;
         }
+
         #searchButton:hover {
             background-color: #2980b9;
         }
+
         #searchButton:active {
             transform: scale(0.98);
         }
+
         #results-container {
             list-style: none;
             padding: 0;
         }
+
         .hdd-section {
             margin-bottom: 15px;
             border-radius: 10px;
             background-color: #fafbfd;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             transition: box-shadow 0.3s;
         }
+
         .hdd-section:hover {
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         .hdd-title {
             font-size: 1.2em;
             font-weight: bold;
@@ -132,9 +153,11 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .hdd-title:hover {
             background-color: #f0f4f8;
         }
+
         .hdd-details {
             font-size: 0.8em;
             font-weight: normal;
@@ -142,6 +165,7 @@
             margin-left: auto;
             text-align: right;
         }
+
         .file-list {
             list-style: none;
             padding: 0;
@@ -151,44 +175,101 @@
             overflow: hidden;
             transition: max-height 0.5s ease-in-out;
         }
+
         .file-list.visible {
             display: block;
             max-height: 300px;
             overflow-y: auto;
         }
+
         .file-item {
             background-color: #fff;
             padding: 15px 25px;
             border-top: 1px solid #f0f0f0;
         }
+
         .file-name {
             font-weight: 500;
             font-size: 1.1em;
             word-wrap: break-word;
         }
+
         .file-details {
             font-size: 0.9em;
             color: #777;
             margin-top: 5px;
         }
+
         .no-results {
             text-align: center;
             color: #666;
             padding: 20px;
         }
+
         .alert-message {
             color: #e74c3c;
             font-weight: bold;
         }
+
         .arrow-icon {
             font-size: 1em;
             transition: transform 0.3s;
         }
+
         .visible .arrow-icon {
             transform: rotate(90deg);
         }
+
+        /* Stili per la sezione a comparsa e la tabella del CSV */
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        #fileList {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #fileList th,
+        #fileList td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #fileList tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #fileList th {
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Catalogo degli Hard Disk</h1>
@@ -220,12 +301,27 @@
         </div>
     </div>
 
+    <button class="accordion">Elenco completo dei file</button>
+    <div class="panel">
+        <table id="fileList">
+            <thead>
+                <tr>
+                    <th>Nome file</th>
+                    <th>Dimensione</th>
+                    <th>HDD</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const searchInput = document.getElementById('searchInput');
             const searchButton = document.getElementById('searchButton');
             const resultsContainer = document.getElementById('results-container');
-            
+
             const totalVideoFilesElement = document.getElementById('total-video-files');
             const videoExtensionsSummaryElement = document.getElementById('video-extensions-summary');
             const totalSpaceOccupiedElement = document.getElementById('total-space-occupied');
@@ -247,17 +343,16 @@
                 "Seagate878": "data/Seagate878.json",
                 "SeagateGMF": "data/SeagateGMF.json",
                 "SeagateR9H": "data/SeagateR9H.json",
-                 "WD207": "data/WD207.json",
-                 "Maxtor15G": "data/Maxtor15G.json",
+                "WD207": "data/WD207.json",
+                "Maxtor15G": "data/Maxtor15G.json",
                 "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
-
             };
 
             let database = {};
 
             async function loadDatabase() {
                 resultsContainer.innerHTML = 'Caricamento database...';
-                
+
                 const fetchPromises = [];
                 for (const hddName in HDD_JSON_MAP) {
                     const jsonPath = HDD_JSON_MAP[hddName];
@@ -298,7 +393,7 @@
                 }
 
                 await Promise.allSettled(fetchPromises);
-                
+
                 updateSummary();
                 renderResults();
             }
@@ -336,7 +431,6 @@
 
                         if (!isNaN(totalGB)) {
                             let sizeCategory;
-                            // Associa la dimensione formattata a una capacità commerciale standard
                             if (totalGB >= 180 && totalGB <= 210) {
                                 sizeCategory = '200 GB';
                             } else if (totalGB >= 290 && totalGB <= 330) {
@@ -350,17 +444,16 @@
                             } else if (totalGB >= 1800 && totalGB <= 2200) {
                                 sizeCategory = '2 TB';
                             } else {
-                                // Per le altre dimensioni, usa il valore esatto arrotondato
                                 sizeCategory = `${Math.round(totalGB)} GB`;
                             }
-                            
+
                             hddSizeCounts[sizeCategory] = (hddSizeCounts[sizeCategory] || 0) + 1;
                         }
                     }
                 }
-                
+
                 totalVideoFilesElement.textContent = `Totale file video: ${totalVideoFiles}`;
-                
+
                 videoExtensionsSummaryElement.innerHTML = '';
                 if (totalVideoFiles === 0) {
                     videoExtensionsSummaryElement.innerHTML = '<p>Nessun file video trovato.</p>';
@@ -382,7 +475,7 @@
                     const bValue = parseFloat(b);
                     return aValue - bValue;
                 });
-                
+
                 for (const size of sortedHddSizes) {
                     const p = document.createElement('p');
                     p.classList.add('size-item');
@@ -408,18 +501,18 @@
                             hddSection.classList.add('hdd-section');
                             const hddTitle = document.createElement('h2');
                             hddTitle.classList.add('hdd-title');
-                            
+
                             let hddDetailsHtml = '';
                             if (diskInfo) {
                                 hddDetailsHtml = `<span class="hdd-details">Totale: ${diskInfo.totale} | Libero: ${diskInfo.libero}</span>`;
                             }
-                            
+
                             hddTitle.innerHTML = `
                                 <span>${hddName} (${files.length} file)</span>
                                 ${hddDetailsHtml}
                                 <span class="arrow-icon">&#9654;</span>
                             `;
-                            
+
                             hddTitle.addEventListener('click', () => {
                                 const fileList = hddTitle.nextElementSibling;
                                 fileList.classList.toggle('visible');
@@ -429,7 +522,7 @@
 
                             const filesList = document.createElement('ul');
                             filesList.classList.add('file-list');
-                            
+
                             files.forEach(file => {
                                 const fileItem = document.createElement('li');
                                 fileItem.classList.add('file-item');
@@ -457,13 +550,13 @@
                         const hddData = database[hddName];
                         const files = (hddData && hddData.files && Array.isArray(hddData.files)) ? hddData.files : [];
 
-                        const filteredFiles = files.filter(file => 
-                            keywords.every(keyword => 
-                                file.nome.toLowerCase().includes(keyword) || 
+                        const filteredFiles = files.filter(file =>
+                            keywords.every(keyword =>
+                                file.nome.toLowerCase().includes(keyword) ||
                                 file.percorso_completo.toLowerCase().includes(keyword)
                             )
                         );
-        
+
                         if (filteredFiles.length > 0) {
                             const hddSection = document.createElement('div');
                             hddSection.classList.add('hdd-section');
@@ -476,10 +569,10 @@
                                 hddTitle.querySelector('.arrow-icon').classList.toggle('rotate');
                             });
                             hddSection.appendChild(hddTitle);
-        
+
                             const filesList = document.createElement('ul');
                             filesList.classList.add('file-list', 'visible');
-                            
+
                             filteredFiles.forEach(file => {
                                 const fileItem = document.createElement('li');
                                 fileItem.classList.add('file-item');
@@ -493,7 +586,7 @@
                                 `;
                                 filesList.appendChild(fileItem);
                             });
-        
+
                             hddSection.appendChild(filesList);
                             resultsContainer.appendChild(hddSection);
                             totalResultsFound = true;
@@ -528,7 +621,52 @@
             });
 
             loadDatabase();
+
+
+            // Codice per la sezione a comparsa (accordion) e il caricamento del CSV
+            const accordion = document.querySelector(".accordion");
+            const panel = document.querySelector(".panel");
+            const tbody = document.querySelector("#fileList tbody");
+
+            accordion.addEventListener("click", function() {
+                this.classList.toggle("active");
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+
+            function loadCSV() {
+                fetch('output.csv')
+                    .then(response => response.text())
+                    .then(data => {
+                        const rows = data.split('\n').slice(1);
+                        rows.forEach(row => {
+                            const columns = row.split(',');
+                            if (columns.length === 3) {
+                                const tr = document.createElement('tr');
+                                const fileCell = document.createElement('td');
+                                const sizeCell = document.createElement('td');
+                                const hddCell = document.createElement('td');
+
+                                fileCell.textContent = columns[0].replace(/"/g, '');
+                                sizeCell.textContent = columns[1].replace(/"/g, '');
+                                hddCell.textContent = columns[2].replace(/"/g, '');
+
+                                tr.appendChild(fileCell);
+                                tr.appendChild(sizeCell);
+                                tr.appendChild(hddCell);
+                                tbody.appendChild(tr);
+                            }
+                        });
+                    })
+                    .catch(error => console.error('Errore nel caricamento del file CSV:', error));
+            }
+
+            loadCSV();
         });
     </script>
 </body>
+
 </html>
