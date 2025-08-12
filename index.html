@@ -638,7 +638,7 @@
             });
 
 function loadCSV() {
-                fetch('output.csv')
+                fetch('data/output.csv')
                     .then(response => response.text())
                     .then(data => {
                         const tbody = document.querySelector('#fileList tbody');
