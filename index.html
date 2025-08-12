@@ -638,34 +638,35 @@
             });
 
             function loadCSV() {
-                fetch('output.csv')
-                .then(response => response.text())
-                .then(data => {
-                    const rows = data.split('\n').slice(1); // Ignora l'intestazione
-                    rows.forEach(row => {
-                        // Usa una regex per gestire le virgole all'interno dei valori tra virgolette
-                        const columns = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-                        if (columns && columns.length >= 3) {
-                            const tr = document.createElement('tr');
-                            const fileCell = document.createElement('td');
-                            const sizeCell = document.createElement('td');
-                            const hddCell = document.createElement('td');
+                            fetch('output.csv')
+                                .then(response => response.text())
+                                .then(data => {
+                                    const tbody = document.querySelector('#fileList tbody');
+                                    tbody.innerHTML = ''; // Pulisci la tabella
+                                    
+                                    const rows = data.split('\n');
+                                    rows.forEach((row, index) => {
+                                        if (index === 0) return; // Salta l'intestazione
+                                        const columns = row.split(',');
+                                        if (columns.length === 3) {
+                                            const tr = document.createElement('tr');
+                                            const fileCell = document.createElement('td');
+                                            const sizeCell = document.createElement('td');
+                                            const hddCell = document.createElement('td');
 
-                            // Preleva le colonne corrette (0, 1 e 4)
-                            fileCell.textContent = columns[0].replace(/"/g, '');
-                            sizeCell.textContent = columns[1].replace(/"/g, '');
-                            hddCell.textContent = columns[4].replace(/"/g, '');
+                                            fileCell.textContent = columns[0];
+                                            sizeCell.textContent = columns[1];
+                                            hddCell.textContent = columns[2];
 
-                            tr.appendChild(fileCell);
-                            tr.appendChild(sizeCell);
-                            tr.appendChild(hddCell);
-                            tbody.appendChild(tr);
+                                            tr.appendChild(fileCell);
+                                            tr.appendChild(sizeCell);
+                                            tr.appendChild(hddCell);
+                                            tbody.appendChild(tr);
+                                        }
+                                    });
+                                })
+                                .catch(error => console.error('Errore nel caricamento del file CSV:', error));
                         }
-                    });
-                })
-                .catch(error => console.error('Errore nel caricamento del file CSV:', error));
-            }
-
             loadCSV();
         });
     </script>
