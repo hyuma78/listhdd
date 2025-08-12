@@ -220,30 +220,40 @@
             transform: rotate(90deg);
         }
 
+        /* Stili per la sezione a comparsa e la tabella del CSV */
+        #csv-viewer-section {
+            margin-bottom: 30px;
+        }
+
         .accordion {
-            background-color: #eee;
-            color: #444;
+            background-color: #f0f4f8; /* Colore più integrato */
+            color: #2c3e50;
             cursor: pointer;
-            padding: 18px;
+            padding: 15px 20px;
             width: 100%;
-            border: none;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             text-align: left;
             outline: none;
-            font-size: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
             transition: 0.4s;
         }
 
         .active,
         .accordion:hover {
-            background-color: #ccc;
+            background-color: #e2e8f0;
         }
 
         .panel {
             padding: 0 18px;
             background-color: white;
             max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
+            overflow-y: auto; /* Modificato per permettere lo scrolling verticale */
+            transition: max-height 0.3s ease-out;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
         }
 
         #fileList {
@@ -256,6 +266,8 @@
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
+            border-left: none;
+            border-right: none;
         }
 
         #fileList tr:nth-child(even) {
@@ -263,8 +275,10 @@
         }
 
         #fileList th {
-            background-color: #4CAF50;
+            background-color: #3498db;
             color: white;
+            position: sticky; /* Intestazione fissa durante lo scroll */
+            top: 0;
         }
     </style>
 </head>
@@ -291,28 +305,30 @@
                 </div>
             </div>
         </div>
+        
+        <div id="csv-viewer-section">
+            <button class="accordion">Elenco completo dei file (CSV)</button>
+            <div class="panel">
+                <table id="fileList">
+                    <thead>
+                        <tr>
+                            <th>Nome file</th>
+                            <th>Dimensione</th>
+                            <th>HDD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <div id="search-container">
-            <input type="text" id="searchInput" placeholder="Cerca un file...">
+            <input type="text" id="searchInput" placeholder="Cerca file per nome o percorso...">
             <button id="searchButton">Cerca</button>
         </div>
         <div id="results-container">
         </div>
-    </div>
-
-    <button class="accordion">Elenco completo dei file</button>
-    <div class="panel">
-        <table id="fileList">
-            <thead>
-                <tr>
-                    <th>Nome file</th>
-                    <th>Dimensione</th>
-                    <th>HDD</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
     </div>
 
     <script>
@@ -603,7 +619,6 @@
             function handleSearch() {
                 const query = searchInput.value.trim();
                 if (query === '') {
-                    resultsContainer.innerHTML = `<div class="no-results alert-message">Per favore, inserisci un termine di ricerca.</div>`;
                     renderResults('');
                     return;
                 }
@@ -632,7 +647,8 @@
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    // *** MODIFICA: imposta un'altezza fissa per il pannello ***
+                    panel.style.maxHeight = "400px";
                 }
             });
 
@@ -641,29 +657,25 @@
                     .then(response => response.text())
                     .then(data => {
                         const tbody = document.querySelector('#fileList tbody');
-                        tbody.innerHTML = ''; // Pulisci la tabella
+                        tbody.innerHTML = ''; 
 
                         const rows = data.split('\n');
                         rows.forEach((row, index) => {
                             if (index === 0 || row.trim() === '') return; 
 
-                            // *** FIX: Regex corretta per non tagliare i nomi con spazi ***
                             const columns = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
-                            if (columns && columns.length >= 3) { // Controlliamo che ci siano almeno 3 colonne
+                            if (columns && columns.length >= 3) { 
                                 const tr = document.createElement('tr');
                                 
                                 const fileCell = document.createElement('td');
                                 const sizeCell = document.createElement('td');
                                 const hddCell = document.createElement('td');
 
-                                // Pulisce le virgolette e assegna il testo
                                 fileCell.textContent = columns[0].replace(/"/g, '');
                                 sizeCell.textContent = columns[1].replace(/"/g, '');
-                                // L'ultima colonna nel CSV è il nome dell'HDD
                                 hddCell.textContent = columns[columns.length - 1].replace(/"/g, '');
 
-                                // *** FIX: Aggiunge solo le 3 colonne definite nell'HTML ***
                                 tr.appendChild(fileCell);
                                 tr.appendChild(sizeCell);
                                 tr.appendChild(hddCell);
