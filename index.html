@@ -220,7 +220,6 @@
             transform: rotate(90deg);
         }
 
-        /* Stili per la sezione a comparsa e la tabella del CSV */
         #csv-viewer-section {
             margin-bottom: 30px;
         }
@@ -256,14 +255,32 @@
             border-radius: 0 0 8px 8px;
         }
 
-        #csvSearchInput {
-            width: 100%;
-            padding: 10px;
+        .csv-filter-container {
+            display: flex;
             margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        #csvSearchInput {
+            flex-grow: 1;
+            padding: 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 1em;
+        }
+
+        #csvSearchButton {
+            padding: 10px 20px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+         #csvSearchButton:hover {
+            background-color: #2980b9;
         }
 
         #fileList {
@@ -318,7 +335,10 @@
         <div id="csv-viewer-section">
             <button class="accordion">Elenco completo dei file (CSV)</button>
             <div class="panel">
-                <input type="text" id="csvSearchInput" placeholder="Filtra la tabella per nome, dimensione, HDD...">
+                <div class="csv-filter-container">
+                    <input type="text" id="csvSearchInput" placeholder="Filtra la tabella per nome, dimensione, HDD...">
+                    <button id="csvSearchButton">Filtra</button>
+                </div>
                 
                 <table id="fileList">
                     <thead>
@@ -631,11 +651,10 @@
             }
 
             searchButton.addEventListener('click', handleSearch);
-            searchInput.addEventListener('keyup', handleSearch);
-
             searchInput.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter') {
+                 if (event.key === 'Enter') {
                     event.preventDefault();
+                    handleSearch();
                 }
             });
 
@@ -686,12 +705,14 @@
                     .catch(error => console.error('Errore nel caricamento del file CSV:', error));
             }
             loadCSV();
+            
+            // --- NUOVA LOGICA DI RICERCA PER LA TABELLA CSV ---
 
-            // *** NUOVA FUNZIONE PER FILTRARE LA TABELLA CSV ***
             const csvSearchInput = document.getElementById('csvSearchInput');
+            const csvSearchButton = document.getElementById('csvSearchButton');
             const fileListTbody = document.querySelector('#fileList tbody');
 
-            csvSearchInput.addEventListener('keyup', () => {
+            function filterCsvTable() {
                 const filter = csvSearchInput.value.toLowerCase();
                 const rows = fileListTbody.getElementsByTagName('tr');
 
@@ -704,6 +725,17 @@
                     } else {
                         row.style.display = "none";
                     }
+                }
+            }
+
+            // Attiva la ricerca al click del pulsante
+            csvSearchButton.addEventListener('click', filterCsvTable);
+
+            // Attiva la ricerca alla pressione di "Invio" nel campo di testo
+            csvSearchInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Impedisce il comportamento predefinito del form
+                    filterCsvTable();
                 }
             });
         });
