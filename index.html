@@ -231,6 +231,7 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
       await loadDatabase();
+      updateSummary();
       renderResults();
 
       // Attiva ricerca
@@ -267,6 +268,69 @@
       }
       await Promise.allSettled(fetchPromises);
     }
+
+    function updateSummary() {
+    let totalVideoFiles = 0;
+    const videoExtensions = {};
+    let totalSpaceOccupied = 0;
+    let totalSpaceFree = 0;
+    const hddSizes = {};
+
+    const videoExtensionsList = ["mkv", "avi", "mp4", "mpeg", "mpg", "mov"];
+
+    for (const hddName in database) {
+        const hddData = database[hddName];
+
+        // Statistiche File Video
+        hddData.files.forEach(file => {
+            const extension = file.nome.split('.').pop().toLowerCase();
+            if (videoExtensionsList.includes(extension)) {
+                totalVideoFiles++;
+                videoExtensions[extension] = (videoExtensions[extension] || 0) + 1;
+            }
+        });
+
+        // Statistiche Spazio Dischi
+        if (hddData.diskInfo) {
+            const occupied = parseFloat(hddData.diskInfo.totale.replace(',', '.'));
+            const free = parseFloat(hddData.diskInfo.libero.replace(',', '.'));
+            
+            if (!isNaN(occupied)) totalSpaceOccupied += occupied;
+            if (!isNaN(free)) totalSpaceFree += free;
+
+            // Conteggio per dimensione del disco (se il nome contiene la dimensione)
+            const match = hddName.match(/(\d+)(TB|GB|MB)/i);
+            if (match) {
+                const size = match[1] + match[2].toUpperCase();
+                hddSizes[size] = (hddSizes[size] || 0) + 1;
+            } else {
+                 // Fallback se il nome non contiene la dimensione, conta come 'altro'
+                hddSizes['Altro'] = (hddSizes['Altro'] || 0) + 1;
+            }
+        }
+    }
+
+    // Aggiorna la UI per le statistiche dei file video
+    document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
+    const videoExtensionsSummary = document.getElementById("video-extensions-summary");
+    videoExtensionsSummary.innerHTML = "";
+    for (const ext in videoExtensions) {
+        const p = document.createElement("p");
+        p.textContent = `${ext.toUpperCase()}: ${videoExtensions[ext]}`;
+        videoExtensionsSummary.appendChild(p);
+    }
+
+    // Aggiorna la UI per le statistiche dello spazio dischi
+    document.getElementById("total-space-occupied").textContent = `Totale spazio occupato: ${totalSpaceOccupied.toFixed(2)} GB`;
+    document.getElementById("total-space-free").textContent = `Totale spazio libero: ${totalSpaceFree.toFixed(2)} GB`;
+    const hddSizeSummary = document.getElementById("hdd-size-summary");
+    hddSizeSummary.innerHTML = "";
+    for (const size in hddSizes) {
+        const p = document.createElement("p");
+        p.textContent = `${size}: ${hddSizes[size]} dischi`;
+        hddSizeSummary.appendChild(p);
+    }
+}
 
     function buildFileTree(files) {
       const root = {};
