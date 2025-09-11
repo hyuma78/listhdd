@@ -135,6 +135,11 @@
       align-items: center;
     }
 
+    .hdd-label {
+      color: #e74c3c; /* Rosso */
+      font-weight: bold;
+    }
+
     .hdd-title:hover {
       background-color: #f0f4f8;
     }
@@ -385,8 +390,8 @@
       results.forEach(r => {
         const li = document.createElement("li");
         li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
-                        HDD: ${r.hdd}<br>
-                        Percorso: ${r.path}`;
+                <span class="hdd-label">HDD:</span> ${r.hdd}<br>
+                Percorso: ${r.path}`;
         ul.appendChild(li);
       });
       resultsContainer.appendChild(ul);
