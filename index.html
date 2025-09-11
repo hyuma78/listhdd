@@ -390,7 +390,7 @@
       results.forEach(r => {
         const li = document.createElement("li");
         li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
-                <span class="hdd-label">HDD:</span> ${r.hdd}<br>
+                <span class="hdd-label">HDD: ${r.hdd}</span><br>
                 Percorso: ${r.path}`;
         ul.appendChild(li);
       });
