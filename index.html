@@ -150,11 +150,10 @@
     }
 
     .hdd-details {
-      font-size: 0.8em;
+      font-size: 0.85em;
       font-weight: normal;
       color: #555;
-      margin-left: auto;
-      text-align: right;
+      margin-left: 10px;
     }
 
     ul {
@@ -314,14 +313,21 @@
 
       for (const hddName in database) {
         const hddData = database[hddName];
-        if (!hddData.files.length) continue;
+        if (!hddData.files.length && !hddData.diskInfo) continue;
 
         const hddSection = document.createElement("div");
         hddSection.className = "hdd-section";
 
         const hddTitle = document.createElement("h2");
         hddTitle.className = "hdd-title";
-        hddTitle.textContent = hddName;
+
+        let titleText = hddName;
+        if (hddData.diskInfo) {
+          titleText += `  `;
+          titleText += `<span class="hdd-details">Totale: ${hddData.diskInfo.totale} | Libero: ${hddData.diskInfo.libero}</span>`;
+        }
+
+        hddTitle.innerHTML = titleText;
         hddSection.appendChild(hddTitle);
 
         const fileTree = buildFileTree(hddData.files);
