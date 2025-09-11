@@ -301,14 +301,14 @@
         }
       }
 
-      if (node.files) {
+        if (Array.isArray(node.files)) {
         node.files.forEach(file => {
-          const li = document.createElement("li");
-          li.className = "file";
-          li.textContent = `📄 ${file.name} (${file.size})`;
-          ul.appendChild(li);
+            const li = document.createElement("li");
+            li.className = "file";
+            li.textContent = `📄 ${file.name} (${file.size})`;
+            ul.appendChild(li);
         });
-      }
+    }
 
       return ul;
     }
