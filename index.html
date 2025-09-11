@@ -325,8 +325,8 @@
                     const size = HDD_DIMENSIONS[hddName] || "Sconosciuto"; // Usa la mappa, se non trova il nome, lo classifica come "Sconosciuto"
                     hddSizes[size] = (hddSizes[size] || 0) + 1;
                 }
-                }
             }
+            
 
             // Aggiorna la UI per le statistiche dei file video
             document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
