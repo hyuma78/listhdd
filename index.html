@@ -2,465 +2,483 @@
 <html lang="it">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogo Hard Disk</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #eef2f7;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo Hard Disk</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 30px;
-      font-size: 2.5em;
-    }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
 
-    #summary-section {
-      background-color: #f7f9fc;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
+        #summary-section {
+            background-color: #f7f9fc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
 
-    #summary-section h2 {
-      margin-top: 0;
-      font-size: 1.5em;
-      color: #3498db;
-    }
+        #summary-section h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #3498db;
+        }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
 
-    .summary-card {
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
+        .summary-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
 
-    .summary-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.2em;
-      color: #2c3e50;
-    }
+        .summary-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
 
-    .summary-card p {
-      margin: 5px 0;
-      font-size: 1em;
-      color: #555;
-    }
+        .summary-card p {
+            margin: 5px 0;
+            font-size: 1em;
+            color: #555;
+        }
 
-    #search-container {
-      margin-bottom: 30px;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        #search-container {
+            margin-bottom: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    #searchInput {
-      flex-grow: 1;
-      padding: 12px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-right: 10px;
-    }
+        #searchInput {
+            flex-grow: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
 
-    #searchButton {
-      padding: 12px 24px;
-      font-size: 16px;
-      border: none;
-      background-color: #3498db;
-      color: #fff;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.1s;
-    }
+        #searchButton {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
 
-    #searchButton:hover {
-      background-color: #2980b9;
-    }
+        #searchButton:hover {
+            background-color: #2980b9;
+        }
 
-    #searchButton:active {
-      transform: scale(0.98);
-    }
+        #searchButton:active {
+            transform: scale(0.98);
+        }
 
-    .hdd-section {
-      margin-bottom: 15px;
-      border-radius: 10px;
-      background-color: #fafbfd;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: box-shadow 0.3s;
-    }
+        .hdd-section {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background-color: #fafbfd;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
 
-    .hdd-section:hover {
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+        .hdd-section:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-    .hdd-title {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #e74c3c;
-      margin: 0;
-      padding: 18px 25px;
-      cursor: pointer;
-      border-bottom: 1px solid #eee;
-      background-color: #f7f9fc;
-      transition: background-color 0.3s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .hdd-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 0;
+            padding: 18px 25px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            background-color: #f7f9fc;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .hdd-label {
-      color: #e74c3c; /* Rosso */
-      font-weight: bold;
-    }
+        .hdd-label {
+            color: #e74c3c;
+            /* Rosso */
+            font-weight: bold;
+        }
 
-    .hdd-title:hover {
-      background-color: #f0f4f8;
-    }
+        .hdd-title:hover {
+            background-color: #f0f4f8;
+        }
 
-    .hdd-details {
-      font-size: 0.85em;
-      font-weight: normal;
-      color: #555;
-      margin-left: 10px;
-    }
+        .hdd-details {
+            font-size: 0.85em;
+            font-weight: normal;
+            color: #555;
+            margin-left: 10px;
+        }
 
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
 
-    li {
-      margin: 2px 0;
-    }
+        li {
+            margin: 2px 0;
+        }
 
-    li strong {
-      color: #2c3e50;
-    }
+        li strong {
+            color: #2c3e50;
+        }
 
-    .folder {
-      cursor: pointer;
-      user-select: none;
-    }
+        .folder {
+            cursor: pointer;
+            user-select: none;
+        }
 
-    .file {
-      color: #555;
-    }
-  </style>
+        .file {
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Catalogo Hard Disk</h1>
+    <div class="container">
+        <h1>Catalogo Hard Disk</h1>
 
-    <div id="summary-section">
-      <h2>Riepilogo Database</h2>
-      <div class="summary-grid">
-        <div class="summary-card">
-          <h3>Statistiche File Video</h3>
-          <p id="total-video-files">Totale file video: 0</p>
-          <div id="video-extensions-summary"></div>
+        <div id="summary-section">
+            <h2>Riepilogo Database</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>Statistiche File Video</h3>
+                    <p id="total-video-files">Totale file video: 0</p>
+                    <div id="video-extensions-summary"></div>
+                </div>
+                <div class="summary-card">
+                    <h3>Statistiche Spazio Dischi</h3>
+                    <p id="total-space-occupied">Totale spazio occupato: 0 GB</p>
+                    <p id="total-space-free">Totale spazio libero: 0 GB</p>
+                    <div id="hdd-size-summary">
+                        <p>Conteggio in base alle dimensioni del disco...</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="summary-card">
-          <h3>Statistiche Spazio Dischi</h3>
-          <p id="total-space-occupied">Totale spazio occupato: 0 GB</p>
-          <p id="total-space-free">Totale spazio libero: 0 GB</p>
-          <div id="hdd-size-summary">
-            <p>Conteggio in base alle dimensioni del disco...</p>
-          </div>
+
+        <div id="search-container">
+            <input type="text" id="searchInput" placeholder="Cerca file per nome o percorso...">
+            <button id="searchButton">Cerca</button>
         </div>
-      </div>
+        <div id="results-container"></div>
     </div>
 
-    <div id="search-container">
-      <input type="text" id="searchInput" placeholder="Cerca file per nome o percorso...">
-      <button id="searchButton">Cerca</button>
-    </div>
-    <div id="results-container"></div>
-  </div>
+    <script>
 
-  <script>
-    const HDD_JSON_MAP = {
-      "Arietty": "data/Arietty.json",
-      "SOA": "data/SOA.json",
-      "Hikvision2TB": "data/Hikvision2TB.json",
-      "TR3NTON": "data/TR3NTON.json",
-      "Seagate1TB": "data/Seagate1TB.json",
-      "Rufy": "data/Rufy.json",
-      "Nami": "data/Nami.json",
-      "Zoro": "data/Zoro.json",
-      "Usopp": "data/usopp.json",
-      "Franky": "data/franky.json",
-      "NASWare": "data/NASWare.json",
-      "Seagate0FM": "data/Seagate0FM.json",
-      "Seagate878": "data/Seagate878.json",
-      "SeagateGMF": "data/SeagateGMF.json",
-      "SeagateR9H": "data/SeagateR9H.json",
-      "WD207": "data/WD207.json",
-      "Maxtor15G": "data/Maxtor15G.json",
-      "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
-    };
+        const HDD_DIMENSIONS = {
+            "Arietty": "2 TB",
+            "SOA": "2 TB ",
+            "Hikvision2TB": "2 TB",
+            "TR3NTON": "1 TB",
+            "Seagate1TB": "1 TB",
+            "Rufy": "500 GB",
+            "Nami": "500 GB",
+            "Zoro": "500 GB",
+            "Usopp": "500 GB",
+            "Franky": "500 GB",
+            "NASWare": "2 TB",
+            "Seagate0FM": "750 GB",
+            "Seagate878": "500 GB",
+            "SeagateGMF": "500 GB",
+            "SeagateR9H": "320 GB",
+            "WD207": "500 GB",
+            "Maxtor15G": "200 GB",
+            "WD_Sarah_2TB": "2 TB",
+        };
 
-    let database = {};
+        const HDD_JSON_MAP = {
+            "Arietty": "data/Arietty.json",
+            "SOA": "data/SOA.json",
+            "Hikvision2TB": "data/Hikvision2TB.json",
+            "TR3NTON": "data/TR3NTON.json",
+            "Seagate1TB": "data/Seagate1TB.json",
+            "Rufy": "data/Rufy.json",
+            "Nami": "data/Nami.json",
+            "Zoro": "data/Zoro.json",
+            "Usopp": "data/usopp.json",
+            "Franky": "data/franky.json",
+            "NASWare": "data/NASWare.json",
+            "Seagate0FM": "data/Seagate0FM.json",
+            "Seagate878": "data/Seagate878.json",
+            "SeagateGMF": "data/SeagateGMF.json",
+            "SeagateR9H": "data/SeagateR9H.json",
+            "WD207": "data/WD207.json",
+            "Maxtor15G": "data/Maxtor15G.json",
+            "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
+        };
 
-    document.addEventListener("DOMContentLoaded", async () => {
-      await loadDatabase();
-      updateSummary();
-      renderResults();
+        let database = {};
 
-      // Attiva ricerca
-      document.getElementById("searchButton").addEventListener("click", () => {
-        const query = document.getElementById("searchInput").value;
-        searchDatabase(query);
-      });
+        document.addEventListener("DOMContentLoaded", async () => {
+            await loadDatabase();
+            updateSummary();
+            renderResults();
 
-      document.getElementById("searchInput").addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          const query = document.getElementById("searchInput").value;
-          searchDatabase(query);
-        }
-      });
-    });
-
-    async function loadDatabase() {
-      const fetchPromises = [];
-      for (const hddName in HDD_JSON_MAP) {
-        fetchPromises.push(
-          fetch(HDD_JSON_MAP[hddName])
-            .then(r => r.json())
-            .then(data => {
-              let files = [];
-              let diskInfo = null;
-              if (data.catalogo_video) files = data.catalogo_video;
-              if (data.informazioni_disco) diskInfo = data.informazioni_disco;
-              database[hddName] = { files, diskInfo };
-            })
-            .catch(() => {
-              database[hddName] = { files: [], diskInfo: null };
-            })
-        );
-      }
-      await Promise.allSettled(fetchPromises);
-    }
-
-    function updateSummary() {
-    let totalVideoFiles = 0;
-    const videoExtensions = {};
-    let totalSpaceOccupied = 0;
-    let totalSpaceFree = 0;
-    const hddSizes = {};
-
-    const videoExtensionsList = ["mkv", "avi", "mp4", "mpeg", "mpg", "mov"];
-
-    for (const hddName in database) {
-        const hddData = database[hddName];
-
-        // Statistiche File Video
-        hddData.files.forEach(file => {
-            const extension = file.nome.split('.').pop().toLowerCase();
-            if (videoExtensionsList.includes(extension)) {
-                totalVideoFiles++;
-                videoExtensions[extension] = (videoExtensions[extension] || 0) + 1;
-            }
-        });
-
-        // Statistiche Spazio Dischi
-        if (hddData.diskInfo) {
-            const occupied = parseFloat(hddData.diskInfo.totale.replace(',', '.'));
-            const free = parseFloat(hddData.diskInfo.libero.replace(',', '.'));
-            
-            if (!isNaN(occupied)) totalSpaceOccupied += occupied;
-            if (!isNaN(free)) totalSpaceFree += free;
-
-            // Conteggio per dimensione del disco (se il nome contiene la dimensione)
-            const match = hddName.match(/(\d+)(TB|GB|MB)/i);
-            if (match) {
-                const size = match[1] + match[2].toUpperCase();
-                hddSizes[size] = (hddSizes[size] || 0) + 1;
-            } else {
-                 // Fallback se il nome non contiene la dimensione, conta come 'altro'
-                hddSizes['Altro'] = (hddSizes['Altro'] || 0) + 1;
-            }
-        }
-    }
-
-    // Aggiorna la UI per le statistiche dei file video
-    document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
-    const videoExtensionsSummary = document.getElementById("video-extensions-summary");
-    videoExtensionsSummary.innerHTML = "";
-    for (const ext in videoExtensions) {
-        const p = document.createElement("p");
-        p.textContent = `${ext.toUpperCase()}: ${videoExtensions[ext]}`;
-        videoExtensionsSummary.appendChild(p);
-    }
-
-    // Aggiorna la UI per le statistiche dello spazio dischi
-    document.getElementById("total-space-occupied").textContent = `Totale spazio occupato: ${totalSpaceOccupied.toFixed(2)} GB`;
-    document.getElementById("total-space-free").textContent = `Totale spazio libero: ${totalSpaceFree.toFixed(2)} GB`;
-    const hddSizeSummary = document.getElementById("hdd-size-summary");
-    hddSizeSummary.innerHTML = "";
-    for (const size in hddSizes) {
-        const p = document.createElement("p");
-        p.textContent = `${size}: ${hddSizes[size]} dischi`;
-        hddSizeSummary.appendChild(p);
-    }
-}
-
-    function buildFileTree(files) {
-      const root = {};
-      files.forEach(file => {
-        let parts = file.percorso_completo.split("\\");
-        if (parts[0].match(/^[A-Z]:$/)) {
-          parts.shift(); // tolgo la lettera del disco
-        }
-        let current = root;
-        parts.forEach((part, index) => {
-          if (index === parts.length - 1) {
-            if (!current.files) current.files = [];
-            current.files.push({ name: part, size: file.dimensione });
-          } else {
-            if (!current[part]) current[part] = {};
-            current = current[part];
-          }
-        });
-      });
-      return root;
-    }
-
-    function renderTree(node) {
-      const ul = document.createElement("ul");
-
-      for (const key in node) {
-        if (key !== "files") {
-          const li = document.createElement("li");
-          li.innerHTML = `<span class="folder">📂 <strong>${key}</strong></span>`;
-          const childUl = renderTree(node[key]);
-          childUl.style.display = "none";
-          li.appendChild(childUl);
-          li.querySelector(".folder").addEventListener("click", () => {
-            childUl.style.display = (childUl.style.display === "none") ? "block" : "none";
-          });
-          ul.appendChild(li);
-        }
-      }
-
-        if (Array.isArray(node.files)) {
-        node.files.forEach(file => {
-            const li = document.createElement("li");
-            li.className = "file";
-            li.textContent = `📄 ${file.name} (${file.size})`;
-            ul.appendChild(li);
-        });
-    }
-
-      return ul;
-    }
-
-    function renderResults() {
-      const resultsContainer = document.getElementById("results-container");
-      resultsContainer.innerHTML = "";
-
-      for (const hddName in database) {
-        const hddData = database[hddName];
-        if (!hddData.files.length && !hddData.diskInfo) continue;
-
-        const hddSection = document.createElement("div");
-        hddSection.className = "hdd-section";
-
-        const hddTitle = document.createElement("h2");
-        hddTitle.className = "hdd-title";
-
-        let titleText = hddName;
-        if (hddData.diskInfo) {
-          titleText += `  <span class="hdd-details">Totale: ${hddData.diskInfo.totale} | Libero: ${hddData.diskInfo.libero}</span>`;
-        }
-
-        hddTitle.innerHTML = titleText;
-        hddSection.appendChild(hddTitle);
-
-        const fileTree = buildFileTree(hddData.files);
-        const treeHtml = renderTree(fileTree);
-        treeHtml.style.display = "none";
-
-        hddTitle.addEventListener("click", () => {
-          treeHtml.style.display = (treeHtml.style.display === "none") ? "block" : "none";
-        });
-
-        hddSection.appendChild(treeHtml);
-        resultsContainer.appendChild(hddSection);
-      }
-    }
-
-    function searchDatabase(query) {
-      const resultsContainer = document.getElementById("results-container");
-      resultsContainer.innerHTML = "";
-
-      if (!query.trim()) {
-        renderResults();
-        return;
-      }
-
-      const results = [];
-
-      for (const hddName in database) {
-        const hddData = database[hddName];
-        hddData.files.forEach(file => {
-          if (
-            file.nome.toLowerCase().includes(query.toLowerCase()) ||
-            file.percorso_completo.toLowerCase().includes(query.toLowerCase())
-          ) {
-            results.push({
-              hdd: hddName,
-              name: file.nome,
-              path: file.percorso_completo,
-              size: file.dimensione
+            // Attiva ricerca
+            document.getElementById("searchButton").addEventListener("click", () => {
+                const query = document.getElementById("searchInput").value;
+                searchDatabase(query);
             });
-          }
+
+            document.getElementById("searchInput").addEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    const query = document.getElementById("searchInput").value;
+                    searchDatabase(query);
+                }
+            });
         });
-      }
 
-      if (results.length === 0) {
-        resultsContainer.innerHTML = `<p>Nessun risultato trovato per "${query}".</p>`;
-        return;
-      }
+        async function loadDatabase() {
+            const fetchPromises = [];
+            for (const hddName in HDD_JSON_MAP) {
+                fetchPromises.push(
+                    fetch(HDD_JSON_MAP[hddName])
+                        .then(r => r.json())
+                        .then(data => {
+                            let files = [];
+                            let diskInfo = null;
+                            if (data.catalogo_video) files = data.catalogo_video;
+                            if (data.informazioni_disco) diskInfo = data.informazioni_disco;
+                            database[hddName] = { files, diskInfo };
+                        })
+                        .catch(() => {
+                            database[hddName] = { files: [], diskInfo: null };
+                        })
+                );
+            }
+            await Promise.allSettled(fetchPromises);
+        }
 
-      const ul = document.createElement("ul");
-      results.forEach(r => {
-        const li = document.createElement("li");
-        li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
+        function updateSummary() {
+            let totalVideoFiles = 0;
+            const videoExtensions = {};
+            let totalSpaceOccupied = 0;
+            let totalSpaceFree = 0;
+            const hddSizes = {};
+
+            const videoExtensionsList = ["mkv", "avi", "mp4", "mpeg", "mpg", "mov"];
+
+            for (const hddName in database) {
+                const hddData = database[hddName];
+
+                // Statistiche File Video
+                hddData.files.forEach(file => {
+                    const extension = file.nome.split('.').pop().toLowerCase();
+                    if (videoExtensionsList.includes(extension)) {
+                        totalVideoFiles++;
+                        videoExtensions[extension] = (videoExtensions[extension] || 0) + 1;
+                    }
+                });
+
+                // Statistiche Spazio Dischi
+                if (hddData.diskInfo) {
+                    const occupied = parseFloat(hddData.diskInfo.totale.replace(',', '.'));
+                    const free = parseFloat(hddData.diskInfo.libero.replace(',', '.'));
+
+                    if (!isNaN(occupied)) totalSpaceOccupied += occupied;
+                    if (!isNaN(free)) totalSpaceFree += free;
+
+                    // Conteggio per dimensione del disco basato sulla nuova mappa
+                    const size = HDD_DIMENSIONS[hddName] || "Sconosciuto"; // Usa la mappa, se non trova il nome, lo classifica come "Sconosciuto"
+                    hddSizes[size] = (hddSizes[size] || 0) + 1;
+                }
+                }
+            }
+
+            // Aggiorna la UI per le statistiche dei file video
+            document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
+            const videoExtensionsSummary = document.getElementById("video-extensions-summary");
+            videoExtensionsSummary.innerHTML = "";
+            for (const ext in videoExtensions) {
+                const p = document.createElement("p");
+                p.textContent = `${ext.toUpperCase()}: ${videoExtensions[ext]}`;
+                videoExtensionsSummary.appendChild(p);
+            }
+
+            // Aggiorna la UI per le statistiche dello spazio dischi
+            document.getElementById("total-space-occupied").textContent = `Totale spazio occupato: ${totalSpaceOccupied.toFixed(2)} GB`;
+            document.getElementById("total-space-free").textContent = `Totale spazio libero: ${totalSpaceFree.toFixed(2)} GB`;
+            const hddSizeSummary = document.getElementById("hdd-size-summary");
+            hddSizeSummary.innerHTML = "";
+            for (const size in hddSizes) {
+                const p = document.createElement("p");
+                p.textContent = `${size}: ${hddSizes[size]} dischi`;
+                hddSizeSummary.appendChild(p);
+            }
+        }
+
+        function buildFileTree(files) {
+            const root = {};
+            files.forEach(file => {
+                let parts = file.percorso_completo.split("\\");
+                if (parts[0].match(/^[A-Z]:$/)) {
+                    parts.shift(); // tolgo la lettera del disco
+                }
+                let current = root;
+                parts.forEach((part, index) => {
+                    if (index === parts.length - 1) {
+                        if (!current.files) current.files = [];
+                        current.files.push({ name: part, size: file.dimensione });
+                    } else {
+                        if (!current[part]) current[part] = {};
+                        current = current[part];
+                    }
+                });
+            });
+            return root;
+        }
+
+        function renderTree(node) {
+            const ul = document.createElement("ul");
+
+            for (const key in node) {
+                if (key !== "files") {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<span class="folder">📂 <strong>${key}</strong></span>`;
+                    const childUl = renderTree(node[key]);
+                    childUl.style.display = "none";
+                    li.appendChild(childUl);
+                    li.querySelector(".folder").addEventListener("click", () => {
+                        childUl.style.display = (childUl.style.display === "none") ? "block" : "none";
+                    });
+                    ul.appendChild(li);
+                }
+            }
+
+            if (Array.isArray(node.files)) {
+                node.files.forEach(file => {
+                    const li = document.createElement("li");
+                    li.className = "file";
+                    li.textContent = `📄 ${file.name} (${file.size})`;
+                    ul.appendChild(li);
+                });
+            }
+
+            return ul;
+        }
+
+        function renderResults() {
+            const resultsContainer = document.getElementById("results-container");
+            resultsContainer.innerHTML = "";
+
+            for (const hddName in database) {
+                const hddData = database[hddName];
+                if (!hddData.files.length && !hddData.diskInfo) continue;
+
+                const hddSection = document.createElement("div");
+                hddSection.className = "hdd-section";
+
+                const hddTitle = document.createElement("h2");
+                hddTitle.className = "hdd-title";
+
+                let titleText = hddName;
+                if (hddData.diskInfo) {
+                    titleText += `  <span class="hdd-details">Totale: ${hddData.diskInfo.totale} | Libero: ${hddData.diskInfo.libero}</span>`;
+                }
+
+                hddTitle.innerHTML = titleText;
+                hddSection.appendChild(hddTitle);
+
+                const fileTree = buildFileTree(hddData.files);
+                const treeHtml = renderTree(fileTree);
+                treeHtml.style.display = "none";
+
+                hddTitle.addEventListener("click", () => {
+                    treeHtml.style.display = (treeHtml.style.display === "none") ? "block" : "none";
+                });
+
+                hddSection.appendChild(treeHtml);
+                resultsContainer.appendChild(hddSection);
+            }
+        }
+
+        function searchDatabase(query) {
+            const resultsContainer = document.getElementById("results-container");
+            resultsContainer.innerHTML = "";
+
+            if (!query.trim()) {
+                renderResults();
+                return;
+            }
+
+            const results = [];
+
+            for (const hddName in database) {
+                const hddData = database[hddName];
+                hddData.files.forEach(file => {
+                    if (
+                        file.nome.toLowerCase().includes(query.toLowerCase()) ||
+                        file.percorso_completo.toLowerCase().includes(query.toLowerCase())
+                    ) {
+                        results.push({
+                            hdd: hddName,
+                            name: file.nome,
+                            path: file.percorso_completo,
+                            size: file.dimensione
+                        });
+                    }
+                });
+            }
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `<p>Nessun risultato trovato per "${query}".</p>`;
+                return;
+            }
+
+            const ul = document.createElement("ul");
+            results.forEach(r => {
+                const li = document.createElement("li");
+                li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
                 <span class="hdd-label">HDD: ${r.hdd}</span><br>
                 Percorso: ${r.path}`;
-        ul.appendChild(li);
-      });
-      resultsContainer.appendChild(ul);
-    }
-  </script>
+                ul.appendChild(li);
+            });
+            resultsContainer.appendChild(ul);
+        }
+    </script>
 </body>
 
 </html>
