@@ -71,16 +71,6 @@
       color: #555;
     }
 
-    .extension-item {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    #hdd-size-summary .size-item {
-      display: flex;
-      justify-content: space-between;
-    }
-
     #search-container {
       margin-bottom: 30px;
       text-align: center;
@@ -237,6 +227,19 @@
     document.addEventListener("DOMContentLoaded", async () => {
       await loadDatabase();
       renderResults();
+
+      // Attiva ricerca
+      document.getElementById("searchButton").addEventListener("click", () => {
+        const query = document.getElementById("searchInput").value;
+        searchDatabase(query);
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          const query = document.getElementById("searchInput").value;
+          searchDatabase(query);
+        }
+      });
     });
 
     async function loadDatabase() {
@@ -261,27 +264,24 @@
     }
 
     function buildFileTree(files) {
-    const root = {};
-    files.forEach(file => {
+      const root = {};
+      files.forEach(file => {
         let parts = file.percorso_completo.split("\\");
-        
-        // Se il primo pezzo è tipo "F:" lo tolgo
         if (parts[0].match(/^[A-Z]:$/)) {
-        parts.shift();
+          parts.shift(); // tolgo la lettera del disco
         }
-
         let current = root;
         parts.forEach((part, index) => {
-        if (index === parts.length - 1) {
+          if (index === parts.length - 1) {
             if (!current.files) current.files = [];
             current.files.push({ name: part, size: file.dimensione });
-        } else {
+          } else {
             if (!current[part]) current[part] = {};
             current = current[part];
-        }
+          }
         });
-    });
-    return root;
+      });
+      return root;
     }
 
     function renderTree(node) {
@@ -329,8 +329,7 @@
 
         let titleText = hddName;
         if (hddData.diskInfo) {
-          titleText += `  `;
-          titleText += `<span class="hdd-details">Totale: ${hddData.diskInfo.totale} | Libero: ${hddData.diskInfo.libero}</span>`;
+          titleText += `  <span class="hdd-details">Totale: ${hddData.diskInfo.totale} | Libero: ${hddData.diskInfo.libero}</span>`;
         }
 
         hddTitle.innerHTML = titleText;
@@ -347,6 +346,50 @@
         hddSection.appendChild(treeHtml);
         resultsContainer.appendChild(hddSection);
       }
+    }
+
+    function searchDatabase(query) {
+      const resultsContainer = document.getElementById("results-container");
+      resultsContainer.innerHTML = "";
+
+      if (!query.trim()) {
+        renderResults();
+        return;
+      }
+
+      const results = [];
+
+      for (const hddName in database) {
+        const hddData = database[hddName];
+        hddData.files.forEach(file => {
+          if (
+            file.nome.toLowerCase().includes(query.toLowerCase()) ||
+            file.percorso_completo.toLowerCase().includes(query.toLowerCase())
+          ) {
+            results.push({
+              hdd: hddName,
+              name: file.nome,
+              path: file.percorso_completo,
+              size: file.dimensione
+            });
+          }
+        });
+      }
+
+      if (results.length === 0) {
+        resultsContainer.innerHTML = `<p>Nessun risultato trovato per "${query}".</p>`;
+        return;
+      }
+
+      const ul = document.createElement("ul");
+      results.forEach(r => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
+                        HDD: ${r.hdd}<br>
+                        Percorso: ${r.path}`;
+        ul.appendChild(li);
+      });
+      resultsContainer.appendChild(ul);
     }
   </script>
 </body>
