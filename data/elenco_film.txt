@@ -1,0 +1,631 @@
+======================================================================
+🎬 ELENCO FILM ORDINATO (Totale: 626 film)
+  Filtro usato: Scelta interattiva per ogni percorso di directory
+======================================================================
+1. 01 - Star Trek - The Motion Picture (1979) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+2. 02 - Star Trek - The Wrath of Khan (1982) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+3. 03 - Star Trek - The Search for Spock (1984) 1080p h264-MIRCrew.mkv
+4. 04 - Star Trek - The Voyage Home (1986) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+5. 05 - Star Trek - The Final Frontier (1989) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+6. 06 - Star Trek - The Undiscovered Country (1991) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+7. 07 - Star Trek - Generations (1994) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+8. 08 - Star Trek - First Contact (1996) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+9. 09 - Star Trek - Insurrection (1998) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+10. 10 - Star Trek - Nemesis (2002) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+11. 11 - Star Trek - Il futuro ha inizio (2009) 1080p h264 Ac3 5.1 Ita AC3 Eng Sub Ita Eng-MIRCrew.mkv
+12. 12 - Star Trek - Into Darkness (2013) 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+13. 13 - Star Trek - Beyond (2016) 1080p 1080p h264 Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+14. 1997 Fuga da New York.EXTENDED.1080p.x265.10bit.ITA-ENG.mkv
+15. 20000 Leghe sotto i mari - Leagues Under The Sea (1954) AC3 5.1 ITA.ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+16. 2019 - Dopo la caduta di New York (1983).1080p.H264.ita.eng.mkv
+17. 4 Mosche Di Velluto Grigio.1971.1080p.ITA.ENG.Subs.mkv
+18. 8.Bit.Generation.-.The.Commodore Wars.1080p.BluRayITA.ENG.SUB.ITA.mkv
+19. A 30 milioni di Km dalla Terra - 20 Million Miles To Earth (1957) 1080p h264 B-N Ac3 Ita Eng Sub Ita Eng - MIRCrew.mkv
+20. A Cena Col Vampiro (1989) (1080p.ITA.ENG.Comm.Sub.ENG).(Ebleep).mkv
+21. A Serbian Film - 2010 Bdrip 1080p h264 Srb DTS sub Ita Swe Dan Fin Nor by Pulce0000 - T7ST.mkv
+22. Abbronzatissimi 2 - Un anno dopo [1993] - Dvdrip - ITA - x264 - king76.mkv
+23. Abbronzatissimi [1991] - Dvdrip - ITA - x264 - king76.mkv
+24. Acapulco prima spiaggia a sinistra - 1983 - (Ita-1080p).mkv
+25. Acqua e sapone (1983) WEBDL 1080p.mkv
+26. Aenigma.1987.ITALIAN.1080p.BluRay.H264.ITA-ENG.mp4
+27. Ai confini della realtà (Fukuda, 1973) AC3 ITA JAP ENG Subs 1080p BDMux Ax&Ertenebra&tvfaga [CRITERION].mkv
+28. Al.Bar.dello.Sport.(L.Banfi.1983).DVDRip.AVC.x264.AC3.ITA_Subs.^MF^.mkv
+29. Alien 2 - Sulla Terra (1980) [1080p.x265.ITA-ENG] (by.phadron) MIRCrew.mkv
+30. Alien vs Predator (1080p,Dts ITA,Ac3 ENG,Subs,Chap,X264) dIv@S.mkv
+31. Alien.Vs.Predator.Requiem.2007.BDRip.1080p.DTS.iTA.AC3.ENG.Subs.x264-BJL.mkv
+32. Allarme.dallo.spazio.1956.SD.H265.DVDRip.Ac3.Eng.Sub.Ita-artemix.MIRCrew.mkv
+33. American History X-1998-BdRip-(1080p)-Italian DTS - English AAC - x264.mkv
+34. Ant-Man.2015.iTA.ENG.AC3.1080p.BluRay.x264-T4P3.mkv
+35. Ant-Man.and.the.Wasp.Quantumania.2023.BluRay.1080p.DDP7.1.DD5.1.ITA.DDP7.1.DD5.1.ENG.Subs.x264-WGZ.mkv
+36. Ant.Man.and.the.Wasp.2018.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+37. Apocalypse.Now.1979.Final.Cut.iTA.ENG.AC3.SUB.iTA.ENG.HEVC.1080p.x265.jeddak-MIRCrew.mkv
+38. Appleseed.Alpha.(2014).1080p.BluRay.Dts.ITA.Ac3.ENG.Subs.x264.mkv
+39. Assassinio al Cimitero Etrusco - The Scorpion with Two Tails (1982, S. Martino) Ita-Eng BDmux by Maruko 1080p.mkv
+40. Asso (1981 Adriano Celentano, Edwige Fenech, Renato Salvatori) - DVDRip CRUSADERS.avi
+41. Atom il mostro della Galassia - Yog The Space Amoeba (1970) 1080p h264 Ac3 Ita Jpn Sub Ita Eng-MIRCrew rip e Mux by robbyrs.mkv
+42. Ator.L'Invincibile.-.Joe.D'Amato.x264.AC3.ITA+AAC.ENG.DVDRip.by.3asy74.mkv
+43. Attacco alla base spaziale U.S - Gog (1954) 1080p h264 Ac3 Ita Eng Sub Ita Eng MIRCrew rip e mux by robbyrs.mkv
+44. Attack of the Puppet People (1958) 1080p h264 Ac3 Eng Sub Ita Eng-MIRCrew.mkv
+45. Avengers.Age.of.Ultron.2015.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+46. Avengers.Endgame.2019.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+47. Avengers.Infinity.War.2018.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+48. Bad.Pinocchio.1996.ITA-ENG.AMZN.WEB-DLRip.720p.x264-HD4ME.mkv
+49. Balle.Spaziali.1987.BDRtL.720p.x264.DTS.iTA.AAC.eNG-Arlong.mkv
+50. Base Luna chiama terra - First Men in the Moon (1964) 1080p h264 Ac3 Ita Eng Sub.Ita Eng-MIRCrew.mkv
+51. Beetlejuice.-.Spiritello.Porcello.-.iTALiAN.AC3.ENGLiSH.THD.BDRip.(720p).x264-WhOiS.mkv
+52. Bella.in.Rosa.1986.1080p.BluRay.x265.ITA-ENG.mkv
+53. Bigfoot e i suoi amici (1987) Bdmux 1080p H264 Ita Ac3 Eng Aac - by T7ST.mkv
+54. Black Panther - Wakanda Forever (2022) FullHD 1080p ITA AC3 ENG DTS+AC3 Subs.mkv
+55. Black.Panther.2018.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+56. Blade - (1998) - UNCUT - AC3 5.1 ITA.ENG 1080p H265 sub NUita.eng Sp33dy94-MIRCrew.mkv
+57. Blade 2 (2002) - UNCUT - AC3 5.1 ITA.ENG 1080p H265 sub NUita.eng Sp33dy94-MIRCrew.mkv
+58. Blade 3 Trinity - (2004) - EXTENDED - AC3 5.1 ITA.ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+59. Blood.On.Melies.Moon.2016.ITALIAN.1080p.BluRay.x264.mkv
+60. Bomber (1982 Commedia) - Bud Spencer, Jerry Calà [DVDRip ITA] - BielerSoul.mkv
+61. Borotalco (Carlo Verdone, 1982 - 1080).mkv
+62. Brainscan.1994.1080p.BluRay.ITA-ENG.SUB.ENG.x2642.mkv
+63. Breakfast.Club.1985.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+64. Brivido - (1986).1080p.HEVC.10bit.Ita.Ac3.2.0-Eng.Ac3.5.1.mkv
+65. Bud.Spencer.&.Terence.Hill.-.1972.-.Piu'.forte.ragazzi.[DVDrip.-.x264.-.AAC.ita.-.sub].by.LarryLurex.mkv
+66. Bud.Spencer.&.Terence.Hill.-.1974.(1).-.Altrimenti.ci.arrabbiamo.[DVDrip.-.x264.-.AAC.ita.-.sub].by.LarryLurex.mkv
+67. Bud.Spencer.&.Terence.Hill.-.1979.-.Io.sto.con.gli.ippopotami.[DVDrip.-.x264.-.AAC.ita.-.sub].by.LarryLurex.mkv
+68. Bud.Spencer.&.Terence.Hill.-.1981.-.Chi.trova.un.amico.trova.un.tesoro.[DVDrip.-.x264.-.AAC.ita.eng.-.sub].by.LarryLurex.mkv
+69. Bud.Spencer.&.Terence.Hill.-.1983.-.Nati.con.la.camicia.[DVDrip.-.x264.-.AAC.ita.eng.-.sub].by.LarryLurex.mkv
+70. Bud.Spencer.&.Terence.Hill.-.1984.-.Non.c'è.due.senza.quattro.[DVDrip.-.x264.-.AAC.ita.eng.-.sub].by.LarryLurex.mkv
+71. Buio Omega 1979 1080p BluRay HEVC x265-SPINNA.mkv
+72. Cabal.Director.Cut.1990.DC.1080p.BluRay.ITA-ENG.SUB.ITA-ENG.x265.hevc.10bit.AAC.5.1.mkv
+73. Cannibal Holocaust (1980) [ITA-ENG] [+C].mkv
+74. Captain America Civil War 2016 Bluray 1080P Dts Ita Ac3 Eng Subs x264-Wgz.mkv
+75. Captain.America.The.Winter.Soldier.2014.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+76. Caramelle da uno sconosciuto (1987).avi
+77. Chewingum [1984] [Biagio Proietti] [DVD] [Mauro Di Francesco, Isabella Ferrari, Massimo Ciavarro, Mara Venier].avi
+78. Chi è sepolto in quella casa (1985) ITA-ENG Ac3 5.1 BDRip 1080p H264.mkv
+79. Cicciabomba - 1982.ITA.avi
+80. Cimitero.Vivente.1989.BluRay.MuX.1080p.AC3.ITA-ENG.Subs.x264.Aln.mkv
+81. City.Of.The.Living.Dead.1980.REMASTERED.ITALIAN.1080p.BluRay.x265-VXT.mp4
+82. Compagni.di.Scuola.-.[C.Verdone.1988].DVDRip.iTALiAN.AC3.x264-DJK.mkv
+83. Concerto per pistola solista.(1970).BDmux.ITA.x264.mkv
+84. Contamination.1980.1080p.BluRay.ITA-ENG.x264.mkv
+85. Continuavano.a.chiamarlo.Trinità.1971.[Versione.Integrale.2016].DVDRip.AVC.x264.AC3.ITA.Subs.^MF^.mkv
+86. Corto Circuito - Short Circuit (1986) ita-eng sub ita-eng [1080p] by Red_Dragon.mkv
+87. Corto Circuito 2 - Short Circuit 2 (1988) ita-eng sub ita-eng [1080p] by Red_Dragon.mkv
+88. Creepshow (1982) Uncut 1080p h264 Ac3 5.1 Ita Ac3 Eng-Sub Ita Eng-MIRCrew.mkv
+89. Creepshow 2 (1987) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+90. Creepshow 3 (2006) 1080p h264 Ac3 Ita Eng Sub Ita-MIRCrew).mkv
+91. Critters 1986 BluRay 10Bit 1080p DD5.1 H265.ITA-ENG.mkv
+92. Critters 2 1988 BluRay 10Bit 1080p AC3 H265-d3g.mkv
+93. Critters 3 (1991) BluRay 10Bit 1080p AC-3 H265-d3g.mkv
+94. Critters 4 (1992) BluRay 10Bit 1080p AC-3 H265-d3g.mkv
+95. Crystal.Lake.Memories.The.Complete.History.Of.Friday.The.13Th.2013.Part1.1080p.BluRay.x265-RARBG.mp4
+96. Crystal.Lake.Memories.The.Complete.History.Of.Friday.The.13Th.2013.Part2.1080p.BluRay.H264.AAC-RARBG.mp4
+97. Cujo (1983) Uncut 1080p h264 Ac3 5.1 ita eng.sub ita eng.mkv
+98. Culo e camicia [1981] - Dvdrip - ITA - x264 - king76.mkv
+99. Cyborg anno 2087 metà uomo metà macchina (1966).720p.h264.ita.eng-MIRCrew.mkv
+100. D.A.R.Y.L (1985).1080p.h264.ita.eng.sub.fre.eng.spa-MIRCrew.mkv
+101. D.A.R.Y.L.(1985).1080p.BDMux.ITA-ENG.mkv
+102. Danza.macabra.1964.DVDRip.576p.x264.ITA-FRE.mkv
+103. Dark.Crystal.1982.ITA.ENG.1080p.BDRip.DD5.1.x264-UBi.mkv
+104. Deadpool.2.2018.The.Super.Duper.Cut.1080p.BluRay.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+105. Deadpool.2015.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+106. Deliria.1987.1080p.BDMux.ITA-ENG.x265.ITA-ENG.mkv
+107. Delitti e profumi - 1988 - 95 min (Jerry Cala', Umberto Smaila, Silvia Annichiarico) - DVDRip CRUSADERS.avi
+108. Demonia (1990) (Lucio Fulci) [1080p, x265, AC3][ITA, ENG].mkv
+109. Destinazione Terra - (1953).AC3 ITA-ENG Extra Audio Subs BDMux Ax.mkv
+110. Destinazione... Terra! - It Came from Outer Space (1953) REPACK.1080p.ita.eng-MIRCrew.mux by robbyrs.mkv
+111. Die.Hard.Trappola.di.Cristallo.1988.BDRip.1080p.DTS.AAC.iTA.AC3.ENG.Subs.x264-BJL.mkv
+112. Dimensione terrore - Night of the Creeps (1986) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+113. Doc.Hollywood-Dottore.in.carriera.1991.1080p.x265.AC3.2.0.ITA.AAC.2.0.ENG.sub.ita.eng-satin.mkv
+114. Doctor.Strange.2016.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+115. Doctor.Strange.nel.multiverso.della.follia.2022.BluRay.1080p.EAC3.AC3.ITA.EAC3.AC3.ENG.Subs.x264-WGZ.mkv
+116. Domani Mi Sposo (Jerry Calà  - Isabella Ferrari - Karina Huff - Milly Carlucci - Claudio Bisio).avi
+117. Domani.Mi.Sposo.1984.1080p.AMZN.WEB-DL.DDP2.0.H.264-GATTOPOLLO.mkv
+118. Don.Camillo.1952.BluRay.1080p.DTS.ITA.x264-WGZ.mkv
+119. Don.Camillo.e.l’onorevole.Peppone.1955.BluRay.1080p.DTS.ITA.x264-WGZ.mkv
+120. Don.Camillo.monsignore.ma.non.troppo.1961.BluRay.1080p.DTS.ITA.x264-WGZ.mkv
+121. E Tu Vivrai Nel Terrore! L'aldilà (1981) (1080p.ITA.FRE.SubFRE).mkv
+122. E.T.-.L.Extra-Terrestre.1982.-.iTALiAN.DTS.ENGLiSH.AC3.BDRip.(1080p).x264.mkv
+123. Electric.Dreams.1984.1080p.bluray.x264.ita-eng.mkv
+124. Explorers - Extended Edition (1985).72op.H264.ita.eng.iCV-MIRCrew.mkv
+125. FantastiCozzi.2016.1080p.WEB-DL.AAC.2.0.H.264-KUCHU.mkv
+126. Frankenstein.Meets.the.Wolf.Man.-.Frankenstein.contro.l.uomo.lupo.1943.1080p.BluRay.ITA.DD.ENG.DTS-HD.MA.Sub.ITA.ENG-MIRCrew.mkv
+127. Fratelli d'Italia [1989] - Dvdrip - ITA - x264 - king76.mkv
+128. Freddy vs. Jason (2003) (1080p.ITA.ENG.Sub) (By Ebleep).mkv
+129. Fulci For Fake.mkv
+130. Full.Metal.Jacket.1987.1080p.H265.ITA.ENG.AC3.SubS.Ita.Eng.Mux-SPI7F1RE.mkv
+131. Futureworld - 2000 Anni nel Futuro (Heffron, 1976) AC3 ITA ENG SUBs BDrip 1080p Ax.mkv
+132. Galaxina.1980.1080p.BluRay.x265-RARBG.mp4
+133. Galaxy.quest.(1999).ITA-ENG.Ac3.5.1.multisub.BDRip.1080p.X264.ITA-ENG.SUB.ITA-ENG.mkv
+134. Game.Changers.Inside.The.Video.Game.Wars.2019.1080p.WEB-DL.x264.ITA-ENG.[Hyuma].mkv
+135. Ghostbusters.-.Acchiappafantasmi.-.1984.-.BDRip.-.1080p.-.AC3.iTA.eNG.mkv
+136. Ghostbusters.II.-.Acchiappafantasmi.II.-.1989.-.BDRip.-.1080p.-.AC3.iTA.eNG.mkv
+137. Ghoulies (1984) 1080p BluRay x264 iTA ENG AC3 - iDN_CreW.mkv
+138. Ghoulies II (1987) 1080p BluRay x264 iTA ENG AC3 - iDN_CreW.mkv
+139. Ghoulies III (1990) 1080p BluRay x264 iTA ENG AC3 - iDN_CreW.mkv
+140. Ghoulies IV (1994) 1080p BluRay x264 iTA ENG AC3 - iDN_CreW.mkv
+141. Giochi D'estate.avi
+142. Giochi d'Estate.mp4
+143. Giornata.nera.per.l'ariete.1971.1080p.BluRay.ITA-ENG.SUB.ENG.x264.mkv
+144. Gli avventurieri del pianeta Terra - The Ultimate Warrior (1975) h264 Ac3 Ita Eng Sub Ita Eng-Rip e mux by MIRCrew.mkv
+145. Gli uccelli - The Birds [BDRip-1080p-MultiLang-MultiSub-Chapters][RiP By MaX].mkv
+146. Godovshchina.Revolyutsii.aka.Anniversary.of.the.Revolution.1918.1080p.WEB-DL.AAC.2.0.H.264-KUCHU.mkv
+147. Godzilla (1954) Criterion 1080p H264 Ac3 Jap Sub Ita Eng-MIRCrew.mkv
+148. Godzilla - Godzilla King Of The Monsters! (1956) 1080p H264 Ac3 5.1 Ita Ac3 Eng Sub Ita Eng-MIRCrew.mkv
+149. Godzilla - Godzilla Raids Again (1955) 1080p h264 Ac3 Ita Eng Jpn Sub Ita Eng-MIRCrew.mkv
+150. Godzilla Gli Eredi di King Kong 720p mux by thegatto.mkv
+151. Godzilla Raids Again (1955) 1080p h264 Jpn Sub Ita Eng-MIRCrew.mkv
+152. Godzilla Raids Again (1955) 720p Mp4 Jpn Sub Ita srt ext HardSub eng FULL COLOR-MIRCrew.mp4
+153. Godzilla contro Biollante - Godzilla Vs. Biollante - Gojira tai Biorante (1989) 1080p H264 Ac3 Ita Eng Jpn Sub Ita Eng-MIRCrew.mkv
+154. Godzilla contro King Ghidorah - Godzilla Vs King Ghidorah  - Gojira tai Kingu Gidora (1991) 1080p h264 Ac3 Ita Eng Jpn Sub Ita Eng-MIRCrew.mkv
+155. Godzilla contro Mothra - Godzilla vs. Mothra - Gojira tai Mosura (1992) 1080p h264 Ac3 Ita Eng Jpn Sub Ita Eng-MIRCrew.mkv
+156. Godzilla contro i giganti - Godzilla vs. Gigan - Chikyū kogeki meirei - Gojira tai Gaigan (1972) 1080p h264 Ac3 Ita Jpn Sub Ita Eng-MIRCrew.mkv
+157. Godzilla contro i robot (Fukuda, 1974) AC3 ITA JPN ENG Subs 1080p BDMux Ax.mkv
+158. Godzilla vs Megalon - Ai confini della realtà - Gojira tai Megaro (1973) Ed Criterion 1080p Ac3 Ita eng jpn sub Ita Eng-rip e mux by MIRCrew.mkv
+159. Godzilla.vs.Hedorah.1971.Criterion.INTERNAL.1080p.BluRay.x264-JRP.mkv
+160. Godzilla.vs.Megalon.1973.Criterion.INTERNAL.1080p.BluRay.x264-JRP.mkv
+161. Grandi Magazzini - Versione Estesa (1986) 1080i H264.mkv
+162. Gremlins.2.-The.New.Batch-.ripped.by.AlucardX.avi
+163. Grizzly.1976.REMASTERED.1080p.BluRay.x264.DTS.ITA-ENG.mkv
+164. Grosso_guaio_a_Chinatown(Carpenter,1986)[x264,DTS_ita,AAC_eng,SUBS]HoHoHo.mkv
+165. Guardiani  Galassia Holiday Special (2022) WEBDL 1080p H264 E-EAC3+AC3 ITA ENG.mkv
+166. Guardiani Della Galassia Vol 3 (2023) iTA-ENG.Bluray.1080p.x264-Dr4gon MIRCrew.mkv
+167. Guardiani.della.Galassia.2014.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+168. Guardiani.della.Galassia.Vol.2.2017.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+169. Guida.Galattica.per.Autostoppisti.(2005).1080p.BluRay.Dts.ITA.Ac3.ENG.Subs.x264.mkv
+170. Hackers.1995.BluRay.MUX.1080p.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+171. Halloween.-.1978.-.iTA.ENG.AC3.35th.Anniversary.1080p.BDMux.by.M4iO.x264-GCJM.mkv
+172. Halloween.2.1981.30th.Anniv.1080p.Bluray.1080p.Ita.Eng.BlackBit.Mister.X.mkv
+173. Halloween.20 anni dopo.1998.{BdRip} 1080p x264.mkv
+174. Halloween.3.-.Il.Signore.Della.Notte.1982.1080p.BDMux.x264.ITA.AC3.ENG.DTS-Plusam.mkv
+175. Halloween.4.-.Il.Ritorno.Di.Michael.Myers.1988.1080p.BDMux.x264.ITA.ENG.AC3-Plusam.mkv
+176. Halloween.5.-.La.Vendetta.Di.Michael.Myers.1989.1080p.BDMux.x264.ITA.ENG.AC3-Plusam.mkv
+177. Halloween.6.-.La.Maledizione.Di.Michael.Myers.PC.1995.1080p.BDMux.x264.ITA.AC3.ENG.DTS.SUBS-Plusam.mkv
+178. Halloween.La.Resurrezione.2002.1080p.BDMux.x264.ITA.AC3-Plusam.mkv
+179. Harry Potter e i Doni della Morte - Parte 1 [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+180. Harry Potter e i Doni della Morte - Parte 2 [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+181. Harry Potter e il calice di fuoco [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+182. Harry Potter e il prigioniero di Azkaban [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+183. Harry Potter e il principe mezzosangue [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+184. Harry Potter e l'Ordine della Fenice [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+185. Harry Potter e la camera dei segreti [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+186. Harry Potter e la pietra filosofale [OPEN MATTE] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+187. Heavy Metal (1981) ITA-ENG Ac3 5.1 BDRip 1080p H264.mkv
+188. Hellraiser 2 1988.1080p.BDMux.ITA.ENG.Subs.x264-MortySwim [By T7ST].mkv
+189. Hellraiser 3 1992.1080p.BDMux.ITA.ENG.Subs.x264-MortySwim [By T7ST].mkv
+190. Hellraiser 4 - La stirpe maledetta (1996) [Mux by Little-Boy].mp4
+191. Hellraiser 5 - Inferno (2000) [Mux by Little-Boy].mp4
+192. Hellraiser 6 - Hellseeker (2002) [Mux by Little-Boy].mp4
+193. Hellraiser 7 - Deader (2005) [Mux by Little-Boy].mp4
+194. Hercules.1983.1080p.BluRay.x264.ITA-ENG.SUB.ENG.mkv
+195. Horror puppet.-. Tourist Trap (1979) [XviD ITA - ENG] DVDRip mux by Zio Tibia.avi
+196. House.IV.Presenze.impalpabili.(House.IV.1992) 1080p.AAC.ITA.AAC.ENG.sub.ITA.x265.mkv
+197. Howard e il destino del mondo - UNCENSORED - [1080p.HEVC.10bit.Ita.Eng] (by.phadron) MIRCrew.mkv
+198. I Dominatori Dell' Universo Masters Of The Universe 1987 [ITA.ENG] Dvdrip - by davide29.ottimo.mkv
+199. I Fantastici 4 (2005) EXTENDED EDITION [1080p.x264.ITA-DTS-5.1.ENG] (by.phadron) MIRCrew.mkv
+200. I Fantastici 4 e Silver Surfer (2007) EXTENDED EDITION [1080p.x264.ITA-DTS-5.1.ENG] (by.phadron) MIRCrew.mkv
+201. I Goonies (1985) [IT][EN][BDRip_1080p].mkv
+202. I Tre Giorni Del Condor (1975) (1080p.ITA-ENG.Sub) (By Ebleep).mkv
+203. I due superpiedi quasi piatti - 1977 - 110 min - AC3 Italian - DVDRip CRUSADERS.mkv
+204. I racconti del terrore - Tales of Terror  (1962) 1080p h264 Ac3 Ita Eng MultiSub-MIRCrew.mkv
+205. I.Frati.Rossi.[1988].Dvdrip-ITA-GER-ENG.king76.mkv
+206. I.Signori.Della.Truffa.1992.BDRip.1080p.ITA-ENG.SUB.ITA-ENG.mkv
+207. I.pirati.della.Silicon.Valley.1999.DVDMux.AAC.ITA.AAC.ENG.x264-Wiggaz.mkv
+208. I.tre.volti.della.paura.1963.European.Cut.1080p.h265.AAC.ITA.ENG.mkv
+209. IL FANTASMA DI SODOMA.DVDRip.AC3 ITA.XVID.RU.avi
+210. Il Bisbetico Domato (1980) 1080p H265 ITA AC3.mkv
+211. Il Cittadino Si Ribella 1974.mkv
+212. Il Gatto.Nero.1981.[Lucio.Fulci].1080p.BluRay.ITA-ENG.SUB.ENG.x264.mkv
+213. Il Ragazzo del Pony Express (1986).mkv
+214. Il Ragazzo di Campagna - Renato Pozzetto [Divx ITA].avi
+215. Il Signore degli Anelli 1 La compagnia dell'Anello (2001) AC3 ITA.ENG 1080p H265 sub NUita.eng Sp33dy94-MIRCrew.mkv
+216. Il Signore degli Anelli 2 Le due torri (2002) AC3 ITA.ENG 1080p H265 sub NUita.eng Sp33dy94-MIRCrew.mkv
+217. Il Signore degli Anelli 3 Il ritorno del re (2003) AC3 ITA.ENG 1080p H265 sub NUita.eng Sp33dy94-MIRCrew.mkv
+218. Il cinico, L.infame, Il violento (1977) BDRip 1080p H264 ITA ENG Ac3 2.0 Sub Ita Eng [ArMor].mkv
+219. Il cittadino si ribella (1974).mkv
+220. Il demonio (1963) (Brunello Rondi) [576p, x264, AC3][ITA].mkv
+221. Il figlio di Frankenstein - Son of Frankenstein (1939) 720p h264 Ac3 ita eng Sub Ita Eng-MIRCrew.mkv
+222. Il figlio di Godzilla  720p mux by thegatto.mkv
+223. Il mistero della mummia - The Curse of the Mummy's Tomb (1964) 720p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+224. Il mostro dei mari - It Came from Beneath the Sea (1955) B-N 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+225. Il mostro dei mari - It Came from Beneath the Sea (1955) Color 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+226. Il mostro dell'astronave - It! The Terror From Beyond Space (1958) 1080p h264 Ac3 Ita Eng Sub Ita Eng Spa-Rip e Mux by MIRCrew.mkv
+227. Il mulino delle donne di pietra (1960) (Giorgio Ferroni) [1080p, x265, AC3][ITA].mkv
+228. Il pianeta degli uomini spenti - Battle of the Worlds (1961) 1080 h264 Ac3 Ita Sub Ita Eng-MIRCrew.mkv
+229. Il pianeta proibito - Forbidden Planet (1956) 1080p H265 ita AC3 2.0 eng AC3 5.1 sub ita eng Licdom.mkv
+230. Il ragazzo di campagna (1984) 1080p x265 ita ac3 sub ita - MIRCrew.mkv
+231. Il risveglio del dinosauro - The Beast from 20,000 Fathoms (1953) 1080p h264 Ac3 ita eng Sub Ita Eng-MIRCrew.mkv
+232. Il ritorno dell'uomo invisibile (1940) 1080p H264 ITA ENG AC3 2.0 Sub Eng - MIRCrew.mkv
+233. Il terribile ispettore [1969] (Paolo Villaggio) - Dvdrip-ITA-king76.mkv
+234. Il terrore sul mondo - The Creature Walks Among us (1956) 1080p h264  Ac3 5.1 Ita Eng Sub Ita Eng-MIRCrew.mkv
+235. Il trionfo di King Kong - King Kong vs Godzilla (1962) 1080p h264 Ac3 Ita Eng Sub Ita NUIta Eng-MIRCrew.mkv
+236. Il vampiro del pianeta rosso - Not of this Earth (1957) SD h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+237. Il-Bosco.Fuori.2006.iTALiAN.DVDRip.XviD-SVD.avi
+238. Il.Bosco.1_Ac3.iTA_DVDRiP_x264-SiLENT.HiLL.mkv
+239. Il.Compagno.Don.Camillo.1965.-.iTALiAN.DTS.BDRip.(1080p).x264.mkv
+240. Il.Mastino.Dei.Baskerville.(The.Hound.of.the.Baskervilles.1939).Bdrip.1080.Ac3.Ita.Eng.Subs.Chaps.x264.NOMADS.mkv
+241. Il.Mistero.Del.Lago.Scuro.1986.1080p.BluRay.x264.DTS-FGT.mkv
+242. Il.Mostro.della.Laguna.Nera.1080p.BDMux.10bit.x265.ITA-ENG.SUB.ITA-ENG.mkv
+243. Il.Piccolo.Grande.Mago.Dei.Videogames (1989) WEB-DL.1080p.H264.Ita.Eng.mkv
+244. Il.Replicante.1986.1080p.BluRay.x265.ITA-ENG.mkv
+245. Il.Ritorno.Di.Don.Camillo.1953.-.iTALiAN.DTS.BDRip.(1080p).x264.mkv
+246. Il.Ritorno.dei.Morti.Viventi.(1985).REMASTERED.1080p.BDMux.10bit.ITA-ENG.SUB.ITA-ENG.x265.mkv
+247. Il.Serpente.Alato.1982.ITA-ENG.BDRip.1080p.x265.mkv
+248. Il.gatto.a.nove.code.1971.Remastered.1080p.BluRay.AAC.x264-HANDJOB.mkv
+249. Il.pianeta.fantasma.1961.SD.H265.Ac3.Ita.Eng-artemix.MIRcrew.mkv
+250. In.Search.Of.The.Last.Action.Heroes.2019.1080p.BluRay.x265-RARBG.mp4
+251. In.Search.Of.Tomorrow.2022.1080p.BluRay.H264.AAC-RARBG.mp4
+252. In.Search.of.Darkness.2019.1080p.BluRay.H264.AAC-RARBG.mp4
+253. In.Search.of.Darkness.II.2020.1080p.BluRay.x265-RARBG.mp4
+254. Invaders.From.Mars.1986.ITA-ENG.BDRip.1080p.ITA-ENG.SUB.ENG.mkv
+255. Io tigro, tu tigri, egli tigra (1978) [SD H264 ITA AC3].mkv
+256. Iron Man 2 EXTENDED EDITION [1080p.x264.ITA-EAC3-7.1] (by.phadron) MIRCrew.mkv
+257. Iron Man 3 - EXTENDED [1080p.x264.ITA-EAC3-7.1] (by.phadron) MIRCrew.mkv
+258. Iron Man [EXTENDED] [1080p.x264.ITA-ENG] (by.phadron) MIRCrew.mkv
+259. Italia A Mano Armata (1976) [1080p H264 ITA ENG AAC SUB ITA ENG] by jackerr [P&C] Poliziottesco.mp4
+260. Killer.Klowns.From.Outer.Space.1988.Remastered.BRRip.720p.x264.ITA-ENG.mkv
+261. Killer.Nun.1979.1080p.BluRay.x264-nikt0.mkv
+262. King.Kong.vs.Godzilla.1962.Criterion.Japanese.Version.INTERNAL.1080p.BluRay.x264-JRP.mkv
+263. Krull 1983 BluRay 10Bit 1080p DD5.1 H265-d3g.ITA-ENG.mkv
+264. L'Ascensore (1983).BDMux.1080p.ITA-ENG.mp4
+265. L'Assassino.ha.riservato.nove.poltrone.1974.1080p.BDMux.ITA-ENG.SUB.ENG.x265.mkv
+266. L'Astronave degli esseri perduti - Quatermass And The Pit (1967) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+267. L'Esorcista.2.(1977).1080p H264 Ita Eng Sub Ita NUEng.mkv
+268. L'Occhio del Gatto (1985) 1080p BDMux ITA-ENG x265.mkv
+269. L'Orca.Assassina.(1977).BluRay.1080p.AC3.ITA-ENG.SUB.ITA.ENG.mkv
+270. L'Ultima.casa.a.sinistra.1972.1080p.BluRay.ITA-ENG.x264.mkv
+271. L'Uomo Lupo (1941) 1080p BDMux.ITA-ENG.SUB.ITA-ENG.x265.mkv
+272. L'Uomo.Che.Visse.Nel.Futuro.[The.Time.Machine].1960.1080p.BluRay.x264.ITA-ENG.SUB.ITA-ENG.mkv
+273. L'Uomo.Laser.1978.(Laserblast).BluRay.1080p.ITA-ENG.x264.mkv
+274. L'Uomo_che_Fuggì_dal_Futuro_-_THX_1138_-_[1971][1080p][AC3.iTA.DTS.eNG.-.Sub.iTA.eNG][LV89].mkv
+275. L'abominevole Dr. Phibes (1971) 1080p H264 Ac3 Ita Eng Sub Ita Eng.mkv
+276. L'anticristo (1974) (Alberto De Martino) [1080p, x265, AC3][ITA, ENG].mkv
+277. L'assassino è costretto ad uccidere ancora DVDRIP ITA ENG.mkv
+278. L'esorcista.(1973) AC3 5.1 ITA.ENG 1080p H265 multisub Sp33dy94-MIRCrew.mkv
+279. L'esperimento del Dottor K. - The Fly (1958).1080p.h264.ita.eng.sub.ita.eng.mkv
+280. L'estate di Kikujiro (1999) 1080p H264 Ac3 Ita Jap Sub Ita Eng.mkv
+281. L'orribile Segreto Del Dr. Hichcock - The Horrible Dr. Hichcock (1962) 1080p-Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+282. L'uccello.dalle.piume.di.cristallo.1970.remastered.1080p.bluray.x264-hd4u.mkv
+283. L'ultimo capodanno (1998).mkv
+284. L'ultimo uomo della terra (1964) 1080p H264 ITA AC3 2.0 ENG AAC 2.0 Sub Ita Eng - MIRCrew.mkv
+285. L'ululato (1981) 1080p H264 Ita Eng Ac3 sub Eng.mkv
+286. L.uomo.dal.pianeta.X-The.Man.From.Planet.X.1951.1080p.H264.Ac3.Eng.Sub.Ita.Eng-artemix.MIRCrew.mkv
+287. La Banda del gobbo (1978) [1080p H264 ITA ENG AC3 2.0 Sub ITA].mkv
+288. La Casa Del Sortilegio - (1989) DVDrip ITA.avi
+289. La Casa Dell'esorcismo (1975) (1080p.ITA.ENG.Sub.GER) (Ebleep).mkv
+290. La Casa Nera - (1991) (1080p BluRay x265 10bit.ITA-ENG.mkv
+291. La Casa Stregata - 1982 - 92 Min (Renato Pozzetto, Gloria Guida, Lia Zoppelli) - Dvrip Crusaders.avi
+292. La Casa delle Anime Erranti DVDrip ITA.mkv
+293. La Casa sperduta nel parco (1980) 1080p BluRay ITA-ENG 10bit x265.mkv
+294. La Dolce Casa Degli Orrori(1989).mkv
+295. La Macchina Nera.1977.[1080p x264 - AC3 Ita AAC Eng].T7ST.Mux by ^Raoul^.mkv
+296. La Montagna del dio cannibale (1978) 1080p x264 ita eng ac3 - MIRCrew.mkv
+297. La Mummia (1932).RESTORED.BDMux 1080p.ITA-ENG.SUB.ITA-ENG.x265.10bit.mkv
+298. La Notte Di Halloween (1985).mkv
+299. La Polizia Accusa, Il Servizio Segreto Uccide (1975) (1080p.ITA.ENG) (Ebleep).mkv
+300. La Porta sul buio S1E3 - La bambola.mp4
+301. La Porta sul buio S1E4 - Testimone oculare.mp4
+302. La Ragazza che sapeva troppo.(1963).1080p.BDRip.ITA.mkv
+303. La Regina di Venere - Queen of Outer Space (1958) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+304. La Sindrome di Stendhal 1080p BDrip ITA-ENG.mkv
+305. La Storia Fantastica (1987) (1080p.DTS ITA-AC3 ENG) (By Ebleep).mkv
+306. La Storia Infinita.1984.BDrip.720p.x264.iTa-EnG.Ac3.[dr.Mzu].mkv
+307. La Storia Infinita.2.1990.iTA.1080p.BDMux.x264.AC3-PopCorn.mkv
+308. La Storia infinita.3.BDMux.1080p.ITA.AC3.ENG.DTS.x264.mkv
+309. La Terra contro i dischi volanti - Earth vs the Flying Saucers (1956) 1080p h264 Ac3 ita Eng Sub Ita Eng-MIRCrew.mkv
+310. La Zona Morta - The Dead Zone (1983).BDMux.1080p.ITA-ENG.Subs.pkp333.mkv
+311. La casa accanto al cimitero.1981.REMASTERED.ITALIAN.1080p.BluRay.x265-VXT.mp4
+312. La casa nel tempo - The House of Clocks (1989) 1080p h264 Ac3 Ita Eng Sub Eng-MIRCrew.mkv
+313. La cosa da un altro mondo -  The Thing From Another World (1951) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+314. La cripta e l'incubo (1964) (Camillo Mastrocinque) [1080p, x264, AC3][ITA, ENG].mkv
+315. La maschera del demonio (1960) (Mario Bava) [1080p, x265, AC3][ITA, ENG].mkv
+316. La morte dall'occhio di cristallo (1965) 1080p h264 Ac3 Ita Eng Sub Eng-MIRCrew.mkv
+317. La morte negli occhi del gatto - (1973) SD h264 AC3 ITA ENG sub ENG.mkv
+318. La morte viene dal pianeta Aytin - Snow Devils (1967) 1080p h264 Ac3 Ita Sub Eng-MIRCrew.mkv
+319. La notte dei demoni (1971) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+320. La patata bollente - Edwige Fenech, Massimo Ranieri & Renato Pozzetto - Commedia [DviX Ita]SL.avi
+321. La polizia incrimina, la legge assolve (Castellari, 1973).mkv
+322. La porta sul buio S1E1 - Il vicino di casa.mp4
+323. La porta sul buio S1E2 - Il tram.mp4
+324. La storia di Babbo Natale [1080p.BluRay.HEVC.10bit.Ita.Ac3.2.0-Eng.AAC.2.0].mkv
+325. La vendetta del mostro - Revenge of the Creature (1955) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+326. La.Bambola.Assassina.1.1988.Collector.Edition.1080p.10bit.BDMux.ITA.ENG.mkv
+327. La.Bambola.Assassina.2.1988.1080p.BDMux.ITA.ENG.mkv
+328. La.Bambola.Assassina.3.1080p.10bit.BDMux.ITA.ENG.mkv
+329. La.Bambola.Assassina.4.La.Sposa.di.Chucky.1080p.10bit.BDMux.ITA.ENG.mkv
+330. La.Bambola.Assassina.5.Il.Figlio.di.Chucky.1080p.10bit.BDMux.ITA.ENG.mkv
+331. La.Bambola.Assassina.6.La.Maledizione.di.Chucky.1080p.10bit.BDMux.ITA.ENG.mkv
+332. La.Bambola.Assassina.7.Il.Culto.di.Chucky.1080p.10bit.BDMux.ITA.ENG.mkv
+333. La.Bambola.Di.Satana.1969.ITA.BDRip.720p.x264.L43.mkv
+334. La.Casa.3.1988.ITA-ENG.BluRay.1080p.x264-Legend63.mkv
+335. La.Casa.4 - DVDRip x264 AC3 ITA AAC ENG.mkv
+336. La.Casa.5.1990.ITA-ENG.BluRay.720p.x264-DEMN.mkv
+337. La.Casa.6.(La.Casa.di.Helen).1987.1080p.BDMux.ITA-ENG.x264.mkv
+338. La.Casa.7.(House.III.The.Horror.Show.1989).Bdrip.1080p.DTS.AAc.Ita.Eng.subs.chaps.h264.NOMADS.mkv
+339. La.Casa.Con.La.Scala.Nel.Buio.1983.ITA-ENG.BRRip.1080p.x264.mkv
+340. La.Casa.Dalle.Finestre.Che.Ridono.1976.RECOLORED.iTA.AC3.1080p.BDRip.by.M4iO.x264.mkv
+341. La.Casa.Dell.Esorcismo.1975.ITA-ENG.BRRip.720p.x264.L43.mkv
+342. La.Casa.Delle.Anime.Perdute.The.Haunted.1991.ITA-ENG.WEBRip.720p.x264-HD4ME.mkv
+343. La.Casa.Di.Mary.1982.1080p.BDMux.x264.AAC.ITA-ENG.mkv
+344. La.Casa.dell'Orco.1988.ITA.ENG.RUS.SUB.ENG.BDRip.x264.mkv
+345. La.Casetta.degli.Orrori.1987.1080p.BluRay.H264.AAC-RARBG.mkv
+346. La.Cavalcata.dei.Resuscitati.Ciechi.1973.UNCUT.1080p BluRay.ITA-ENG.SUB.ITA-ENG.HEVC 10bit x265.mkv
+347. La.Chiesa.1989.1080p.BluRay.x264-CREEPSHOW.mkv
+348. La.Corta.Notte.delle.Bambole.di.Vetro.1971.1080p.BDMux.ITA-ENG.x264.mkv
+349. La.Donna.Esplosiva.1985.1080p.BluRay.ITA-ENG.mkv
+350. La.Morte.negli.Occhi.del.Gatto.1973.1080p.BDMux.ITA-ENG.SUB.ENG.x264.mkv
+351. La.Nave.maledetta.1974.1080p BluRay.ITA-ENG.SUB.ENG.HEVC 10bit x265.mkv
+352. La.Notte.Dei.Morti.Viventi.1990.BluRay.Mux.1080p.AC3.ITA-ENG.Subs.x264.Aln.mkv
+353. La.Notte.dei.Diavoli.1972.1080p.BluRay.x264-SADPANDA.mkv
+354. La.Notte.dei.resuscitati.ciechi.1975.1080p.BluRay.ITA-ENG.x264.mkv
+355. La.Polizia.Sta.A.Guardare.1973.1080p.BluRay.ITA.x264.AAC.mkv
+356. La.Sposa.Cadavere.2005.BDRip.1080p.Ita.Eng.Spa.AC3.Subs.Chaps.[HDItaly].mkv
+357. La.dama.rossa.uccide.sette.volte.1972.Arrow.1080p.BluRay.x265.hevc.10bit.AAC.1.0.mkv
+358. La.maschera.del.demonio.1960.ITALIAN.1080p.BluRay.x265-VXT.mp4
+359. La.morte.accarezza.a.mezzanotte.(Luciano.Ercoli,1972).(Italian.Spanish.Englishsub..Spanishsub).BDrip.1080p.x264-AAC.mkv
+360. La.notte.che.Evelyn.uscì.dalla.tomba.1971.1080p.bluray.ita-eng.x264.mkv
+361. La.polizia.chiede.aiuto.1974.Arrow.1080p.BluRay.x265.hevc.10bit.AAC.1.0.dual.commentary-HeVK.mkv
+362. La.vita.è.meravigliosa.bdrip.colori.rimasterizzato.James.Stewart.1946.by.Hokal.avi
+363. Lava.mkv
+364. Le ali di Honneamise (BLU-RAY, MUX, x264, AAC ITA, TRUEHD JPN, AC3 JPN-ENG, SUB ITA-ENG).mkv
+365. Le avventure dell'incredibile Ercole (Luigi Cozzi, 1985)[x264.1080p][AC3 it.eng.de.es.pt][sub it.eng.es.pt][25fps][.w.w].mkv
+366. Le avventure di Buckaroo Banzai.1984.BDMux.ITA-ENG.SUB.ITA-ENG.mkv
+367. Le porte dell'inferno.DVDRip.x264.Ac3_ita.AAC_ger(RU@).mkv
+368. Le spose di Dracula - The Brides of Dracula (1960) 1080p h264 Ac3 Ita Eng Sub Eng-MIRCrew.mkv
+369. Le.Avventure.Acquatiche.di.Steve.Zissou.HDMux.720p.ENG.ITA.AC3.mkv
+370. Le.avventure.di.Sherlock.Holmes.(The.Adventures.of.Sherlock.Holmes.1939).Bdrip.1080p.Ac3.Ita.Eng.subs.chaps.x264.NOMADS.mkv
+371. Le.foto.di.Gioia.1987.RM4k.VS.1080p.BluRay.x265.hevc.10bit.AAC.2.0.dual.commentary-HeVK.mkv
+372. Le.notti.del.terrore.1981.RM4k.88F.1080p.x265.hevc.10bit.AAC.1.0.dual.commentary-HeVK.mkv
+373. Le.tombe.dei.Resuscitati.Cieci.1972.UNCUT.1080p BluRay.ITA-ENG.SUB.ITA-ENG.HEVC 10bit x265.mkv
+374. Licenza.di.Guida.1988.1080p.BluRay.x264.AC3.ITA-ENG.SUB.ENG.mkv
+375. Life.After.the.Navigator.2020.1080p.AMZN.WEB-DL.DD+2.0.H.264-MESEY.mkv
+376. Lisa E Il Diavolo (1973) (1080p.ITA.ENG.GER.Sub.GER) (Ebleep).mkv
+377. Lo.Hobbit.-.La.Battaglia.delle.Cinque.Armate.(2014).[Extended.Edition].1080p.BluRay.AC3.ITA.AC3.ENG.Subs.x264.mkv
+378. Lo.Hobbit.-.La.Desolazione.di.Smaug.(2013).[Versione.Estesa]1080p.BluRay.AC3.ITA.AC3.ENG.Subs.x264.mkv
+379. Lo.Hobbit.Un.Viaggio.Inaspettato.-Versione.Estesa-.(Jackson.2012).1080p.BD-Rip.by.Kohaku.mkv
+380. Lo.Squartatore.di.New.York.1978.RM4k.1080p.BluRay.x265.hevc.10bit.AAC.7.1.ITA-ENG.mkv
+381. Lo.chiamavano.Trinità.1970.[Versione.Integrale.2016].DVDRip.AVC.x264.AC3.ITA.Subs.^MF^.mkv
+382. Lo.squartatore.di.New.York.1982.REMASTERED.ITALIAN.1080p.BluRay.x265-CyEg.mkv
+383. Macabro.1980.ITA-ENG.BRRip.720p.x264.L43.mkv
+384. Mamma Ho Perso L'Aereo - Home Alone (BDrip 1080p ENG-ITA DTS) Multisub x264 bluray (1990).mkv
+385. Mangiati.Vivi.1980.1080p.BluRay.ITA-ENG.SUB.ENG.FLAC2.0.x264-SADPANDA.mkv
+386. Matango.il.mostro.1963.SD.DVDRip.H265.Ac3.Ita.Jap-artemix.MIRCrew.mkv
+387. Mazinga.Z.Infinity.2017.1080p.x264.DTS.Ita.Jap.Sub.Ita [genio1985].mkv
+388. Milano Odia, La Polizia non può sparare (1974) (1080p.AC3 ITA-ENG) (By Ebleep).mkv
+389. Milano Trema, La Polizia Vuole Giustizia (1973) (1080p.ITA.SubENG) (Ebleep).mkv
+390. Milano.calibro.9.1972.1080p.ita.eng.ZK.mkv
+391. Miracolo nella 34 strada - Miracle on 34th Street - 1947.avi
+392. Montecarlo Gran Casino (1987 - Christian De Sica, Massimo Boldi).avi
+393. Morte Di Una Strega.avi
+394. Navigator.1986.1080p.BluRay.DTS.ENG.AC3.ITA.x264-CHiNASKi.mkv
+395. Nel.più.alto.dei.cieli.1977.1080p.MUBI.WEB-DL.AAC.2.0.H.264-KUCHU.mkv
+396. Night.of.the.Creeps.(1986).Bdrip.1080p.DTS.AAc.Ita.Eng.subs.chaps.h264.mkv
+397. Nightmare.1.Dal.Profondo.Della.Notte.1984.iTALiAN.ENGLiSH.1080p.BluRay.x264-EXiT.mkv
+398. Nightmare.2.La.Rivincita.1985.iTALiAN.ENGLiSH.1080p.BluRay.x264-EXiT.mkv
+399. Nightmare.3.I.Guerrieri.Del.Sogno.1987.iTALiAN.ENGLiSH.1080p.BluRay.x264-EXiT.mkv
+400. Nightmare.4.Il.Non.Risveglio.1988.iTALiAN.ENGLiSH.1080p.BluRay.x264-EXiT.mkv
+401. Nightmare.5.Il.Mito.1989.iTALiAN.ENGLiSH.1080p.BluRay.x264-EXiT.mkv
+402. Nightmare.6.La.Fine.1991.iTALiAN.ENGLiSH.1080p.BluRay.x264-EXiT.mkv
+403. Nightmare.Nuovo.Incubo.1994.iTALiAN.ENGLiSH.1080p.BluRay.x264-EXiT.mkv
+404. Noi Uomini Duri (1987) (Ed. Restaurata) (1080p.ITA.Sub) (Ebleep).mkv
+405. Non.Si.Sevizia.Un.Paperino 1972 BDRip 1080p Ita Eng x265-NAHOM.mkv
+406. Non.entrate.in.quella.casa.1980.BRRip.m1080p.x264.AC3-ITA.AAC-ENG.Subs.mkv
+407. Nosferatu (1922) [1080p x265 10bit - Muto Aac 5.1 - Sub Ita Eng] BRmux by erVentresca.mkv
+408. Occhi Bianchi sul pianeta Terra - The Omega Man (1971) 1080p h264 Ac3 Ita Eng MultiSub-MIRCrew.mkv
+409. Occhio alla perestrojka [1990] - Dvdrip-ITA-king76.mkv
+410. Occhio, malocchio, prezzemolo e finocchio (1983).mkv
+411. Odissea sulla Terra - The X From Outer Space (1967) 720p h264 Ac3 Ita Eng Jpn Sub Eng-MIRCrew rip e mux by MIRCrew.mkv
+412. On.Your.Mark.BDRip.1080p.DTS.Jap.SUB.Ita.[Cpr].mkv
+413. Opera Backstage - Behind the Scenes Footage.mkv
+414. Opera music video by Daemonia.mkv
+415. Opera.(1987).REMASTERED.1080p.BluRay.x265.ITA-ENG.mkv
+416. Over.the.Top.BDRip.x264.720p.AC3.ITA-ENG.SUB-ENG-M@ssy.mkv
+417. Paganini.Horror.1989.1080p.bluray.ITA-ENG.x264.mkv
+418. Paura.nella.città.dei.morti.viventi.1080p.BDMux.ITA-ENG.mkv
+419. Per Sempre.(1989).x264.AC3 5.1 ITA.AC3 2.0 ITA.RU.mkv
+420. Piranha (1978) 1080p.x265.10bit.ITA-ENG.mkv
+421. Piranha paura (1981) 1080p.x265.10bit.ITA-ENG.mkv
+422. Platoon.1986.iTA.ENG.AC3.SUB.iTA.ENG.BluRay.1080p.x264.jeddak-MIRCrew.mkv
+423. Porca.Vacca.1982.1080p.WEBRip-WORLD.mp4
+424. Posseduta.(1989).1080p.BDMux.ITA-DEU.SUB.ITA-ENG.x264.mkv
+425. Possession (1981) 1080p H264 Ac3 2.0 Ita Doppiaggio storico Ita Eng Sub Ita Eng-MIRCRew.mkv
+426. Poultrygeist.Night.of.the.Chicken.Dead.2006.1080p.BluRay.x265.SUB.ITA-ENG.mkv
+427. Power.of.Grayskull.The.Definitive.History.of.He.Man.and.the.Masters.of.the.Universe.2017.1080p.BluRay.H264.mkv
+428. Predators - (2010) - EXTENDED OPEN MATTE [1080p.x264.ITA-AC3-5.1] (by.phadron) MIRCrew.mkv
+429. Profonde tenebre - Integral Version (J.Franco 1981)[AVC 720p][AC3 ITA+DEU][SuB ENG]BDMux by ZT amp; Percepto.mkv
+430. Profondo.Rosso.1975.OV.RM4k.1080p.BluRay.x265.hevc.10bit.AAC.5.1.dual.commentary-HeVK.mkv
+431. Puttana galera! (Gianfranco Piccioli, 1976) VHSRip.mkv
+432. Quando.Alice.Ruppe.Lo.Specchio.1988.ITA-ENG.BRRip.720p.x264-HD4ME.mkv
+433. Quattro carogne a Malopasso (1989) 1080p ITA.mp4
+434. Quei fantastici razzi volanti - Cat-Women of the Moon (1953) SD h264 Ac3 Ita Eng Sub Ita Eng Spa-MIRCrew mux by robbyrs.mkv
+435. Quella.Strana.Casa.1988.ITA-ENG.BDRip.720p.x264.mkv
+436. Quelle Strane Occasioni 1976.mkv
+437. Renegade.-.Un.Osso.Troppo.Duro.(1987).[GER.Edition].1080p.BluRay.DTS.ITA.x264.mkv
+438. Rimini Rimini (1987) ITA Ac3 2.0 sub Ita BDRip 1080p H264 [ArMor].mkv
+439. Rimini Rimini [1987] - Dvdrip - ITA - x264 - king76.mkv
+440. RoboCop.2.1990.BDRip.1080p.DTS.iTA.AC3.ENG.Subs.x264-BJL.mkv
+441. RoboCop.3.1993.BDRip.1080p.DTS.iTA.AC3.ENG.Subs.x264-BJL.mkv
+442. Robocop.-.1987.-.BDRip.-.1080p.-.DTS.iTA.AC3.eNG.mkv
+443. Robot Holocaust (1986).1080p.BDMux.ITA-ENG.SUB.ENG.x264.mkv
+444. Robot.Monster.1653.SD.H265.DVDRip.Ac3.Eng.Sub.Ita-artemix.MIRCrew.mkv
+445. Robowar.Robot.Da.Guerra.1988.ITA-ENG.BRRip.720p.x264.L43.mkv
+446. Rodan (1956) 1080p h264 Ac3 Ita Jap Sub Ita Eng-MIRCrew rip e mux by robbyrs.mkv
+447. Sapore di mare 2 - Un anno dopo [1983] - Dvdrip - ITA - x264 - king76.mkv
+448. Sapore di mare [1983] - Dvdrip - ITA - x264 - king76.mkv
+449. Saw.2004.REMASTERED.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+450. Saw.3D.2010.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+451. Saw.II.2005.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+452. Saw.III.2006.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+453. Saw.IV.2007.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+454. Saw.Legacy.2017.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+455. Saw.V.2008.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+456. Saw.VI.2009.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+457. Scanners (1981) 1080p H264 ITA AAC ENG AC3 SUB ITA ENG NUITA NUENG - ToR.mkv
+458. Scontri.Stellari.Oltre.la.Terza.Dimensione.1978.1080p.BDMux.DTS-HD.ITA-ENG.x264.mkv
+459. Scream (1996) (1080p.ITA.ENG.Subs) (Ebleep).mkv
+460. Scream 2 (1997) (1080p.ITA.ENG.Sub) (Ebleep).mkv
+461. Scream 3 (2000) (1080p.ITA.ENG.Sub) (Ebleep).mkv
+462. Scream 4 (2011) (1080p.ITA.ENG.Sub) (Ebleep).mkv
+463. Scream.V.2022.BluRay.1080p.AC3.ITA.DTS.ENG.Subs.x264.Aln.mkv
+464. Scream.VI.2023.BluRay.1080p.AC3.ITA.EAC3.AC3.ENG.Subs.x264.mkv
+465. Scrooge - La più bella storia di Natale - di Dickens - Albert Finney, Alec Guinness - 1970.iTALiAN.dvdrip.XviD.BanG V.avi
+466. Scuola.Di.Geni.1985.REMASTERED.iTA.ENG.AC3.SUB.iTA.ENG.BluRay.1080p.x264.jeddak-MIRCrew.mkv
+467. Scusi dov'è il West - (1979) 1080p H264 ITA ENG AAC Sub NUEng.mp4
+468. Sei.donne.per.l'assassino.1964.ITALIAN.1080p.BluRay.H264.AAC-VXT.mp4
+469. Serpico 1973 BDMux ITA ENG 1080p x265 Paso77.mkv
+470. Sete da vampira [Director's Cut] (1998, Roger Fratter) (horror-erotico - ITA) [DVDRip x264 AAC ITA subs-UBi].mkv
+471. Sette scialli di seta gialla-The Crimes of the Black Cat (1972) ITA-ENG Ac3 2.0 BDRip 1080p H264 sub eng [ArMor].mkv
+472. Sette.Note.In.Nero.1977.ITA-ENG.BRRip.x264.L43.mkv
+473. Sette.Orchidee.Macchiate.Di.Rosso.1972.ITA-ENG,BRRip.720p.x264.FOUND.mkv
+474. Sherlock.Holmes.a.Washington.(Sherlock.Holmes.in.Washington.1943).Bdrip.1080p.Ac3.Ita.Eng.subs.chaps.x264.NOMADS.mkv
+475. Sherlock.Holmes.e.l'arma.segreta.(Sherlock.Holmes.and.the.Secret.Weapon.1943).Bdrip.1080p.Ac3.Ita.Eng.subs.chaps.x264.NOMADS.mkv
+476. Sherlock.Holmes.e.la.voce.del.terrore.(Sherlock.Holmes.and.the.Voice.of.Terror.1942).Bdrip.1080p.Ac3.Ita.Eng.subs.chaps.x264.NOMADS.mkv
+477. Sherlock.L.Abominevole.Sposa.2016.BluRay.1080p.AC3.iTA.ENG.Subs.x264-BJL.mkv
+478. Small.Soldiers.1998.BDRip.x264.1080p.AC3.ITA.AAC.ENG.SUB.ENG-M@ssy.mkv
+479. Sola... in quella Casa (1989) 1080p BDMux ITA-ENG.x265.mkv
+480. Son.of.Godzilla.1967.Criterion.1080p.BluRay.x264-JRP.mkv
+481. Sotto Il Vestito Niente 2 - ITA 1988.avi
+482. Sotto.Il.Vestito.Niente..1985.BluRay.1080p.x264.ENG.iTA.mkv
+483. Sottozero (1987).SD.H264.italian.Ac3-2.0.sub.ita-MIRCrew.mkv
+484. Spaceways viaggio nell'interspazio - Spaceways (1953) Uncut SD h264 Ac3 Ita Eng Sub Ita-MIRCrew.mkv
+485. Spawn [DIRECTOR'S CUT] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+486. Spider-Man.Far.From.Home.2019.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+487. Spider-Man.Homecoming.2017.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+488. Spider-Man.No.Way.Home.2021.BluRay.1080p.DTS-HD.MA.AC3.ITA.EAC3.AC3.ENG.Subs.x264-WGZ.mkv
+489. Spiral.From.the.Book.of.Saw.2021.1080p.ITA-ENG.BluRay.x265.AAC-V3SP4EV3R.mkv
+490. Spiritika  (1986) 1080p BDMux ITA-ENG.x264.mkv
+491. Stand.by.Me.(Reiner.1986).720p.[x264-Ita.Ac3-Eng.AAC-Subs].BD-Mux.mkv
+492. Stargate.1994.Director's.Cut.Blu-ray.Mux.1080p.AVC.x264.AC3.ITA-ENG.Subs.^MF^.mkv
+493. Starship.Troopers.-.Attacco.su.Marte.(2017).1080p.BluRay.DTS.ITA.AC3.ENG.Subs.x264.mkv
+494. Starship.Troopers.3.-.L.arma.segreta.(2008).1080p.BluRay.AC3.ITA.AC3.ENG.Subs.x264.mkv
+495. Starship.Troopers.Invasion.BDRip.1080p.DTS.Ita.Eng.AC3.Jap.Subs.Chapters.[Cpr].mkv
+496. Starship.troopers.Fanteria.dello.spazio.1997.iTALiAN.BDRip.1080p.x264.mkv
+497. Strange.Days.1995.ITA.ENG.1080p.BluRay.x264-MeM.mkv
+498. Street Fighter II - The Animated Movie (1994) [1080p H265 10bit] By Seregorn.mkv
+499. Strike Commando (1986) [SEVERIN] [Extended] BLURAY-1080P-X265-AC3-2.0.mkv
+500. Strike Commando 2 (1988) [SEVERIN] [Extended] - BLURAY-1080P-X265-AC3-2.0.mkv
+501. Summer of 84 (2018) BluRay 1080xH264 Ita Eng AC3 5.1 Sub Ita Eng.mkv
+502. TRE TIGRI CONTRO TRE TIGRI (1977) [SD H264 ITA AC3 SUB ITA].mkv
+503. Tank.Girl.1995.1080p.ITA-ENG.BluRay.AC3.x265-V3SP4EV3R.mkv
+504. Tenebre (1982) 1080p Blu-ray ITA.x265.mkv
+505. Tentacoli - Tentacles (1977) 1080p h264 Ac3 Ita Eng Sub Eng-MIRCrew  rip e mux by robbyrs.mkv
+506. Tentacoli.1977.1080p.BluRay.ITA-ENG.x264.mkv
+507. Terrifier 2 (2022) iTA-ENG.Bluray.1080p.x264-Dr4gon MIRCrew.mkv
+508. Terrifier 2018 BluRay 1080xH264 Ita Eng AC3 5.1 Sub Ita Eng.mkv
+509. Terrifier 3 (2024) 1080p H264 ITA ENG AC3 5.1 ENG DTS 5.1 Sub Ita Eng.mkv
+510. Terrifier l'inizio - All Hallows Eve (2013) 1080p BluRay x265 iTA ENG AC3 Sub ita eng - iDN_CreW.mkv
+511. Terror.of.Mechagodzilla.1975.Criterion.INTERNAL.1080p.BluRay.x264-JRP.mkv
+512. Terrore.nello.spazio.1965.1080p.h265.ITA.ENG.AC3.AAC.SUB.ITA.ENG.mkv
+513. Tetsuo.II.The.Body.Hammer.1992.1080p.BluRay.x264-CiNEFiLE.mkv
+514. Tetsuo.The.Iron.Man.1989.1080p.BluRay.x264-CiNEFiLE.mkv
+515. The Conversation 1974 BDRip ITA ENG 1080p x265 Paso77.mkv
+516. The Nightmare Before Christmas (1993) (1080p BluRay x265 FreetheFish).mkv
+517. The Premature Burial (1962) 1080p H264 iTA AC3 EnG AAC MultiSub - MIRCrew.mkv
+518. The Thing - (Carpenter,1982) (Arrow 4K Remaster) (BDRip - 1080p x264 - ITA DTS 5.1 ENG AAC 5.1 from DTSMA SubIta SubEng).mkv
+519. The.Avengers.1080p.Ita.Dts.Eng.Ac3.Subs.Chap-Wind166.mkv
+520. The.Beyond.L'Aldilà.1981.REMASTERED.BDRip 1080p Ita Eng x265-NAHOM.mkv
+521. The.Black.Cat.1989.(De Profundis).1080p.BluRay.H264.AAC-RARBG.mkv
+522. The.Day.After.Il.Giorno.Dopo.1983.REPACK.1080p.ITA-ENG.BluRay.AAC.x265-V3SP4EV3R.mkv
+523. The.Guyver.1991.1080p.BluRay.x265.10bit-SkumDog.mkv
+524. The.House.of.Witchcraft.1989.CauldronFilms.BDRip.720p.mkv
+525. The.Last.Starfighter.1984.1080p.BluRay.ITA-ENG.DTS-HD.MA.5.1.X264.mkv
+526. The.Ogre.(La.Casa.Dell'Orco).1988.ITA-ENG.DVDRip.576p.x264.mkv
+527. The.Toxic.Avenger.1984.1080p.BluRay.x265.ITA-ENG.mkv
+528. The.Toxic.Avenger.Part.II.1989.1080p.BluRay.x265.SUB.ITA-ENG.mkv
+529. The.Toxic.Avenger.Part.III.The.Last.Temptation.of.Toxie.1989.1080p.BluRay.x264.SUB.ITA.mkv
+530. The.Toxic.Avenger.Part.IV.Citizen.Toxie.2000.1080p.BluRay.x265.ITA-ENG.SUB.ITA-ENG.mkv
+531. Thor (x264-1080p-Ac3 iTA -Dts Eng) dIv@S.mkv
+532. Thor.-.The.Dark.World.2013.BluRay.1080p.DTS.AC3.ITA.ENG.Subs.x264-dIv@S.mkv
+533. Thor.Ragnarok.2017.BluRay.1080p.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+534. Ticks - Larve di Sangue (1993) Extended BD 1080p x264 AC3--ITA-ENG SUB--ITA-ENG mux by soad.mkv
+535. Tobor il Re dei robot - Tobor The Great (1954).1080p.h264.ita.eng.sub.eng-MIRCrew.mkv
+536. Tobor.Il.Re.Dei.Robot.Tobor.The.Great.1954.ITA-ENG.BRRip.720p.x264-HD4ME.mkv
+537. Torno.A.Vivere.Da.Solo.2008.iTALiAN.DVDRip.XviD-Republic.avi
+538. Transformers.1.2007.(BDRip 1080p AC3 ITA).mkv
+539. Transformers.2.La.Vendetta.del.Caduto.2009.(BDRip,1080p,AC3 ITA) dIv@S.mkv
+540. Transformers.3.Darkside Of The Moon.2011.(Bdrip -1080P-Ac3 Ita Aac Eng)-DVS.mkv
+541. Transformers.4.-.L’.era.dell’.estinzione.2014.BluRay.1080p.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+542. Transformers.5.L.Ultimo.Cavaliere.2017.BluRay.1080p.AC3.iTA.ENG.Subs.x264-BJL.mkv
+543. Transformers.6.Il.Risveglio.2023.BluRay.1080p.DD5.1.iTA.DDP7.1.DD5.1.ENG.Subs.x264-BJL.mkv
+544. Tremors_1_(1990)_AC3_5.1_ITA.ENG_1080p_H265_sub_ita.eng_Sp33dy94-MIRCrew.mkv
+545. Tremors_2_Aftershocks_(1996)_AC3_2.0_ITA.ENG_1080p_H265_sub_ita.eng_Sp33dy94-MIRCrew.mkv
+546. Tremors_3_Ritorno_a_Perfection_(2001)_AC3_2.0_ITA_5.1_ENG_1080p_H265_sub_ita.eng_Sp33dy94-MIRCrew.mkv
+547. Tremors_4_Agli_inizi_della_leggenda_(2003)_AC3_5.1_ITA.ENG_1080p_H265_sub_ita.eng_Sp33dy94-MIRCrew.mkv
+548. Tremors_5_Bloodline_(2015)_AC3_5.1_ITA.ENG_1080p_H265_sub_ita.eng_Sp33dy94-MIRCrew.mkv
+549. Tremors_6_A_Cold_Day_in_Hell_(2018)_AC3_5.1_ITA.ENG_1080p_H265_sub_ita.eng_Sp33dy94-MIRCrew.mkv
+550. Tutti defunti... tranne i morti (1977) 1080p H264 AC3  - LoZio - MIRCrew.mkv
+551. UN POVERO RICCO (Renato Pozzetto, Ornella Muti - 1983 - DVDrip x264 - Ita AC3 - SoftSub Ita) [by TAERR T7ST].mkv
+552. Ultimatum alla Terra (1951) 1080p Ac3 5.1 Ita Eng Sub Ita Eng - MIRCrew.mkv
+553. Un Poliziotto Scomodo (1978) [1080p H264 ITA ENG AAC] by jackerr [P&C] Poliziottesco.mp4
+554. Un Ragazzo E Una Ragazza (Jerry Calà - Marina Suma - Monica Scattini - Sandro Ghiani - Nino Prester).avi
+555. Un minuto a mezzanotte (1989) avi BDRip ITA AC3 - DDN.avi
+556. Un vampiro a miami.avi
+557. Un.Compleanno.da.Ricordare.(1984) 1080p ITA-ENG.mkv
+558. Un.Gatto.nel.Cervello.1990.ITALIAN.1080p.BluRay.H264.AAC-VXT.mp4
+559. Una lucertola con la pelle di donna  (1971) 1080p BDrip ITA-ENG.mkv
+560. Una notte al cimitero - 1987 - 92 min - AC3 Italian - DVDRip CRUSADERS.avi
+561. Una promessa è una promessa 1996.mkv
+562. Una.Gita.Pericolosa.1987.1080p.WEB.Mux.ITA-ENG.mkv
+563. Una.Notte.Al.Cimitero.1987.BDRip.ITA-ENG.x264.mkv
+564. Una.Pazza.Giornata.di.Vacanza.1986.1080p.iTALiAN.AC3.BDrip.x264.Mokona.mkv
+565. Una.sull.altra.1969.Uncut.1080p.BluRay.x265.hevc.10bit.AAC.1.0.dual-HeVK.mkv
+566. Unico.Indizio.La.Luna.Piena.(Silver.Bullet.1985).Bdrip.1080p.DTS.AAc.Ita.Eng.subs.chaps.h264.NOMADS.mkv
+567. Vacanze di Natale [1983] - Dvdrip - ITA - x264 - king76.mkv
+568. Vacanze in America [1984] - Dvdrip - ITA - x264 - king76.mkv
+569. Vado a vivere da solo [1982] - Dvdrip-ITA-king76.mkv
+570. Venerdì 13 (1980) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+571. Venerdì 13 10 Jason X (2001) AC3 5.1 ITA.ENG 1080p H265 sub NUita.eng Sp33dy94-MIRCrew.mkv
+572. Venerdì 13 2 L'assassino ti siede accanto (1981) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+573. Venerdì 13 3 Week-end di terrore (1982) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+574. Venerdì 13 4 Capitolo Finale (1984) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+575. Venerdì 13 5 il terrore continua (1985) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+576. Venerdì 13 6 Jason vive (1986) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+577. Venerdì 13 7 Il sangue scorre di nuovo (1988) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+578. Venerdì 13 8 Incubo a Manhattan (1989) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+579. Venerdì 13 9 Jason va all'inferno (1993) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+580. Viaggio al centro della Terra - Journey to the Center of the Earth (1959) AC3 2.0 ITA 5.1 ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv
+581. Viaggio allucinante - Fantastic Voyage (1966) 1080p h264 Ac3 Ita Ac3 5.1 Eng Sub Ita Eng-MIRCrew.mkv
+582. Viaggio nella luna - A Trip To The Moon (1902) Black and White Bdrip H265 1080p Eng AAC - By Pulce0000 - T7ST.mkv
+583. Viaggio nella preistoria  - A Journey to the Beginning of Time (1955) 1080p h264 Ac3 Cze Sub Ita Eng-MIRCrew.mkv
+584. Vieni avanti cretino - 1982 - 94 min - AC3 Italian - DVDRip CRUSADERS.mkv
+585. Vita smeralda - 2006 - 94 min - AC3 Italian - DVDRip CRUSADERS.avi
+586. Voci.dal.Profondo.1080p.BluRay.FLAC.HEVC.10bit.x265.ITA-ENG.mkv
+587. War-Gods of the Deep (1965) 1080p H264 iTA EnG AC3 Sub iTA EnG - MIRCrew.mkv
+588. Wargames.1983.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+589. Watchmen_2009_Ultimate_Cut_BDRip_1080p_Ita_Eng_x265-NAHOM.mkv
+590. Werewolves on Wheels - La notte dei demoni (1971) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv
+591. When worlds collide - Quando i mondi si scontrano (1951).1080p.ita.eng-MIRcrew mux by robbyrs.mkv
+592. Willow.1988.-.iTALiAN.DTS.ENGLiSH.AC3.BDRip.(1080p).x264.mkv
+593. Winnie the Pooh - Tutto sangue e niente miele - Blood and Honey 2 (2024) 1080p H265 ita eng AC3 5.1 sub ita Licdom.mkv
+594. Winnie the Pooh Sangue e Miele - Blood and Honey (2023) 1080p H265 ita eng AC3 5.1 sub ita eng Licdom.mkv
+595. Wolfmans.Got.Nards.2018.1080p.Bluray.x265.AAC.MVGroup.org.mkv
+596. Wolverine.L'immortale. (2013).Extended.Edition.x264.BDRip.1080p.DTS.ITA.AC3.ENG.DVS.mkv
+597. X-Men.-.Giorni.di.un.futuro.passato.-.2014.-.BDRip.-.1080p.-.DTS.iTA.AC3.eNG.mkv
+598. X-Men.2000.BluRay.1080p.DTS.ITA.DTS.ENG.Subs.x264-WGZ.mkv
+599. X-Men.Apocalisse.2016.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv
+600. X.Men.-.L'Inizio.-.2011.-.BDRip.-.1080p.-.DTS.iTA.AAC.eNG.mkv
+601. Yado - Red Sonja (1985) 1080p H265 ita AC3 2.0 eng AC3 5.1 sub ita eng Licdom.mkv
+602. Young Frankenstein (BDrip 1080p ENG-ITA-FRA-Comm) Multisub x264 bluray (1974).mkv
+603. Yuppies 2 [1986] - Dvdrip - ITA - x264 - king76.mkv
+604. Yuppies [1986] - Dvdrip - Ita - x264 - King76.mkv
+605. Zeder.-.1983.-.iTA.AC3.1080p.BDRip.by.M4iO.x264.mkv
+606. Zio Tibia - Il documentario.mkv
+607. Zombi.1.Dawn.Of.The.Dead.1978.ITA-ENG.BRRip.720p.x264-HD4ME.mkv
+608. Zombi.2.1979.4k.REMASTERED.1080p.BluRay.x265.10bit-SkumDog.mkv
+609. Zombi.3.(1988).BDMux.ITA-ENG.1080p.x265.mkv
+610. Zombi.4.Oltre.la.morte.1989.1080p.BluRay.x265.hevc.10bit.AAC.2.0.mkv
+611. Zombie 5-Uccelli assassini (1987) ITA Ac3 2.0 BDRip 1080p H264 [ArMor].mkv
+612. [1984] Gremlins (30th Anniv) [1080p.HEVC.10bit] (by.phadron).mkv
+613. [1984] Terminator [Enhanced Extended Cut Open Matte Audio ITA non censurato] [1080p.x265.10bit.ITA.AC3.2.0] (by.phadron) MIRCrew.mkv
+614. [1987] Non aprite quel cancello (1080p.x264.ITA-ENG) (by.phadron) MIRCrew.mkv
+615. [1990] Non aprite quel cancello 2 (1080p.x264.ITA-ENG) (by.phadron) MIRCrew.mkv
+616. [1992] L'armata delle tenebre - Director's Cut [1080p.x265.HEVC.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv
+617. [2017] Logan - The Wolverine - EXTENDED [1080p.x264.ITA-ENG] (by.phadron) MIRCrew.mkv
+618. halloween.2.2009.bdrip.1080p.x264.dts.ita.ac3.eng.subs.lele753.mkv
+619. halloween.the.beginning.2007.bdrip.1080p.x264.dts.ita.ac3.eng.subs.lele753.mkv
+620. labyrinth.dove.tutto.e.possibile.1986.bdrip.1080p.x264.ac3.ita.eng.subs.lele753.mkv
+621. poltergeist.II.l.altra.dimensione.1986.bdrip.1080p.x264.dts.ita.ac3.eng.subs.lele753.mkv
+622. poltergeist.III.1988.bdrip.1080p.x264.dts.ita.ac3.eng.subs.lele753.mkv
+623. poltergeist.demoniache.presenze.1982.bdrip.1080p.x264.ac3.ita.eng.subs.lele753.mkv
+624. x.men.2.2003.bdrip.1080p.x264.dts.ita.eng.subs.mkv.lele753.mkv
+625. x.men.conflitto.finale.2006.bdrip.1080p.x264.dts.ita.ac3.eng.subs.mkv.lele753.mkv
+626. x.men.wolverine.le.origini.2009.bdrip.1080p.x624.dts.ita.ac3.eng.subs.mkv.lele753.mkv
+======================================================================
