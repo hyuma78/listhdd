@@ -4111,11 +4111,6 @@
             "percorso_completo": "E:\\FILM\\Il.Replicante.1986.1080p.BluRay.x265.ITA-ENG.mkv"
         },
         {
-            "nome": "L'ultimo capodanno (1998).mkv",
-            "dimensione": "3.59 GB",
-            "percorso_completo": "E:\\FILM\\L'ultimo capodanno (1998).mkv"
-        },
-        {
             "nome": "L'Uomo.Che.Visse.Nel.Futuro.[The.Time.Machine].1960.1080p.BluRay.x264.ITA-ENG.SUB.ITA-ENG.mkv",
             "dimensione": "7.78 GB",
             "percorso_completo": "E:\\FILM\\L'Uomo.Che.Visse.Nel.Futuro.[The.Time.Machine].1960.1080p.BluRay.x264.ITA-ENG.SUB.ITA-ENG.mkv"
@@ -4254,6 +4249,16 @@
             "nome": "Rimini Rimini [1987] - Dvdrip - ITA - x264 - king76.mkv",
             "dimensione": "1.09 GB",
             "percorso_completo": "E:\\FILM\\Rimini Rimini [1987] - Dvdrip - ITA - x264 - king76.mkv"
+        },
+        {
+            "nome": "Sapore di Mare (1982) 1080P H265 EAC3 2.0 ITA[WebDl by Blasco_77].mkv",
+            "dimensione": "6.31 GB",
+            "percorso_completo": "E:\\FILM\\Sapore di Mare (1982) 1080P H265 EAC3 2.0 ITA[WebDl by Blasco_77].mkv"
+        },
+        {
+            "nome": "Sapore di mare 2 - Un anno dopo (1983) 1080P H265 EAC3 2.0 ITA [WebDl by Blasco_77].mkv",
+            "dimensione": "6.69 GB",
+            "percorso_completo": "E:\\FILM\\Sapore di mare 2 - Un anno dopo (1983) 1080P H265 EAC3 2.0 ITA [WebDl by Blasco_77].mkv"
         },
         {
             "nome": "Scrooge - La più bella storia di Natale - di Dickens - Albert Finney, Alec Guinness - 1970.iTALiAN.dvdrip.XviD.BanG V.avi",
@@ -6138,6 +6143,6 @@
     ],
     "informazioni_disco": {
         "totale": "1862.98 GB",
-        "libero": "10.63 GB"
+        "libero": "6.58 GB"
     }
 }
