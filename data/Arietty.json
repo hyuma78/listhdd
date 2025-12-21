@@ -1,6 +1,11 @@
 {
     "catalogo_video": [
         {
+            "nome": "She and Her Cat - Everything Flows (2016) [BluRay.1080p.x265.FLAC.ITA.JPN.ENG.Subs.Ita.Eng.Jpn] by stress.mkv",
+            "dimensione": "1.81 GB",
+            "percorso_completo": "E:\\ANIME\\She and Her Cat - Everything Flows (2016) [BluRay.1080p.x265.FLAC.ITA.JPN.ENG.Subs.Ita.Eng.Jpn] by stress.mkv"
+        },
+        {
             "nome": "Ano.Hana.ep.01.-.BDRip.1080p.x264.AC3.Ita.Jap.Sub.Ita.Super.Busters.della.pace.mkv",
             "dimensione": "0.56 GB",
             "percorso_completo": "E:\\ANIME\\Ano Hana BDMux 1080p ITA-JAP\\Ano.Hana.ep.01.-.BDRip.1080p.x264.AC3.Ita.Jap.Sub.Ita.Super.Busters.della.pace.mkv"
@@ -1616,11 +1621,6 @@
             "percorso_completo": "E:\\CARTONI ANIMATI\\Mickeys.Christmas.Carol.1983.1080p.BluRay.ITA-ENG.x264.mkv"
         },
         {
-            "nome": "Reign.of.the.Supermen.2019.2160p.BluRay.x265.10bit.HDR.DTS-HD.MA.5.1-SWTYBLZ.mkv",
-            "dimensione": "5.05 GB",
-            "percorso_completo": "E:\\CARTONI ANIMATI\\Reign.of.the.Supermen.2019.2160p.BluRay.x265.10bit.HDR.DTS-HD.MA.5.1-SWTYBLZ.mkv"
-        },
-        {
             "nome": "Batman - Batman la maschera del fantasma (1993 - BDrip 1080p x264 - Ita AC3 Eng DTS - Softsub Ita Eng) [Mux By Pippomix72].mkv",
             "dimensione": "8.04 GB",
             "percorso_completo": "E:\\CARTONI ANIMATI\\ANIMAZIONE DC COMICS\\Batman - Batman la maschera del fantasma (1993 - BDrip 1080p x264 - Ita AC3 Eng DTS - Softsub Ita Eng) [Mux By Pippomix72].mkv"
@@ -1714,6 +1714,11 @@
             "nome": "Justice.League.Vs.The.Fatal.Five.2019.BluRay.Rip.1080p.AVC.x264.AAC.ENG.Subs.ITA-ENG.[YTS.AM].^MF^.mkv",
             "dimensione": "1.25 GB",
             "percorso_completo": "E:\\CARTONI ANIMATI\\ANIMAZIONE DC COMICS\\Justice.League.Vs.The.Fatal.Five.2019.BluRay.Rip.1080p.AVC.x264.AAC.ENG.Subs.ITA-ENG.[YTS.AM].^MF^.mkv"
+        },
+        {
+            "nome": "Reign.of.the.Supermen.2019.2160p.BluRay.x265.10bit.HDR.DTS-HD.MA.5.1-SWTYBLZ.mkv",
+            "dimensione": "5.05 GB",
+            "percorso_completo": "E:\\CARTONI ANIMATI\\ANIMAZIONE DC COMICS\\Reign.of.the.Supermen.2019.2160p.BluRay.x265.10bit.HDR.DTS-HD.MA.5.1-SWTYBLZ.mkv"
         },
         {
             "nome": "Suicide.Squad.Hell.to.Pay.2018.2160p.UHD.BluRay.x265-WhiteRhino.mkv",
@@ -3909,6 +3914,11 @@
             "nome": "Bella.in.Rosa.1986.1080p.BluRay.x265.ITA-ENG.mkv",
             "dimensione": "1.63 GB",
             "percorso_completo": "E:\\FILM\\Bella.in.Rosa.1986.1080p.BluRay.x265.ITA-ENG.mkv"
+        },
+        {
+            "nome": "Bingo.Bongo.(1982).(Spanish.Italian.German.Subs).BDRip.1080p.x264-AC3.by.xula.(nocturniap2p).mkv",
+            "dimensione": "2.84 GB",
+            "percorso_completo": "E:\\FILM\\Bingo.Bongo.(1982).(Spanish.Italian.German.Subs).BDRip.1080p.x264-AC3.by.xula.(nocturniap2p).mkv"
         },
         {
             "nome": "Bomber (1982 Commedia) - Bud Spencer, Jerry Calà [DVDRip ITA] - BielerSoul.mkv",
@@ -6143,6 +6153,6 @@
     ],
     "informazioni_disco": {
         "totale": "1862.98 GB",
-        "libero": "6.58 GB"
+        "libero": "5.53 GB"
     }
 }
