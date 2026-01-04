@@ -436,11 +436,12 @@
         }
 
         function normalizeText(text) {
-            // Normalizza il testo rimuovendo accenti e sostituendo apostrofi varianti
             return text
                 .toLowerCase()
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Rimuove accenti
-                .replace(/[''`]/g, "'"); // Normalizza apostrofi
+                .replace(/[''`]/g, "'") // Normalizza apostrofi
+                .replace(/[^a-z0-9' ]/g, " ") // Sostituisce caratteri speciali con spazi
+                .replace(/\s+/g, " "); // Rimuove spazi multipli
         }
 
         function searchDatabase(query) {
