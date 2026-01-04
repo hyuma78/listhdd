@@ -435,49 +435,62 @@
             }
         }
 
-        function searchDatabase(query) {
-            const resultsContainer = document.getElementById("results-container");
-            resultsContainer.innerHTML = "";
+        function normalizeText(text) {
+    // Normalizza il testo rimuovendo accenti e sostituendo apostrofi varianti
+    return text
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Rimuove accenti
+        .replace(/[''`]/g, "'"); // Normalizza apostrofi
+}
 
-            if (!query.trim()) {
-                renderResults();
-                return;
-            }
+function searchDatabase(query) {
+    const resultsContainer = document.getElementById("results-container");
+    resultsContainer.innerHTML = "";
 
-            const results = [];
+    if (!query.trim()) {
+        renderResults();
+        return;
+    }
 
-            for (const hddName in database) {
-                const hddData = database[hddName];
-                hddData.files.forEach(file => {
-                    if (
-                        file.nome.toLowerCase().includes(query.toLowerCase()) ||
-                        file.percorso_completo.toLowerCase().includes(query.toLowerCase())
-                    ) {
-                        results.push({
-                            hdd: hddName,
-                            name: file.nome,
-                            path: file.percorso_completo,
-                            size: file.dimensione
-                        });
-                    }
+    const results = [];
+    const normalizedQuery = normalizeText(query);
+
+    for (const hddName in database) {
+        const hddData = database[hddName];
+        hddData.files.forEach(file => {
+            const normalizedName = normalizeText(file.nome);
+            const normalizedPath = normalizeText(file.percorso_completo);
+            
+            if (
+                normalizedName.includes(normalizedQuery) ||
+                normalizedPath.includes(normalizedQuery)
+            ) {
+                results.push({
+                    hdd: hddName,
+                    name: file.nome,
+                    path: file.percorso_completo,
+                    size: file.dimensione
                 });
             }
+        });
+    }
 
-            if (results.length === 0) {
-                resultsContainer.innerHTML = `<p>Nessun risultato trovato per "${query}".</p>`;
-                return;
-            }
+    if (results.length === 0) {
+        resultsContainer.innerHTML = `<p>Nessun risultato trovato per "${query}".</p>`;
+        return;
+    }
 
-            const ul = document.createElement("ul");
-            results.forEach(r => {
-                const li = document.createElement("li");
-                li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
-                <span class="hdd-label">HDD: ${r.hdd}</span><br>
-                Percorso: ${r.path}`;
-                ul.appendChild(li);
-            });
-            resultsContainer.appendChild(ul);
-        }
+    const ul = document.createElement("ul");
+    results.forEach(r => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
+        <span class="hdd-label">HDD: ${r.hdd}</span><br>
+        Percorso: ${r.path}`;
+        ul.appendChild(li);
+    });
+    resultsContainer.appendChild(ul);
+}
+
     </script>
 </body>
 
