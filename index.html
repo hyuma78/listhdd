@@ -455,6 +455,7 @@
 
             const results = [];
             const normalizedQuery = normalizeText(query);
+            const queryWords = normalizedQuery.split(' ').filter(w => w.length > 0);
 
             for (const hddName in database) {
                 const hddData = database[hddName];
@@ -462,10 +463,11 @@
                     const normalizedName = normalizeText(file.nome);
                     const normalizedPath = normalizeText(file.percorso_completo);
 
-                    if (
-                        normalizedName.includes(normalizedQuery) ||
-                        normalizedPath.includes(normalizedQuery)
-                    ) {
+                    // Verifica che TUTTE le parole della query siano presenti nel nome o nel percorso
+                    const allWordsInName = queryWords.every(word => normalizedName.includes(word));
+                    const allWordsInPath = queryWords.every(word => normalizedPath.includes(word));
+
+                    if (allWordsInName || allWordsInPath) {
                         results.push({
                             hdd: hddName,
                             name: file.nome,
