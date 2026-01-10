@@ -317,7 +317,6 @@
             updateSummary();
             renderResults();
 
-            // Attiva ricerca
             document.getElementById("searchButton").addEventListener("click", () => {
                 const query = document.getElementById("searchInput").value;
                 searchDatabase(query);
@@ -370,7 +369,6 @@
             for (const hddName in database) {
                 const hddData = database[hddName];
 
-                // Statistiche File Video
                 hddData.files.forEach(file => {
                     const extension = file.nome.split('.').pop().toLowerCase();
                     if (videoExtensionsList.includes(extension)) {
@@ -379,7 +377,6 @@
                     }
                 });
 
-                // Statistiche Spazio Dischi
                 if (hddData.diskInfo) {
                     const occupied = parseFloat(hddData.diskInfo.totale.replace(',', '.'));
                     const free = parseFloat(hddData.diskInfo.libero.replace(',', '.'));
@@ -387,13 +384,11 @@
                     if (!isNaN(occupied)) totalSpaceOccupied += occupied;
                     if (!isNaN(free)) totalSpaceFree += free;
 
-                    // Conteggio per dimensione del disco basato sulla nuova mappa
                     const size = HDD_DIMENSIONS[hddName] || "Sconosciuto";
                     hddSizes[size] = (hddSizes[size] || 0) + 1;
                 }
             }
 
-            // Aggiorna la UI per le statistiche dei file video
             document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
             const videoExtensionsSummary = document.getElementById("video-extensions-summary");
             videoExtensionsSummary.innerHTML = "";
@@ -403,7 +398,6 @@
                 videoExtensionsSummary.appendChild(p);
             }
 
-            // Aggiorna la UI per le statistiche dello spazio dischi
             document.getElementById("total-space-occupied").textContent = `Totale spazio occupato: ${totalSpaceOccupied.toFixed(2)} GB`;
             document.getElementById("total-space-free").textContent = `Totale spazio libero: ${totalSpaceFree.toFixed(2)} GB`;
             const hddSizeSummary = document.getElementById("hdd-size-summary");
@@ -511,23 +505,20 @@
         }
 
         function highlightText(text, query) {
-            // Cerca la frase esatta nel testo normalizzato
             const normalizedText = normalizeText(text);
             const normalizedQuery = normalizeText(query);
             
-            const highlights = [];
-            let startIndex = 0;
+            const regexPattern = new RegExp('(^|\\s)' + normalizedQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '(\\s|$)', 'gi');
             
-            while (true) {
-                const index = normalizedText.indexOf(normalizedQuery, startIndex);
-                if (index === -1) break;
-                
-                // Trova la lunghezza effettiva nel testo originale
+            const highlights = [];
+            let match;
+            
+            while ((match = regexPattern.exec(normalizedText)) !== null) {
+                const startPos = match.index + match[1].length;
                 let actualLength = normalizedQuery.length;
                 
-                // Aggiusta per caratteri accentati o speciali
                 for (let len = normalizedQuery.length; len <= normalizedQuery.length + 10; len++) {
-                    const originalSubstr = text.substring(index, index + len);
+                    const originalSubstr = text.substring(startPos, startPos + len);
                     if (normalizeText(originalSubstr) === normalizedQuery) {
                         actualLength = len;
                         break;
@@ -535,14 +526,11 @@
                 }
                 
                 highlights.push({
-                    start: index,
-                    end: index + actualLength
+                    start: startPos,
+                    end: startPos + actualLength
                 });
-                
-                startIndex = index + 1;
             }
             
-            // Applica gli highlight dal fondo verso l'inizio
             let result = text;
             highlights.reverse().forEach(h => {
                 const before = result.substring(0, h.start);
@@ -573,26 +561,7 @@
             console.log("Query normalizzata:", normalizedQuery);
             console.log("===============");
 
-            // Crea un pattern regex che cerca la query come parole intere con spazi
-            // Aggiungiamo \b (word boundary) all'inizio e alla fine
-            const regexPattern = new RegExp('(^|\\s)' + normalizedQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\        function searchDatabase(query) {
-            const resultsContainer = document.getElementById("results-container");
-            const resultsCount = document.getElementById("search-results-count");
-            resultsContainer.innerHTML = "";
-            resultsCount.innerHTML = "";
-
-            if (!query.trim()) {
-                renderResults();
-                return;
-            }
-
-            const results = [];
-            const normalizedQuery = normalizeText(query);
-            
-            console.log("=== RICERCA ===");
-            console.log("Query originale:", query);
-            console.log("Query normalizzata:", normalizedQuery);
-            console.log("===============");
+            const regexPattern = new RegExp('(^|\\s)' + normalizedQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '(\\s|$)', 'i');
 
             for (const hddName in database) {
                 const hddData = database[hddName];
@@ -600,31 +569,6 @@
                     const normalizedName = normalizeText(file.nome);
                     const normalizedPath = normalizeText(file.percorso_completo);
 
-                    // Cerca la frase esatta (consecutiva) nel nome o nel percorso
-                    if (normalizedName.includes(normalizedQuery) || normalizedPath.includes(normalizedQuery)) {
-                        console.log("✓ TROVATO:");
-                        console.log("  Nome originale:", file.nome);
-                        console.log("  Nome normalizzato:", normalizedName);
-                        console.log("  Contiene query?", normalizedName.includes(normalizedQuery));
-                        console.log("---");
-                        
-                        results.push({
-                            hdd: hddName,
-                            name: file.nome,
-                            path: file.percorso_completo,
-                            size: file.dimensione
-                        });
-                    }
-                });
-            }') + '(\\s|$)', 'i');
-
-            for (const hddName in database) {
-                const hddData = database[hddName];
-                hddData.files.forEach(file => {
-                    const normalizedName = normalizeText(file.nome);
-                    const normalizedPath = normalizeText(file.percorso_completo);
-
-                    // Cerca la frase esatta come parole separate (non substring)
                     if (regexPattern.test(normalizedName) || regexPattern.test(normalizedPath)) {
                         console.log("✓ TROVATO:");
                         console.log("  Nome originale:", file.nome);
