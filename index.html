@@ -573,27 +573,6 @@
             console.log("Query normalizzata:", normalizedQuery);
             console.log("===============");
 
-            // Crea un pattern regex che cerca la query come parole intere con spazi
-            // Aggiungiamo \b (word boundary) all'inizio e alla fine
-            const regexPattern = new RegExp('(^|\\s)' + normalizedQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\        function searchDatabase(query) {
-            const resultsContainer = document.getElementById("results-container");
-            const resultsCount = document.getElementById("search-results-count");
-            resultsContainer.innerHTML = "";
-            resultsCount.innerHTML = "";
-
-            if (!query.trim()) {
-                renderResults();
-                return;
-            }
-
-            const results = [];
-            const normalizedQuery = normalizeText(query);
-            
-            console.log("=== RICERCA ===");
-            console.log("Query originale:", query);
-            console.log("Query normalizzata:", normalizedQuery);
-            console.log("===============");
-
             for (const hddName in database) {
                 const hddData = database[hddName];
                 hddData.files.forEach(file => {
@@ -606,30 +585,6 @@
                         console.log("  Nome originale:", file.nome);
                         console.log("  Nome normalizzato:", normalizedName);
                         console.log("  Contiene query?", normalizedName.includes(normalizedQuery));
-                        console.log("---");
-                        
-                        results.push({
-                            hdd: hddName,
-                            name: file.nome,
-                            path: file.percorso_completo,
-                            size: file.dimensione
-                        });
-                    }
-                });
-            }') + '(\\s|$)', 'i');
-
-            for (const hddName in database) {
-                const hddData = database[hddName];
-                hddData.files.forEach(file => {
-                    const normalizedName = normalizeText(file.nome);
-                    const normalizedPath = normalizeText(file.percorso_completo);
-
-                    // Cerca la frase esatta come parole separate (non substring)
-                    if (regexPattern.test(normalizedName) || regexPattern.test(normalizedPath)) {
-                        console.log("✓ TROVATO:");
-                        console.log("  Nome originale:", file.nome);
-                        console.log("  Nome normalizzato:", normalizedName);
-                        console.log("  Match regex?", regexPattern.test(normalizedName));
                         console.log("---");
                         
                         results.push({
