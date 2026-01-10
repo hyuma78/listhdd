@@ -397,70 +397,87 @@
                 .trim();
         }
 
-        function highlightText(text, query) {
-            if (!query.trim() || !text) return text;
-            const words = query.trim().split(/\s+/).filter(w => w.length > 0);
-            let highlighted = text;
+// --- FUNZIONI DI RICERCA PRECISA CON SEPARATORI VARIABILI ---
 
-            words.forEach(word => {
-                const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                // Regex che trova la parola sia preceduta/seguita da spazi che da punti/underscore
-                const regex = new RegExp(`(${escapedWord})`, 'gi');
+function normalizeText(text) {
+    if (!text) return "";
+    return text.toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .trim();
+}
+
+/**
+ * Crea una Regex che trasforma gli spazi della query in "qualsiasi separatore"
+ * e assicura che non siano parti di altre parole (usando \b per i confini delle parole)
+ */
+function createPreciseRegex(query, flags = 'gi') {
+    // 1. Puliamo la query
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+    // 2. Sostituiamo gli spazi con un pattern che accetta: punto, spazio, underscore, trattino
+    // Usiamo [\\s\\._\\-] per i separatori
+    const pattern = escaped.replace(/\\\s+/g, '[\\s\\._\\-]');
+    
+    // 3. Aggiungiamo \b all'inizio e alla fine per evitare che "la" trovi "quella"
+    // e che "casa" trovi "casamento"
+    return new RegExp(`(\\b${pattern}\\b)`, flags);
+}
+
+function highlightText(text, query) {
+    if (!query.trim() || !text) return text;
+    try {
+        const regex = createPreciseRegex(query, 'gi');
+        return text.replace(regex, '<span class="highlight">$1</span>');
+    } catch (e) {
+        // Se la query è incompleta o invalida la regex, restituiamo il testo normale
+        return text;
+    }
+}
+
+function searchDatabase(query) {
+    const container = document.getElementById("results-container");
+    const countLabel = document.getElementById("search-results-count");
+    container.innerHTML = "";
+    
+    if (!query.trim()) { 
+        renderResults(); 
+        countLabel.innerHTML = ""; 
+        return; 
+    }
+
+    const results = [];
+    const normalizedQuery = normalizeText(query);
+    
+    // Creiamo la regex precisa (es: \bla[\s\._\-]casa\b)
+    const searchRegex = createPreciseRegex(normalizedQuery, 'i');
+
+    for (const hddName in database) {
+        if (database[hddName].files) {
+            database[hddName].files.forEach(file => {
+                const nameNorm = normalizeText(file.nome);
+                const pathNorm = normalizeText(file.percorso_completo);
                 
-                // Sostituzione sicura per non rompere tag HTML già inseriti
-                highlighted = highlighted.replace(regex, (match, p1, offset, str) => {
-                    // Controlla se siamo già dentro un tag <span class="highlight">
-                    const sub = str.substring(0, offset);
-                    const openCount = (sub.match(/<span/g) || []).length;
-                    const closeCount = (sub.match(/\/span>/g) || []).length;
-                    if (openCount > closeCount) return match;
-                    return `<span class="highlight">${match}</span>`;
-                });
-            });
-            return highlighted;
-        }
-
-        function searchDatabase(query) {
-            const container = document.getElementById("results-container");
-            const countLabel = document.getElementById("search-results-count");
-            container.innerHTML = "";
-            if (!query.trim()) { renderResults(); countLabel.innerHTML = ""; return; }
-
-            const results = [];
-            const searchWords = normalizeText(query).split(/\s+/).filter(w => w.length > 0);
-
-            for (const hddName in database) {
-                if (database[hddName].files) {
-                    database[hddName].files.forEach(file => {
-                        const nameNorm = normalizeText(file.nome);
-                        const pathNorm = normalizeText(file.percorso_completo);
-                        
-                        // Il file deve contenere TUTTE le parole cercate
-                        const matchesAll = searchWords.every(word => {
-                            // Creiamo una regex per la parola singola che ignora il separatore
-                            const wordRegex = new RegExp(word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
-                            return wordRegex.test(nameNorm) || wordRegex.test(pathNorm);
-                        });
-
-                        if (matchesAll) {
-                            results.push({ hdd: hddName, ...file });
-                        }
-                    });
+                // Testiamo la sequenza esatta con separatori variabili
+                if (searchRegex.test(nameNorm) || searchRegex.test(pathNorm)) {
+                    results.push({ hdd: hddName, ...file });
                 }
-            }
-
-            countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
-            results.forEach(r => {
-                const div = document.createElement("div");
-                div.className = "search-result-item";
-                div.innerHTML = `
-                    <div class="search-result-name">${highlightText(r.nome, query)}</div>
-                    <div><span class="hdd-label">HDD: ${r.hdd}</span> • <span class="search-result-size">${r.dimensione}</span></div>
-                    <div class="search-result-path">${highlightText(r.percorso_completo, query)}</div>
-                `;
-                container.appendChild(div);
             });
         }
+    }
+
+    countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
+    
+    results.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "search-result-item";
+        div.innerHTML = `
+            <div class="search-result-name">${highlightText(r.nome, query)}</div>
+            <div><span class="hdd-label">HDD: ${r.hdd}</span> • <span class="search-result-size">${r.dimensione}</span></div>
+            <div class="search-result-path">${highlightText(r.percorso_completo, query)}</div>
+        `;
+        container.appendChild(div);
+    });
+}
     </script>
 </body>
 </html>
