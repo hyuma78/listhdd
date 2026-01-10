@@ -332,18 +332,23 @@
 
         // --- NUOVA LOGICA DI RICERCA INFALLIBILE ---
 
-function createFuzzyRegex(query) {
-    // 1. Pulizia e divisione in parole
-    let escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    let words = escaped.split(/\s+/);
+        function createFuzzyRegex(query) {
+            // 1. Pulizia dei caratteri speciali della regex
+            let escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    // 2. Creiamo un pattern che cerchi ogni parola in qualsiasi ordine
-    // Usiamo il Lookahead positivo (?=.*word) per verificare la presenza di ogni parola
-    let pattern = words.map(word => `(?=.*\\b${word})`).join('');
+            // 2. Dividiamo la query in parole
+            let words = escaped.split(/\s+/);
 
-    // Il pattern finale cercherà stringhe che contengono TUTTE le parole inserite
-    return new RegExp(`${pattern}.+`, 'gi');
-}
+            // 3. Costruiamo il pattern:
+            // \b assicura che la parola inizi dopo un confine (spazio, punto, inizio stringa)
+            // [\\s\\._\\-]+ accetta i vari separatori tra le parole
+            let pattern = words.map((word, index) => {
+                return `\\b${word}`;
+            }).join('[\\s\\._\\-]+');
+
+            // Costruiamo la Regex finale
+            return new RegExp(`(${pattern})`, 'gi');
+        }
 
         function highlightText(text, query) {
             if (!query.trim() || !text) return text;
