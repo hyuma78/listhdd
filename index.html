@@ -267,47 +267,21 @@
     </div>
 
     <script>
-
         const HDD_DIMENSIONS = {
-            "Arietty": "2 TB",
-            "SOA": "2 TB ",
-            "Hikvision2TB": "2 TB",
-            "TR3NTON": "1 TB",
-            "Seagate1TB": "1 TB",
-            "Rufy": "500 GB",
-            "Nami": "500 GB",
-            "Zoro": "500 GB",
-            "Usopp": "500 GB",
-            "Franky": "500 GB",
-            "NASWare": "2 TB",
-            "Seagate0FM": "750 GB",
-            "Seagate878": "500 GB",
-            "SeagateGMF": "500 GB",
-            "SeagateR9H": "320 GB",
-            "WD207": "500 GB",
-            "Maxtor15G": "200 GB",
-            "WD_Sarah_2TB": "2 TB",
+            "Arietty": "2 TB", "SOA": "2 TB ", "Hikvision2TB": "2 TB", "TR3NTON": "1 TB",
+            "Seagate1TB": "1 TB", "Rufy": "500 GB", "Nami": "500 GB", "Zoro": "500 GB",
+            "Usopp": "500 GB", "Franky": "500 GB", "NASWare": "2 TB", "Seagate0FM": "750 GB",
+            "Seagate878": "500 GB", "SeagateGMF": "500 GB", "SeagateR9H": "320 GB",
+            "WD207": "500 GB", "Maxtor15G": "200 GB", "WD_Sarah_2TB": "2 TB",
         };
 
         const HDD_JSON_MAP = {
-            "Arietty": "data/Arietty.json",
-            "SOA": "data/SOA.json",
-            "Hikvision2TB": "data/Hikvision2TB.json",
-            "TR3NTON": "data/TR3NTON.json",
-            "Seagate1TB": "data/Seagate1TB.json",
-            "Rufy": "data/Rufy.json",
-            "Nami": "data/Nami.json",
-            "Zoro": "data/Zoro.json",
-            "Usopp": "data/usopp.json",
-            "Franky": "data/franky.json",
-            "NASWare": "data/NASWare.json",
-            "Seagate0FM": "data/Seagate0FM.json",
-            "Seagate878": "data/Seagate878.json",
-            "SeagateGMF": "data/SeagateGMF.json",
-            "SeagateR9H": "data/SeagateR9H.json",
-            "WD207": "data/WD207.json",
-            "Maxtor15G": "data/Maxtor15G.json",
-            "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
+            "Arietty": "data/Arietty.json", "SOA": "data/SOA.json", "Hikvision2TB": "data/Hikvision2TB.json",
+            "TR3NTON": "data/TR3NTON.json", "Seagate1TB": "data/Seagate1TB.json", "Rufy": "data/Rufy.json",
+            "Nami": "data/Nami.json", "Zoro": "data/Zoro.json", "Usopp": "data/usopp.json",
+            "Franky": "data/franky.json", "NASWare": "data/NASWare.json", "Seagate0FM": "data/Seagate0FM.json",
+            "Seagate878": "data/Seagate878.json", "SeagateGMF": "data/SeagateGMF.json", "SeagateR9H": "data/SeagateR9H.json",
+            "WD207": "data/WD207.json", "Maxtor15G": "data/Maxtor15G.json", "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
         };
 
         let database = {};
@@ -317,10 +291,8 @@
             updateSummary();
             renderResults();
 
-            // Attiva ricerca
             document.getElementById("searchButton").addEventListener("click", () => {
-                const query = document.getElementById("searchInput").value;
-                searchDatabase(query);
+                searchDatabase(document.getElementById("searchInput").value);
             });
 
             document.getElementById("clearButton").addEventListener("click", () => {
@@ -330,98 +302,58 @@
             });
 
             document.getElementById("searchInput").addEventListener("keypress", (e) => {
-                if (e.key === "Enter") {
-                    const query = document.getElementById("searchInput").value;
-                    searchDatabase(query);
-                }
+                if (e.key === "Enter") searchDatabase(document.getElementById("searchInput").value);
             });
         });
 
         async function loadDatabase() {
-            const fetchPromises = [];
-            for (const hddName in HDD_JSON_MAP) {
-                fetchPromises.push(
-                    fetch(HDD_JSON_MAP[hddName])
-                        .then(r => r.json())
-                        .then(data => {
-                            let files = [];
-                            let diskInfo = null;
-                            if (data.catalogo_video) files = data.catalogo_video;
-                            if (data.informazioni_disco) diskInfo = data.informazioni_disco;
-                            database[hddName] = { files, diskInfo };
-                        })
-                        .catch(() => {
-                            database[hddName] = { files: [], diskInfo: null };
-                        })
-                );
-            }
+            const fetchPromises = Object.entries(HDD_JSON_MAP).map(([hddName, path]) =>
+                fetch(path)
+                    .then(r => r.json())
+                    .then(data => {
+                        database[hddName] = { 
+                            files: data.catalogo_video || [], 
+                            diskInfo: data.informazioni_disco || null 
+                        };
+                    })
+                    .catch(() => database[hddName] = { files: [], diskInfo: null })
+            );
             await Promise.allSettled(fetchPromises);
         }
 
         function updateSummary() {
-            let totalVideoFiles = 0;
-            const videoExtensions = {};
-            let totalSpaceOccupied = 0;
-            let totalSpaceFree = 0;
-            const hddSizes = {};
-
-            const videoExtensionsList = ["mkv", "avi", "mp4", "mpeg", "mpg", "mov"];
+            let totalVideoFiles = 0, totalSpaceOccupied = 0, totalSpaceFree = 0;
+            const videoExtensions = {}, hddSizes = {}, videoExtensionsList = ["mkv", "avi", "mp4", "mpeg", "mpg", "mov"];
 
             for (const hddName in database) {
                 const hddData = database[hddName];
-
-                // Statistiche File Video
                 hddData.files.forEach(file => {
-                    const extension = file.nome.split('.').pop().toLowerCase();
-                    if (videoExtensionsList.includes(extension)) {
+                    const ext = file.nome.split('.').pop().toLowerCase();
+                    if (videoExtensionsList.includes(ext)) {
                         totalVideoFiles++;
-                        videoExtensions[extension] = (videoExtensions[extension] || 0) + 1;
+                        videoExtensions[ext] = (videoExtensions[ext] || 0) + 1;
                     }
                 });
-
-                // Statistiche Spazio Dischi
                 if (hddData.diskInfo) {
-                    const occupied = parseFloat(hddData.diskInfo.totale.replace(',', '.'));
-                    const free = parseFloat(hddData.diskInfo.libero.replace(',', '.'));
-
-                    if (!isNaN(occupied)) totalSpaceOccupied += occupied;
-                    if (!isNaN(free)) totalSpaceFree += free;
-
-                    // Conteggio per dimensione del disco basato sulla nuova mappa
+                    totalSpaceOccupied += parseFloat(hddData.diskInfo.totale.replace(',', '.')) || 0;
+                    totalSpaceFree += parseFloat(hddData.diskInfo.libero.replace(',', '.')) || 0;
                     const size = HDD_DIMENSIONS[hddName] || "Sconosciuto";
                     hddSizes[size] = (hddSizes[size] || 0) + 1;
                 }
             }
 
-            // Aggiorna la UI per le statistiche dei file video
             document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
-            const videoExtensionsSummary = document.getElementById("video-extensions-summary");
-            videoExtensionsSummary.innerHTML = "";
-            for (const ext in videoExtensions) {
-                const p = document.createElement("p");
-                p.textContent = `${ext.toUpperCase()}: ${videoExtensions[ext]}`;
-                videoExtensionsSummary.appendChild(p);
-            }
-
-            // Aggiorna la UI per le statistiche dello spazio dischi
+            document.getElementById("video-extensions-summary").innerHTML = Object.entries(videoExtensions).map(([ext, count]) => `<p>${ext.toUpperCase()}: ${count}</p>`).join("");
             document.getElementById("total-space-occupied").textContent = `Totale spazio occupato: ${totalSpaceOccupied.toFixed(2)} GB`;
             document.getElementById("total-space-free").textContent = `Totale spazio libero: ${totalSpaceFree.toFixed(2)} GB`;
-            const hddSizeSummary = document.getElementById("hdd-size-summary");
-            hddSizeSummary.innerHTML = "";
-            for (const size in hddSizes) {
-                const p = document.createElement("p");
-                p.textContent = `${size}: ${hddSizes[size]} dischi`;
-                hddSizeSummary.appendChild(p);
-            }
+            document.getElementById("hdd-size-summary").innerHTML = Object.entries(hddSizes).map(([size, count]) => `<p>${size}: ${count} dischi</p>`).join("");
         }
 
         function buildFileTree(files) {
             const root = {};
             files.forEach(file => {
                 let parts = file.percorso_completo.split("\\");
-                if (parts[0].match(/^[A-Z]:$/)) {
-                    parts.shift();
-                }
+                if (parts[0].match(/^[A-Z]:$/)) parts.shift();
                 let current = root;
                 parts.forEach((part, index) => {
                     if (index === parts.length - 1) {
@@ -438,7 +370,6 @@
 
         function renderTree(node) {
             const ul = document.createElement("ul");
-
             for (const key in node) {
                 if (key !== "files") {
                     const li = document.createElement("li");
@@ -446,180 +377,84 @@
                     const childUl = renderTree(node[key]);
                     childUl.style.display = "none";
                     li.appendChild(childUl);
-                    li.querySelector(".folder").addEventListener("click", () => {
-                        childUl.style.display = (childUl.style.display === "none") ? "block" : "none";
-                    });
+                    li.querySelector(".folder").addEventListener("click", () => childUl.style.display = childUl.style.display === "none" ? "block" : "none");
                     ul.appendChild(li);
                 }
             }
-
-            if (Array.isArray(node.files)) {
-                node.files.forEach(file => {
-                    const li = document.createElement("li");
-                    li.className = "file";
-                    li.textContent = `📄 ${file.name} (${file.size})`;
-                    ul.appendChild(li);
-                });
-            }
-
+            if (node.files) node.files.forEach(f => {
+                const li = document.createElement("li");
+                li.className = "file";
+                li.textContent = `📄 ${f.name} (${f.size})`;
+                ul.appendChild(li);
+            });
             return ul;
         }
 
         function renderResults() {
-            const resultsContainer = document.getElementById("results-container");
-            resultsContainer.innerHTML = "";
-
+            const container = document.getElementById("results-container");
+            container.innerHTML = "";
             for (const hddName in database) {
-                const hddData = database[hddName];
-                if (!hddData.files.length && !hddData.diskInfo) continue;
-
-                const hddSection = document.createElement("div");
-                hddSection.className = "hdd-section";
-
-                const hddTitle = document.createElement("h2");
-                hddTitle.className = "hdd-title";
-
-                let titleText = hddName;
-                if (hddData.diskInfo) {
-                    titleText += `  <span class="hdd-details">Totale: ${hddData.diskInfo.totale} | Libero: ${hddData.diskInfo.libero}</span>`;
-                }
-
-                hddTitle.innerHTML = titleText;
-                hddSection.appendChild(hddTitle);
-
-                const fileTree = buildFileTree(hddData.files);
-                const treeHtml = renderTree(fileTree);
-                treeHtml.style.display = "none";
-
-                hddTitle.addEventListener("click", () => {
-                    treeHtml.style.display = (treeHtml.style.display === "none") ? "block" : "none";
-                });
-
-                hddSection.appendChild(treeHtml);
-                resultsContainer.appendChild(hddSection);
+                const data = database[hddName];
+                if (!data.files.length && !data.diskInfo) continue;
+                const section = document.createElement("div");
+                section.className = "hdd-section";
+                const title = document.createElement("h2");
+                title.className = "hdd-title";
+                title.innerHTML = `${hddName} ${data.diskInfo ? `<span class="hdd-details">Totale: ${data.diskInfo.totale} | Libero: ${data.diskInfo.libero}</span>` : ""}`;
+                const tree = renderTree(buildFileTree(data.files));
+                tree.style.display = "none";
+                title.addEventListener("click", () => tree.style.display = tree.style.display === "none" ? "block" : "none");
+                section.append(title, tree);
+                container.appendChild(section);
             }
         }
 
+        // --- FUNZIONI DI RICERCA CORRETTE ---
+
         function normalizeText(text) {
-            return text
-                .toLowerCase()
+            return text.toLowerCase()
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                .replace(/[''`]/g, "'")
-                .replace(/[^a-z0-9' ]/g, " ")
-                .replace(/\s+/g, " ")
                 .trim();
         }
 
         function highlightText(text, query) {
-            // Cerca la frase esatta nel testo normalizzato
-            const normalizedText = normalizeText(text);
-            const normalizedQuery = normalizeText(query);
-            
-            const highlights = [];
-            let startIndex = 0;
-            
-            while (true) {
-                const index = normalizedText.indexOf(normalizedQuery, startIndex);
-                if (index === -1) break;
-                
-                // Trova la lunghezza effettiva nel testo originale
-                let actualLength = normalizedQuery.length;
-                
-                // Aggiusta per caratteri accentati o speciali
-                for (let len = normalizedQuery.length; len <= normalizedQuery.length + 10; len++) {
-                    const originalSubstr = text.substring(index, index + len);
-                    if (normalizeText(originalSubstr) === normalizedQuery) {
-                        actualLength = len;
-                        break;
-                    }
-                }
-                
-                highlights.push({
-                    start: index,
-                    end: index + actualLength
-                });
-                
-                startIndex = index + 1;
-            }
-            
-            // Applica gli highlight dal fondo verso l'inizio
-            let result = text;
-            highlights.reverse().forEach(h => {
-                const before = result.substring(0, h.start);
-                const match = result.substring(h.start, h.end);
-                const after = result.substring(h.end);
-                result = before + '<span class="highlight">' + match + '</span>' + after;
-            });
-            
-            return result;
+            if (!query.trim()) return text;
+            // Escaping per caratteri speciali e creazione regex case-insensitive
+            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`(${escapedQuery})`, 'gi');
+            // Sostituzione che mantiene il case originale del testo
+            return text.replace(regex, '<span class="highlight">$1</span>');
         }
 
         function searchDatabase(query) {
-            const resultsContainer = document.getElementById("results-container");
-            const resultsCount = document.getElementById("search-results-count");
-            resultsContainer.innerHTML = "";
-            resultsCount.innerHTML = "";
-
-            if (!query.trim()) {
-                renderResults();
-                return;
-            }
+            const container = document.getElementById("results-container");
+            const countLabel = document.getElementById("search-results-count");
+            container.innerHTML = "";
+            if (!query.trim()) { renderResults(); countLabel.innerHTML = ""; return; }
 
             const results = [];
             const normalizedQuery = normalizeText(query);
-            
-            console.log("=== RICERCA ===");
-            console.log("Query originale:", query);
-            console.log("Query normalizzata:", normalizedQuery);
-            console.log("===============");
 
             for (const hddName in database) {
-                const hddData = database[hddName];
-                hddData.files.forEach(file => {
-                    const normalizedName = normalizeText(file.nome);
-                    const normalizedPath = normalizeText(file.percorso_completo);
-
-                    // Cerca la frase esatta (consecutiva) nel nome o nel percorso
-                    if (normalizedName.includes(normalizedQuery) || normalizedPath.includes(normalizedQuery)) {
-                        console.log("✓ TROVATO:");
-                        console.log("  Nome originale:", file.nome);
-                        console.log("  Nome normalizzato:", normalizedName);
-                        console.log("  Contiene query?", normalizedName.includes(normalizedQuery));
-                        console.log("---");
-                        
-                        results.push({
-                            hdd: hddName,
-                            name: file.nome,
-                            path: file.percorso_completo,
-                            size: file.dimensione
-                        });
+                database[hddName].files.forEach(file => {
+                    if (normalizeText(file.nome).includes(normalizedQuery) || normalizeText(file.percorso_completo).includes(normalizedQuery)) {
+                        results.push({ hdd: hddName, ...file });
                     }
                 });
             }
 
-            if (results.length === 0) {
-                resultsCount.innerHTML = `Nessun risultato trovato per "${query}"`;
-                return;
-            }
-
-            resultsCount.innerHTML = `Trovati ${results.length} risultati per "${query}"`;
-
+            countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
             results.forEach(r => {
                 const div = document.createElement("div");
                 div.className = "search-result-item";
-                
-                const highlightedName = highlightText(r.name, query);
-                
                 div.innerHTML = `
-                    <div class="search-result-name">${highlightedName}</div>
-                    <div><span class="hdd-label">HDD: ${r.hdd}</span> • <span class="search-result-size">${r.size}</span></div>
-                    <div class="search-result-path">${r.path}</div>
+                    <div class="search-result-name">${highlightText(r.nome, query)}</div>
+                    <div><span class="hdd-label">HDD: ${r.hdd}</span> • <span class="search-result-size">${r.dimensione}</span></div>
+                    <div class="search-result-path">${highlightText(r.percorso_completo, query)}</div>
                 `;
-                resultsContainer.appendChild(div);
+                container.appendChild(div);
             });
         }
-
     </script>
 </body>
-
 </html>
