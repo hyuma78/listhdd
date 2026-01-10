@@ -327,13 +327,15 @@
 
             for (const hddName in database) {
                 const hddData = database[hddName];
-                hddData.files.forEach(file => {
-                    const ext = file.nome.split('.').pop().toLowerCase();
-                    if (videoExtensionsList.includes(ext)) {
-                        totalVideoFiles++;
-                        videoExtensions[ext] = (videoExtensions[ext] || 0) + 1;
-                    }
-                });
+                if (hddData.files) {
+                    hddData.files.forEach(file => {
+                        const ext = file.nome.split('.').pop().toLowerCase();
+                        if (videoExtensionsList.includes(ext)) {
+                            totalVideoFiles++;
+                            videoExtensions[ext] = (videoExtensions[ext] || 0) + 1;
+                        }
+                    });
+                }
                 if (hddData.diskInfo) {
                     totalSpaceOccupied += parseFloat(hddData.diskInfo.totale.replace(',', '.')) || 0;
                     totalSpaceFree += parseFloat(hddData.diskInfo.libero.replace(',', '.')) || 0;
@@ -350,17 +352,18 @@
         }
 
         function buildFileTree(files) {
-            const root = {};
+            const root = { _files: [] }; // Uso _files per evitare conflitti con nomi cartelle
             files.forEach(file => {
                 let parts = file.percorso_completo.split("\\");
                 if (parts[0].match(/^[A-Z]:$/)) parts.shift();
+                
                 let current = root;
                 parts.forEach((part, index) => {
                     if (index === parts.length - 1) {
-                        if (!current.files) current.files = [];
-                        current.files.push({ name: part, size: file.dimensione });
+                        if (!current._files) current._files = [];
+                        current._files.push({ name: part, size: file.dimensione });
                     } else {
-                        if (!current[part]) current[part] = {};
+                        if (!current[part]) current[part] = { _files: [] };
                         current = current[part];
                     }
                 });
@@ -370,23 +373,32 @@
 
         function renderTree(node) {
             const ul = document.createElement("ul");
+            
+            // Renderizza le cartelle
             for (const key in node) {
-                if (key !== "files") {
+                if (key !== "_files") {
                     const li = document.createElement("li");
                     li.innerHTML = `<span class="folder">📂 <strong>${key}</strong></span>`;
                     const childUl = renderTree(node[key]);
                     childUl.style.display = "none";
                     li.appendChild(childUl);
-                    li.querySelector(".folder").addEventListener("click", () => childUl.style.display = childUl.style.display === "none" ? "block" : "none");
+                    li.querySelector(".folder").addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        childUl.style.display = childUl.style.display === "none" ? "block" : "none";
+                    });
                     ul.appendChild(li);
                 }
             }
-            if (node.files) node.files.forEach(f => {
-                const li = document.createElement("li");
-                li.className = "file";
-                li.textContent = `📄 ${f.name} (${f.size})`;
-                ul.appendChild(li);
-            });
+
+            // Renderizza i file usando la chiave sicura _files
+            if (node._files && Array.isArray(node._files)) {
+                node._files.forEach(f => {
+                    const li = document.createElement("li");
+                    li.className = "file";
+                    li.textContent = `📄 ${f.name} (${f.size})`;
+                    ul.appendChild(li);
+                });
+            }
             return ul;
         }
 
@@ -395,34 +407,38 @@
             container.innerHTML = "";
             for (const hddName in database) {
                 const data = database[hddName];
-                if (!data.files.length && !data.diskInfo) continue;
+                if (!data.files || (!data.files.length && !data.diskInfo)) continue;
+                
                 const section = document.createElement("div");
                 section.className = "hdd-section";
+                
                 const title = document.createElement("h2");
                 title.className = "hdd-title";
                 title.innerHTML = `${hddName} ${data.diskInfo ? `<span class="hdd-details">Totale: ${data.diskInfo.totale} | Libero: ${data.diskInfo.libero}</span>` : ""}`;
+                
                 const tree = renderTree(buildFileTree(data.files));
                 tree.style.display = "none";
-                title.addEventListener("click", () => tree.style.display = tree.style.display === "none" ? "block" : "none");
+                
+                title.addEventListener("click", () => {
+                    tree.style.display = tree.style.display === "none" ? "block" : "none";
+                });
+                
                 section.append(title, tree);
                 container.appendChild(section);
             }
         }
 
-        // --- FUNZIONI DI RICERCA CORRETTE ---
-
         function normalizeText(text) {
+            if (!text) return "";
             return text.toLowerCase()
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .trim();
         }
 
         function highlightText(text, query) {
-            if (!query.trim()) return text;
-            // Escaping per caratteri speciali e creazione regex case-insensitive
+            if (!query.trim() || !text) return text;
             const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             const regex = new RegExp(`(${escapedQuery})`, 'gi');
-            // Sostituzione che mantiene il case originale del testo
             return text.replace(regex, '<span class="highlight">$1</span>');
         }
 
@@ -430,20 +446,29 @@
             const container = document.getElementById("results-container");
             const countLabel = document.getElementById("search-results-count");
             container.innerHTML = "";
-            if (!query.trim()) { renderResults(); countLabel.innerHTML = ""; return; }
+            
+            if (!query.trim()) { 
+                renderResults(); 
+                countLabel.innerHTML = ""; 
+                return; 
+            }
 
             const results = [];
             const normalizedQuery = normalizeText(query);
 
             for (const hddName in database) {
-                database[hddName].files.forEach(file => {
-                    if (normalizeText(file.nome).includes(normalizedQuery) || normalizeText(file.percorso_completo).includes(normalizedQuery)) {
-                        results.push({ hdd: hddName, ...file });
-                    }
-                });
+                if (database[hddName].files) {
+                    database[hddName].files.forEach(file => {
+                        if (normalizeText(file.nome).includes(normalizedQuery) || 
+                            normalizeText(file.percorso_completo).includes(normalizedQuery)) {
+                            results.push({ hdd: hddName, ...file });
+                        }
+                    });
+                }
             }
 
             countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
+            
             results.forEach(r => {
                 const div = document.createElement("div");
                 div.className = "search-result-item";
