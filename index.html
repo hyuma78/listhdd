@@ -114,10 +114,6 @@
             background-color: #7f8c8d;
         }
 
-        #searchButton:active, #clearButton:active {
-            transform: scale(0.98);
-        }
-
         #search-results-count {
             text-align: center;
             margin-bottom: 20px;
@@ -175,10 +171,6 @@
             transition: box-shadow 0.3s;
         }
 
-        .hdd-section:hover {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
         .hdd-title {
             font-size: 1.2em;
             font-weight: bold;
@@ -199,17 +191,6 @@
             font-weight: bold;
         }
 
-        .hdd-title:hover {
-            background-color: #f0f4f8;
-        }
-
-        .hdd-details {
-            font-size: 0.85em;
-            font-weight: normal;
-            color: #555;
-            margin-left: 10px;
-        }
-
         ul {
             margin: 0;
             padding-left: 20px;
@@ -218,10 +199,6 @@
         li {
             margin: 2px 0;
             list-style: none;
-        }
-
-        li strong {
-            color: #2c3e50;
         }
 
         .folder {
@@ -259,7 +236,7 @@
         </div>
 
         <div id="search-container">
-            <input type="text" id="searchInput" placeholder="Cerca file per nome o percorso...">
+            <input type="text" id="searchInput" placeholder="Cerca sequenza (es: 'la casa' o 'matrix')...">
             <button id="searchButton">Cerca</button>
             <button id="clearButton">Pulisci</button>
         </div>
@@ -269,45 +246,20 @@
 
     <script>
         const HDD_DIMENSIONS = {
-            "Arietty": "2 TB",
-            "SOA": "2 TB ",
-            "Hikvision2TB": "2 TB",
-            "TR3NTON": "1 TB",
-            "Seagate1TB": "1 TB",
-            "Rufy": "500 GB",
-            "Nami": "500 GB",
-            "Zoro": "500 GB",
-            "Usopp": "500 GB",
-            "Franky": "500 GB",
-            "NASWare": "2 TB",
-            "Seagate0FM": "750 GB",
-            "Seagate878": "500 GB",
-            "SeagateGMF": "500 GB",
-            "SeagateR9H": "320 GB",
-            "WD207": "500 GB",
-            "Maxtor15G": "200 GB",
-            "WD_Sarah_2TB": "2 TB",
+            "Arietty": "2 TB", "SOA": "2 TB ", "Hikvision2TB": "2 TB", "TR3NTON": "1 TB",
+            "Seagate1TB": "1 TB", "Rufy": "500 GB", "Nami": "500 GB", "Zoro": "500 GB",
+            "Usopp": "500 GB", "Franky": "500 GB", "NASWare": "2 TB", "Seagate0FM": "750 GB",
+            "Seagate878": "500 GB", "SeagateGMF": "500 GB", "SeagateR9H": "320 GB",
+            "WD207": "500 GB", "Maxtor15G": "200 GB", "WD_Sarah_2TB": "2 TB",
         };
 
         const HDD_JSON_MAP = {
-            "Arietty": "data/Arietty.json",
-            "SOA": "data/SOA.json",
-            "Hikvision2TB": "data/Hikvision2TB.json",
-            "TR3NTON": "data/TR3NTON.json",
-            "Seagate1TB": "data/Seagate1TB.json",
-            "Rufy": "data/Rufy.json",
-            "Nami": "data/Nami.json",
-            "Zoro": "data/Zoro.json",
-            "Usopp": "data/usopp.json",
-            "Franky": "data/franky.json",
-            "NASWare": "data/NASWare.json",
-            "Seagate0FM": "data/Seagate0FM.json",
-            "Seagate878": "data/Seagate878.json",
-            "SeagateGMF": "data/SeagateGMF.json",
-            "SeagateR9H": "data/SeagateR9H.json",
-            "WD207": "data/WD207.json",
-            "Maxtor15G": "data/Maxtor15G.json",
-            "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
+            "Arietty": "data/Arietty.json", "SOA": "data/SOA.json", "Hikvision2TB": "data/Hikvision2TB.json",
+            "TR3NTON": "data/TR3NTON.json", "Seagate1TB": "data/Seagate1TB.json", "Rufy": "data/Rufy.json",
+            "Nami": "data/Nami.json", "Zoro": "data/Zoro.json", "Usopp": "data/usopp.json",
+            "Franky": "data/franky.json", "NASWare": "data/NASWare.json", "Seagate0FM": "data/Seagate0FM.json",
+            "Seagate878": "data/Seagate878.json", "SeagateGMF": "data/SeagateGMF.json", "SeagateR9H": "data/SeagateR9H.json",
+            "WD207": "data/WD207.json", "Maxtor15G": "data/Maxtor15G.json", "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
         };
 
         let database = {};
@@ -337,9 +289,9 @@
                 fetch(path)
                     .then(r => r.json())
                     .then(data => {
-                        database[hddName] = {
-                            files: data.catalogo_video || [],
-                            diskInfo: data.informazioni_disco || null
+                        database[hddName] = { 
+                            files: data.catalogo_video || [], 
+                            diskInfo: data.informazioni_disco || null 
                         };
                     })
                     .catch(() => database[hddName] = { files: [], diskInfo: null })
@@ -377,29 +329,30 @@
             document.getElementById("hdd-size-summary").innerHTML = Object.entries(hddSizes).map(([size, count]) => `<p>${size}: ${count} dischi</p>`).join("");
         }
 
-        // --- FUNZIONI DI RICERCA PRECISA ---
+        // --- NUOVA LOGICA DI RICERCA INFALLIBILE ---
 
-        function createPreciseRegex(query) {
+        function createFuzzyRegex(query) {
+            // Pulisce i caratteri regex ma mantiene gli spazi
             let escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            // Trasforma lo spazio in un pattern che accetta: spazio, punto, underscore o trattino
-            let pattern = escaped.replace(/\\\s+/g, '[\\s\\._\\-]');
-            // Lookaround: Trova la sequenza se NON è preceduta o seguita da lettere o numeri
-            return new RegExp(`(?<![a-z0-9])(${pattern})(?![a-z0-9])`, 'gi');
+            
+            // Sostituiamo gli spazi con un pattern che dice:
+            // "Accetta qui uno o più caratteri che siano: spazio, punto, underscore o trattino"
+            let pattern = escaped.replace(/\\\s+/g, '[\\s\\._\\-]+');
+            
+            // Costruiamo la Regex finale
+            // Cerchiamo il pattern ignorando maiuscole/minuscole
+            return new RegExp(`(${pattern})`, 'gi');
         }
 
         function highlightText(text, query) {
             if (!query.trim() || !text) return text;
-            const regex = createPreciseRegex(query);
+            const regex = createFuzzyRegex(query);
             return text.replace(regex, '<span class="highlight">$1</span>');
         }
 
         function normalizeText(text) {
             if (!text) return "";
-            const normalized = text.toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .trim();
-            return normalized;
+            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
         }
 
         function searchDatabase(query) {
@@ -407,23 +360,24 @@
             const countLabel = document.getElementById("search-results-count");
             container.innerHTML = "";
             
-            if (!query.trim()) {
-                renderResults();
-                countLabel.innerHTML = "";
-                return;
+            if (!query.trim()) { 
+                renderResults(); 
+                countLabel.innerHTML = ""; 
+                return; 
             }
 
             const results = [];
-            const regex = createPreciseRegex(query);
+            const regex = createFuzzyRegex(query);
 
             for (const hddName in database) {
                 if (database[hddName].files) {
                     database[hddName].files.forEach(file => {
-                        // Testiamo la regex sul nome e sul percorso
+                        // Se la regex trova corrispondenza nel nome o nel percorso
                         if (regex.test(file.nome) || regex.test(file.percorso_completo)) {
                             results.push({ hdd: hddName, ...file });
                         }
-                        regex.lastIndex = 0; // Reset per il prossimo test
+                        // Reset obbligatorio per le regex globali usate in loop
+                        regex.lastIndex = 0;
                     });
                 }
             }
@@ -442,7 +396,7 @@
             });
         }
 
-        // --- VISUALIZZAZIONE ALBERO ---
+        // --- GESTIONE ALBERO ---
 
         function buildFileTree(files) {
             const root = { _files: [] };
@@ -518,5 +472,4 @@
         }
     </script>
 </body>
-
 </html>
