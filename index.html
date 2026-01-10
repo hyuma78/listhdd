@@ -77,6 +77,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 10px;
         }
 
         #searchInput {
@@ -85,26 +86,84 @@
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            margin-right: 10px;
         }
 
-        #searchButton {
+        #searchButton, #clearButton {
             padding: 12px 24px;
             font-size: 16px;
             border: none;
-            background-color: #3498db;
             color: #fff;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.1s;
         }
 
+        #searchButton {
+            background-color: #3498db;
+        }
+
         #searchButton:hover {
             background-color: #2980b9;
         }
 
-        #searchButton:active {
+        #clearButton {
+            background-color: #95a5a6;
+        }
+
+        #clearButton:hover {
+            background-color: #7f8c8d;
+        }
+
+        #searchButton:active, #clearButton:active {
             transform: scale(0.98);
+        }
+
+        #search-results-count {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .search-result-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .search-result-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-result-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .search-result-size {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .search-result-path {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 8px;
+            word-break: break-all;
+        }
+
+        .highlight {
+            background-color: #fff59d;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
         }
 
         .hdd-section {
@@ -137,7 +196,6 @@
 
         .hdd-label {
             color: #e74c3c;
-            /* Rosso */
             font-weight: bold;
         }
 
@@ -202,7 +260,9 @@
         <div id="search-container">
             <input type="text" id="searchInput" placeholder="Cerca file per nome o percorso...">
             <button id="searchButton">Cerca</button>
+            <button id="clearButton">Pulisci</button>
         </div>
+        <div id="search-results-count"></div>
         <div id="results-container"></div>
     </div>
 
@@ -261,6 +321,12 @@
             document.getElementById("searchButton").addEventListener("click", () => {
                 const query = document.getElementById("searchInput").value;
                 searchDatabase(query);
+            });
+
+            document.getElementById("clearButton").addEventListener("click", () => {
+                document.getElementById("searchInput").value = "";
+                document.getElementById("search-results-count").innerHTML = "";
+                renderResults();
             });
 
             document.getElementById("searchInput").addEventListener("keypress", (e) => {
@@ -322,11 +388,10 @@
                     if (!isNaN(free)) totalSpaceFree += free;
 
                     // Conteggio per dimensione del disco basato sulla nuova mappa
-                    const size = HDD_DIMENSIONS[hddName] || "Sconosciuto"; // Usa la mappa, se non trova il nome, lo classifica come "Sconosciuto"
+                    const size = HDD_DIMENSIONS[hddName] || "Sconosciuto";
                     hddSizes[size] = (hddSizes[size] || 0) + 1;
                 }
             }
-
 
             // Aggiorna la UI per le statistiche dei file video
             document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
@@ -355,7 +420,7 @@
             files.forEach(file => {
                 let parts = file.percorso_completo.split("\\");
                 if (parts[0].match(/^[A-Z]:$/)) {
-                    parts.shift(); // tolgo la lettera del disco
+                    parts.shift();
                 }
                 let current = root;
                 parts.forEach((part, index) => {
@@ -438,15 +503,55 @@
         function normalizeText(text) {
             return text
                 .toLowerCase()
-                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Rimuove accenti
-                .replace(/[''`]/g, "'") // Normalizza apostrofi
-                .replace(/[^a-z0-9' ]/g, " ") // Sostituisce caratteri speciali con spazi
-                .replace(/\s+/g, " "); // Rimuove spazi multipli
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[''`]/g, "'")
+                .replace(/[^a-z0-9' ]/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
         }
 
-function searchDatabase(query) {
+        function highlightText(text, queryWords) {
+            let result = text;
+            
+            // Crea una mappa delle posizioni da evidenziare
+            const highlights = [];
+            queryWords.forEach(word => {
+                const normalizedText = normalizeText(text);
+                const normalizedWord = word.toLowerCase();
+                let startIndex = 0;
+                
+                while (true) {
+                    const index = normalizedText.indexOf(normalizedWord, startIndex);
+                    if (index === -1) break;
+                    
+                    highlights.push({
+                        start: index,
+                        end: index + word.length,
+                        word: word
+                    });
+                    
+                    startIndex = index + 1;
+                }
+            });
+            
+            // Ordina per posizione e applica gli highlight
+            highlights.sort((a, b) => b.start - a.start);
+            
+            highlights.forEach(h => {
+                const before = result.substring(0, h.start);
+                const match = result.substring(h.start, h.end);
+                const after = result.substring(h.end);
+                result = before + '<span class="highlight">' + match + '</span>' + after;
+            });
+            
+            return result;
+        }
+
+        function searchDatabase(query) {
             const resultsContainer = document.getElementById("results-container");
+            const resultsCount = document.getElementById("search-results-count");
             resultsContainer.innerHTML = "";
+            resultsCount.innerHTML = "";
 
             if (!query.trim()) {
                 renderResults();
@@ -463,7 +568,12 @@ function searchDatabase(query) {
                     const normalizedName = normalizeText(file.nome);
                     const normalizedPath = normalizeText(file.percorso_completo);
 
-                    // Verifica che TUTTE le parole della query siano presenti nel nome o nel percorso
+                    // Conta quante parole matchano
+                    const matchedInName = queryWords.filter(word => normalizedName.includes(word)).length;
+                    const matchedInPath = queryWords.filter(word => normalizedPath.includes(word)).length;
+                    const totalMatched = Math.max(matchedInName, matchedInPath);
+
+                    // Verifica che TUTTE le parole della query siano presenti
                     const allWordsInName = queryWords.every(word => normalizedName.includes(word));
                     const allWordsInPath = queryWords.every(word => normalizedPath.includes(word));
 
@@ -472,26 +582,36 @@ function searchDatabase(query) {
                             hdd: hddName,
                             name: file.nome,
                             path: file.percorso_completo,
-                            size: file.dimensione
+                            size: file.dimensione,
+                            relevance: totalMatched
                         });
                     }
                 });
             }
 
+            // Ordina per rilevanza (più parole matchate prima)
+            results.sort((a, b) => b.relevance - a.relevance);
+
             if (results.length === 0) {
-                resultsContainer.innerHTML = `<p>Nessun risultato trovato per "${query}".</p>`;
+                resultsCount.innerHTML = `Nessun risultato trovato per "${query}"`;
                 return;
             }
 
-            const ul = document.createElement("ul");
+            resultsCount.innerHTML = `Trovati ${results.length} risultati per "${query}"`;
+
             results.forEach(r => {
-                const li = document.createElement("li");
-                li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
-        <span class="hdd-label">HDD: ${r.hdd}</span><br>
-        Percorso: ${r.path}`;
-                ul.appendChild(li);
+                const div = document.createElement("div");
+                div.className = "search-result-item";
+                
+                const highlightedName = highlightText(r.name, queryWords);
+                
+                div.innerHTML = `
+                    <div class="search-result-name">${highlightedName}</div>
+                    <div><span class="hdd-label">HDD: ${r.hdd}</span> • <span class="search-result-size">${r.size}</span></div>
+                    <div class="search-result-path">${r.path}</div>
+                `;
+                resultsContainer.appendChild(div);
             });
-            resultsContainer.appendChild(ul);
         }
 
     </script>
