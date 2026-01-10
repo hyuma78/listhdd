@@ -88,7 +88,8 @@
             border-radius: 8px;
         }
 
-        #searchButton, #clearButton {
+        #searchButton,
+        #clearButton {
             padding: 12px 24px;
             font-size: 16px;
             border: none;
@@ -289,9 +290,9 @@
                 fetch(path)
                     .then(r => r.json())
                     .then(data => {
-                        database[hddName] = { 
-                            files: data.catalogo_video || [], 
-                            diskInfo: data.informazioni_disco || null 
+                        database[hddName] = {
+                            files: data.catalogo_video || [],
+                            diskInfo: data.informazioni_disco || null
                         };
                     })
                     .catch(() => database[hddName] = { files: [], diskInfo: null })
@@ -334,13 +335,12 @@
         function createFuzzyRegex(query) {
             // Pulisce i caratteri regex ma mantiene gli spazi
             let escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            
-            // Sostituiamo gli spazi con un pattern che dice:
-            // "Accetta qui uno o più caratteri che siano: spazio, punto, underscore o trattino"
-            let pattern = escaped.replace(/\\\s+/g, '[\\s\\._\\-]+');
-            
+
+            // CORREZIONE: sostituiamo gli spazi (che ora sono "\ " dopo l'escape)
+            // con un pattern che accetta spazio, punto, underscore o trattino
+            let pattern = escaped.replace(/\s+/g, '[\\s\\._\\-]+');
+
             // Costruiamo la Regex finale
-            // Cerchiamo il pattern ignorando maiuscole/minuscole
             return new RegExp(`(${pattern})`, 'gi');
         }
 
@@ -359,11 +359,11 @@
             const container = document.getElementById("results-container");
             const countLabel = document.getElementById("search-results-count");
             container.innerHTML = "";
-            
-            if (!query.trim()) { 
-                renderResults(); 
-                countLabel.innerHTML = ""; 
-                return; 
+
+            if (!query.trim()) {
+                renderResults();
+                countLabel.innerHTML = "";
+                return;
             }
 
             const results = [];
@@ -383,7 +383,7 @@
             }
 
             countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
-            
+
             results.forEach(r => {
                 const div = document.createElement("div");
                 div.className = "search-result-item";
@@ -403,7 +403,7 @@
             files.forEach(file => {
                 let parts = file.percorso_completo.split("\\");
                 if (parts[0].match(/^[A-Z]:$/)) parts.shift();
-                
+
                 let current = root;
                 parts.forEach((part, index) => {
                     if (index === parts.length - 1) {
@@ -451,25 +451,26 @@
             for (const hddName in database) {
                 const data = database[hddName];
                 if (!data.files || (!data.files.length && !data.diskInfo)) continue;
-                
+
                 const section = document.createElement("div");
                 section.className = "hdd-section";
-                
+
                 const title = document.createElement("h2");
                 title.className = "hdd-title";
                 title.innerHTML = `<span>${hddName}</span> ${data.diskInfo ? `<span class="hdd-details">Totale: ${data.diskInfo.totale} | Libero: ${data.diskInfo.libero}</span>` : ""}`;
-                
+
                 const tree = renderTree(buildFileTree(data.files));
                 tree.style.display = "none";
-                
+
                 title.addEventListener("click", () => {
                     tree.style.display = tree.style.display === "none" ? "block" : "none";
                 });
-                
+
                 section.append(title, tree);
                 container.appendChild(section);
             }
         }
     </script>
 </body>
+
 </html>
