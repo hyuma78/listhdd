@@ -114,10 +114,6 @@
             background-color: #7f8c8d;
         }
 
-        #searchButton:active, #clearButton:active {
-            transform: scale(0.98);
-        }
-
         #search-results-count {
             text-align: center;
             margin-bottom: 20px;
@@ -134,10 +130,6 @@
             border-left: 4px solid #3498db;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: box-shadow 0.3s;
-        }
-
-        .search-result-item:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .search-result-name {
@@ -161,9 +153,10 @@
 
         .highlight {
             background-color: #fff59d;
-            padding: 2px 4px;
+            padding: 2px 1px;
             border-radius: 3px;
             font-weight: bold;
+            color: #000;
         }
 
         .hdd-section {
@@ -172,11 +165,6 @@
             background-color: #fafbfd;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            transition: box-shadow 0.3s;
-        }
-
-        .hdd-section:hover {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .hdd-title {
@@ -188,7 +176,6 @@
             cursor: pointer;
             border-bottom: 1px solid #eee;
             background-color: #f7f9fc;
-            transition: background-color 0.3s;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -199,17 +186,6 @@
             font-weight: bold;
         }
 
-        .hdd-title:hover {
-            background-color: #f0f4f8;
-        }
-
-        .hdd-details {
-            font-size: 0.85em;
-            font-weight: normal;
-            color: #555;
-            margin-left: 10px;
-        }
-
         ul {
             margin: 0;
             padding-left: 20px;
@@ -217,10 +193,7 @@
 
         li {
             margin: 2px 0;
-        }
-
-        li strong {
-            color: #2c3e50;
+            list-style: none;
         }
 
         .folder {
@@ -250,15 +223,13 @@
                     <h3>Statistiche Spazio Dischi</h3>
                     <p id="total-space-occupied">Totale spazio occupato: 0 GB</p>
                     <p id="total-space-free">Totale spazio libero: 0 GB</p>
-                    <div id="hdd-size-summary">
-                        <p>Conteggio in base alle dimensioni del disco...</p>
-                    </div>
+                    <div id="hdd-size-summary"></div>
                 </div>
             </div>
         </div>
 
         <div id="search-container">
-            <input type="text" id="searchInput" placeholder="Cerca file per nome o percorso...">
+            <input type="text" id="searchInput" placeholder="Cerca file (es: 'casa la', 'matrix', '1080p')...">
             <button id="searchButton">Cerca</button>
             <button id="clearButton">Pulisci</button>
         </div>
@@ -352,7 +323,7 @@
         }
 
         function buildFileTree(files) {
-            const root = { _files: [] }; // Uso _files per evitare conflitti con nomi cartelle
+            const root = { _files: [] };
             files.forEach(file => {
                 let parts = file.percorso_completo.split("\\");
                 if (parts[0].match(/^[A-Z]:$/)) parts.shift();
@@ -373,8 +344,6 @@
 
         function renderTree(node) {
             const ul = document.createElement("ul");
-            
-            // Renderizza le cartelle
             for (const key in node) {
                 if (key !== "_files") {
                     const li = document.createElement("li");
@@ -389,9 +358,7 @@
                     ul.appendChild(li);
                 }
             }
-
-            // Renderizza i file usando la chiave sicura _files
-            if (node._files && Array.isArray(node._files)) {
+            if (node._files) {
                 node._files.forEach(f => {
                     const li = document.createElement("li");
                     li.className = "file";
@@ -408,25 +375,20 @@
             for (const hddName in database) {
                 const data = database[hddName];
                 if (!data.files || (!data.files.length && !data.diskInfo)) continue;
-                
                 const section = document.createElement("div");
                 section.className = "hdd-section";
-                
                 const title = document.createElement("h2");
                 title.className = "hdd-title";
                 title.innerHTML = `${hddName} ${data.diskInfo ? `<span class="hdd-details">Totale: ${data.diskInfo.totale} | Libero: ${data.diskInfo.libero}</span>` : ""}`;
-                
                 const tree = renderTree(buildFileTree(data.files));
                 tree.style.display = "none";
-                
-                title.addEventListener("click", () => {
-                    tree.style.display = tree.style.display === "none" ? "block" : "none";
-                });
-                
+                title.addEventListener("click", () => tree.style.display = tree.style.display === "none" ? "block" : "none");
                 section.append(title, tree);
                 container.appendChild(section);
             }
         }
+
+        // --- FUNZIONI DI RICERCA AVANZATA ---
 
         function normalizeText(text) {
             if (!text) return "";
@@ -437,30 +399,50 @@
 
         function highlightText(text, query) {
             if (!query.trim() || !text) return text;
-            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(${escapedQuery})`, 'gi');
-            return text.replace(regex, '<span class="highlight">$1</span>');
+            const words = query.trim().split(/\s+/).filter(w => w.length > 0);
+            let highlighted = text;
+
+            words.forEach(word => {
+                const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                // Regex che trova la parola sia preceduta/seguita da spazi che da punti/underscore
+                const regex = new RegExp(`(${escapedWord})`, 'gi');
+                
+                // Sostituzione sicura per non rompere tag HTML già inseriti
+                highlighted = highlighted.replace(regex, (match, p1, offset, str) => {
+                    // Controlla se siamo già dentro un tag <span class="highlight">
+                    const sub = str.substring(0, offset);
+                    const openCount = (sub.match(/<span/g) || []).length;
+                    const closeCount = (sub.match(/\/span>/g) || []).length;
+                    if (openCount > closeCount) return match;
+                    return `<span class="highlight">${match}</span>`;
+                });
+            });
+            return highlighted;
         }
 
         function searchDatabase(query) {
             const container = document.getElementById("results-container");
             const countLabel = document.getElementById("search-results-count");
             container.innerHTML = "";
-            
-            if (!query.trim()) { 
-                renderResults(); 
-                countLabel.innerHTML = ""; 
-                return; 
-            }
+            if (!query.trim()) { renderResults(); countLabel.innerHTML = ""; return; }
 
             const results = [];
-            const normalizedQuery = normalizeText(query);
+            const searchWords = normalizeText(query).split(/\s+/).filter(w => w.length > 0);
 
             for (const hddName in database) {
                 if (database[hddName].files) {
                     database[hddName].files.forEach(file => {
-                        if (normalizeText(file.nome).includes(normalizedQuery) || 
-                            normalizeText(file.percorso_completo).includes(normalizedQuery)) {
+                        const nameNorm = normalizeText(file.nome);
+                        const pathNorm = normalizeText(file.percorso_completo);
+                        
+                        // Il file deve contenere TUTTE le parole cercate
+                        const matchesAll = searchWords.every(word => {
+                            // Creiamo una regex per la parola singola che ignora il separatore
+                            const wordRegex = new RegExp(word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+                            return wordRegex.test(nameNorm) || wordRegex.test(pathNorm);
+                        });
+
+                        if (matchesAll) {
                             results.push({ hdd: hddName, ...file });
                         }
                     });
@@ -468,7 +450,6 @@
             }
 
             countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
-            
             results.forEach(r => {
                 const div = document.createElement("div");
                 div.className = "search-result-item";
