@@ -269,20 +269,45 @@
 
     <script>
         const HDD_DIMENSIONS = {
-            "Arietty": "2 TB", "SOA": "2 TB ", "Hikvision2TB": "2 TB", "TR3NTON": "1 TB",
-            "Seagate1TB": "1 TB", "Rufy": "500 GB", "Nami": "500 GB", "Zoro": "500 GB",
-            "Usopp": "500 GB", "Franky": "500 GB", "NASWare": "2 TB", "Seagate0FM": "750 GB",
-            "Seagate878": "500 GB", "SeagateGMF": "500 GB", "SeagateR9H": "320 GB",
-            "WD207": "500 GB", "Maxtor15G": "200 GB", "WD_Sarah_2TB": "2 TB",
+            "Arietty": "2 TB",
+            "SOA": "2 TB ",
+            "Hikvision2TB": "2 TB",
+            "TR3NTON": "1 TB",
+            "Seagate1TB": "1 TB",
+            "Rufy": "500 GB",
+            "Nami": "500 GB",
+            "Zoro": "500 GB",
+            "Usopp": "500 GB",
+            "Franky": "500 GB",
+            "NASWare": "2 TB",
+            "Seagate0FM": "750 GB",
+            "Seagate878": "500 GB",
+            "SeagateGMF": "500 GB",
+            "SeagateR9H": "320 GB",
+            "WD207": "500 GB",
+            "Maxtor15G": "200 GB",
+            "WD_Sarah_2TB": "2 TB",
         };
 
         const HDD_JSON_MAP = {
-            "Arietty": "data/Arietty.json", "SOA": "data/SOA.json", "Hikvision2TB": "data/Hikvision2TB.json",
-            "TR3NTON": "data/TR3NTON.json", "Seagate1TB": "data/Seagate1TB.json", "Rufy": "data/Rufy.json",
-            "Nami": "data/Nami.json", "Zoro": "data/Zoro.json", "Usopp": "data/usopp.json",
-            "Franky": "data/franky.json", "NASWare": "data/NASWare.json", "Seagate0FM": "data/Seagate0FM.json",
-            "Seagate878": "data/Seagate878.json", "SeagateGMF": "data/SeagateGMF.json", "SeagateR9H": "data/SeagateR9H.json",
-            "WD207": "data/WD207.json", "Maxtor15G": "data/Maxtor15G.json", "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
+            "Arietty": "data/Arietty.json",
+            "SOA": "data/SOA.json",
+            "Hikvision2TB": "data/Hikvision2TB.json",
+            "TR3NTON": "data/TR3NTON.json",
+            "Seagate1TB": "data/Seagate1TB.json",
+            "Rufy": "data/Rufy.json",
+            "Nami": "data/Nami.json",
+            "Zoro": "data/Zoro.json",
+            "Usopp": "data/usopp.json",
+            "Franky": "data/franky.json",
+            "NASWare": "data/NASWare.json",
+            "Seagate0FM": "data/Seagate0FM.json",
+            "Seagate878": "data/Seagate878.json",
+            "SeagateGMF": "data/SeagateGMF.json",
+            "SeagateR9H": "data/SeagateR9H.json",
+            "WD207": "data/WD207.json",
+            "Maxtor15G": "data/Maxtor15G.json",
+            "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
         };
 
         let database = {};
@@ -312,9 +337,9 @@
                 fetch(path)
                     .then(r => r.json())
                     .then(data => {
-                        database[hddName] = { 
-                            files: data.catalogo_video || [], 
-                            diskInfo: data.informazioni_disco || null 
+                        database[hddName] = {
+                            files: data.catalogo_video || [],
+                            diskInfo: data.informazioni_disco || null
                         };
                     })
                     .catch(() => database[hddName] = { files: [], diskInfo: null })
@@ -356,9 +381,9 @@
 
         function createPreciseRegex(query) {
             let escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            // Trasforma lo spazio in pattern che accetta spazio, punto, underscore o trattino
+            // Trasforma lo spazio in un pattern che accetta: spazio, punto, underscore o trattino
             let pattern = escaped.replace(/\\\s+/g, '[\\s\\._\\-]');
-            // Lookaround per non pescare "la" dentro "quella"
+            // Lookaround: Trova la sequenza se NON è preceduta o seguita da lettere o numeri
             return new RegExp(`(?<![a-z0-9])(${pattern})(?![a-z0-9])`, 'gi');
         }
 
@@ -370,7 +395,11 @@
 
         function normalizeText(text) {
             if (!text) return "";
-            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+            const normalized = text.toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .trim();
+            return normalized;
         }
 
         function searchDatabase(query) {
@@ -378,10 +407,10 @@
             const countLabel = document.getElementById("search-results-count");
             container.innerHTML = "";
             
-            if (!query.trim()) { 
-                renderResults(); 
-                countLabel.innerHTML = ""; 
-                return; 
+            if (!query.trim()) {
+                renderResults();
+                countLabel.innerHTML = "";
+                return;
             }
 
             const results = [];
@@ -390,10 +419,11 @@
             for (const hddName in database) {
                 if (database[hddName].files) {
                     database[hddName].files.forEach(file => {
+                        // Testiamo la regex sul nome e sul percorso
                         if (regex.test(file.nome) || regex.test(file.percorso_completo)) {
                             results.push({ hdd: hddName, ...file });
                         }
-                        regex.lastIndex = 0; // Reset necessario per regex globali in loop
+                        regex.lastIndex = 0; // Reset per il prossimo test
                     });
                 }
             }
@@ -412,7 +442,7 @@
             });
         }
 
-        // --- VISUALIZZAZIONE ALBERO (CORRETTA) ---
+        // --- VISUALIZZAZIONE ALBERO ---
 
         function buildFileTree(files) {
             const root = { _files: [] };
