@@ -510,7 +510,7 @@
                 .trim();
         }
 
-function highlightText(text, query) {
+        function highlightText(text, query) {
             // Cerca la frase esatta nel testo normalizzato
             const normalizedText = normalizeText(text);
             const normalizedQuery = normalizeText(query);
@@ -567,7 +567,6 @@ function highlightText(text, query) {
 
             const results = [];
             const normalizedQuery = normalizeText(query);
-            const queryWords = normalizedQuery.split(' ').filter(w => w.length > 0);
 
             for (const hddName in database) {
                 const hddData = database[hddName];
@@ -575,29 +574,17 @@ function highlightText(text, query) {
                     const normalizedName = normalizeText(file.nome);
                     const normalizedPath = normalizeText(file.percorso_completo);
 
-                    // Conta quante parole matchano
-                    const matchedInName = queryWords.filter(word => normalizedName.includes(word)).length;
-                    const matchedInPath = queryWords.filter(word => normalizedPath.includes(word)).length;
-                    const totalMatched = Math.max(matchedInName, matchedInPath);
-
-                    // Verifica che TUTTE le parole della query siano presenti
-                    const allWordsInName = queryWords.every(word => normalizedName.includes(word));
-                    const allWordsInPath = queryWords.every(word => normalizedPath.includes(word));
-
-                    if (allWordsInName || allWordsInPath) {
+                    // Cerca la frase esatta (consecutiva) nel nome o nel percorso
+                    if (normalizedName.includes(normalizedQuery) || normalizedPath.includes(normalizedQuery)) {
                         results.push({
                             hdd: hddName,
                             name: file.nome,
                             path: file.percorso_completo,
-                            size: file.dimensione,
-                            relevance: totalMatched
+                            size: file.dimensione
                         });
                     }
                 });
             }
-
-            // Ordina per rilevanza (più parole matchate prima)
-            results.sort((a, b) => b.relevance - a.relevance);
 
             if (results.length === 0) {
                 resultsCount.innerHTML = `Nessun risultato trovato per "${query}"`;
@@ -610,7 +597,7 @@ function highlightText(text, query) {
                 const div = document.createElement("div");
                 div.className = "search-result-item";
                 
-                const highlightedName = highlightText(r.name, queryWords);
+                const highlightedName = highlightText(r.name, query);
                 
                 div.innerHTML = `
                     <div class="search-result-name">${highlightedName}</div>
