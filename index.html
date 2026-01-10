@@ -567,6 +567,11 @@
 
             const results = [];
             const normalizedQuery = normalizeText(query);
+            
+            console.log("=== RICERCA ===");
+            console.log("Query originale:", query);
+            console.log("Query normalizzata:", normalizedQuery);
+            console.log("===============");
 
             for (const hddName in database) {
                 const hddData = database[hddName];
@@ -576,6 +581,12 @@
 
                     // Cerca la frase esatta (consecutiva) nel nome o nel percorso
                     if (normalizedName.includes(normalizedQuery) || normalizedPath.includes(normalizedQuery)) {
+                        console.log("✓ TROVATO:");
+                        console.log("  Nome originale:", file.nome);
+                        console.log("  Nome normalizzato:", normalizedName);
+                        console.log("  Contiene query?", normalizedName.includes(normalizedQuery));
+                        console.log("---");
+                        
                         results.push({
                             hdd: hddName,
                             name: file.nome,
