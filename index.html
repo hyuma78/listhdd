@@ -510,52 +510,41 @@
                 .trim();
         }
 
-        function highlightText(text, queryWords) {
-            // Trova le parole intere nel testo che matchano con le parole della query
+function highlightText(text, query) {
+            // Cerca la frase esatta nel testo normalizzato
+            const normalizedText = normalizeText(text);
+            const normalizedQuery = normalizeText(query);
+            
             const highlights = [];
+            let startIndex = 0;
             
-            queryWords.forEach(queryWord => {
-                // Cerca parole intere (separate da spazi, punti, trattini, ecc.)
-                const regex = new RegExp(`\\b${queryWord}\\b`, 'gi');
-                const normalizedText = normalizeText(text);
+            while (true) {
+                const index = normalizedText.indexOf(normalizedQuery, startIndex);
+                if (index === -1) break;
                 
-                let match;
-                while ((match = regex.exec(normalizedText)) !== null) {
-                    // Trova la lunghezza effettiva della parola nel testo originale
-                    let actualLength = queryWord.length;
-                    let pos = match.index;
-                    
-                    // Aggiusta la lunghezza se ci sono caratteri accentati
-                    let originalSubstr = text.substring(pos, pos + actualLength + 5);
-                    let normalizedSubstr = normalizeText(originalSubstr);
-                    
-                    // Trova dove finisce effettivamente la parola nel testo originale
-                    for (let len = 1; len <= originalSubstr.length; len++) {
-                        if (normalizeText(text.substring(pos, pos + len)) === queryWord) {
-                            actualLength = len;
-                            break;
-                        }
+                // Trova la lunghezza effettiva nel testo originale
+                let actualLength = normalizedQuery.length;
+                
+                // Aggiusta per caratteri accentati o speciali
+                for (let len = normalizedQuery.length; len <= normalizedQuery.length + 10; len++) {
+                    const originalSubstr = text.substring(index, index + len);
+                    if (normalizeText(originalSubstr) === normalizedQuery) {
+                        actualLength = len;
+                        break;
                     }
-                    
-                    highlights.push({
-                        start: pos,
-                        end: pos + actualLength
-                    });
                 }
-            });
-            
-            // Rimuovi sovrapposizioni e ordina
-            highlights.sort((a, b) => a.start - b.start);
-            const merged = [];
-            highlights.forEach(h => {
-                if (merged.length === 0 || h.start >= merged[merged.length - 1].end) {
-                    merged.push(h);
-                }
-            });
+                
+                highlights.push({
+                    start: index,
+                    end: index + actualLength
+                });
+                
+                startIndex = index + 1;
+            }
             
             // Applica gli highlight dal fondo verso l'inizio
             let result = text;
-            merged.reverse().forEach(h => {
+            highlights.reverse().forEach(h => {
                 const before = result.substring(0, h.start);
                 const match = result.substring(h.start, h.end);
                 const after = result.substring(h.end);
