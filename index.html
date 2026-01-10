@@ -47,7 +47,7 @@
 
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmin(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
 
@@ -506,10 +506,47 @@
 
         function highlightText(text, query) {
             const normalizedQuery = normalizeText(query);
+            const regexPattern = new RegExp('(^|\\s)' + normalizedQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\        function highlightText(text, query) {
+            const normalizedText = normalizeText(text);
+            const normalizedQuery = normalizeText(query);
+            
             const regexPattern = new RegExp('(^|\\s)' + normalizedQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '(\\s|$)', 'gi');
             
+            const highlights = [];
+            let match;
+            
+            while ((match = regexPattern.exec(normalizedText)) !== null) {
+                const startPos = match.index + match[1].length;
+                let actualLength = normalizedQuery.length;
+                
+                for (let len = normalizedQuery.length; len <= normalizedQuery.length + 10; len++) {
+                    const originalSubstr = text.substring(startPos, startPos + len);
+                    if (normalizeText(originalSubstr) === normalizedQuery) {
+                        actualLength = len;
+                        break;
+                    }
+                }
+                
+                highlights.push({
+                    start: startPos,
+                    end: startPos + actualLength
+                });
+            }
+            
+            let result = text;
+            highlights.reverse().forEach(h => {
+                const before = result.substring(0, h.start);
+                const match = result.substring(h.start, h.end);
+                const after = result.substring(h.end);
+                result = before + '<span class="highlight">' + match + '</span>' + after;
+            });
+            
+            return result;
+        }') + '(\\s|$)', 'gi');
+            
+            // Crea una mappa tra posizioni normalizzate e posizioni originali
             const normalized = normalizeText(text);
-            const charMap = [];
+            const charMap = []; // mappa: posizione_normalizzata -> posizione_originale
             
             let normIdx = 0;
             for (let i = 0; i < text.length; i++) {
@@ -523,7 +560,7 @@
                     }
                 }
             }
-            charMap[normIdx] = text.length;
+            charMap[normIdx] = text.length; // Fine del testo
             
             const highlights = [];
             let match;
@@ -532,9 +569,11 @@
                 const normStart = match.index + match[1].length;
                 const normEnd = normStart + normalizedQuery.length;
                 
+                // Converte le posizioni normalizzate in posizioni originali
                 const origStart = charMap[normStart] || 0;
                 let origEnd = charMap[normEnd] || text.length;
                 
+                // Aggiusta la fine per includere caratteri speciali/accenti
                 while (origEnd < text.length && normalizeText(text.substring(origStart, origEnd)).length < normalizedQuery.length) {
                     origEnd++;
                 }
@@ -542,6 +581,7 @@
                 highlights.push({ start: origStart, end: origEnd });
             }
             
+            // Applica gli highlight dal fondo verso l'inizio
             let result = text;
             highlights.reverse().forEach(h => {
                 const before = result.substring(0, h.start);
