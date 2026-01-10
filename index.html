@@ -511,33 +511,51 @@
         }
 
         function highlightText(text, queryWords) {
-            let result = text;
-            
-            // Crea una mappa delle posizioni da evidenziare
+            // Trova le parole intere nel testo che matchano con le parole della query
             const highlights = [];
-            queryWords.forEach(word => {
+            
+            queryWords.forEach(queryWord => {
+                // Cerca parole intere (separate da spazi, punti, trattini, ecc.)
+                const regex = new RegExp(`\\b${queryWord}\\b`, 'gi');
                 const normalizedText = normalizeText(text);
-                const normalizedWord = word.toLowerCase();
-                let startIndex = 0;
                 
-                while (true) {
-                    const index = normalizedText.indexOf(normalizedWord, startIndex);
-                    if (index === -1) break;
+                let match;
+                while ((match = regex.exec(normalizedText)) !== null) {
+                    // Trova la lunghezza effettiva della parola nel testo originale
+                    let actualLength = queryWord.length;
+                    let pos = match.index;
+                    
+                    // Aggiusta la lunghezza se ci sono caratteri accentati
+                    let originalSubstr = text.substring(pos, pos + actualLength + 5);
+                    let normalizedSubstr = normalizeText(originalSubstr);
+                    
+                    // Trova dove finisce effettivamente la parola nel testo originale
+                    for (let len = 1; len <= originalSubstr.length; len++) {
+                        if (normalizeText(text.substring(pos, pos + len)) === queryWord) {
+                            actualLength = len;
+                            break;
+                        }
+                    }
                     
                     highlights.push({
-                        start: index,
-                        end: index + word.length,
-                        word: word
+                        start: pos,
+                        end: pos + actualLength
                     });
-                    
-                    startIndex = index + 1;
                 }
             });
             
-            // Ordina per posizione e applica gli highlight
-            highlights.sort((a, b) => b.start - a.start);
-            
+            // Rimuovi sovrapposizioni e ordina
+            highlights.sort((a, b) => a.start - b.start);
+            const merged = [];
             highlights.forEach(h => {
+                if (merged.length === 0 || h.start >= merged[merged.length - 1].end) {
+                    merged.push(h);
+                }
+            });
+            
+            // Applica gli highlight dal fondo verso l'inizio
+            let result = text;
+            merged.reverse().forEach(h => {
                 const before = result.substring(0, h.start);
                 const match = result.substring(h.start, h.end);
                 const after = result.substring(h.end);
