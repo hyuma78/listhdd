@@ -77,6 +77,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 10px;
         }
 
         #searchInput {
@@ -85,26 +86,81 @@
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            margin-right: 10px;
         }
 
-        #searchButton {
+        #searchButton,
+        #clearButton {
             padding: 12px 24px;
             font-size: 16px;
             border: none;
-            background-color: #3498db;
             color: #fff;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.1s;
         }
 
+        #searchButton {
+            background-color: #3498db;
+        }
+
         #searchButton:hover {
             background-color: #2980b9;
         }
 
-        #searchButton:active {
-            transform: scale(0.98);
+        #clearButton {
+            background-color: #95a5a6;
+        }
+
+        #clearButton:hover {
+            background-color: #7f8c8d;
+        }
+
+        #search-results-count {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .search-result-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .search-result-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-result-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .search-result-size {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .search-result-path {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 8px;
+            word-break: break-all;
+        }
+
+        .highlight {
+            background-color: #fff59d;
+            padding: 2px 1px;
+            border-radius: 3px;
+            font-weight: bold;
         }
 
         .hdd-section {
@@ -114,10 +170,6 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             transition: box-shadow 0.3s;
-        }
-
-        .hdd-section:hover {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .hdd-title {
@@ -137,19 +189,7 @@
 
         .hdd-label {
             color: #e74c3c;
-            /* Rosso */
             font-weight: bold;
-        }
-
-        .hdd-title:hover {
-            background-color: #f0f4f8;
-        }
-
-        .hdd-details {
-            font-size: 0.85em;
-            font-weight: normal;
-            color: #555;
-            margin-left: 10px;
         }
 
         ul {
@@ -159,10 +199,7 @@
 
         li {
             margin: 2px 0;
-        }
-
-        li strong {
-            color: #2c3e50;
+            list-style: none;
         }
 
         .folder {
@@ -200,53 +237,54 @@
         </div>
 
         <div id="search-container">
-            <input type="text" id="searchInput" placeholder="Cerca file per nome o percorso...">
+            <input type="text" id="searchInput" placeholder="Cerca sequenza (es: 'la casa' o 'matrix')...">
             <button id="searchButton">Cerca</button>
+            <button id="clearButton">Pulisci</button>
         </div>
+        <div id="search-results-count"></div>
         <div id="results-container"></div>
     </div>
 
     <script>
-
         const HDD_DIMENSIONS = {
-            "Arietty": "2 TB",
-            "SOA": "2 TB ",
-            "Hikvision2TB": "2 TB",
+            "Arietty": "2 TB", 
+            "SOA": "2 TB ", 
+            "Hikvision2TB": "2 TB", 
             "TR3NTON": "1 TB",
-            "Seagate1TB": "1 TB",
-            "Rufy": "500 GB",
-            "Nami": "500 GB",
+            "Seagate1TB": "1 TB", 
+            "Rufy": "500 GB", 
+            "Nami": "500 GB", 
             "Zoro": "500 GB",
-            "Usopp": "500 GB",
-            "Franky": "500 GB",
-            "NASWare": "2 TB",
+            "Usopp": "500 GB", 
+            "Franky": "500 GB", 
+            "NASWare": "2 TB", 
             "Seagate0FM": "750 GB",
-            "Seagate878": "500 GB",
-            "SeagateGMF": "500 GB",
+            "Seagate878": "500 GB", 
+            "SeagateGMF": "500 GB", 
             "SeagateR9H": "320 GB",
-            "WD207": "500 GB",
-            "Maxtor15G": "200 GB",
+            "WD207": "500 GB", 
+            "Maxtor15G": "200 GB", 
             "WD_Sarah_2TB": "2 TB",
         };
 
         const HDD_JSON_MAP = {
-            "Arietty": "data/Arietty.json",
-            "SOA": "data/SOA.json",
+            "Arietty": "data/Arietty.json", 
+            "SOA": "data/SOA.json", 
             "Hikvision2TB": "data/Hikvision2TB.json",
-            "TR3NTON": "data/TR3NTON.json",
-            "Seagate1TB": "data/Seagate1TB.json",
+            "TR3NTON": "data/TR3NTON.json", 
+            "Seagate1TB": "data/Seagate1TB.json", 
             "Rufy": "data/Rufy.json",
-            "Nami": "data/Nami.json",
-            "Zoro": "data/Zoro.json",
+            "Nami": "data/Nami.json", 
+            "Zoro": "data/Zoro.json", 
             "Usopp": "data/usopp.json",
-            "Franky": "data/franky.json",
-            "NASWare": "data/NASWare.json",
+            "Franky": "data/franky.json", 
+            "NASWare": "data/NASWare.json", 
             "Seagate0FM": "data/Seagate0FM.json",
-            "Seagate878": "data/Seagate878.json",
-            "SeagateGMF": "data/SeagateGMF.json",
+            "Seagate878": "data/Seagate878.json", 
+            "SeagateGMF": "data/SeagateGMF.json", 
             "SeagateR9H": "data/SeagateR9H.json",
-            "WD207": "data/WD207.json",
-            "Maxtor15G": "data/Maxtor15G.json",
+            "WD207": "data/WD207.json", 
+            "Maxtor15G": "data/Maxtor15G.json", 
             "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
         };
 
@@ -257,113 +295,153 @@
             updateSummary();
             renderResults();
 
-            // Attiva ricerca
             document.getElementById("searchButton").addEventListener("click", () => {
-                const query = document.getElementById("searchInput").value;
-                searchDatabase(query);
+                searchDatabase(document.getElementById("searchInput").value);
+            });
+
+            document.getElementById("clearButton").addEventListener("click", () => {
+                document.getElementById("searchInput").value = "";
+                document.getElementById("search-results-count").innerHTML = "";
+                renderResults();
             });
 
             document.getElementById("searchInput").addEventListener("keypress", (e) => {
-                if (e.key === "Enter") {
-                    const query = document.getElementById("searchInput").value;
-                    searchDatabase(query);
-                }
+                if (e.key === "Enter") searchDatabase(document.getElementById("searchInput").value);
             });
         });
 
         async function loadDatabase() {
-            const fetchPromises = [];
-            for (const hddName in HDD_JSON_MAP) {
-                fetchPromises.push(
-                    fetch(HDD_JSON_MAP[hddName])
-                        .then(r => r.json())
-                        .then(data => {
-                            let files = [];
-                            let diskInfo = null;
-                            if (data.catalogo_video) files = data.catalogo_video;
-                            if (data.informazioni_disco) diskInfo = data.informazioni_disco;
-                            database[hddName] = { files, diskInfo };
-                        })
-                        .catch(() => {
-                            database[hddName] = { files: [], diskInfo: null };
-                        })
-                );
-            }
+            const fetchPromises = Object.entries(HDD_JSON_MAP).map(([hddName, path]) =>
+                fetch(path)
+                    .then(r => r.json())
+                    .then(data => {
+                        database[hddName] = {
+                            files: data.catalogo_video || [],
+                            diskInfo: data.informazioni_disco || null
+                        };
+                    })
+                    .catch(() => database[hddName] = { files: [], diskInfo: null })
+            );
             await Promise.allSettled(fetchPromises);
         }
 
         function updateSummary() {
-            let totalVideoFiles = 0;
-            const videoExtensions = {};
-            let totalSpaceOccupied = 0;
-            let totalSpaceFree = 0;
-            const hddSizes = {};
-
-            const videoExtensionsList = ["mkv", "avi", "mp4", "mpeg", "mpg", "mov"];
+            let totalVideoFiles = 0, totalSpaceOccupied = 0, totalSpaceFree = 0;
+            const videoExtensions = {}, hddSizes = {}, videoExtensionsList = ["mkv", "avi", "mp4", "mpeg", "mpg", "mov"];
 
             for (const hddName in database) {
                 const hddData = database[hddName];
-
-                // Statistiche File Video
-                hddData.files.forEach(file => {
-                    const extension = file.nome.split('.').pop().toLowerCase();
-                    if (videoExtensionsList.includes(extension)) {
-                        totalVideoFiles++;
-                        videoExtensions[extension] = (videoExtensions[extension] || 0) + 1;
-                    }
-                });
-
-                // Statistiche Spazio Dischi
+                if (hddData.files) {
+                    hddData.files.forEach(file => {
+                        const ext = file.nome.split('.').pop().toLowerCase();
+                        if (videoExtensionsList.includes(ext)) {
+                            totalVideoFiles++;
+                            videoExtensions[ext] = (videoExtensions[ext] || 0) + 1;
+                        }
+                    });
+                }
                 if (hddData.diskInfo) {
-                    const occupied = parseFloat(hddData.diskInfo.totale.replace(',', '.'));
-                    const free = parseFloat(hddData.diskInfo.libero.replace(',', '.'));
-
-                    if (!isNaN(occupied)) totalSpaceOccupied += occupied;
-                    if (!isNaN(free)) totalSpaceFree += free;
-
-                    // Conteggio per dimensione del disco basato sulla nuova mappa
-                    const size = HDD_DIMENSIONS[hddName] || "Sconosciuto"; // Usa la mappa, se non trova il nome, lo classifica come "Sconosciuto"
+                    totalSpaceOccupied += parseFloat(hddData.diskInfo.totale.replace(',', '.')) || 0;
+                    totalSpaceFree += parseFloat(hddData.diskInfo.libero.replace(',', '.')) || 0;
+                    const size = HDD_DIMENSIONS[hddName] || "Sconosciuto";
                     hddSizes[size] = (hddSizes[size] || 0) + 1;
                 }
             }
-            
 
-            // Aggiorna la UI per le statistiche dei file video
             document.getElementById("total-video-files").textContent = `Totale file video: ${totalVideoFiles}`;
-            const videoExtensionsSummary = document.getElementById("video-extensions-summary");
-            videoExtensionsSummary.innerHTML = "";
-            for (const ext in videoExtensions) {
-                const p = document.createElement("p");
-                p.textContent = `${ext.toUpperCase()}: ${videoExtensions[ext]}`;
-                videoExtensionsSummary.appendChild(p);
-            }
-
-            // Aggiorna la UI per le statistiche dello spazio dischi
+            document.getElementById("video-extensions-summary").innerHTML = Object.entries(videoExtensions).map(([ext, count]) => `<p>${ext.toUpperCase()}: ${count}</p>`).join("");
             document.getElementById("total-space-occupied").textContent = `Totale spazio occupato: ${totalSpaceOccupied.toFixed(2)} GB`;
             document.getElementById("total-space-free").textContent = `Totale spazio libero: ${totalSpaceFree.toFixed(2)} GB`;
-            const hddSizeSummary = document.getElementById("hdd-size-summary");
-            hddSizeSummary.innerHTML = "";
-            for (const size in hddSizes) {
-                const p = document.createElement("p");
-                p.textContent = `${size}: ${hddSizes[size]} dischi`;
-                hddSizeSummary.appendChild(p);
-            }
+            document.getElementById("hdd-size-summary").innerHTML = Object.entries(hddSizes).map(([size, count]) => `<p>${size}: ${count} dischi</p>`).join("");
         }
 
+        // --- NUOVA LOGICA DI RICERCA INFALLIBILE ---
+
+        function createFuzzyRegex(query) {
+            // 1. Pulizia dei caratteri speciali della regex
+            let escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+            // 2. Dividiamo la query in parole
+            let words = escaped.split(/\s+/);
+
+            // 3. Costruiamo il pattern:
+            // \b assicura che la parola inizi dopo un confine (spazio, punto, inizio stringa)
+            // [\\s\\._\\-]+ accetta i vari separatori tra le parole
+            let pattern = words.map((word, index) => {
+                return `\\b${word}`;
+            }).join('[\\s\\._\\-]+');
+
+            // Costruiamo la Regex finale
+            return new RegExp(`(${pattern})`, 'gi');
+        }
+
+        function highlightText(text, query) {
+            if (!query.trim() || !text) return text;
+            const regex = createFuzzyRegex(query);
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        function normalizeText(text) {
+            if (!text) return "";
+            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+        }
+
+        function searchDatabase(query) {
+            const container = document.getElementById("results-container");
+            const countLabel = document.getElementById("search-results-count");
+            container.innerHTML = "";
+
+            if (!query.trim()) {
+                renderResults();
+                countLabel.innerHTML = "";
+                return;
+            }
+
+            const results = [];
+            const regex = createFuzzyRegex(query);
+
+            for (const hddName in database) {
+                if (database[hddName].files) {
+                    database[hddName].files.forEach(file => {
+                        // Se la regex trova corrispondenza nel nome o nel percorso
+                        if (regex.test(file.nome) || regex.test(file.percorso_completo)) {
+                            results.push({ hdd: hddName, ...file });
+                        }
+                        // Reset obbligatorio per le regex globali usate in loop
+                        regex.lastIndex = 0;
+                    });
+                }
+            }
+
+            countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
+
+            results.forEach(r => {
+                const div = document.createElement("div");
+                div.className = "search-result-item";
+                div.innerHTML = `
+                    <div class="search-result-name">${highlightText(r.nome, query)}</div>
+                    <div><span class="hdd-label">HDD: ${r.hdd}</span> • <span class="search-result-size">${r.dimensione}</span></div>
+                    <div class="search-result-path">${highlightText(r.percorso_completo, query)}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // --- GESTIONE ALBERO ---
+
         function buildFileTree(files) {
-            const root = {};
+            const root = { _files: [] };
             files.forEach(file => {
                 let parts = file.percorso_completo.split("\\");
-                if (parts[0].match(/^[A-Z]:$/)) {
-                    parts.shift(); // tolgo la lettera del disco
-                }
+                if (parts[0].match(/^[A-Z]:$/)) parts.shift();
+
                 let current = root;
                 parts.forEach((part, index) => {
                     if (index === parts.length - 1) {
-                        if (!current.files) current.files = [];
-                        current.files.push({ name: part, size: file.dimensione });
+                        if (!current._files) current._files = [];
+                        current._files.push({ name: part, size: file.dimensione });
                     } else {
-                        if (!current[part]) current[part] = {};
+                        if (!current[part]) current[part] = { _files: [] };
                         current = current[part];
                     }
                 });
@@ -373,110 +451,55 @@
 
         function renderTree(node) {
             const ul = document.createElement("ul");
-
             for (const key in node) {
-                if (key !== "files") {
+                if (key !== "_files") {
                     const li = document.createElement("li");
                     li.innerHTML = `<span class="folder">📂 <strong>${key}</strong></span>`;
                     const childUl = renderTree(node[key]);
                     childUl.style.display = "none";
                     li.appendChild(childUl);
-                    li.querySelector(".folder").addEventListener("click", () => {
-                        childUl.style.display = (childUl.style.display === "none") ? "block" : "none";
+                    li.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        childUl.style.display = childUl.style.display === "none" ? "block" : "none";
                     });
                     ul.appendChild(li);
                 }
             }
-
-            if (Array.isArray(node.files)) {
-                node.files.forEach(file => {
+            if (node._files) {
+                node._files.forEach(f => {
                     const li = document.createElement("li");
                     li.className = "file";
-                    li.textContent = `📄 ${file.name} (${file.size})`;
+                    li.textContent = `📄 ${f.name} (${f.size})`;
                     ul.appendChild(li);
                 });
             }
-
             return ul;
         }
 
         function renderResults() {
-            const resultsContainer = document.getElementById("results-container");
-            resultsContainer.innerHTML = "";
-
+            const container = document.getElementById("results-container");
+            container.innerHTML = "";
             for (const hddName in database) {
-                const hddData = database[hddName];
-                if (!hddData.files.length && !hddData.diskInfo) continue;
+                const data = database[hddName];
+                if (!data.files || (!data.files.length && !data.diskInfo)) continue;
 
-                const hddSection = document.createElement("div");
-                hddSection.className = "hdd-section";
+                const section = document.createElement("div");
+                section.className = "hdd-section";
 
-                const hddTitle = document.createElement("h2");
-                hddTitle.className = "hdd-title";
+                const title = document.createElement("h2");
+                title.className = "hdd-title";
+                title.innerHTML = `<span>${hddName}</span> ${data.diskInfo ? `<span class="hdd-details">Totale: ${data.diskInfo.totale} | Libero: ${data.diskInfo.libero}</span>` : ""}`;
 
-                let titleText = hddName;
-                if (hddData.diskInfo) {
-                    titleText += `  <span class="hdd-details">Totale: ${hddData.diskInfo.totale} | Libero: ${hddData.diskInfo.libero}</span>`;
-                }
+                const tree = renderTree(buildFileTree(data.files));
+                tree.style.display = "none";
 
-                hddTitle.innerHTML = titleText;
-                hddSection.appendChild(hddTitle);
-
-                const fileTree = buildFileTree(hddData.files);
-                const treeHtml = renderTree(fileTree);
-                treeHtml.style.display = "none";
-
-                hddTitle.addEventListener("click", () => {
-                    treeHtml.style.display = (treeHtml.style.display === "none") ? "block" : "none";
+                title.addEventListener("click", () => {
+                    tree.style.display = tree.style.display === "none" ? "block" : "none";
                 });
 
-                hddSection.appendChild(treeHtml);
-                resultsContainer.appendChild(hddSection);
+                section.append(title, tree);
+                container.appendChild(section);
             }
-        }
-
-        function searchDatabase(query) {
-            const resultsContainer = document.getElementById("results-container");
-            resultsContainer.innerHTML = "";
-
-            if (!query.trim()) {
-                renderResults();
-                return;
-            }
-
-            const results = [];
-
-            for (const hddName in database) {
-                const hddData = database[hddName];
-                hddData.files.forEach(file => {
-                    if (
-                        file.nome.toLowerCase().includes(query.toLowerCase()) ||
-                        file.percorso_completo.toLowerCase().includes(query.toLowerCase())
-                    ) {
-                        results.push({
-                            hdd: hddName,
-                            name: file.nome,
-                            path: file.percorso_completo,
-                            size: file.dimensione
-                        });
-                    }
-                });
-            }
-
-            if (results.length === 0) {
-                resultsContainer.innerHTML = `<p>Nessun risultato trovato per "${query}".</p>`;
-                return;
-            }
-
-            const ul = document.createElement("ul");
-            results.forEach(r => {
-                const li = document.createElement("li");
-                li.innerHTML = `<strong>${r.name}</strong> (${r.size})<br>
-                <span class="hdd-label">HDD: ${r.hdd}</span><br>
-                Percorso: ${r.path}`;
-                ul.appendChild(li);
-            });
-            resultsContainer.appendChild(ul);
         }
     </script>
 </body>
