@@ -636,11 +636,6 @@
             "percorso_completo": "E:\\FILM\\Cicciabomba - 1982.ITA.avi"
         },
         {
-            "nome": "Concerto per pistola solista.(1970).BDmux.ITA.x264.mkv",
-            "dimensione": "3.80 GB",
-            "percorso_completo": "E:\\FILM\\Concerto per pistola solista.(1970).BDmux.ITA.x264.mkv"
-        },
-        {
             "nome": "Giornata.nera.per.l'ariete.1971.1080p.BluRay.ITA-ENG.SUB.ENG.x264.mkv",
             "dimensione": "6.56 GB",
             "percorso_completo": "E:\\FILM\\Giornata.nera.per.l'ariete.1971.1080p.BluRay.ITA-ENG.SUB.ENG.x264.mkv"
@@ -656,11 +651,6 @@
             "percorso_completo": "E:\\FILM\\Il Cittadino Si Ribella 1974.mkv"
         },
         {
-            "nome": "IL FANTASMA DI SODOMA.DVDRip.AC3 ITA.XVID.RU.avi",
-            "dimensione": "2.19 GB",
-            "percorso_completo": "E:\\FILM\\IL FANTASMA DI SODOMA.DVDRip.AC3 ITA.XVID.RU.avi"
-        },
-        {
             "nome": "Il ragazzo di campagna (1984) 1080p x265 ita ac3 sub ita - MIRCrew.mkv",
             "dimensione": "2.38 GB",
             "percorso_completo": "E:\\FILM\\Il ragazzo di campagna (1984) 1080p x265 ita ac3 sub ita - MIRCrew.mkv"
@@ -669,6 +659,11 @@
             "nome": "Il terribile ispettore [1969] (Paolo Villaggio) - Dvdrip-ITA-king76.mkv",
             "dimensione": "1.12 GB",
             "percorso_completo": "E:\\FILM\\Il terribile ispettore [1969] (Paolo Villaggio) - Dvdrip-ITA-king76.mkv"
+        },
+        {
+            "nome": "Il.Fantasma.di.Sodoma.DVDRip.AC3 ITA.XVID.RU.avi",
+            "dimensione": "2.19 GB",
+            "percorso_completo": "E:\\FILM\\Il.Fantasma.di.Sodoma.DVDRip.AC3 ITA.XVID.RU.avi"
         },
         {
             "nome": "Il.Ritorno.dei.Morti.Viventi.(1985).REMASTERED.1080p.BDMux.10bit.ITA-ENG.SUB.ITA-ENG.x265.mkv",
@@ -709,11 +704,6 @@
             "nome": "La Montagna del dio cannibale (1978) 1080p x264 ita eng ac3 - MIRCrew.mkv",
             "dimensione": "2.60 GB",
             "percorso_completo": "E:\\FILM\\La Montagna del dio cannibale (1978) 1080p x264 ita eng ac3 - MIRCrew.mkv"
-        },
-        {
-            "nome": "La Notte Di Halloween (1985).mkv",
-            "dimensione": "1.74 GB",
-            "percorso_completo": "E:\\FILM\\La Notte Di Halloween (1985).mkv"
         },
         {
             "nome": "La Polizia Accusa, Il Servizio Segreto Uccide (1975) (1080p.ITA.ENG) (Ebleep).mkv",
@@ -1038,6 +1028,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "10.57 GB"
+        "libero": "18.07 GB"
     }
 }
