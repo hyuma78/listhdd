@@ -180,6 +180,7 @@
         .hdd-icon {
             font-size: 2.5em;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transform: translateY(-8px); /* centratura icona hdd cards */
         }
 
         .hdd-info {
@@ -299,12 +300,12 @@
 
     <div id="footer-stats">
         <div class="footer-stat">
-            <span class="footer-stat-icon">📹</span>
+            <span class="footer-stat-icon">🎞️</span>
             <span class="footer-stat-label">File video:</span>
             <span class="footer-stat-value" id="footer-total-files">0</span>
         </div>
         <div class="footer-stat">
-            <span class="footer-stat-icon">💾</span>
+            <span class="footer-stat-icon">🖴</span>
             <span class="footer-stat-label">Spazio occupato:</span>
             <span class="footer-stat-value" id="footer-space-occupied">0 GB</span>
         </div>
@@ -534,7 +535,7 @@
                 // Icona disco
                 const icon = document.createElement("div");
                 icon.className = "hdd-icon";
-                icon.textContent = "💾";
+                icon.textContent = "🖴";
                 
                 // Info disco
                 const info = document.createElement("div");
@@ -558,7 +559,7 @@
                             <span>Libero: ${data.diskInfo.libero}</span>
                         </div>
                         <div class="hdd-stat">
-                            <span>📹</span>
+                            <span>🎞️</span>
                             <span>${data.files.length} file</span>
                         </div>
                     `;
