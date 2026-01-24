@@ -125,32 +125,105 @@
         }
 
         .hdd-section {
-            margin-bottom: 15px;
-            border-radius: 10px;
-            background-color: #fafbfd;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            transition: box-shadow 0.3s;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .hdd-section:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+            border-color: #3498db;
+        }
+
+        .hdd-section.expanded {
+            border-color: #3498db;
         }
 
         .hdd-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #e74c3c;
             margin: 0;
-            padding: 18px 25px;
+            padding: 0;
             cursor: pointer;
-            border-bottom: 1px solid #eee;
-            background-color: #f7f9fc;
-            transition: background-color 0.3s;
-            display: flex;
-            justify-content: space-between;
+            background: linear-gradient(135deg, #667eea 0%, #0011ff 100%);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hdd-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s;
+        }
+
+        .hdd-title:hover::before {
+            left: 100%;
+        }
+
+        .hdd-header {
+            padding: 20px 25px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
             align-items: center;
+            color: white;
+        }
+
+        .hdd-icon {
+            font-size: 2.5em;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .hdd-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hdd-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .hdd-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9em;
+            opacity: 0.95;
+        }
+
+        .hdd-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hdd-expand-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .hdd-section.expanded .hdd-expand-icon {
+            transform: rotate(180deg);
         }
 
         .hdd-label {
             color: #e74c3c;
             font-weight: bold;
+        }
+
+        .hdd-content {
+            padding: 20px 25px;
+            background: #fafbfd;
         }
 
         ul {
@@ -178,7 +251,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(135deg, #667eea 0%, #2600ff 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 12px 20px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
@@ -452,18 +525,73 @@
                 const section = document.createElement("div");
                 section.className = "hdd-section";
 
-                const title = document.createElement("h2");
+                const title = document.createElement("div");
                 title.className = "hdd-title";
-                title.innerHTML = `<span>${hddName}</span> ${data.diskInfo ? `<span class="hdd-details">Totale: ${data.diskInfo.totale} | Libero: ${data.diskInfo.libero}</span>` : ""}`;
+                
+                const header = document.createElement("div");
+                header.className = "hdd-header";
+                
+                // Icona disco
+                const icon = document.createElement("div");
+                icon.className = "hdd-icon";
+                icon.textContent = "💾";
+                
+                // Info disco
+                const info = document.createElement("div");
+                info.className = "hdd-info";
+                
+                const nameDiv = document.createElement("div");
+                nameDiv.className = "hdd-name";
+                nameDiv.textContent = hddName;
+                
+                const statsDiv = document.createElement("div");
+                statsDiv.className = "hdd-stats";
+                
+                if (data.diskInfo) {
+                    statsDiv.innerHTML = `
+                        <div class="hdd-stat">
+                            <span>📊</span>
+                            <span>Totale: ${data.diskInfo.totale}</span>
+                        </div>
+                        <div class="hdd-stat">
+                            <span>✅</span>
+                            <span>Libero: ${data.diskInfo.libero}</span>
+                        </div>
+                        <div class="hdd-stat">
+                            <span>📹</span>
+                            <span>${data.files.length} file</span>
+                        </div>
+                    `;
+                }
+                
+                info.appendChild(nameDiv);
+                info.appendChild(statsDiv);
+                
+                // Icona espandi
+                const expandIcon = document.createElement("div");
+                expandIcon.className = "hdd-expand-icon";
+                expandIcon.textContent = "▼";
+                
+                header.appendChild(icon);
+                header.appendChild(info);
+                header.appendChild(expandIcon);
+                title.appendChild(header);
 
+                const contentWrapper = document.createElement("div");
+                contentWrapper.className = "hdd-content";
+                contentWrapper.style.display = "none";
+                
                 const tree = renderTree(buildFileTree(data.files));
-                tree.style.display = "none";
+                contentWrapper.appendChild(tree);
 
                 title.addEventListener("click", () => {
-                    tree.style.display = tree.style.display === "none" ? "block" : "none";
+                    const isExpanded = contentWrapper.style.display === "block";
+                    contentWrapper.style.display = isExpanded ? "none" : "block";
+                    section.classList.toggle("expanded", !isExpanded);
                 });
 
-                section.append(title, tree);
+                section.appendChild(title);
+                section.appendChild(contentWrapper);
                 container.appendChild(section);
             }
         }
