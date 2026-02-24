@@ -511,6 +511,7 @@
                     const li = document.createElement("li");
                     li.className = "file";
                     li.textContent = `📄 ${f.name} (${f.size})`;
+                    li.addEventListener("click", (e) => e.stopPropagation());
                     ul.appendChild(li);
                 });
             }
