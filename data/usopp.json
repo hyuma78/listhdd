@@ -236,6 +236,11 @@
             "percorso_completo": "G:\\FILM\\Cicciabomba - 1982.ITA.avi"
         },
         {
+            "nome": "Cymbaline (2007) AAC ITA VHSRip.mkv",
+            "dimensione": "1.05 GB",
+            "percorso_completo": "G:\\FILM\\Cymbaline (2007) AAC ITA VHSRip.mkv"
+        },
+        {
             "nome": "Giornata.nera.per.l'ariete.1971.1080p.BluRay.ITA-ENG.SUB.ENG.x264.mkv",
             "dimensione": "6.56 GB",
             "percorso_completo": "G:\\FILM\\Giornata.nera.per.l'ariete.1971.1080p.BluRay.ITA-ENG.SUB.ENG.x264.mkv"
@@ -276,6 +281,11 @@
             "percorso_completo": "G:\\FILM\\Io tigro, tu tigri, egli tigra (1978) [SD H264 ITA AC3].mkv"
         },
         {
+            "nome": "Italia A Mano Armata (1976) (720p.ITA.ENG.Subs) (Ebleep).mkv",
+            "dimensione": "6.72 GB",
+            "percorso_completo": "G:\\FILM\\Italia A Mano Armata (1976) (720p.ITA.ENG.Subs) (Ebleep).mkv"
+        },
+        {
             "nome": "Italia A Mano Armata (1976) [1080p H264 ITA ENG AAC SUB ITA ENG] by jackerr [P&C] Poliziottesco.mp4",
             "dimensione": "3.05 GB",
             "percorso_completo": "G:\\FILM\\Italia A Mano Armata (1976) [1080p H264 ITA ENG AAC SUB ITA ENG] by jackerr [P&C] Poliziottesco.mp4"
@@ -309,6 +319,11 @@
             "nome": "La Polizia Accusa, Il Servizio Segreto Uccide (1975) (1080p.ITA.ENG) (Ebleep).mkv",
             "dimensione": "6.73 GB",
             "percorso_completo": "G:\\FILM\\La Polizia Accusa, Il Servizio Segreto Uccide (1975) (1080p.ITA.ENG) (Ebleep).mkv"
+        },
+        {
+            "nome": "La poliziotta (Steno, 1974).mkv",
+            "dimensione": "2.47 GB",
+            "percorso_completo": "G:\\FILM\\La poliziotta (Steno, 1974).mkv"
         },
         {
             "nome": "La Zona Morta - The Dead Zone (1983).BDMux.1080p.ITA-ENG.Subs.pkp333.mkv",
@@ -356,6 +371,11 @@
             "percorso_completo": "G:\\FILM\\Milano.calibro.9.1972.1080p.ita.eng.ZK.mkv"
         },
         {
+            "nome": "Mortacci.(Citti.1988).DVDRip.AVC.x264.AC3.ITA.Subs.by.^MF^.mkv",
+            "dimensione": "1.32 GB",
+            "percorso_completo": "G:\\FILM\\Mortacci.(Citti.1988).DVDRip.AVC.x264.AC3.ITA.Subs.by.^MF^.mkv"
+        },
+        {
             "nome": "Morte Di Una Strega.avi",
             "dimensione": "1.11 GB",
             "percorso_completo": "G:\\FILM\\Morte Di Una Strega.avi"
@@ -399,6 +419,11 @@
             "nome": "Tre.Tigri.Contro.Tre.Tigri.1977.ITA.Web-DLRip.720p.x264.HD4ME.mkv",
             "dimensione": "1.91 GB",
             "percorso_completo": "G:\\FILM\\Tre.Tigri.Contro.Tre.Tigri.1977.ITA.Web-DLRip.720p.x264.HD4ME.mkv"
+        },
+        {
+            "nome": "Tutte le donne di un uomo da nulla (2009).mkv",
+            "dimensione": "0.53 GB",
+            "percorso_completo": "G:\\FILM\\Tutte le donne di un uomo da nulla (2009).mkv"
         },
         {
             "nome": "Tutti defunti... tranne i morti (1977) 1080p H264 AC3  - LoZio - MIRCrew.mkv",
@@ -618,6 +643,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "25.52 GB"
+        "libero": "13.44 GB"
     }
 }
