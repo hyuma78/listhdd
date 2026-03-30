@@ -176,6 +176,11 @@
             "percorso_completo": "G:\\FILM HORROR-THILLER\\Blade 3 Trinity - (2004) - EXTENDED - AC3 5.1 ITA.ENG 1080p H265 sub ita.eng Sp33dy94-MIRCrew.mkv"
         },
         {
+            "nome": "Cul-De-Sac.-.1966.-.iTA.ENG.AC3.CRiTERiON.1080p.BDRip.V2.by.M4iO.x264.mkv",
+            "dimensione": "10.92 GB",
+            "percorso_completo": "G:\\FILM HORROR-THILLER\\Cul-De-Sac.-.1966.-.iTA.ENG.AC3.CRiTERiON.1080p.BDRip.V2.by.M4iO.x264.mkv"
+        },
+        {
             "nome": "Frankenstein.Meets.the.Wolf.Man.-.Frankenstein.contro.l.uomo.lupo.1943.1080p.BluRay.ITA.DD.ENG.DTS-HD.MA.Sub.ITA.ENG-MIRCrew.mkv",
             "dimensione": "6.95 GB",
             "percorso_completo": "G:\\FILM HORROR-THILLER\\Frankenstein.Meets.the.Wolf.Man.-.Frankenstein.contro.l.uomo.lupo.1943.1080p.BluRay.ITA.DD.ENG.DTS-HD.MA.Sub.ITA.ENG-MIRCrew.mkv"
@@ -261,9 +266,24 @@
             "percorso_completo": "G:\\FILM HORROR-THILLER\\La maschera del demonio (1960) (Mario Bava) [1080p, x265, AC3][ITA, ENG].mkv"
         },
         {
+            "nome": "La morte ha fatto l'uovo (Questi, 1968) DTS ITA - AC3 ENG Subs 1080p BDRip Ax.mkv",
+            "dimensione": "11.42 GB",
+            "percorso_completo": "G:\\FILM HORROR-THILLER\\La morte ha fatto l'uovo (Questi, 1968) DTS ITA - AC3 ENG Subs 1080p BDRip Ax.mkv"
+        },
+        {
+            "nome": "La Morte Ha Sorriso All'assassino (1973) (1080p.ITA.GER.Sub.GER) (Ebleep).mkv",
+            "dimensione": "6.17 GB",
+            "percorso_completo": "G:\\FILM HORROR-THILLER\\La Morte Ha Sorriso All'assassino (1973) (1080p.ITA.GER.Sub.GER) (Ebleep).mkv"
+        },
+        {
             "nome": "La Morte Non Ha Sesso (1968).(V2.1080p.ITA.ENG.Subs).(Ebleep).mkv",
             "dimensione": "7.30 GB",
             "percorso_completo": "G:\\FILM HORROR-THILLER\\La Morte Non Ha Sesso (1968).(V2.1080p.ITA.ENG.Subs).(Ebleep).mkv"
+        },
+        {
+            "nome": "La Morte Risale A Ieri Sera (1970) (1080p.ITA.ENG) (Ebleep).mkv",
+            "dimensione": "6.72 GB",
+            "percorso_completo": "G:\\FILM HORROR-THILLER\\La Morte Risale A Ieri Sera (1970) (1080p.ITA.ENG) (Ebleep).mkv"
         },
         {
             "nome": "La pelle di Satana (1971) - The Blood on Satan's Claw (Piers Haggard) [720p, x264, AC3][ITA, ENG].mkv",
@@ -1768,6 +1788,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "36.90 GB"
+        "libero": "1.67 GB"
     }
 }
