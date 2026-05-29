@@ -431,11 +431,6 @@
             "percorso_completo": "G:\\FILM\\Un Poliziotto Scomodo (1978) [1080p H264 ITA ENG AAC] by jackerr [P&C] Poliziottesco.mp4"
         },
         {
-            "nome": "Un vampiro a miami.avi",
-            "dimensione": "0.69 GB",
-            "percorso_completo": "G:\\FILM\\Un vampiro a miami.avi"
-        },
-        {
             "nome": "Una Notte Al Cimitero (1987).(1080p.ITA.ENG.Sub.ENG).(Ebleep).mkv",
             "dimensione": "11.94 GB",
             "percorso_completo": "G:\\FILM\\Una Notte Al Cimitero (1987).(1080p.ITA.ENG.Sub.ENG).(Ebleep).mkv"
@@ -638,6 +633,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "13.44 GB"
+        "libero": "31.11 GB"
     }
 }
