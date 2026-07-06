@@ -1,6 +1,11 @@
 {
     "catalogo_video": [
         {
+            "nome": "Arion.1986.BRmux.1080p.x264.AC3.ITA.JAP.SUB.ITA.CAP.By.FG72.mkv",
+            "dimensione": "5.73 GB",
+            "percorso_completo": "G:\\ANIME\\Arion.1986.BRmux.1080p.x264.AC3.ITA.JAP.SUB.ITA.CAP.By.FG72.mkv"
+        },
+        {
             "nome": "Bagi.(1984).1080p.BDMux.x264.AC3.ITA-JAP.SUB.ITA.mkv",
             "dimensione": "3.72 GB",
             "percorso_completo": "G:\\ANIME\\Bagi.(1984).1080p.BDMux.x264.AC3.ITA-JAP.SUB.ITA.mkv"
@@ -34,11 +39,6 @@
             "nome": "Apocalypse now redux - BluRay Rip. 1080p  x264  DTS ita AC3 Eng + Subs [Argon740].mkv",
             "dimensione": "14.62 GB",
             "percorso_completo": "G:\\FILM\\Apocalypse now redux - BluRay Rip. 1080p  x264  DTS ita AC3 Eng + Subs [Argon740].mkv"
-        },
-        {
-            "nome": "Arion.1986.BRmux.1080p.x264.AC3.ITA.JAP.SUB.ITA.CAP.By.FG72.mkv",
-            "dimensione": "5.73 GB",
-            "percorso_completo": "G:\\FILM\\Arion.1986.BRmux.1080p.x264.AC3.ITA.JAP.SUB.ITA.CAP.By.FG72.mkv"
         },
         {
             "nome": "BLU 38 (2021).1080p.WEB-DL.ITA.mp4",
@@ -176,11 +176,6 @@
             "percorso_completo": "G:\\FILM\\Spettri (1987) (BDRip.SD.ITA.ENG.Sub.ENG) (Ebleep).mkv"
         },
         {
-            "nome": "Squadra Antimafia.(1978).BDRip.1080p.ITA.SUB.ITA.mkv",
-            "dimensione": "8.37 GB",
-            "percorso_completo": "G:\\FILM\\Squadra Antimafia.(1978).BDRip.1080p.ITA.SUB.ITA.mkv"
-        },
-        {
             "nome": "Stalker.1979.[Remastered].Blu-ray.Rip.1080p.AVC.x264.DTS.ITA.AC3.RUS.Subs.^MF^.V2.mkv",
             "dimensione": "11.44 GB",
             "percorso_completo": "G:\\FILM\\Stalker.1979.[Remastered].Blu-ray.Rip.1080p.AVC.x264.DTS.ITA.AC3.RUS.Subs.^MF^.V2.mkv"
@@ -298,6 +293,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "240.70 GB"
+        "libero": "249.07 GB"
     }
 }
