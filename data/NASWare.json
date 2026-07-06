@@ -226,14 +226,19 @@
             "percorso_completo": "G:\\FILM\\Spawn [DIRECTOR'S CUT] [1080p.x265.10bit.ITA-ENG] (by.phadron) MIRCrew.mkv"
         },
         {
-            "nome": "Squadra antifurto (1976) [WEBrip - 1080p - x264 - ITA - SUBs].mkv",
+            "nome": "Squadra Antifurto (1976) [WEBrip - 1080p - x264 - ITA - SUBs].mkv",
             "dimensione": "4.01 GB",
-            "percorso_completo": "G:\\FILM\\Squadra antifurto (1976) [WEBrip - 1080p - x264 - ITA - SUBs].mkv"
+            "percorso_completo": "G:\\FILM\\Squadra Antifurto (1976) [WEBrip - 1080p - x264 - ITA - SUBs].mkv"
         },
         {
             "nome": "Squadra Antigangsters (1979) 1080p x264 DLMux ITA-ENG.mkv",
             "dimensione": "8.34 GB",
             "percorso_completo": "G:\\FILM\\Squadra Antigangsters (1979) 1080p x264 DLMux ITA-ENG.mkv"
+        },
+        {
+            "nome": "Squadra Antimafia.(1978).BDRip.1080p.ITA.SUB.ITA.mkv",
+            "dimensione": "8.37 GB",
+            "percorso_completo": "G:\\FILM\\Squadra Antimafia.(1978).BDRip.1080p.ITA.SUB.ITA.mkv"
         },
         {
             "nome": "Squadra Antiscippo (1976) (1080p.ITA.Subs) (Ebleep).mkv",
@@ -2248,6 +2253,6 @@
     ],
     "informazioni_disco": {
         "totale": "1863.02 GB",
-        "libero": "514.74 GB"
+        "libero": "506.37 GB"
     }
 }
