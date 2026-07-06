@@ -156,6 +156,11 @@
             "percorso_completo": "G:\\FILM\\Non aprite quell'armadio (Monster in the closet; Troma).avi"
         },
         {
+            "nome": "Police Story (1985) (BDMux.1080p.ITA.CHI.Sub) (By Ebleep).mkv",
+            "dimensione": "9.08 GB",
+            "percorso_completo": "G:\\FILM\\Police Story (1985) (BDMux.1080p.ITA.CHI.Sub) (By Ebleep).mkv"
+        },
+        {
             "nome": "Puro cashmere (1986) [1080p.x264.ITA] (by.phadron) MIRCrew.mkv",
             "dimensione": "2.54 GB",
             "percorso_completo": "G:\\FILM\\Puro cashmere (1986) [1080p.x264.ITA] (by.phadron) MIRCrew.mkv"
@@ -184,6 +189,11 @@
             "nome": "Stilema. 2022.1080p.WEB.DL.ITA.mp4",
             "dimensione": "1.36 GB",
             "percorso_completo": "G:\\FILM\\Stilema. 2022.1080p.WEB.DL.ITA.mp4"
+        },
+        {
+            "nome": "Tag.2015.1080p.BluRay.x264-WiKi.JAP.SUB.ITA.mkv",
+            "dimensione": "8.15 GB",
+            "percorso_completo": "G:\\FILM\\Tag.2015.1080p.BluRay.x264-WiKi.JAP.SUB.ITA.mkv"
         },
         {
             "nome": "The Killer (1989) - (John Woo) [1080p, x265][ITA, 2.0, AC-3][ENG CHI, 6.0, E-AC-3][ENG, 2.0, E-AC-3][ITA, ENG].mkv",
@@ -293,6 +303,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "249.07 GB"
+        "libero": "231.84 GB"
     }
 }
