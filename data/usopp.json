@@ -603,12 +603,17 @@
         {
             "nome": "Ghidorah.il.Mostro.a.tre.teste.1964.1080p.BluRay.x264-nikt0.SUB.ITA.mkv",
             "dimensione": "3.87 GB",
-            "percorso_completo": "G:\\FILM\\Godzilla Collection\\5.Ghidorah.ThreeHeaded.Monster\\Ghidorah.il.Mostro.a.tre.teste.1964.1080p.BluRay.x264-nikt0.SUB.ITA.mkv"
+            "percorso_completo": "G:\\FILM\\Godzilla Collection\\5.Ghidorah.Three-Headed.Monster\\Ghidorah.il.Mostro.a.tre.teste.1964.1080p.BluRay.x264-nikt0.SUB.ITA.mkv"
         },
         {
             "nome": "L'invasione.degli.Astro.Mostri.(1965).1080p.BluRay.10-bit.x265.DTS.5.1 Qman[UTR].SUB.ITA.mkv",
             "dimensione": "4.59 GB",
             "percorso_completo": "G:\\FILM\\Godzilla Collection\\6.Invasion.of.Astro.Monster\\L'invasione.degli.Astro.Mostri.(1965).1080p.BluRay.10-bit.x265.DTS.5.1 Qman[UTR].SUB.ITA.mkv"
+        },
+        {
+            "nome": "Ebirah.Horror.of.the.Deep.1966.Criterion.1080p.BluRay.x264-JRP.SUB.ITA.mkv",
+            "dimensione": "8.75 GB",
+            "percorso_completo": "G:\\FILM\\Godzilla Collection\\7.Ebirah.Horror.of.the.Deep\\Ebirah.Horror.of.the.Deep.1966.Criterion.1080p.BluRay.x264-JRP.SUB.ITA.mkv"
         },
         {
             "nome": "Il figlio di Godzilla  720p mux by thegatto.mkv",
@@ -653,6 +658,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "12.67 GB"
+        "libero": "3.92 GB"
     }
 }
