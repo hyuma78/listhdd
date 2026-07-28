@@ -26,6 +26,11 @@
             "percorso_completo": "G:\\FILM\\A Ciascuno Il Suo (1967) (1080p.ITA.GER.Sub.GER.ENG) (Ebleep).mkv"
         },
         {
+            "nome": "A.Tutte.Le.Auto.Della.Polizia...1975.ITA.DVDRip.DD5.1.x264-UBi.mkv",
+            "dimensione": "1.41 GB",
+            "percorso_completo": "G:\\FILM\\A.Tutte.Le.Auto.Della.Polizia...1975.ITA.DVDRip.DD5.1.x264-UBi.mkv"
+        },
+        {
             "nome": "Abraxas.Director's.Cut.720p.DLMux.ITA.mp4",
             "dimensione": "0.94 GB",
             "percorso_completo": "G:\\FILM\\Abraxas.Director's.Cut.720p.DLMux.ITA.mp4"
@@ -86,6 +91,11 @@
             "percorso_completo": "G:\\FILM\\Fracchia La Belva Umana (1981) (1080p.ITA.Sub) (Ebleep).mkv"
         },
         {
+            "nome": "Gli Argonauti (1963) (BDMux.1080p.ITA.ENG.Subs) (Ebleep).mkv",
+            "dimensione": "12.09 GB",
+            "percorso_completo": "G:\\FILM\\Gli Argonauti (1963) (BDMux.1080p.ITA.ENG.Subs) (Ebleep).mkv"
+        },
+        {
             "nome": "Gli Specialisti (1969).(1080p.ITA.ENG.Sub.ENG).(Ebleep).mkv",
             "dimensione": "6.67 GB",
             "percorso_completo": "G:\\FILM\\Gli Specialisti (1969).(1080p.ITA.ENG.Sub.ENG).(Ebleep).mkv"
@@ -104,6 +114,11 @@
             "nome": "Il Caso Anna Mancini.720p.WEB-DL.ITA.mp4",
             "dimensione": "1.33 GB",
             "percorso_completo": "G:\\FILM\\Il Caso Anna Mancini.720p.WEB-DL.ITA.mp4"
+        },
+        {
+            "nome": "Il cervello di Frankenstein (Barton, 1948) AC3 ITA ENG Subs 1080p BDMux Ax.mkv",
+            "dimensione": "7.95 GB",
+            "percorso_completo": "G:\\FILM\\Il cervello di Frankenstein (Barton, 1948) AC3 ITA ENG Subs 1080p BDMux Ax.mkv"
         },
         {
             "nome": "Il Giorno del cobra (1980) [720p H264 ITA ENG GER AC3] by jackerr [P&C] Poliziottesco.mkv",
@@ -166,9 +181,9 @@
             "percorso_completo": "G:\\FILM\\Puro cashmere (1986) [1080p.x264.ITA] (by.phadron) MIRCrew.mkv"
         },
         {
-            "nome": "Ruderi.d'amore.Ignorati gnoranti.(Roger.A.Fratter).2020.WEB-DL.x264.ITA.mkv",
-            "dimensione": "2.56 GB",
-            "percorso_completo": "G:\\FILM\\Ruderi.d'amore.Ignorati gnoranti.(Roger.A.Fratter).2020.WEB-DL.x264.ITA.mkv"
+            "nome": "Qualcosa striscia nel buio -1971(576p.ITA-Eng)-.mkv",
+            "dimensione": "0.95 GB",
+            "percorso_completo": "G:\\FILM\\Qualcosa striscia nel buio -1971(576p.ITA-Eng)-.mkv"
         },
         {
             "nome": "Ruderi.d'amore.Ignorati.Ignoranti.(2020).(Roger.A.Fratter).WEB-DL.x264.ITA.mkv",
@@ -219,11 +234,6 @@
             "nome": "Violent.Cop.(1989).BDMux.1080p.x264.AC3.ITA-JPN.SUB.ITA-ENG.mkv",
             "dimensione": "6.45 GB",
             "percorso_completo": "G:\\FILM\\Violent.Cop.(1989).BDMux.1080p.x264.AC3.ITA-JPN.SUB.ITA-ENG.mkv"
-        },
-        {
-            "nome": "Watang! Nel favoloso impero dei mostri (Honda, 1964) AC3 ITA JAP Subs 1080p BDMux Ax [CRITERION].mkv",
-            "dimensione": "11.45 GB",
-            "percorso_completo": "G:\\FILM\\Watang! Nel favoloso impero dei mostri (Honda, 1964) AC3 ITA JAP Subs 1080p BDMux Ax [CRITERION].mkv"
         },
         {
             "nome": "who.am.i.2014.1080p.bluray.x264-usury.mkv",
@@ -303,6 +313,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "231.84 GB"
+        "libero": "220.89 GB"
     }
 }
