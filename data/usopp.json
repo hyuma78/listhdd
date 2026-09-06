@@ -431,9 +431,24 @@
             "percorso_completo": "H:\\FILM\\Per Sempre.(1989).x264.AC3 5.1 ITA.AC3 2.0 ITA.RU.mkv"
         },
         {
+            "nome": "Puro cashmere (1986) [1080p.x264.ITA] (by.phadron) MIRCrew.mkv",
+            "dimensione": "2.54 GB",
+            "percorso_completo": "H:\\FILM\\Puro cashmere (1986) [1080p.x264.ITA] (by.phadron) MIRCrew.mkv"
+        },
+        {
             "nome": "Quelle Strane Occasioni 1976.mkv",
             "dimensione": "7.03 GB",
             "percorso_completo": "H:\\FILM\\Quelle Strane Occasioni 1976.mkv"
+        },
+        {
+            "nome": "Regalo di Natale (1986 1080p AI Enh x265).mkv",
+            "dimensione": "3.37 GB",
+            "percorso_completo": "H:\\FILM\\Regalo di Natale (1986 1080p AI Enh x265).mkv"
+        },
+        {
+            "nome": "Reptilicus (1961) 1080p h264 Ac3 Ita Eng Sub Eng-MIRCrew rip e mux by robbyrs.mkv",
+            "dimensione": "1.68 GB",
+            "percorso_completo": "H:\\FILM\\Reptilicus (1961) 1080p h264 Ac3 Ita Eng Sub Eng-MIRCrew rip e mux by robbyrs.mkv"
         },
         {
             "nome": "Sbatti.il.mostro.in.prima.pagina.1972.ITA.1080p. BDRemux.Walrus54.mkv",
@@ -528,6 +543,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "15.72 GB"
+        "libero": "8.13 GB"
     }
 }
