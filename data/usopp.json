@@ -221,6 +221,11 @@
             "percorso_completo": "H:\\FILM\\A Cena Col Vampiro (1989) (1080p.ITA.ENG.Comm.Sub.ENG).(Ebleep).mkv"
         },
         {
+            "nome": "Argo.2012.BluRay.1080p.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv",
+            "dimensione": "7.96 GB",
+            "percorso_completo": "H:\\FILM\\Argo.2012.BluRay.1080p.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv"
+        },
+        {
             "nome": "Ator.L'Invincibile.-.Joe.D'Amato.x264.AC3.ITA+AAC.ENG.DVDRip.by.3asy74.mkv",
             "dimensione": "1.74 GB",
             "percorso_completo": "H:\\FILM\\Ator.L'Invincibile.-.Joe.D'Amato.x264.AC3.ITA+AAC.ENG.DVDRip.by.3asy74.mkv"
@@ -456,6 +461,11 @@
             "percorso_completo": "H:\\FILM\\The Conversation 1974 BDRip ITA ENG 1080p x265 Paso77.mkv"
         },
         {
+            "nome": "The.Town.2010.iTALiAN.1080p.BluRay.x264.DivXPlusHD-L4Zy.mkv",
+            "dimensione": "7.95 GB",
+            "percorso_completo": "H:\\FILM\\The.Town.2010.iTALiAN.1080p.BluRay.x264.DivXPlusHD-L4Zy.mkv"
+        },
+        {
             "nome": "Tre.Tigri.Contro.Tre.Tigri.1977.ITA.Web-DLRip.720p.x264.HD4ME.mkv",
             "dimensione": "1.91 GB",
             "percorso_completo": "H:\\FILM\\Tre.Tigri.Contro.Tre.Tigri.1977.ITA.Web-DLRip.720p.x264.HD4ME.mkv"
@@ -518,6 +528,6 @@
     ],
     "informazioni_disco": {
         "totale": "465.76 GB",
-        "libero": "31.63 GB"
+        "libero": "15.72 GB"
     }
 }
