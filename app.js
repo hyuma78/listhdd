@@ -8,10 +8,13 @@
   const MAX_PAGE = 70;
   const DEFAULT_MANIFEST = ['Arietty.json','Chopper.json','Hikvision2TB.json','Maxtor15G.json','NASWare.json','SOA.json','Seagate0FM.json','Seagate1TB.json','Seagate878.json','SeagateGMF.json','SeagateR9H.json','TR3NTON.json','Usopp.json','WD207.json','WD659.json','WD_Sarah_2TB.json','franky.json','nami.json','rufy.json','zoro.json'];
   const VIDEO_TYPES = ['mkv','mp4','avi','mov','wmv','m4v','mpg','mpeg','ts','m2ts','webm','flv','vob','3gp','divx','iso'];
+  const GENRES = ['Azione','Avventura','Animazione','Biografico','Commedia','Crime','Documentario','Drammatico','Fantasy','Fantascienza','Guerra','Horror','Musicale','Romantico','Storico','Thriller','Western'];
+  const CURRENT_YEAR = 2026;
   const TITLES = {overview:'Panoramica',drives:'I miei dischi',search:'Esplora file',favorites:'Preferiti',duplicates:'Doppioni potenziali'};
   const state = {
     page: 'overview', disks: new Map(), files: [], favorites: new Set(), query: '',
-    diskFilter: '', categoryFilter:'', extFilter:'', sizeFilter:'', sort:'relevance', driveSort:'name',
+    diskFilter: '', categoryFilter:'', extFilter:'', sizeFilter:'', genreFilter:'', yearFilter:'', qualityFilter:'', languageFilter:'', sort:'relevance', driveSort:'name',
+    publishedMetadata:{}, localMetadata:{}, metadataFromSite:false,
     pageLimit: MAX_PAGE, openDisk:'', folderPath:[], folderLimit:120, trees:new Map(),
     duplicateGroups:[], failed:[], temporaryImports:0, loading:false
   };
@@ -20,6 +23,7 @@
     set(key,val){try{localStorage.setItem('vault-'+key,JSON.stringify(val));}catch{/* Storage disabilitato */}}
   };
   state.favorites = new Set(store.get('favorites',[]));
+  state.localMetadata = store.get('movie-metadata',{});
   const formatCount = n => nf.format(n);
   const fmtGB = n => (Number.isFinite(n) ? (Math.abs(n) >= 1000 ? decimal.format(n / 1000) + ' TB' : decimal.format(n) + ' GB') : '—');
   const icon = name => `<svg class="icon" aria-hidden="true"><use href="#ico-${name}"></use></svg>`;
@@ -44,9 +48,74 @@
     if(/\b(anime|animazione|cartoni|naruto|one piece|bleach)\b/.test(s))return 'Anime e cartoni';
     if(/\b(serie tv|serie|series|stagione|season)\b/.test(s) || /\bs\d{1,2}e\d{1,3}\b/i.test(path))return 'Serie TV';
     if(/\b(documentari|documentary|documentario|documentaries)\b/.test(s))return 'Documentari';
-    if(/\b(film|cinema|movies|movie)\b/.test(s))return 'Film';
+    if(/\b(film|cinema|movies|movie)\b/.test(s)||/\b(horror thriller|horror thiller|sci fi fantasy|fantascienza fantasy)\b/.test(s))return 'Film';
     return 'Altro';
   };
+  // I metadati dedotti dal nome del file NON sono una verifica del film.
+  // Il genere viene dedotto SOLO da cartelle esplicitamente organizzate per genere.
+  function inferYear(filename, path, category){
+    const find = text => {
+      const matches=[...String(text).matchAll(/(?:^|[^0-9])(19[0-9]{2}|20[0-2][0-9])(?=$|[^0-9])/g)];
+      const plausible=matches.map(m=>Number(m[1])).filter(y=>y>=1900&&y<=CURRENT_YEAR);
+      return plausible.length?plausible[0]:null;
+    };
+    const own=find(filename);
+    if(own)return own;
+    // In particolare nelle serie la data in cartella può non essere l'anno della singola puntata.
+    if(category==='Serie TV')return null;
+    const dirs=String(path).replace(/\\/g,'/').split('/').slice(1,-1);
+    return dirs.length?find(dirs[dirs.length-1]):null;
+  }
+  function inferGenres(path){
+    const dirs=String(path).replace(/\\/g,'/').split('/').slice(1,-1).map(d=>normalize(d));
+    const found=new Set();
+    for(const d of dirs){
+      if(/^(film )?horror( thriller| thiller)?$/.test(d)||/^horror thriller$/.test(d)){
+        found.add('Horror');if(d.includes('thriller')||d.includes('thiller'))found.add('Thriller');
+      }
+      if(/^(film )?thriller$/.test(d))found.add('Thriller');
+      if(/^(sci fi fantasy|fantascienza fantasy|fantascienza|sci fi)$/.test(d)){
+        found.add('Fantascienza');if(d.includes('fantasy'))found.add('Fantasy');
+      }
+      if(/^(film )?fantasy$/.test(d))found.add('Fantasy');
+      if(/^(film )?(commedia|commedie)$/.test(d))found.add('Commedia');
+      if(/^(film )?western$/.test(d))found.add('Western');
+      if(/^(film )?drammatici?$/.test(d))found.add('Drammatico');
+      if(/^(film )?avventura$/.test(d))found.add('Avventura');
+    }
+    return [...found];
+  }
+  function inferQuality(filename, path){
+    // Nelle release i numeri in nome sono indizi del formato, non una misura tecnica del file.
+    const val=String(filename)+' '+String(path).split(/[\\/]/).slice(-2,-1).join(' ');
+    if(/(?:^|[^0-9])(?:2160p|4k|uhd)(?:$|[^0-9])/i.test(val))return '4K';
+    if(/(?:^|[^0-9])1080[pi]?(?:$|[^0-9])/i.test(val))return '1080p';
+    if(/(?:^|[^0-9])720[pi]?(?:$|[^0-9])/i.test(val))return '720p';
+    if(/(?:^|[^0-9])(?:480p|576p|dvdrip|satrip|vhsrip)(?:$|[^0-9])/i.test(val))return 'SD';
+    return '';
+  }
+  function inferLanguages(filename){
+    const tokens=String(filename).replace(/[^a-zA-Z]+/g,' ').toUpperCase().split(/\s+/);
+    const seen=new Set(tokens);
+    return [['ITA',['ITA','ITALIAN','ITALIANO']],['ENG',['ENG','ENGLISH']],['JAP',['JAP','JPN','JAPANESE']]]
+      .filter(([,v])=>v.some(t=>seen.has(t))).map(([code])=>code);
+  }
+  function validMetadata(m){
+    if(!m||typeof m!=='object'||Array.isArray(m))return null;
+    const year=m.year===''||m.year===null?null:Number(m.year);
+    const genres=Array.isArray(m.genres)?m.genres.filter(g=>GENRES.includes(g)):[];
+    return {year:Number.isInteger(year)&&year>=1900&&year<=CURRENT_YEAR?year:null,genres,source:typeof m.source==='string'?m.source.slice(0,40):'Manuale'};
+  }
+  function enrichFile(f){
+    const remote=state.publishedMetadata[f.key];
+    const local=state.localMetadata[f.key];
+    const selected=validMetadata(local||remote);
+    f.year=selected?selected.year:f.guessedYear;
+    f.genres=selected?selected.genres:f.guessedGenres;
+    f.metadataSource=selected?selected.source:(f.guessedGenres.length?'Cartella':'Nome file');
+    return f;
+  }
+  function applyAllMetadata(){for(const f of state.files)enrichFile(f);}
   const renderProgress = (percent, color='') => `<div class="progress-track" role="meter" aria-label="Spazio occupato" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(percent)}"><div class="progress-fill ${color}" style="width:${percent.toFixed(2)}%"></div></div>`;
   const diskEntries = () => Array.from(state.disks.values()).sort((a,b)=>a.name.localeCompare(b.name,'it',{sensitivity:'base'}));
   function calculateStats(){
@@ -71,9 +140,13 @@
     const ext=(name.match(/\.([^.\\/\s]+)$/)||[])[1]?.toLowerCase()||'—';
     const parts=path.replace(/\//g,'\\').split('\\').filter(Boolean);
     if(parts[0]&&/^[A-Za-z]:$/.test(parts[0]))parts.shift();
-    return {id:index,disk,name,path,formattedSize:String(raw.dimensione??'—'),size,ext,category:fileCategory(path),parts,
-      key:disk+'::'+path,
+    const category=fileCategory(path);
+    const guessedYear=inferYear(name,path,category),guessedGenres=inferGenres(path);
+    const f={id:index,disk,name,path,formattedSize:String(raw.dimensione??'—'),size,ext,category,parts,
+      key:disk+'::'+path,guessedYear,guessedGenres,year:guessedYear,genres:guessedGenres,
+      quality:inferQuality(name,path),languages:inferLanguages(name),metadataSource:'',
       search:normalize(name+' '+path+' '+disk), nameSearch:normalize(name)};
+    return enrichFile(f);
   }
   function reindex(){
     let counter=0;state.files=[];state.trees.clear();
@@ -129,6 +202,14 @@
     });
     if(loaded.size||!state.disks.size)state.disks=loaded;
     state.failed=failures;
+    try{
+      const saved=await fetchJSON('data/film_metadata.json');
+      state.publishedMetadata=(saved&&saved.files&&typeof saved.files==='object'&&!Array.isArray(saved.files))?saved.files:{};
+      state.metadataFromSite=true;
+    }catch{
+      // Il file metadati è opzionale: nessun errore se non ancora pubblicato.
+      state.publishedMetadata={};state.metadataFromSite=false;
+    }
     reindex();state.loading=false;
     $('#statusMessage').hidden=true;
     $('#loadErrors').hidden=!failures.length;
@@ -244,11 +325,19 @@
     if(state.categoryFilter)list=list.filter(f=>f.category===state.categoryFilter);
     if(state.extFilter)list=list.filter(f=>f.ext===state.extFilter);
     if(state.sizeFilter){list=list.filter(f=>Number.isFinite(f.size)&&(state.sizeFilter==='small'?f.size<1:state.sizeFilter==='medium'?f.size>=1&&f.size<4:state.sizeFilter==='large'?f.size>=4&&f.size<10:f.size>=10));}
+    if(state.genreFilter)list=list.filter(f=>state.genreFilter==='unknown'?!f.genres.length:f.genres.includes(state.genreFilter));
+    if(state.yearFilter){
+      list=list.filter(f=>state.yearFilter==='unknown'?!f.year:state.yearFilter.startsWith('decade:')?f.year&&Math.floor(f.year/10)*10===Number(state.yearFilter.slice(7)):f.year===Number(state.yearFilter.slice(5)));
+    }
+    if(state.qualityFilter)list=list.filter(f=>state.qualityFilter==='unknown'?!f.quality:f.quality===state.qualityFilter);
+    if(state.languageFilter)list=list.filter(f=>state.languageFilter==='unknown'?!f.languages.length:f.languages.includes(state.languageFilter));
     const arr=list.slice();
     if(state.sort==='size-desc')arr.sort((a,b)=>(b.size||0)-(a.size||0));
     else if(state.sort==='size-asc')arr.sort((a,b)=>(a.size||0)-(b.size||0));
     else if(state.sort==='name')arr.sort((a,b)=>a.name.localeCompare(b.name,'it',{sensitivity:'base',numeric:true}));
     else if(state.sort==='disk')arr.sort((a,b)=>a.disk.localeCompare(b.disk,'it')||a.name.localeCompare(b.name,'it'));
+    else if(state.sort==='year-desc')arr.sort((a,b)=>(b.year||0)-(a.year||0)||a.name.localeCompare(b.name,'it'));
+    else if(state.sort==='year-asc')arr.sort((a,b)=>(a.year||9999)-(b.year||9999)||a.name.localeCompare(b.name,'it'));
     else if(terms.length){
       const whole=normalize(state.query);
       arr.sort((a,b)=>Number(b.nameSearch.startsWith(whole))-Number(a.nameSearch.startsWith(whole))||Number(b.nameSearch.includes(whole))-Number(a.nameSearch.includes(whole))||a.name.localeCompare(b.name,'it'));
@@ -260,14 +349,24 @@
     const fav=page==='favorites',list=filterFiles(),visible=list.slice(0,state.pageLimit);
     const catOpts=[['','Tutte le categorie'],...['Film','Serie TV','Anime e cartoni','Documentari','Altro'].map(v=>[v,v])];
     const exts=Array.from(new Set(state.files.map(f=>f.ext))).filter(x=>x!=='—').sort();
+    const years=[...new Set(state.files.map(f=>f.year).filter(Boolean))].sort((a,b)=>b-a);
+    const decades=[...new Set(years.map(y=>Math.floor(y/10)*10))].sort((a,b)=>b-a);
+    const yearOpts=[['','Tutti gli anni'],['unknown','Anno non disponibile'],...decades.map(y=>['decade:'+y,'Anni '+y.toString().slice(2)]),...years.map(y=>['year:'+y,String(y)])];
+    const classified=state.files.filter(f=>f.genres.length).length;
     return `<div class="page-head"><div><span class="mini-label">${fav?'I MIEI SEGNALIBRI':'RICERCA NEL MIO ARCHIVIO'}</span><h2>${fav?'I miei preferiti':'Cerca nei miei file'}</h2><p>${fav?'I file che ho contrassegnato con il cuore, salvati in questo browser.':'Cerco per nome, cartella o hard disk.'}</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
     <div class="filter-panel">${selectHtml('filterDisk',state.diskFilter,[['','Tutti gli hard disk'],...diskEntries().map(d=>[d.name,d.name])],'Filtra per disco')}
     ${selectHtml('filterCategory',state.categoryFilter,catOpts,'Filtra per categoria')}
-    ${selectHtml('filterExt',state.extFilter,[['','Tutti i formati'],...exts.map(x=>[x,x.toUpperCase()])],'Filtra per formato')}
+    ${selectHtml('filterGenre',state.genreFilter,[['','Tutti i generi'],...GENRES.map(v=>[v,v]),['unknown','Da classificare']],'Filtra per genere')}
+    ${selectHtml('filterYear',state.yearFilter,yearOpts,'Filtra per anno o decennio')}
+    ${selectHtml('filterQuality',state.qualityFilter,[['','Tutte le risoluzioni'],['4K','4K / 2160p'],['1080p','Full HD / 1080p'],['720p','HD / 720p'],['SD','SD'],['unknown','Non indicata']],'Filtra per risoluzione')}
+    ${selectHtml('filterLanguage',state.languageFilter,[['','Tutte le sigle lingua'],['ITA','ITA indicato'],['ENG','ENG indicato'],['JAP','JAP indicato'],['unknown','Non indicata']],'Filtra per sigla lingua')}
     ${selectHtml('filterSize',state.sizeFilter,[['','Tutte le dimensioni'],['small','Meno di 1 GB'],['medium','Da 1 a 4 GB'],['large','Da 4 a 10 GB'],['huge','Più di 10 GB']],'Filtra per dimensione')}
-    ${selectHtml('sortFiles',state.sort,[['relevance','Rilevanza'],['name','Nome A–Z'],['size-desc','Più grandi'],['size-asc','Più piccoli'],['disk','Nome disco']],'Ordina i file')}
+    ${selectHtml('sortFiles',state.sort,[['relevance','Rilevanza'],['name','Nome A–Z'],['year-desc','Anno più recente'],['year-asc','Anno meno recente'],['size-desc','Più grandi'],['size-asc','Più piccoli'],['disk','Nome disco']],'Ordina i file')}
+    ${selectHtml('filterExt',state.extFilter,[['','Tutti i formati'],...exts.map(x=>[x,x.toUpperCase()])],'Filtra per formato')}
     </div>
-    <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'file trovato':'file trovati'}${state.query?` per <strong>“${html(state.query)}”</strong>`:''}</span><span class="filter-summary-right">${state.diskFilter?`<span class="active-scope">${icon('drive')} ${html(state.diskFilter)} <button title="Rimuovi filtro disco" data-action="clear-disk">×</button></span>`:''}${(state.diskFilter||state.categoryFilter||state.extFilter||state.sizeFilter||state.query)?`<button type="button" class="link-btn" data-action="clear-filters">Azzera filtri</button>`:''}</span></div>
+    <div class="metadata-toolbar"><span>${icon('info')} Genere classificato per <strong>${formatCount(classified)}</strong> file su ${formatCount(state.files.length)}. Gli altri sono da classificare.</span>
+      <span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
+    <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'file trovato':'file trovati'}${state.query?` per <strong>“${html(state.query)}”</strong>`:''}</span><span class="filter-summary-right">${state.diskFilter?`<span class="active-scope">${icon('drive')} ${html(state.diskFilter)} <button title="Rimuovi filtro disco" data-action="clear-disk">×</button></span>`:''}${(state.diskFilter||state.categoryFilter||state.extFilter||state.sizeFilter||state.genreFilter||state.yearFilter||state.qualityFilter||state.languageFilter||state.query)?`<button type="button" class="link-btn" data-action="clear-filters">Azzera filtri</button>`:''}</span></div>
     <div class="file-results">${visible.map(f=>renderFileCard(f)).join('')||emptyState(fav)}</div>
     ${visible.length<list.length?`<button class="load-more" data-action="more-files">Mostra altri ${formatCount(Math.min(MAX_PAGE,list.length-visible.length))} file (${formatCount(visible.length)} di ${formatCount(list.length)})</button>`:''}`;
   }
@@ -280,7 +379,7 @@
   }
   function renderFileCard(f){
     const fav=state.favorites.has(f.key);
-    return `<article class="file-card"><span class="file-icon-box">${icon('movie')}</span><div class="file-main"><strong>${highlight(f.name,state.query)}</strong><div class="file-meta-line"><span class="file-disk-badge">${html(f.disk)}</span><span>${fmtGB(f.size)}</span><span>·</span><span>${html(f.ext.toUpperCase())}</span><span>·</span><span>${html(f.category)}</span></div><div class="file-path" title="${html(f.path)}">${html(f.path)}</div></div><div class="file-actions"><button type="button" data-copy="${f.id}" title="Copia percorso del file" aria-label="Copia percorso">${icon('copy')}</button><button type="button" data-fav="${f.id}" class="${fav?'is-fav':''}" title="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}" aria-label="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}">${icon('heart')}</button></div></article>`;
+    return `<article class="file-card"><span class="file-icon-box">${icon('movie')}</span><div class="file-main"><strong>${highlight(f.name,state.query)}</strong><div class="file-meta-line"><span class="file-disk-badge">${html(f.disk)}</span><span>${fmtGB(f.size)}</span><span>·</span><span>${html(f.ext.toUpperCase())}</span><span>·</span><span>${html(f.category)}</span>${f.year?`<span class="file-detail-badge">${f.year}</span>`:''}${f.quality?`<span class="file-detail-badge">${html(f.quality)}</span>`:''}${f.genres.map(g=>`<span class="genre-badge" title="${html(f.metadataSource)}: genere indicativo">${html(g)}</span>`).join('')}</div><div class="file-path" title="${html(f.path)}">${html(f.path)}</div></div><div class="file-actions"><button type="button" data-meta="${f.id}" title="Modifica genere e anno" aria-label="Modifica genere e anno">${icon('info')}</button><button type="button" data-copy="${f.id}" title="Copia percorso del file" aria-label="Copia percorso">${icon('copy')}</button><button type="button" data-fav="${f.id}" class="${fav?'is-fav':''}" title="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}" aria-label="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}">${icon('heart')}</button></div></article>`;
   }
   function emptyState(fav=false){return `<div class="empty-state">${icon(fav?'heart':'search')}<h3>${fav&&!state.favorites.size?'Non hai ancora preferiti':'Nessun file trovato'}</h3><p>${fav&&!state.favorites.size?'Premi il cuore accanto a un video per ritrovarlo qui.':'Prova a cambiare parole chiave o a rimuovere uno dei filtri.'}</p><button type="button" data-action="clear-filters" class="btn btn-soft">Azzera i filtri</button></div>`;}
   function renderDuplicates(){
@@ -320,11 +419,69 @@
   }
   function exportCSV(items,filename){
     if(!items.length){toast('Non ci sono file da esportare.',true);return;}
-    const lines=[['Disco','Nome','Dimensione (GB)','Formato','Categoria','Percorso completo'],...items.map(f=>[f.disk,f.name,Number.isFinite(f.size)?f.size.toFixed(2):'',f.ext,f.category,f.path])];
+    const lines=[['Disco','Nome','Dimensione (GB)','Formato','Categoria','Anno','Generi','Risoluzione indicata','Sigle lingua','Percorso completo'],...items.map(f=>[f.disk,f.name,Number.isFinite(f.size)?f.size.toFixed(2):'',f.ext,f.category,f.year||'',f.genres.join(', '),f.quality,f.languages.join(', '),f.path])];
     const csv='\ufeff'+lines.map(row=>row.map(quoteCSV).join(';')).join('\r\n');
     const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);
     const link=document.createElement('a');link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
     toast(`${formatCount(items.length)} righe esportate in CSV`);
+  }
+  function downloadJSON(obj,name){
+    const blob=new Blob([JSON.stringify(obj,null,2)+'\n'],{type:'application/json;charset=utf-8'});
+    const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1100);
+  }
+  function exportMetadata(){
+    const files={...state.publishedMetadata,...state.localMetadata};
+    const valid={};for(const [key,item] of Object.entries(files)){const m=validMetadata(item);if(m)valid[key]=m;}
+    downloadJSON({version:1,files:valid},'film_metadata.json');
+    toast(`${formatCount(Object.keys(valid).length)} schede esportate. Carica il file in data/ su GitHub per sincronizzarle.`);
+  }
+  async function importMetadata(input){
+    const file=input.files?.[0];input.value='';if(!file)return;
+    if(file.size>15*1024*1024){toast('Metadati troppo grandi (limite 15 MB).',true);return;}
+    try{
+      const obj=JSON.parse(await file.text());
+      if(!obj||!obj.files||typeof obj.files!=='object'||Array.isArray(obj.files))throw Error('Struttura files mancante');
+      let n=0;const newData={...state.localMetadata};
+      for(const [key,item] of Object.entries(obj.files)){
+        if(key.length>2048)continue;
+        const m=validMetadata(item);if(!m)continue;
+        newData[key]=m;n++;
+      }
+      state.localMetadata=newData;store.set('movie-metadata',newData);applyAllMetadata();render();
+      toast(`${n} schede importate in questo browser. Per condividerle carica film_metadata.json su GitHub.`);
+    }catch(err){toast('Importazione schede non riuscita: '+err.message,true);}
+  }
+  function editMetadata(id){
+    const f=state.files[Number(id)];if(!f)return;
+    $('#metaFileId').value=String(f.id);
+    $('#metaFilename').textContent=f.name;
+    $('#metaDisk').textContent=f.disk;
+    $('#metaYear').value=f.year||'';
+    $('#metaGenreList').innerHTML=GENRES.map(g=>`<label class="meta-option"><input type="checkbox" name="movieGenre" value="${html(g)}" ${f.genres.includes(g)?'checked':''}><span>${html(g)}</span></label>`).join('');
+    $('#metaAllCopies').checked=false;
+    $('#metadataDialog').showModal();
+  }
+  function saveMetadata(){
+    const f=state.files[Number($('#metaFileId').value)];if(!f)return;
+    const raw=$('#metaYear').value.trim();const year=raw?Number(raw):null;
+    if(year!==null&&(!Number.isInteger(year)||year<1900||year>CURRENT_YEAR)){toast('Inserisci un anno compreso tra 1900 e '+CURRENT_YEAR,true);return;}
+    const genres=[...$('#metaGenreList').querySelectorAll('input:checked')].map(x=>x.value).filter(g=>GENRES.includes(g));
+    const item={year,genres,source:'Manuale'};
+    const same=!!$('#metaAllCopies').checked;
+    let edited=0;
+    for(const candidate of state.files){
+      if(candidate===f||(same&&normalize(candidate.name)===normalize(f.name))){
+        state.localMetadata[candidate.key]=item;enrichFile(candidate);edited++;
+      }
+    }
+    store.set('movie-metadata',state.localMetadata);
+    $('#metadataDialog').close();render();toast(`${edited} ${edited===1?'scheda aggiornata':'schede aggiornate'}. Esporta il JSON per conservarle su GitHub.`);
+  }
+  function resetMetadata(){
+    const f=state.files[Number($('#metaFileId').value)];if(!f)return;
+    delete state.localMetadata[f.key];
+    store.set('movie-metadata',state.localMetadata);enrichFile(f);
+    $('#metadataDialog').close();render();toast('Ripristinati i metadati pubblicati o quelli rilevati automaticamente.');
   }
   async function importJSON(input){
     const files=[...input.files||[]];input.value='';if(!files.length)return;
@@ -352,6 +509,7 @@
       const child=folders[Number(target.dataset.folderOpen)];if(child){state.folderPath.push(child.name);state.folderLimit=120;render();}
       return;
     }
+    if(target.hasAttribute('data-meta')){editMetadata(target.dataset.meta);return;}
     if(target.hasAttribute('data-copy')){copyPath(target.dataset.copy);return;}
     if(target.hasAttribute('data-fav')){toggleFavorite(target.dataset.fav);return;}
     if(target.hasAttribute('data-search-disk')){state.diskFilter=target.dataset.searchDisk;state.query='';$('#globalSearch').value='';navigate('search');return;}
@@ -360,13 +518,15 @@
     if(TITLES[action]){navigate(action);return;}
     if(action==='more-files'){state.pageLimit+=MAX_PAGE;render();return;}
     if(action==='more-folder'){state.folderLimit+=120;render();return;}
-    if(action==='clear-filters'){state.query='';state.diskFilter='';state.categoryFilter='';state.extFilter='';state.sizeFilter='';state.pageLimit=MAX_PAGE;$('#globalSearch').value='';render();return;}
+    if(action==='clear-filters'){state.query='';state.diskFilter='';state.categoryFilter='';state.extFilter='';state.sizeFilter='';state.genreFilter='';state.yearFilter='';state.qualityFilter='';state.languageFilter='';state.pageLimit=MAX_PAGE;$('#globalSearch').value='';render();return;}
     if(action==='clear-disk'){state.diskFilter='';render();return;}
+    if(action==='import-meta'){$('#metaImportInput').click();return;}
+    if(action==='export-meta'){exportMetadata();return;}
     if(action==='export'){exportCSV(state.page==='search'||state.page==='favorites'?filterFiles():state.files,'vault-catalogo.csv');return;}
     if(action==='export-dupes'){exportCSV(state.duplicateGroups.flat(),'vault-possibili-doppioni.csv');return;}
   }
   function handleChange(e){
-    const key={filterDisk:'diskFilter',filterCategory:'categoryFilter',filterExt:'extFilter',filterSize:'sizeFilter',sortFiles:'sort',driveSort:'driveSort'}[e.target.id];
+    const key={filterDisk:'diskFilter',filterCategory:'categoryFilter',filterExt:'extFilter',filterSize:'sizeFilter',filterGenre:'genreFilter',filterYear:'yearFilter',filterQuality:'qualityFilter',filterLanguage:'languageFilter',sortFiles:'sort',driveSort:'driveSort'}[e.target.id];
     if(!key)return;state[key]=e.target.value;state.pageLimit=MAX_PAGE;render();
   }
   let debounce=null;
@@ -383,6 +543,10 @@
     $('#refreshButton').addEventListener('click',()=>{state.temporaryImports=0;loadAll();});
     $('#importButton').addEventListener('click',()=>$('#importInput').click());
     $('#importInput').addEventListener('change',e=>importJSON(e.target));
+    $('#metaImportInput').addEventListener('change',e=>importMetadata(e.target));
+    $('#metaSave').addEventListener('click',saveMetadata);
+    $('#metaReset').addEventListener('click',resetMetadata);
+    $('#metaCancel').addEventListener('click',()=>$('#metadataDialog').close());
     $('#themeButton').addEventListener('click',()=>setTheme(document.documentElement.classList.contains('light')?'dark':'light'));
     $('#shortcutsButton').addEventListener('click',()=>$('#shortcutsDialog').showModal());
     $('#closeShortcuts').addEventListener('click',()=>$('#shortcutsDialog').close());

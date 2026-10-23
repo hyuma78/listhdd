@@ -13,3 +13,25 @@
 .simple-item-text{flex:1 1 0;min-width:0;max-width:100%;overflow:hidden}
 .simple-item-text strong,.simple-item-text span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .simple-list-item .size{flex:none;margin-left:6px}
+
+/* VAULT 2.1: filtri aggiuntivi e editor metadati, nel design originale */
+.metadata-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:-6px 0 20px;font-size:11px;color:var(--muted)}
+.metadata-toolbar>span:first-child{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.metadata-toolbar .icon{width:15px;height:15px;flex:none;color:var(--accent-light)}
+.metadata-toolbar strong{color:var(--text)}
+.metadata-actions{display:flex;gap:7px;flex-wrap:wrap}
+.metadata-actions .btn{font-size:11px;padding:8px 10px}
+.file-detail-badge,.genre-badge{display:inline-block;padding:2px 6px;border-radius:5px;background:var(--panel-2);border:1px solid var(--line);color:var(--muted);font-size:10px}
+.genre-badge{color:var(--accent-light);border-color:#9a86ff47;background:#7d6af219}
+.meta-dialog{width:min(610px,calc(100vw - 26px));max-width:610px;max-height:87vh;overflow-y:auto}
+.meta-file-name{font-size:12px;font-weight:700;overflow-wrap:anywhere;line-height:1.6;margin:0}
+.meta-file-disk{font-size:11px;color:var(--muted);margin:2px 0 16px}
+.meta-label{display:block;font-size:12px;font-weight:700;margin:18px 0 8px}
+.meta-year{width:155px;max-width:100%;background:var(--panel-2)}
+.meta-genres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.meta-option{display:flex;align-items:center;gap:7px;background:var(--panel-2);border:1px solid var(--line);padding:9px 8px;border-radius:9px;font-size:11px;cursor:pointer;min-width:0}
+.meta-option span{overflow-wrap:anywhere}
+.meta-option input,.meta-copy-option input{accent-color:var(--accent)}
+.meta-copy-option{display:flex;gap:8px;align-items:start;margin:18px 0;color:var(--muted);font-size:11px;line-height:1.6}
+.meta-dialog-actions{display:flex;gap:10px;justify-content:flex-end}
+@media(max-width:520px){.meta-genres{grid-template-columns:repeat(2,minmax(0,1fr))}.metadata-toolbar{align-items:stretch}.metadata-actions{width:100%}.metadata-actions .btn{flex:1}.filter-panel .input-select{min-width:calc(50% - 6px)}}
