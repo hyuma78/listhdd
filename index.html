@@ -1,609 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo Hard Disk</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #eef2f7;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 30px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 80px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        #search-container {
-            margin-bottom: 30px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #searchInput {
-            flex-grow: 1;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        #searchButton,
-        #clearButton {
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-
-        #searchButton {
-            background-color: #3498db;
-        }
-
-        #searchButton:hover {
-            background-color: #2980b9;
-        }
-
-        #clearButton {
-            background-color: #95a5a6;
-        }
-
-        #clearButton:hover {
-            background-color: #7f8c8d;
-        }
-
-        #search-results-count {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #3498db;
-            font-weight: bold;
-        }
-
-        .search-result-item {
-            background: #fff;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.3s;
-        }
-
-        .search-result-item:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-result-name {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .search-result-size {
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        .search-result-path {
-            font-size: 0.9em;
-            color: #7f8c8d;
-            margin-top: 8px;
-            word-break: break-all;
-        }
-
-        .highlight {
-            background-color: #fff59d;
-            padding: 2px 1px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-
-        .hdd-section {
-            margin-bottom: 20px;
-            border-radius: 12px;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .hdd-section:hover {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
-            border-color: #3498db;
-        }
-
-        .hdd-section.expanded {
-            border-color: #3498db;
-        }
-
-        .hdd-title {
-            margin: 0;
-            padding: 0;
-            cursor: pointer;
-            background: linear-gradient(135deg, #667eea 0%, #0011ff 100%);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hdd-title::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: left 0.5s;
-        }
-
-        .hdd-title:hover::before {
-            left: 100%;
-        }
-
-        .hdd-header {
-            padding: 20px 25px;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 20px;
-            align-items: center;
-            color: white;
-        }
-
-        .hdd-icon {
-            font-size: 2.5em;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-            transform: translateY(-8px); /* centratura icona hdd cards */
-        }
-
-        .hdd-info {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .hdd-name {
-            font-size: 1.3em;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        .hdd-stats {
-            display: flex;
-            gap: 15px;
-            font-size: 0.9em;
-            opacity: 0.95;
-        }
-
-        .hdd-stat {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .hdd-expand-icon {
-            font-size: 1.5em;
-            transition: transform 0.3s;
-        }
-
-        .hdd-section.expanded .hdd-expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .hdd-label {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-
-        .hdd-content {
-            padding: 20px 25px;
-            background: #fafbfd;
-        }
-
-        ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        li {
-            margin: 2px 0;
-            list-style: none;
-        }
-
-        .folder {
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .file {
-            color: #555;
-        }
-
-        /* Footer Stats */
-        #footer-stats {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 20px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            font-size: 0.95em;
-            z-index: 1000;
-        }
-
-        .footer-stat {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-stat-icon {
-            font-size: 1.3em;
-        }
-
-        .footer-stat-label {
-            opacity: 0.9;
-        }
-
-        .footer-stat-value {
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Catalogo locale e privato dei tuoi hard disk, film, serie e video.">
+  <title>Vault • Il tuo archivio media</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
 </head>
-
 <body>
-    <div class="container">
-        
-        <h1></h1> 
-
-        <div id="search-container">
-            <input type="text" id="searchInput" placeholder="Cerca sequenza (es: 'la casa' o 'matrix')...">
-            <button id="searchButton">Cerca</button>
-            <button id="clearButton">Pulisci</button>
-        </div>
-        <div id="search-results-count"></div>
-        <div id="results-container"></div>
+<svg xmlns="http://www.w3.org/2000/svg" class="svg-icons" aria-hidden="true">
+  <symbol id="ico-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="ico-drive" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 14h18M7 17h.01M11 17h.01"/></symbol>
+  <symbol id="ico-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="ico-heart" viewBox="0 0 24 24"><path d="M20.8 5.9a5.5 5.5 0 0 0-7.8 0L12 7l-1.1-1.1A5.5 5.5 0 0 0 3.1 13.7L12 22l8.9-8.3a5.5 5.5 0 0 0-.1-7.8Z"/></symbol>
+  <symbol id="ico-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+  <symbol id="ico-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.5 1.5m11.2 11.2 1.5 1.5M2 12h2m16 0h2M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></symbol>
+  <symbol id="ico-moon" viewBox="0 0 24 24"><path d="M21 13a9 9 0 1 1-10-10 7 7 0 0 0 10 10Z"/></symbol>
+  <symbol id="ico-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="ico-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4m-4 6h4m10-6h4m-4 6h4"/></symbol>
+  <symbol id="ico-trending" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8M15 7h6v6"/></symbol>
+  <symbol id="ico-alert" viewBox="0 0 24 24"><path d="M10 3 2 19a2 2 0 0 0 2 3h16a2 2 0 0 0 2-3L14 3a2 2 0 0 0-4 0Z"/><path d="M12 9v5m0 4h.01"/></symbol>
+  <symbol id="ico-layers" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5"/></symbol>
+  <symbol id="ico-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></symbol>
+  <symbol id="ico-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 16v4h16v-4"/></symbol>
+  <symbol id="ico-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L3 9m0-6v6h6M4 13a8 8 0 0 0 14 5l3-3m0 6v-6h-6"/></symbol>
+  <symbol id="ico-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  <symbol id="ico-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="ico-x" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+  <symbol id="ico-movie" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="m3 6 3-4m3 4 3-4m3 4 3-4m3 4 3-4"/><path d="m10 10 5 3-5 3Z"/></symbol>
+  <symbol id="ico-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 11v6m0-10h.01"/></symbol>
+  <symbol id="ico-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+  <symbol id="ico-keyboard" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 15h10"/></symbol>
+</svg>
+<div class="app-shell" id="appShell">
+  <aside class="sidebar" id="sidebar" aria-label="Navigazione principale">
+    <a class="brand" href="#overview" data-nav="overview" aria-label="Vault, panoramica">
+      <span class="brand-mark"><svg class="icon"><use href="#ico-layers"/></svg></span>
+      <span class="brand-type"><strong>VAULT<span class="brand-dot">.</span></strong><small>MEDIA LIBRARY</small></span>
+    </a>
+    <div class="sidebar-caption">WORKSPACE</div>
+    <nav class="side-nav" aria-label="Sezioni">
+      <button type="button" class="nav-link active" data-nav="overview"><svg class="icon"><use href="#ico-grid"/></svg><span>Panoramica</span></button>
+      <button type="button" class="nav-link" data-nav="drives"><svg class="icon"><use href="#ico-drive"/></svg><span>I miei dischi</span><span class="nav-count" id="navDriveCount">—</span></button>
+      <button type="button" class="nav-link" data-nav="search"><svg class="icon"><use href="#ico-search"/></svg><span>Esplora file</span></button>
+      <button type="button" class="nav-link" data-nav="favorites"><svg class="icon"><use href="#ico-heart"/></svg><span>Preferiti</span><span class="nav-count" id="navFavCount">0</span></button>
+      <button type="button" class="nav-link" data-nav="duplicates"><svg class="icon"><use href="#ico-copy"/></svg><span>Doppioni potenziali</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-note"><span class="privacy-dot"></span><span>Archivio locale<br><small>Nessun dato inviato online</small></span></div>
+      <button type="button" class="sidebar-help" id="shortcutsButton"><svg class="icon"><use href="#ico-keyboard"/></svg> Scorciatoie <kbd>?</kbd></button>
     </div>
+  </aside>
 
-    <div id="footer-stats">
-        <div class="footer-stat">
-            <span class="footer-stat-icon">🎞️</span>
-            <span class="footer-stat-label">File video:</span>
-            <span class="footer-stat-value" id="footer-total-files">0</span>
+  <div class="main-area">
+    <header class="topbar">
+      <div class="breadcrumb-top"><span class="crumb-app">Workspace</span><svg class="icon"><use href="#ico-chevron"/></svg><strong id="crumbCurrent">Panoramica</strong></div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="refreshButton" type="button" title="Ricarica i JSON" aria-label="Ricarica i dati"><svg class="icon"><use href="#ico-refresh"/></svg></button>
+        <button class="icon-btn" id="themeButton" type="button" title="Cambia tema" aria-label="Cambia tema"><svg class="icon"><use href="#ico-sun"/></svg></button>
+        <button type="button" class="btn btn-soft header-import" id="importButton"><svg class="icon"><use href="#ico-upload"/></svg><span>Importa JSON</span></button>
+        <input type="file" id="importInput" accept=".json,application/json" multiple hidden>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+          <span class="eyebrow"><span class="eyebrow-indicator"></span> LA TUA VIDEOTECA, TUTTA IN UN POSTO</span>
+          <h1>Il tuo universo media.<br><span>Perfettamente organizzato.</span></h1>
+          <p>Trova qualsiasi video, scopri dove si trova e tieni sotto controllo tutti i tuoi hard disk.</p>
+          <div class="hero-search-wrap">
+            <svg class="icon"><use href="#ico-search"/></svg>
+            <input type="search" id="globalSearch" placeholder="Cerca film, serie, cartelle o nomi file…" autocomplete="off" aria-label="Cerca nel catalogo">
+            <kbd class="search-shortcut">Ctrl K</kbd>
+            <button type="button" id="searchGo" class="search-action" aria-label="Cerca"><svg class="icon"><use href="#ico-arrow"/></svg></button>
+          </div>
+          <div class="hero-tags"><span>Prova:</span><button type="button" data-suggest="One Piece">One Piece</button><button type="button" data-suggest="1080p">1080p</button><button type="button" data-suggest=".mkv">MKV</button></div>
         </div>
-        <div class="footer-stat">
-            <span class="footer-stat-icon">🖴</span>
-            <span class="footer-stat-label">Spazio occupato:</span>
-            <span class="footer-stat-value" id="footer-space-occupied">0 GB</span>
-        </div>
-        <div class="footer-stat">
-            <span class="footer-stat-icon">📊</span>
-            <span class="footer-stat-label">Spazio libero:</span>
-            <span class="footer-stat-value" id="footer-space-free">0 GB</span>
-        </div>
-    </div>
+        <div class="hero-art" aria-hidden="true"><div class="art-ring art-ring-1"></div><div class="art-ring art-ring-2"></div><div class="art-ring art-ring-3"></div><div class="art-disc"><div class="art-disc-inner"><svg class="icon"><use href="#ico-drive"/></svg></div></div><div class="art-spark spark-a"></div><div class="art-spark spark-b"></div><div class="art-spark spark-c"></div></div>
+      </section>
 
-    <script>
-        
-        const HDD_DIMENSIONS = {
-            "Arietty": "2 TB", 
-            "SOA": "2 TB ", 
-            "Hikvision2TB": "2 TB", 
-            "TR3NTON": "1 TB",
-            "Seagate1TB": "1 TB", 
-            "Rufy": "500 GB", 
-            "Nami": "500 GB", 
-            "Zoro": "500 GB",
-            "Usopp": "500 GB", 
-            "Franky": "500 GB",
-            "Chopper": "500 GB",
-            "NASWare": "2 TB", 
-            "Seagate0FM": "750 GB",
-            "Seagate878": "500 GB", 
-            "SeagateGMF": "500 GB",
-            "SeagateR9H": "320 GB",
-            "WD207": "500 GB",
-            "WD659": "500 GB",
-            "Maxtor15G": "200 GB", 
-            "WD_Sarah_2TB": "2 TB",
-        };
+      <div class="status-message" id="statusMessage" role="status" aria-live="polite"><span class="spinner"></span> Caricamento cataloghi in corso…</div>
+      <div class="load-errors" id="loadErrors" hidden></div>
+      <div id="pageContent"></div>
+    </main>
+    <footer class="site-footer"><span>VAULT · Il tuo archivio, sotto controllo.</span><span id="footerMeta">Dati da scansioni locali · Nessuna sincronizzazione cloud</span></footer>
+  </div>
+</div>
 
-        const HDD_JSON_MAP = {
-            "Arietty": "data/Arietty.json", 
-            "SOA": "data/SOA.json", 
-            "Hikvision2TB": "data/Hikvision2TB.json",
-            "TR3NTON": "data/TR3NTON.json", 
-            "Seagate1TB": "data/Seagate1TB.json", 
-            "Rufy": "data/Rufy.json",
-            "Nami": "data/Nami.json", 
-            "Zoro": "data/Zoro.json", 
-            "Usopp": "data/usopp.json",
-            "Franky": "data/franky.json",
-            "Chopper": "data/Chopper.json",
-            "NASWare": "data/NASWare.json", 
-            "Seagate0FM": "data/Seagate0FM.json",
-            "Seagate878": "data/Seagate878.json", 
-            "SeagateGMF": "data/SeagateGMF.json", 
-            "SeagateR9H": "data/SeagateR9H.json",
-            "WD207": "data/WD207.json",
-            "WD659": "data/WD659.json",
-            "Maxtor15G": "data/Maxtor15G.json", 
-            "WD_Sarah_2TB": "data/WD_Sarah_2TB.json",
-        };
-
-        let database = {};
-
-        document.addEventListener("DOMContentLoaded", async () => {
-            await loadDatabase();
-            updateFooterStats();
-            renderResults();
-
-            document.getElementById("searchButton").addEventListener("click", () => {
-                searchDatabase(document.getElementById("searchInput").value);
-            });
-
-            document.getElementById("clearButton").addEventListener("click", () => {
-                document.getElementById("searchInput").value = "";
-                document.getElementById("search-results-count").innerHTML = "";
-                renderResults();
-            });
-
-            document.getElementById("searchInput").addEventListener("keypress", (e) => {
-                if (e.key === "Enter") searchDatabase(document.getElementById("searchInput").value);
-            });
-        });
-
-        async function loadDatabase() {
-            const fetchPromises = Object.entries(HDD_JSON_MAP).map(([hddName, path]) =>
-                fetch(path)
-                    .then(r => r.json())
-                    .then(data => {
-                        database[hddName] = {
-                            files: data.catalogo_video || [],
-                            diskInfo: data.informazioni_disco || null
-                        };
-                    })
-                    .catch(() => database[hddName] = { files: [], diskInfo: null })
-            );
-            await Promise.allSettled(fetchPromises);
-        }
-
-        function updateFooterStats() {
-            let totalVideoFiles = 0, totalSpaceOccupied = 0, totalSpaceFree = 0;
-
-            for (const hddName in database) {
-                const hddData = database[hddName];
-                if (hddData.files) {
-                    totalVideoFiles += hddData.files.length;
-                }
-                if (hddData.diskInfo) {
-                    totalSpaceOccupied += parseFloat(hddData.diskInfo.totale.replace(',', '.')) || 0;
-                    totalSpaceFree += parseFloat(hddData.diskInfo.libero.replace(',', '.')) || 0;
-                }
-            }
-
-            document.getElementById("footer-total-files").textContent = totalVideoFiles;
-            document.getElementById("footer-space-occupied").textContent = `${totalSpaceOccupied.toFixed(2)} GB`;
-            document.getElementById("footer-space-free").textContent = `${totalSpaceFree.toFixed(2)} GB`;
-        }
-
-        function createFuzzyRegex(query) {
-            let escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            let words = escaped.split(/\s+/);
-            let pattern = words.map((word, index) => {
-                return `\\b${word}`;
-            }).join('[\\s\\._\\-]+');
-            return new RegExp(`(${pattern})`, 'gi');
-        }
-
-        function highlightText(text, query) {
-            if (!query.trim() || !text) return text;
-            const regex = createFuzzyRegex(query);
-            return text.replace(regex, '<span class="highlight">$1</span>');
-        }
-
-        function searchDatabase(query) {
-            const container = document.getElementById("results-container");
-            const countLabel = document.getElementById("search-results-count");
-            container.innerHTML = "";
-
-            if (!query.trim()) {
-                renderResults();
-                countLabel.innerHTML = "";
-                return;
-            }
-
-            const results = [];
-            const regex = createFuzzyRegex(query);
-
-            for (const hddName in database) {
-                if (database[hddName].files) {
-                    database[hddName].files.forEach(file => {
-                        if (regex.test(file.nome) || regex.test(file.percorso_completo)) {
-                            results.push({ hdd: hddName, ...file });
-                        }
-                        regex.lastIndex = 0;
-                    });
-                }
-            }
-
-            countLabel.innerHTML = results.length ? `Trovati ${results.length} risultati per "${query}"` : `Nessun risultato per "${query}"`;
-
-            results.forEach(r => {
-                const div = document.createElement("div");
-                div.className = "search-result-item";
-                div.innerHTML = `
-                    <div class="search-result-name">${highlightText(r.nome, query)}</div>
-                    <div><span class="hdd-label">HDD: ${r.hdd}</span> • <span class="search-result-size">${r.dimensione}</span></div>
-                    <div class="search-result-path">${highlightText(r.percorso_completo, query)}</div>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        function buildFileTree(files) {
-            const root = { _files: [] };
-            files.forEach(file => {
-                let parts = file.percorso_completo.split("\\");
-                if (parts[0].match(/^[A-Z]:$/)) parts.shift();
-
-                let current = root;
-                parts.forEach((part, index) => {
-                    if (index === parts.length - 1) {
-                        if (!current._files) current._files = [];
-                        current._files.push({ name: part, size: file.dimensione });
-                    } else {
-                        if (!current[part]) current[part] = { _files: [] };
-                        current = current[part];
-                    }
-                });
-            });
-            return root;
-        }
-
-        function renderTree(node) {
-            const ul = document.createElement("ul");
-            for (const key in node) {
-                if (key !== "_files") {
-                    const li = document.createElement("li");
-                    li.innerHTML = `<span class="folder">📂 <strong>${key}</strong></span>`;
-                    const childUl = renderTree(node[key]);
-                    childUl.style.display = "none";
-                    li.appendChild(childUl);
-                    li.addEventListener("click", (e) => {
-                        e.stopPropagation();
-                        childUl.style.display = childUl.style.display === "none" ? "block" : "none";
-                    });
-                    ul.appendChild(li);
-                }
-            }
-            if (node._files) {
-                node._files.forEach(f => {
-                    const li = document.createElement("li");
-                    li.className = "file";
-                    li.textContent = `📄 ${f.name} (${f.size})`;
-                    li.addEventListener("click", (e) => e.stopPropagation());
-                    ul.appendChild(li);
-                });
-            }
-            return ul;
-        }
-
-        function renderResults() {
-            const container = document.getElementById("results-container");
-            container.innerHTML = "";
-            for (const hddName in database) {
-                const data = database[hddName];
-                if (!data.files || (!data.files.length && !data.diskInfo)) continue;
-
-                const section = document.createElement("div");
-                section.className = "hdd-section";
-
-                const title = document.createElement("div");
-                title.className = "hdd-title";
-                
-                const header = document.createElement("div");
-                header.className = "hdd-header";
-                
-                // Icona disco
-                const icon = document.createElement("div");
-                icon.className = "hdd-icon";
-                icon.textContent = "🖴";
-                
-                // Info disco
-                const info = document.createElement("div");
-                info.className = "hdd-info";
-                
-                const nameDiv = document.createElement("div");
-                nameDiv.className = "hdd-name";
-                nameDiv.textContent = hddName;
-                
-                const statsDiv = document.createElement("div");
-                statsDiv.className = "hdd-stats";
-                
-                if (data.diskInfo) {
-                    statsDiv.innerHTML = `
-                        <div class="hdd-stat">
-                            <span>📊</span>
-                            <span>Totale: ${data.diskInfo.totale}</span>
-                        </div>
-                        <div class="hdd-stat">
-                            <span>✅</span>
-                            <span>Libero: ${data.diskInfo.libero}</span>
-                        </div>
-                        <div class="hdd-stat">
-                            <span>🎞️</span>
-                            <span>${data.files.length} file</span>
-                        </div>
-                    `;
-                }
-                
-                info.appendChild(nameDiv);
-                info.appendChild(statsDiv);
-                
-                // Icona espandi
-                const expandIcon = document.createElement("div");
-                expandIcon.className = "hdd-expand-icon";
-                expandIcon.textContent = "▼";
-                
-                header.appendChild(icon);
-                header.appendChild(info);
-                header.appendChild(expandIcon);
-                title.appendChild(header);
-
-                const contentWrapper = document.createElement("div");
-                contentWrapper.className = "hdd-content";
-                contentWrapper.style.display = "none";
-                
-                const tree = renderTree(buildFileTree(data.files));
-                contentWrapper.appendChild(tree);
-
-                title.addEventListener("click", () => {
-                    const isExpanded = contentWrapper.style.display === "block";
-                    contentWrapper.style.display = isExpanded ? "none" : "block";
-                    section.classList.toggle("expanded", !isExpanded);
-                });
-
-                section.appendChild(title);
-                section.appendChild(contentWrapper);
-                container.appendChild(section);
-            }
-        }
-    </script>
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
+<dialog id="shortcutsDialog" class="modal">
+  <div class="modal-head"><div><span class="mini-label">GUIDA RAPIDA</span><h2>Scorciatoie</h2></div><button type="button" class="icon-btn" id="closeShortcuts" aria-label="Chiudi"><svg class="icon"><use href="#ico-x"/></svg></button></div>
+  <div class="shortcut-row"><span>Cerca ovunque</span><div><kbd>Ctrl</kbd> + <kbd>K</kbd> oppure <kbd>/</kbd></div></div>
+  <div class="shortcut-row"><span>Chiudi / annulla ricerca</span><div><kbd>Esc</kbd></div></div>
+  <div class="shortcut-row"><span>Mostra questa finestra</span><div><kbd>?</kbd></div></div>
+  <p class="muted-modal">I preferiti e il tema sono memorizzati solo nel tuo browser. L'importazione dei JSON è temporanea: per aggiornamenti permanenti usa lo script incluso.</p>
+</dialog>
 </body>
-
 </html>
