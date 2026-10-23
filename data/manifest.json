@@ -1,0 +1,85 @@
+{
+  "version": 2,
+  "dischi": [
+    {
+      "nome": "Arietty",
+      "file": "Arietty.json"
+    },
+    {
+      "nome": "Chopper",
+      "file": "Chopper.json"
+    },
+    {
+      "nome": "Franky",
+      "file": "franky.json"
+    },
+    {
+      "nome": "Hikvision2TB",
+      "file": "Hikvision2TB.json"
+    },
+    {
+      "nome": "Maxtor15G",
+      "file": "Maxtor15G.json"
+    },
+    {
+      "nome": "Nami",
+      "file": "Nami.json"
+    },
+    {
+      "nome": "NASWare",
+      "file": "NASWare.json"
+    },
+    {
+      "nome": "Rufy",
+      "file": "Rufy.json"
+    },
+    {
+      "nome": "Seagate0FM",
+      "file": "Seagate0FM.json"
+    },
+    {
+      "nome": "Seagate1TB",
+      "file": "Seagate1TB.json"
+    },
+    {
+      "nome": "Seagate878",
+      "file": "Seagate878.json"
+    },
+    {
+      "nome": "SeagateGMF",
+      "file": "SeagateGMF.json"
+    },
+    {
+      "nome": "SeagateR9H",
+      "file": "SeagateR9H.json"
+    },
+    {
+      "nome": "SOA",
+      "file": "SOA.json"
+    },
+    {
+      "nome": "TR3NTON",
+      "file": "TR3NTON.json"
+    },
+    {
+      "nome": "Usopp",
+      "file": "usopp.json"
+    },
+    {
+      "nome": "WD207",
+      "file": "WD207.json"
+    },
+    {
+      "nome": "WD659",
+      "file": "WD659.json"
+    },
+    {
+      "nome": "WD_Sarah_2TB",
+      "file": "WD_Sarah_2TB.json"
+    },
+    {
+      "nome": "Zoro",
+      "file": "Zoro.json"
+    }
+  ]
+}
