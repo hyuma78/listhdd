@@ -3,28 +3,66 @@
   'use strict';
   const norm = s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim().replace(/\s+/g,' ');
   const escapeHTML = s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const EP = /\b(?:s\s*\d{1,3}[ ._-]*e\s*\d{1,3}|\d{1,2}x\d{2,3}|(?:episodio|episode|ep)[ ._-]*\d{1,4}|(?:stagione|season)[ ._-]*\d{1,3}|stage[ ._-]*\d{1,3}|(?:puntata|part)[ ._-]*\d{1,3})\b/i;
-  const TECH = /\b(?:2160p|1080p|720p|576p|480p|4k|uhd|blu[ ._-]?ray|bdrip|bdmux|brrip|dvdrip|webrip|web[ ._-]?dl|webmux|remux|x264|x265|h[ ._-]?264|hevc|aac|ac3|dts|hdtv|hdr10|dovi|dual[ ._-]?audio|proper|repack)\b/i;
-  const EXTRAS = /^(?:extras?|extra disc|bonus|special features?|speciali|featurettes?|deleted scenes?|interviews?|making[ ._-]?of|behind the scenes|trailers?|teasers?|sample|campioni|menu)$/i;
-  const GENERIC = /^(?:film|movie|movies|video|anime|cartoni|animazione|serie|serie tv|series|stagione ?\d+|season ?\d+|s\d+|disco ?\d+|disc ?\d+|cd ?\d+|episodi|episodes|completa|complete)$/i;
+  const EP = /(?:^|[\s._-])(?:s\d{1,3}[\s._-]*e\d{1,3}|\d{1,2}x\d{1,3}|(?:episodio|episode|ep|puntata|stage)[\s._-]*\d{1,4}|\d{1,2}[._-]\d{2}(?=[\s._-]))/i;
+  const NUMBERED_EP = /(?:^|[\s._-])(?:\d{1,3})(?=[\s._-]+[A-Za-zÀ-ÿ]{2,})/;
+  const TECH = /(?:^|[\s._-])(?:2160p|1080p|720p|576p|480p|4k|uhd|blu[ ._-]?ray|bdrip|bdmux|brrip|dvdrip|dvdmux|webrip|web[ ._-]?dl|webmux|remux|x264|x265|h[ ._-]?264|hevc|aac|ac3|eac3|dts|hdtv|hdr10|dovi|dual[ ._-]?audio|proper|repack|multi|subs?|ita(?:lian)?|eng(?:lish)?|jap(?:anese)?)(?=$|[\s._-])/i;
+  const EXTRAS = /^(?:extras?(?:[ ._-]|$)|bonus(?:[ ._-]|$)|special features?|speciali|featurettes?|deleted scenes?|interviews?|making[ ._-]?of|behind the scenes|trailers?|teasers?|sample|campioni|menu)/i;
+  const GENERIC = /^(?:film|movie|movies|video|anime|cartoni|cartoni animati|animazione|serie|serie tv|series|stagione ?\d+|season ?\d+|s\d+|disco ?\d+|disc ?\d+|cd ?\d+|episodi|episodes|completa|complete)$/i;
   const YEAR = /(?:^|[^0-9])(19\d{2}|20\d{2})(?=$|[^0-9])/;
-  const getYear = s=>{const m=String(s).match(YEAR);const y=m?Number(m[1]):null;return y&&y<=new Date().getFullYear()+1?y:null;};
-  function clean(s){s=String(s||'').replace(/\.[A-Za-z0-9]{2,5}$/,'').replace(/[._]+/g,' ');s=s.replace(/^\s*\[[^\]]{1,25}\]\s*/,'');const yr=s.match(YEAR);if(yr)s=s.slice(0,yr.index||0);const tech=s.match(TECH);if(tech)s=s.slice(0,tech.index||0);return s.replace(/\[[^\]]*\]/g,' ').replace(/\([^)]*(?:italiano|eng|jap|dvdrip|bluray)[^)]*\)/gi,' ').replace(/\s+(?:s\d{1,3}|r\d{1,2})$/i,'').replace(/\s+\((?:us|uk|usa)\)$/i,'').replace(/\s+/g,' ').replace(/^[ .\-_()[\]]+|[ .\-_()[\]]+$/g,'');}
-  const validTitle=(s,year)=>{const n=norm(s);return n.length>=(year?2:4) && n.split(' ').length<=14 && !/^\d+$/.test(n) && !/^(?:extra|sample|film|video|episodio|episode|trailer|bdrip|bdmux|dvdrip|1080p|720p|stagione|season)$/.test(n);};
+  function getYear(s){
+    // I tag tra parentesi quadre, ad es. [genio1985], sono release group, non anni.
+    let raw=String(s||'').replace(/\[[^\]]*\]/g,' ');
+    const tech=raw.match(TECH);if(tech)raw=raw.slice(0,tech.index);
+    const m=raw.match(YEAR),y=m?Number(m[1]):null;
+    return y&&y>=1900&&y<=new Date().getFullYear()+1?y:null;
+  }
+  function clean(s){
+    s=String(s||'').replace(/\.(?:mkv|mp4|avi|m4v|mov|wmv|mpg|mpeg|ts|m2ts|webm|flv|vob|iso)$/i,'').replace(/[._]+/g,' ');
+    s=s.replace(/^\s*\[[^\]]+\]\s*/, '');
+    // Prima elimina i tag tecnici, poi tronca all'anno (non prima dei titoli).
+    const tech=s.match(TECH);if(tech)s=s.slice(0,tech.index);
+    const y=s.match(YEAR);if(y)s=s.slice(0,y.index);
+    s=s.replace(/\[[^\]]*\]/g,' ').replace(/\((?:ita|eng|jap|us|uk|usa|sub[^)]*)\)/gi,' ')
+      .replace(/\s+(?:s\d{1,3}|r\d{1,2})$/i,' ').replace(/\s+/g,' ')
+      .replace(/^[ .\-_()[\]]+|[ .\-_()[\]]+$/g,'');
+    return s;
+  }
+  const validTitle=(s,year)=>{const n=norm(s);return n.length>=(year?2:4)&&n.split(' ').length<=14&&!/^\d+$/.test(n)&&!/^(?:extra|sample|film|video|episodio|episode|trailer|bdrip|bdmux|dvdrip|1080p|720p|stagione|season|ita|eng|jap)$/.test(n);};
   function candidate(file){
-    const paths=String(file.path||'').split(/[\\/]/).filter(Boolean),dirs=paths.slice(1,-1);
+    const path=String(file.path||''),parts=path.split(/[\\/]/).filter(Boolean),dirs=parts.slice(1,-1);
     if(dirs.some(d=>EXTRAS.test(d))||/\b(?:sample|trailer|featurette|making[ ._-]?of|deleted[ ._-]?scene)\b/i.test(file.name))return null;
-    const folder=dirs.join(' '),tvContext=/(?:serie[ ._-]*tv|tv[ ._-]*series|telefilm|season|stagione|anime|cartoni|animazione)/i.test(folder),movieContext=/(?:film|movies?|cinema|horror|thriller|fantascienza|fantasy|sci[ ._-]*fi|commedia)/i.test(folder);
-    const stem=String(file.name||'').replace(/\.[^.]+$/,'');
-    const tv=EP.test(file.name)||EP.test(file.path)||(tvContext&&!movieContext&&!getYear(stem));
+    const folder=dirs.join(' '),stem=String(file.name||'').replace(/\.[^.]+$/,'');
+    const tvContext=/(?:serie[ ._-]*tv|tv[ ._-]*series|telefilm|season|stagione)/i.test(folder);
+    const animContext=/(?:anime|cartoni animati)/i.test(folder);
+    const movieContext=/(?:film|movies?|cinema|horror|thriller|fantascienza|fantasy|sci[ ._-]*fi|commedia)/i.test(folder);
+    const rawBeforeTech=stem.split(TECH)[0].replace(/\[[^\]]*\]/g,' ');
+    const standardEpisode=EP.test(stem)||EP.test(folder);
+    const numericEpisode=standardEpisode?null:NUMBERED_EP.exec(rawBeforeTech);
+    const numericPrefix=numericEpisode?clean(rawBeforeTech.slice(0,numericEpisode.index)):'';
+    const episode=standardEpisode||((tvContext||animContext)&&!!numericEpisode&&((numericPrefix.length>=4&&(!/\b(?:movie|film|special)\b/i.test(numericPrefix)))||dirs.length>1&&!numericPrefix));
+    const isMovieSubfolder=dirs.some(d=>/^(?:film(?: vari)?|movies?|special films?)$/i.test(d));
+    const tv=(episode&&!isMovieSubfolder)||(!isMovieSubfolder&&tvContext);
     let title='',year=null,kind=tv?'tv':'movie';
-    if(tv){const before=clean(stem.split(EP)[0]);if(validTitle(before,false)&&!GENERIC.test(before))title=before;
-      else for(const d of [...dirs].reverse()){if(GENERIC.test(d.trim())||EP.test(d)||EXTRAS.test(d))continue;const tmp=clean(d);if(validTitle(tmp,false)){title=tmp;break;}}
-      year=getYear(stem)||null;
-      // Episode years are usually episode release dates, not the series' initial year.
-      if(EP.test(stem))year=null;
-    }else{title=clean(stem);year=getYear(stem);if(!year&&dirs.length)year=getYear(dirs.at(-1));if(!validTitle(title,!!year)&&year)title=clean(dirs.at(-1));if(!year&&!movieContext)return null;}
-    if(!validTitle(title,!!year)||dirs.length>9)return null;
+    if(tv){
+      // Preferiamo il nome comune della serie, non il titolo di una singola puntata.
+      const before=stem.split(EP)[0];
+      let prefix=clean(before);
+      if(numericEpisode && numericPrefix.length>=4)prefix=numericPrefix;
+      if(validTitle(prefix,false)&&!GENERIC.test(prefix))title=prefix;
+      else for(const d of [...dirs].reverse()){
+        if(GENERIC.test(d.trim())||EP.test(d)||EXTRAS.test(d))continue;
+        const tmp=clean(d);
+        if(validTitle(tmp,false)){title=tmp;break;}
+      }
+      // Per i seriali non dedurre l'anno dal release group o dall'episodio.
+      year=null;
+    }else{
+      title=clean(stem);year=getYear(stem);
+      if(!year&&dirs.length)year=getYear(dirs.at(-1));
+      if(!validTitle(title,!!year)&&year)title=clean(dirs.at(-1));
+      if(!year&&!movieContext&&!animContext)return null;
+    }
+    if(!validTitle(title,!!year)||GENERIC.test(title)||dirs.length>9)return null;
     return {key:`${kind}|${norm(title)}|${year||'?'}`,kind,title,year};
   }
   // Una catalogazione globale, indipendente da genere e HDD selezionato.
