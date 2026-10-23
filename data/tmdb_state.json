@@ -1,4 +1,568 @@
 {
-  "version": 1,
-  "queries": {}
+  "queries": {
+    "20000 leghe sotto i mari leagues under the sea|1954": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "4 mosche di velluto grigio|1971": {
+      "checked_at": "2026-10-23",
+      "id": 30689,
+      "status": "ok"
+    },
+    "7 chili in 7 giorni|1986": {
+      "checked_at": "2026-10-23",
+      "id": 43211,
+      "status": "ok"
+    },
+    "7 hyden park la casa maledetta|1985": {
+      "checked_at": "2026-10-23",
+      "id": 85005,
+      "status": "ok"
+    },
+    "a 30 milioni di km dalla terra 20 million miles to earth|1957": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "a better tomorrow|1986": {
+      "checked_at": "2026-10-23",
+      "id": 11471,
+      "status": "ok"
+    },
+    "a cena col vampiro lamberto bava|1988": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "a cena col vampiro|1989": {
+      "checked_at": "2026-10-23",
+      "id": 25854,
+      "status": "ok"
+    },
+    "a ciascuno il suo|1967": {
+      "checked_at": "2026-10-23",
+      "id": 80441,
+      "status": "ok"
+    },
+    "a qualsiasi prezzo|1968": {
+      "checked_at": "2026-10-23",
+      "id": 260896,
+      "status": "ok"
+    },
+    "a serbian film|2010": {
+      "checked_at": "2026-10-23",
+      "id": 73861,
+      "status": "ok"
+    },
+    "a tutte le auto della polizia|1975": {
+      "checked_at": "2026-10-23",
+      "id": 104264,
+      "status": "ok"
+    },
+    "abbronzatissimi 2 un anno dopo|1993": {
+      "checked_at": "2026-10-23",
+      "id": 121568,
+      "status": "ok"
+    },
+    "abbronzatissimi|1991": {
+      "checked_at": "2026-10-23",
+      "id": 57600,
+      "status": "ok"
+    },
+    "abraxas riti segreti dall oltretomba|2001": {
+      "checked_at": "2026-10-23",
+      "id": 331647,
+      "status": "ok"
+    },
+    "acapulco prima spiaggia a sinistra|1983": {
+      "checked_at": "2026-10-23",
+      "id": 82341,
+      "status": "ok"
+    },
+    "acqua e sapone|1983": {
+      "checked_at": "2026-10-23",
+      "id": 37777,
+      "status": "ok"
+    },
+    "aenigma|1987": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "ai confini della realta fukuda|1973": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "al bar dello sport l banfi|1983": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "alien 2 sulla terra|1980": {
+      "checked_at": "2026-10-23",
+      "id": 42872,
+      "status": "ok"
+    },
+    "alien vs predator requiem|2007": {
+      "checked_at": "2026-10-23",
+      "id": 440,
+      "status": "ok"
+    },
+    "all monsters attack|1969": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "allarme dallo spazio|1956": {
+      "checked_at": "2026-10-23",
+      "id": 70872,
+      "status": "ok"
+    },
+    "american history x|1998": {
+      "checked_at": "2026-10-23",
+      "id": 73,
+      "status": "ok"
+    },
+    "anabolyzer|1999": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "animali fantastici e dove trovarli|2016": {
+      "checked_at": "2026-10-23",
+      "id": 259316,
+      "status": "ok"
+    },
+    "animali fantastici i crimini di grindelwald|2018": {
+      "checked_at": "2026-10-23",
+      "id": 338952,
+      "status": "ok"
+    },
+    "animali fantastici i segreti di silente|2022": {
+      "checked_at": "2026-10-23",
+      "id": 338953,
+      "status": "ok"
+    },
+    "annabella viaggio ad oltranza|2026": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "ant man and the wasp quantumania|2023": {
+      "checked_at": "2026-10-23",
+      "id": 640146,
+      "status": "ok"
+    },
+    "ant man and the wasp|2018": {
+      "checked_at": "2026-10-23",
+      "id": 363088,
+      "status": "ok"
+    },
+    "ant man|2015": {
+      "checked_at": "2026-10-23",
+      "id": 102899,
+      "status": "ok"
+    },
+    "apocalypse now|1979": {
+      "checked_at": "2026-10-23",
+      "id": 28,
+      "status": "ok"
+    },
+    "assassinio al cimitero etrusco the scorpion with two tails|1982": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "assassinio sul tevere|1979": {
+      "checked_at": "2026-10-23",
+      "id": 62715,
+      "status": "ok"
+    },
+    "atom il mostro della galassia yog the space amoeba|1970": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "attacco alla base spaziale u s gog|1954": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "attack of the puppet people|1958": {
+      "checked_at": "2026-10-23",
+      "id": 44585,
+      "status": "ok"
+    },
+    "avengers age of ultron|2015": {
+      "checked_at": "2026-10-23",
+      "id": 99861,
+      "status": "ok"
+    },
+    "avengers endgame|2019": {
+      "checked_at": "2026-10-23",
+      "id": 299534,
+      "status": "ok"
+    },
+    "avengers infinity war|2018": {
+      "checked_at": "2026-10-23",
+      "id": 299536,
+      "status": "ok"
+    },
+    "bad pinocchio|1996": {
+      "checked_at": "2026-10-23",
+      "id": 30926,
+      "status": "ok"
+    },
+    "balle spaziali|1987": {
+      "checked_at": "2026-10-23",
+      "id": 957,
+      "status": "ok"
+    },
+    "bambi la vendetta|2025": {
+      "checked_at": "2026-10-23",
+      "id": 1049942,
+      "status": "ok"
+    },
+    "banditi a milano|1968": {
+      "checked_at": "2026-10-23",
+      "id": 74657,
+      "status": "ok"
+    },
+    "base luna chiama terra first men in the moon|1964": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "bella in rosa|1986": {
+      "checked_at": "2026-10-23",
+      "id": 11522,
+      "status": "ok"
+    },
+    "bigfoot e i suoi amici|1987": {
+      "checked_at": "2026-10-23",
+      "id": 8989,
+      "status": "ok"
+    },
+    "bingo bongo|1982": {
+      "checked_at": "2026-10-23",
+      "id": 62029,
+      "status": "ok"
+    },
+    "black panther wakanda forever|2022": {
+      "checked_at": "2026-10-23",
+      "id": 505642,
+      "status": "ok"
+    },
+    "black panther|2018": {
+      "checked_at": "2026-10-23",
+      "id": 284054,
+      "status": "ok"
+    },
+    "black widow|2021": {
+      "checked_at": "2026-10-23",
+      "id": 497698,
+      "status": "ok"
+    },
+    "blade 2|2002": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "blade 3 trinity|2004": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "blade|1998": {
+      "checked_at": "2026-10-23",
+      "id": 36647,
+      "status": "ok"
+    },
+    "blood on melies moon|2016": {
+      "checked_at": "2026-10-23",
+      "id": 335346,
+      "status": "ok"
+    },
+    "blu 38|2021": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "bmx bandits la banda della bmx|1983": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "bomber|1982": {
+      "checked_at": "2026-10-23",
+      "id": 11614,
+      "status": "ok"
+    },
+    "borotalco carlo verdone|1982": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "brainscan|1994": {
+      "checked_at": "2026-10-23",
+      "id": 14237,
+      "status": "ok"
+    },
+    "breakfast club|1985": {
+      "checked_at": "2026-10-23",
+      "id": 2108,
+      "status": "ok"
+    },
+    "brivido|1986": {
+      "checked_at": "2026-10-23",
+      "id": 9980,
+      "status": "ok"
+    },
+    "bud spencer terence hill|1968": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1970": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1971": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1972": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1974": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1977": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1979": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1981": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1983": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1984": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer terence hill|1985": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer|1973": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "bud spencer|1978": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "bud spencer|1981": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "buio omega|1979": {
+      "checked_at": "2026-10-23",
+      "id": 5425,
+      "status": "ok"
+    },
+    "cabal director cut|1990": {
+      "checked_at": "2026-10-23",
+      "status": "non_trovato"
+    },
+    "cane e gatto|1983": {
+      "checked_at": "2026-10-23",
+      "id": 11613,
+      "status": "ok"
+    },
+    "cannibal holocaust|1980": {
+      "checked_at": "2026-10-23",
+      "id": 8689,
+      "status": "ok"
+    },
+    "captain america brave new world|2025": {
+      "checked_at": "2026-10-23",
+      "id": 822119,
+      "status": "ok"
+    },
+    "captain america civil war|2016": {
+      "checked_at": "2026-10-23",
+      "id": 271110,
+      "status": "ok"
+    },
+    "captain america il primo vendicatore|2011": {
+      "checked_at": "2026-10-23",
+      "id": 1771,
+      "status": "ok"
+    },
+    "captain america the winter soldier|2014": {
+      "checked_at": "2026-10-23",
+      "id": 100402,
+      "status": "ok"
+    },
+    "captain marvel|2019": {
+      "checked_at": "2026-10-23",
+      "id": 299537,
+      "status": "ok"
+    },
+    "caramelle da uno sconosciuto|1987": {
+      "checked_at": "2026-10-23",
+      "id": 57115,
+      "status": "ok"
+    },
+    "chewingum|1984": {
+      "checked_at": "2026-10-23",
+      "id": 103343,
+      "status": "ok"
+    },
+    "chi e sepolto in quella casa|1985": {
+      "checked_at": "2026-10-23",
+      "id": 11415,
+      "status": "ok"
+    },
+    "cicciabomba|1982": {
+      "checked_at": "2026-10-23",
+      "id": 312092,
+      "status": "ok"
+    },
+    "cimitero vivente|1989": {
+      "checked_at": "2026-10-23",
+      "id": 8913,
+      "status": "ok"
+    },
+    "citta violenta|1970": {
+      "checked_at": "2026-10-23",
+      "id": 31672,
+      "status": "ok"
+    },
+    "city of the living dead|1980": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "city on fire|1987": {
+      "checked_at": "2026-10-23",
+      "id": 42120,
+      "status": "ok"
+    },
+    "cliffhanger l ultima sfida|1993": {
+      "checked_at": "2026-10-23",
+      "id": 9350,
+      "status": "ok"
+    },
+    "codice magnum|1986": {
+      "checked_at": "2026-10-23",
+      "id": 2099,
+      "status": "ok"
+    },
+    "colossus the forbin project|1970": {
+      "checked_at": "2026-10-23",
+      "id": 14801,
+      "status": "ok"
+    },
+    "compagni di scuola|1988": {
+      "checked_at": "2026-10-23",
+      "id": 56825,
+      "status": "ok"
+    },
+    "contamination|1980": {
+      "checked_at": "2026-10-23",
+      "id": 39916,
+      "status": "ok"
+    },
+    "corto circuito 2|1988": {
+      "checked_at": "2026-10-23",
+      "id": 11966,
+      "status": "ok"
+    },
+    "corto circuito|1986": {
+      "checked_at": "2026-10-23",
+      "id": 2605,
+      "status": "ok"
+    },
+    "creepshow 2|1987": {
+      "checked_at": "2026-10-23",
+      "id": 16288,
+      "status": "ok"
+    },
+    "creepshow 3|2006": {
+      "checked_at": "2026-10-23",
+      "id": 16304,
+      "status": "ok"
+    },
+    "creepshow|1982": {
+      "checked_at": "2026-10-23",
+      "id": 16281,
+      "status": "ok"
+    },
+    "crystal lake memories the complete history of friday the 13th|2013": {
+      "checked_at": "2026-10-23",
+      "id": 222724,
+      "status": "ok"
+    },
+    "cul de sac|1966": {
+      "checked_at": "2026-10-23",
+      "id": 4772,
+      "status": "ok"
+    },
+    "culo e camicia|1981": {
+      "checked_at": "2026-10-23",
+      "id": 42540,
+      "status": "ok"
+    },
+    "cyborg anno 2087 meta uomo meta macchina|1966": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "cymbaline|2007": {
+      "checked_at": "2026-10-23",
+      "id": 845244,
+      "status": "ok"
+    },
+    "d a r y l|1985": {
+      "checked_at": "2026-10-23",
+      "id": 16248,
+      "status": "ok"
+    },
+    "danza macabra|1964": {
+      "checked_at": "2026-10-23",
+      "id": 28532,
+      "status": "ok"
+    },
+    "il cittadino si ribella|1974": {
+      "checked_at": "2026-10-23",
+      "id": 90092,
+      "status": "ok"
+    },
+    "il mostro dei mari it came from beneath the sea|1955": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    },
+    "la casa dell esorcismo|1975": {
+      "checked_at": "2026-10-23",
+      "id": 262871,
+      "status": "ok"
+    },
+    "la maschera del demonio|1960": {
+      "checked_at": "2026-10-23",
+      "id": 27632,
+      "status": "ok"
+    },
+    "la morte negli occhi del gatto|1973": {
+      "checked_at": "2026-10-23",
+      "id": 98027,
+      "status": "ok"
+    },
+    "puro cashmere|1986": {
+      "checked_at": "2026-10-23",
+      "id": 391114,
+      "status": "ok"
+    },
+    "sbatti il mostro in prima pagina|1972": {
+      "checked_at": "2026-10-23",
+      "id": 68053,
+      "status": "ok"
+    },
+    "tobor il re dei robot tobor the great|1954": {
+      "checked_at": "2026-10-23",
+      "status": "ambiguo"
+    }
+  },
+  "version": 1
 }
