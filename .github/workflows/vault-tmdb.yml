@@ -1,0 +1,60 @@
+name: VAULT · TMDB e pubblicazione
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *' # Ogni giorno, circa le 05:17 ora italiana estiva
+  push:
+    branches: [main]
+
+concurrency:
+  group: vault-pages
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Scarica repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Aggiorna metadati (massimo 120 richieste)
+        env:
+          TMDB_READ_ACCESS_TOKEN: ${{ secrets.TMDB_READ_ACCESS_TOKEN }}
+        run: python scripts/aggiorna_tmdb.py --limit 120
+      - name: Salva soltanto i JSON aggiornati
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/film_metadata.json data/tmdb_state.json data/tmdb_review.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: aggiorna metadati TMDB [skip ci]'
+            git push
+          else
+            echo 'Nessun aggiornamento da salvare.'
+          fi
+      - name: Carica sito statico per GitHub Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+  pubblica:
+    runs-on: ubuntu-latest
+    needs: aggiorna
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Pubblica VAULT su GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
