@@ -228,6 +228,7 @@
     if(failures.length)$('#loadErrors').innerHTML=`${icon('alert')} <strong>Attenzione: ${failures.length} cataloghi non caricati.</strong> ${html(failures.join(' · '))}. Controlla i nomi dei file e i percorsi nella cartella data/.`;
     $('#footerMeta').textContent=`${formatCount(state.files.length)} file · ${state.disks.size} dischi · dati da scansioni locali`;
     render();
+    liveScan.init();
     if(!loaded.size)toast('Non riesco a leggere i JSON: controlla data/manifest.json e i file della cartella data/.',true);
   }
   function navigate(page){
@@ -260,6 +261,7 @@
     const biggest=[...state.files].filter(f=>Number.isFinite(f.size)).sort((a,b)=>b.size-a.size).slice(0,5);
     const pressure=disks.filter(d=>pct(d)>=90).slice(0,5);
     return `${renderStats()}
+      ${liveScan.panel()}
       <div class="section-head"><div><h2>Il mio archivio in numeri</h2><p>File, spazio e contenuti dei miei dischi.</p></div><button class="link-btn" data-action="drives">Esplora dischi ${icon('arrow')}</button></div>
       <div class="dashboard-grid">
         <section class="panel"><div class="panel-head"><h3>Capacità di archiviazione</h3><small>Totale di tutti i dischi</small></div><div class="total-usage-top"><strong>${fmtGB(s.used)}</strong><small>su ${fmtGB(s.total)}</small></div>${renderProgress(percent,percent>=95?'danger':percent>=90?'warning':'')}
@@ -553,7 +555,7 @@
   function handleChange(e){
     const key={filterDisk:'diskFilter',filterCategory:'categoryFilter',filterExt:'extFilter',filterSize:'sizeFilter',filterGenre:'genreFilter',filterYear:'yearFilter',filterQuality:'qualityFilter',filterLanguage:'languageFilter',sortFiles:'sort',driveSort:'driveSort'}[e.target.id];
     if(!key)return;state[key]=e.target.value;state.pageLimit=MAX_PAGE;render();
-    if(['genreFilter','diskFilter','categoryFilter'].includes(key)){liveScan.begin(state.genreFilter);}
+    // La selezione di un genere non avvia più richieste TMDB.
   }
   let debounce=null;
   function bind(){

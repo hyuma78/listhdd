@@ -27,43 +27,174 @@
     if(!validTitle(title,!!year)||dirs.length>9)return null;
     return {key:`${kind}|${norm(title)}|${year||'?'}`,kind,title,year};
   }
+  // Una catalogazione globale, indipendente da genere e HDD selezionato.
   window.createVaultLiveScan=function({state,render,enrichFile,notify}){
     const api=String(window.VAULT_TMDB_API||'').trim().replace(/\/$/,'');
-    let adminKey='',serial=0,paused=false,scanQueue=[],groups=new Map();
-    const progress={phase:'idle',genre:'',total:0,done:0,found:0,unmatched:0,cached:0,errors:0,message:''};
-    const isConfigured=()=>/^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api);
-    const redraw=()=>{if(state.page==='search')render();};
-    function build(){const mapped=new Map();for(const f of state.files){if(state.diskFilter&&f.disk!==state.diskFilter)continue;if(state.categoryFilter&&state.categoryFilter!==f.category)continue;const c=candidate(f);if(!c)continue;let g=mapped.get(c.key);if(!g){g={...c,files:[]};mapped.set(c.key,g);}g.files.push(f);}return mapped;}
-    function apply(group,metadata){if(!metadata)return;for(const f of group.files){if(state.localMetadata[f.key])continue;state.publishedMetadata[f.key]=metadata;enrichFile(f);}}
-    async function request(endpoint,body,auth=false){const headers={'Content-Type':'application/json'};if(auth)headers['X-Vault-Admin']=adminKey;const ctl=new AbortController();const timeout=setTimeout(()=>ctl.abort(),25000);try{const resp=await fetch(api+endpoint,{method:'POST',headers,body:JSON.stringify(body),signal:ctl.signal});const data=await resp.json().catch(()=>({error:'RISPOSTA_NON_VALIDA'}));if(!resp.ok){const error=new Error(data.error||`HTTP_${resp.status}`);error.status=resp.status;error.retryAfter=data.retryAfter;error.partial=data.results||[];throw error;}return data;}finally{clearTimeout(timeout);}}
-    function consume(result){const group=groups.get(result.key);if(!group)return;progress.done++;if(result.cached)progress.cached++;if(result.status==='ok'&&result.metadata){progress.found++;apply(group,result.metadata);}else progress.unmatched++;}
-    async function begin(genre){serial++;const mine=serial;paused=false;scanQueue=[];groups=new Map();progress.phase='idle';progress.genre=genre||'';progress.done=progress.total=progress.found=progress.unmatched=progress.cached=progress.errors=0;progress.message='';if(!genre||genre==='unknown'){redraw();return;}
-      if(!isConfigured()){progress.phase='setup';redraw();return;}
-      groups=build();progress.total=groups.size;progress.phase='lookup';progress.message='Controllo i titoli già classificati…';redraw();
-      const all=[...groups.values()];for(let i=0;i<all.length;i+=80){if(mine!==serial)return;const chunk=all.slice(i,i+80);const knownFromFiles=[];const absent=[];for(const g of chunk){const f=g.files.find(f=>f.tmdb?.source==='TMDB');if(f){knownFromFiles.push({key:g.key,status:'ok',metadata:f.tmdb,cached:true});}else absent.push(g);}
-        for(const value of knownFromFiles)consume(value);
-        if(absent.length){try{const data=await request('/api/lookup',{keys:absent.map(x=>x.key)});if(mine!==serial)return;for(const g of absent){const old=data.results?.[g.key];if(old)consume({key:g.key,...old,cached:true});else scanQueue.push(g);}}
-          catch(e){if(mine!==serial)return;progress.phase='error';progress.message='Cache non raggiungibile: '+e.message;redraw();return;}}
-        if((i/80)%5===0||i+80>=all.length)redraw();}
-      if(mine!==serial)return;
-      if(!scanQueue.length){progress.phase='complete';progress.message='Tutti i titoli candidati hanno già una classificazione o sono stati verificati.';redraw();return;}
-      progress.phase=adminKey?'scanning':'auth';progress.message=adminKey?'Sto cercando i titoli mancanti su TMDB…':`Restano ${scanQueue.length.toLocaleString('it-IT')} titoli da verificare. Inserisci il codice personale di scansione.`;redraw();if(adminKey)scan(mine);
+    const configured=/^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api);
+    const progress={mode:'loading',total:0,done:0,recognized:0,reviewed:0,last_run:null,last_error:null,fingerprint:''};
+    let groups=new Map(),fingerprint='',adminKey='',uploading=false,uploadDone=0,uploadTotal=0,cursor=0,started=false,pollBusy=false;
+    const escape=escapeHTML;
+    const format=n=>(Number(n)||0).toLocaleString('it-IT');
+    const draw=()=>{if((state.page==='overview'||state.page==='search')&&document.activeElement?.id!=='vaultAdminCode')render();};
+    const number=x=>Math.max(0,Number(x)||0);
+    function build(){
+      groups=new Map();
+      for(const f of state.files){
+        const c=candidate(f);if(!c)continue;
+        let g=groups.get(c.key);
+        if(!g){g={...c,files:[]};groups.set(c.key,g);}
+        g.files.push(f);
+      }
+      const sorted=[...groups.keys()].sort();let hash=2166136261;
+      for(const key of sorted){for(let i=0;i<key.length;i++){hash^=key.charCodeAt(i);hash=Math.imul(hash,16777619);}hash^=10;hash=Math.imul(hash,16777619);}
+      fingerprint=(hash>>>0).toString(16).padStart(8,'0')+'-'+groups.size;
     }
-    async function scan(mine=serial){if(mine!==serial||paused||!adminKey)return;progress.phase='scanning';redraw();while(scanQueue.length&&mine===serial&&!paused){const batch=scanQueue.slice(0,2);try{const data=await request('/api/scan',{candidates:batch},true);if(mine!==serial)return;for(const result of data.results||[])consume(result);scanQueue.splice(0,batch.length);progress.message=`Analisi in corso: ${scanQueue.length.toLocaleString('it-IT')} titoli ancora da cercare.`;redraw();}
-        catch(e){if(mine!==serial)return;for(const result of e.partial||[]){consume(result);scanQueue.shift();}
-          if(e.status===401){adminKey='';progress.phase='auth';progress.message='Codice di scansione non corretto.';redraw();return;}
-          if(e.status===429){progress.phase='paused';paused=true;progress.message=`TMDB ha chiesto di rallentare. Riprova fra circa ${e.retryAfter||20} secondi.`;redraw();return;}
-          progress.phase='paused';paused=true;progress.errors++;progress.message=`La scansione è in pausa (${e.message}). Puoi riprenderla.`;redraw();return;}}
-      if(mine!==serial)return;progress.phase=paused?'paused':'complete';progress.message=paused?'La scansione è in pausa.':'Analisi terminata. I risultati sono conservati nel database Cloudflare.';redraw();}
-    function setAdmin(code){if(!code||code.length<24){notify('Il codice amministratore deve contenere almeno 24 caratteri.',true);return;}adminKey=code;if(progress.phase==='auth'||progress.phase==='paused'){paused=false;scan(serial);}else begin(progress.genre);}
-    function pause(){paused=true;if(progress.phase==='scanning'){progress.phase='paused';progress.message='In pausa; potrai riprendere da dove eri arrivato.';}redraw();}
-    function resume(){if(progress.phase==='paused'&&scanQueue.length){paused=false;scan(serial);}else if(progress.genre&&progress.phase==='error')begin(progress.genre);}
-    function panel(){if(!progress.genre)return '';const pc=progress.total?Math.min(100,Math.round(progress.done*100/progress.total)):0;const active=['lookup','scanning'].includes(progress.phase);const names={setup:'Configurazione necessaria',lookup:'Controllo cache',auth:'Autorizza la scansione',scanning:'Analisi TMDB in corso',paused:'Analisi in pausa',complete:'Analisi completata',error:'Errore connessione',idle:'In attesa'};
-      return `<section class="vault-scan-panel" aria-label="Analisi TMDB" aria-live="polite"><div class="vault-scan-top"><span class="vault-scan-dot ${active?'spin':''}">${active?'◌':'✦'}</span><div><strong>${escapeHTML(names[progress.phase]||'Analisi archivio')} · ${escapeHTML(progress.genre)}</strong><p>${escapeHTML(progress.message||'Analizzo solo quando seleziono un genere.')}</p></div><span class="vault-scan-pct">${pc}%</span></div><div class="vault-scan-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pc}"><div style="width:${pc}%"></div></div><div class="vault-scan-metrics"><span><b>${progress.done.toLocaleString('it-IT')}</b> / ${progress.total.toLocaleString('it-IT')} titoli controllati</span><span><b>${progress.found.toLocaleString('it-IT')}</b> riconosciuti</span><span><b>${progress.unmatched.toLocaleString('it-IT')}</b> dubbi o assenti</span><span><b>${progress.cached.toLocaleString('it-IT')}</b> dalla cache</span></div>
-      ${progress.phase==='setup'?`<div class="vault-scan-message">Configura <code>vault-config.js</code> con l'URL del Worker Cloudflare. Intanto i filtri usano i metadati già presenti su GitHub.</div>`:''}
-      ${progress.phase==='auth'?`<div class="vault-scan-auth"><label for="vaultAdminCode">Codice privato di scansione (non è il token TMDB)</label><div><input type="password" id="vaultAdminCode" placeholder="Codice amministratore Cloudflare" autocomplete="off"><button class="btn btn-primary" data-action="scan-auth">Avvia ricerca</button></div><small>Il codice viene tenuto solo nella memoria di questa scheda, non salvato su GitHub o nel browser.</small></div>`:''}
-      <div class="vault-scan-controls">${progress.phase==='scanning'?'<button class="btn btn-soft" data-action="scan-pause">Metti in pausa</button>':''}${progress.phase==='paused'?'<button class="btn btn-primary" data-action="scan-resume">Riprendi analisi</button>':''}${progress.phase==='error'?'<button class="btn btn-soft" data-action="scan-resume">Riprova</button>':''}${progress.phase==='complete'?'<span class="vault-scan-message">Per gli altri generi userò anche i metadati già recuperati.</span>':''}</div></section>`;
+    async function apiRequest(path,{method='GET',body,auth=false}={}){
+      const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),30000);
+      const headers={'Accept':'application/json'};
+      if(method!=='GET')headers['Content-Type']='application/json';
+      if(auth)headers['X-Vault-Admin']=adminKey;
+      try{
+        const resp=await fetch(api+path,{method,headers,...(body===undefined?{}:{body:JSON.stringify(body)}),signal:ctl.signal,cache:'no-store'});
+        const json=await resp.json().catch(()=>({error:'RISPOSTA_NON_VALIDA'}));
+        if(!resp.ok)throw Object.assign(new Error(json.error||`HTTP_${resp.status}`),{status:resp.status});
+        return json;
+      }finally{clearTimeout(timer);}
     }
-    return {begin,panel,setAdmin,pause,resume,get progress(){return {...progress};}};
+    function applyResult(item){
+      if(item.status!=='ok'||!item.metadata)return false;
+      const g=groups.get(item.key);if(!g)return false;
+      let updated=false;
+      for(const f of g.files){
+        if(state.localMetadata[f.key])continue;
+        state.publishedMetadata[f.key]=item.metadata;
+        enrichFile(f);updated=true;
+      }
+      return updated;
+    }
+    async function getResults(){
+      let changed=false;
+      for(let i=0;i<15;i++){
+        const data=await apiRequest(`/api/catalog/results?after=${cursor}&limit=120`);
+        for(const item of data.items||[])changed=applyResult(item)||changed;
+        cursor=number(data.cursor)||cursor;
+        if(!data.has_more)break;
+      }
+      return changed;
+    }
+    async function poll(){
+      if(!configured||!started||pollBusy||uploading||document.visibilityState==='hidden')return;
+      pollBusy=true;
+      try{
+        const remote=await apiRequest('/api/catalog/status');
+        const prev=JSON.stringify(progress);
+        Object.assign(progress,remote);
+        const changed=await getResults();
+        if(changed||JSON.stringify(progress)!==prev)draw();
+      }catch(e){
+        progress.mode='offline';progress.last_error=e.message;draw();
+      }finally{pollBusy=false;}
+    }
+    function init(){
+      build();started=true;
+      if(!configured){progress.mode='setup';draw();return;}
+      poll();
+      if(!window.__vaultCatalogTimer){window.__vaultCatalogTimer=setInterval(poll,20000);}
+      if(!window.__vaultCatalogVisible){window.__vaultCatalogVisible=true;document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')poll();});}
+    }
+    async function startScan(){
+      if(uploading)return;
+      uploading=true;uploadTotal=groups.size;uploadDone=0;
+      progress.mode='uploading';draw();
+      try{
+        await apiRequest('/api/catalog/start',{method:'POST',auth:true,body:{fingerprint}});
+        const all=[...groups.values()].map(({key,kind,title,year})=>({key,kind,title,year}));
+        for(let i=0;i<all.length;i+=50){
+          const batch=all.slice(i,i+50);
+          await apiRequest('/api/catalog/enqueue',{method:'POST',auth:true,body:{candidates:batch,fingerprint}});
+          uploadDone=Math.min(all.length,i+batch.length);
+          if((i/50)%3===0||uploadDone===all.length)draw();
+        }
+        const r=await apiRequest('/api/catalog/finish',{method:'POST',auth:true,body:{fingerprint}});
+        progress.mode=r.remaining?'running':'complete';
+        progress.total=r.total;progress.done=r.done;progress.fingerprint=fingerprint;
+        notify(r.remaining?'Catalogazione avviata su Cloudflare: prosegue anche a pagina chiusa.':'Il mio archivio è già catalogato.');
+      }catch(e){
+        progress.mode='upload-error';progress.last_error=e.message;
+        if(e.status===401)adminKey='';
+        notify('Non riesco a inviare il catalogo: '+e.message,true);
+      }finally{uploading=false;draw();poll();}
+    }
+    function setAdmin(code){
+      if(!code||code.length<24){notify('Inserisci il codice privato di scansione (almeno 24 caratteri).',true);return;}
+      adminKey=code;
+      if(['paused','error','auth-resume'].includes(progress.mode))control('resume');else if(progress.mode==='auth-pause')control('pause');else startScan();
+    }
+    async function control(action){
+      if(!adminKey){progress.mode=action==='resume'?'auth-resume':'auth-pause';draw();return;}
+      try{
+        const reply=await apiRequest('/api/catalog/control',{method:'POST',auth:true,body:{action}});
+        Object.assign(progress,reply.state);
+        draw();
+      }catch(e){if(e.status===401)adminKey='';notify('Non riesco a gestire la scansione: '+e.message,true);draw();}
+    }
+    function pause(){control('pause');}
+    function resume(){if(progress.mode==='auth-resume'){control('resume');return;}control('resume');}
+    const begin=()=>{}; // I cambi di genere filtrano localmente: non avviano TMDB.
+    function panel(){
+      if(!started)return '';
+      const changed=progress.fingerprint!==fingerprint;
+      const total=progress.total||0,done=progress.done||0;
+      const pc=uploading?Math.round(100*uploadDone/Math.max(1,uploadTotal)):total?Math.round(100*done/total):0;
+      let title='',message='',showCode=false,buttonText='Avvia catalogazione',controls='';
+      const mode=progress.mode;
+      if(!configured||mode==='setup'){
+        title='Backend Cloudflare da collegare';message='Controlla il file vault-config.js e la configurazione D1.';
+      }else if(mode==='loading'){
+        title='Controllo della catalogazione';message='Recupero lo stato dei film già riconosciuti da Cloudflare…';
+      }else if(mode==='idle'||(mode==='complete'&&changed)){
+        title=mode==='idle'?'Prima catalogazione TMDB':'Nuovi titoli da catalogare';
+        message=`Ho trovato ${format(groups.size)} titoli candidati. Inserisco una sola volta i titoli nella coda Cloudflare; poi la scansione procede in autonomia.`;
+        showCode=true;buttonText=mode==='idle'?'Avvia la prima catalogazione':'Aggiorna catalogo';
+      }else if(mode==='uploading'&&uploading){
+        title='Preparazione del catalogo';message=`Trasferimento titoli a Cloudflare: ${format(uploadDone)} di ${format(uploadTotal)}. Non chiudere la pagina durante questa prima fase.`;
+      }else if(mode==='uploading'&&!uploading){
+        title='Invio catalogo da riprendere';message='La preparazione è stata interrotta. Inserisci il codice e riprendi senza duplicare i titoli.';
+        showCode=true;buttonText='Riprendi invio';
+      }else if(mode==='auth-pause'){
+        title='Autorizza la pausa';message='Inserisci il codice privato per mettere in pausa la scansione sul server.';
+        showCode=true;buttonText='Metti in pausa';
+      }else if(mode==='upload-error'){
+        title='Invio catalogo interrotto';message='Puoi riprovare: i titoli già ricevuti non vengono duplicati. '+String(progress.last_error||'');
+        showCode=true;buttonText='Riprendi invio';
+      }else if(mode==='running'){
+        title='Catalogazione TMDB in corso';message='Cloudflare continua automaticamente anche se chiudi questa pagina. I generi già riconosciuti sono filtrabili subito.';
+        controls='<button type="button" class="btn btn-soft" data-action="scan-pause">Metti in pausa</button>';
+      }else if(mode==='paused'){
+        title='Catalogazione in pausa';message='I risultati sono salvati. Puoi riprendere dal punto raggiunto.';
+        if(adminKey)controls='<button type="button" class="btn btn-soft" data-action="scan-resume">Riprendi</button>';
+        else{showCode=true;buttonText='Riprendi scansione';}
+      }else if(mode==='complete'&&!changed){
+        title='Catalogazione completata';message='I filtri per genere utilizzano i metadati archiviati su Cloudflare. Nessuna nuova ricerca TMDB quando cambi filtro.';
+      }else if(mode==='error'||mode==='auth-resume'){
+        title='Scansione in attesa di ripresa';message='Controlla il codice TMDB su Cloudflare, poi riprendi senza perdere i dati già raccolti.';
+        showCode=true;buttonText='Riprendi scansione';
+      }else{
+        title='Cloudflare non raggiungibile';message='Verifica la connessione, il Worker e il database D1. '+String(progress.last_error||'');
+      }
+      const active=['loading','uploading','running'].includes(mode);
+      const safePct=Math.min(100,Math.max(0,pc));
+      return `<section class="vault-scan-panel" aria-label="Catalogazione TMDB" aria-live="polite">
+        <div class="vault-scan-top"><span class="vault-scan-dot ${active?'spin':''}">${active?'◌':'✦'}</span><div>
+          <strong>${escape(title)}</strong><p>${escape(message)}</p></div><span class="vault-scan-pct">${safePct}%</span></div>
+        <div class="vault-scan-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${safePct}"><div style="width:${safePct}%"></div></div>
+        <div class="vault-scan-metrics"><span><b>${format(done)}</b> analizzati</span><span><b>${format(total)}</b> titoli in cloud</span><span><b>${format(progress.recognized)}</b> riconosciuti</span><span><b>${format(progress.reviewed)}</b> da verificare</span></div>
+        ${progress.last_run?`<p class="vault-scan-message">Ultima attività: ${escape(progress.last_run)} UTC · I contenuti già riconosciuti sono disponibili nei filtri.</p>`:''}
+        ${progress.last_error?`<p class="vault-scan-message">Ultimo avviso: ${escape(progress.last_error)}${progress.paused_until?' (ritento automaticamente)':''}</p>`:''}
+        ${showCode?`<div class="vault-scan-auth"><label for="vaultAdminCode">Codice privato SCAN_ADMIN_KEY</label><div><input type="password" id="vaultAdminCode" autocomplete="off" placeholder="Inserisci il codice privato"><button type="button" class="btn btn-primary" data-action="scan-auth">${escape(buttonText)}</button></div><small>Non è il token TMDB. Il codice resta nella memoria di questa pagina e non viene pubblicato su GitHub.</small></div>`:''}
+        ${controls?`<div class="vault-scan-controls">${controls}</div>`:''}
+        </section>`;
+    }
+    return {init,panel,begin,setAdmin,pause,resume,poll};
   };
 })();
