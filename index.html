@@ -101,12 +101,11 @@
   <p class="muted-modal">Preferiti e tema restano salvati in questo browser. I JSON contengono l’elenco dei file, non i video. Se importo nuovi JSON, per renderli permanenti devo aggiornare il repository GitHub (oppure i file del sito locale).</p>
 </dialog>
 <input type="file" id="metaImportInput" accept=".json,application/json" hidden>
-<dialog class="modal meta-dialog" id="metadataDialog" aria-label="Modifica genere e anno">
+<dialog class="modal meta-dialog" id="metadataDialog" aria-label="Modifica anno">
   <div class="modal-head"><div><span class="mini-label">LA MIA COLLEZIONE</span><h2>Modifica scheda</h2></div><button type="button" class="icon-btn" id="metaCancel" aria-label="Chiudi"><svg class="icon"><use href="#ico-x"/></svg></button></div>
   <p class="meta-file-name" id="metaFilename"></p><p class="meta-file-disk" id="metaDisk"></p>
   <input type="hidden" id="metaFileId">
   <label class="meta-label" for="metaYear">Anno di uscita</label><input id="metaYear" type="number" min="1900" max="2026" step="1" placeholder="Es. 1987" class="filter-input meta-year">
-  <div class="meta-label">Genere (puoi sceglierne più di uno)</div><div class="meta-genres" id="metaGenreList"></div>
   <label class="meta-copy-option"><input type="checkbox" id="metaAllCopies"> Applica anche alle copie con nome file identico</label>
   <div class="meta-dialog-actions"><button type="button" class="btn btn-soft" id="metaReset">Ripristina</button><button type="button" class="btn btn-primary" id="metaSave">Salva scheda</button></div>
   <p class="muted-modal">Le modifiche restano in questo browser. Per renderle disponibili anche da altri dispositivi, usa <strong>Esporta schede JSON</strong> e pubblica il file nella cartella <code>data/</code> su GitHub.</p>
