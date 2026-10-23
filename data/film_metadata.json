@@ -1,4 +1,1133 @@
 {
-  "version": 1,
-  "files": {}
+  "files": {
+    "Arietty::I:\\FILM\\7 Chili In 7 giorni (1986) (1080p.ITA.Sub) (Ebleep).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 43211,
+      "tmdb_title": "7 chili in 7 giorni",
+      "tmdb_url": "https://www.themoviedb.org/movie/43211",
+      "year": 1986
+    },
+    "Arietty::I:\\FILM\\Abbronzatissimi 2 - Un anno dopo [1993] - Dvdrip - ITA - x264 - king76.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 121568,
+      "tmdb_title": "Abbronzatissimi 2 - Un anno dopo",
+      "tmdb_url": "https://www.themoviedb.org/movie/121568",
+      "year": 1993
+    },
+    "Arietty::I:\\FILM\\Abbronzatissimi [1991] - Dvdrip - ITA - x264 - king76.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 57600,
+      "tmdb_title": "Abbronzatissimi",
+      "tmdb_url": "https://www.themoviedb.org/movie/57600",
+      "year": 1991
+    },
+    "Arietty::I:\\FILM\\Acapulco prima spiaggia a sinistra - 1983 - (Ita-1080p).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 82341,
+      "tmdb_title": "Acapulco, prima spiaggia... a sinistra",
+      "tmdb_url": "https://www.themoviedb.org/movie/82341",
+      "year": 1983
+    },
+    "Arietty::I:\\FILM\\Acqua e sapone (1983) WEBDL 1080p.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Romantico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 37777,
+      "tmdb_title": "Acqua e sapone",
+      "tmdb_url": "https://www.themoviedb.org/movie/37777",
+      "year": 1983
+    },
+    "Arietty::I:\\FILM\\American History X-1998-BdRip-(1080p)-Italian DTS - English AAC - x264.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 73,
+      "tmdb_title": "American History X",
+      "tmdb_url": "https://www.themoviedb.org/movie/73",
+      "year": 1998
+    },
+    "Arietty::I:\\FILM\\Apocalypse.Now.1979.Final.Cut.iTA.ENG.AC3.SUB.iTA.ENG.HEVC.1080p.x265.jeddak-MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Drammatico",
+        "Guerra"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 28,
+      "tmdb_title": "Apocalypse Now",
+      "tmdb_url": "https://www.themoviedb.org/movie/28",
+      "year": 1979
+    },
+    "Arietty::I:\\FILM\\Balle.Spaziali.1987.BDRtL.720p.x264.DTS.iTA.AAC.eNG-Arlong.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 957,
+      "tmdb_title": "Balle spaziali",
+      "tmdb_url": "https://www.themoviedb.org/movie/957",
+      "year": 1987
+    },
+    "Arietty::I:\\FILM\\Bella.in.Rosa.1986.1080p.BluRay.x265.ITA-ENG.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Drammatico",
+        "Romantico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 11522,
+      "tmdb_title": "Bella in rosa",
+      "tmdb_url": "https://www.themoviedb.org/movie/11522",
+      "year": 1986
+    },
+    "Arietty::I:\\FILM\\Bingo.Bongo.(1982).(Spanish.Italian.German.Subs).BDRip.1080p.x264-AC3.by.xula.(nocturniap2p).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 62029,
+      "tmdb_title": "Bingo Bongo",
+      "tmdb_url": "https://www.themoviedb.org/movie/62029",
+      "year": 1982
+    },
+    "Arietty::I:\\FILM\\Bomber (1982 Commedia) - Bud Spencer, Jerry Calà [DVDRip ITA] - BielerSoul.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Commedia",
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 11614,
+      "tmdb_title": "Bomber",
+      "tmdb_url": "https://www.themoviedb.org/movie/11614",
+      "year": 1982
+    },
+    "Arietty::I:\\FILM\\Breakfast.Club.1985.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 2108,
+      "tmdb_title": "Breakfast Club",
+      "tmdb_url": "https://www.themoviedb.org/movie/2108",
+      "year": 1985
+    },
+    "Arietty::I:\\FILM\\Chewingum.(1984).[DVDRip].H264.Ita.Ac3.2.0.Sub.Ita.[BaMax71][MIRCrew].mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 103343,
+      "tmdb_title": "Chewingum",
+      "tmdb_url": "https://www.themoviedb.org/movie/103343",
+      "year": 1984
+    },
+    "Arietty::I:\\FILM\\Compagni.Di.Scuola.1988.ITA.Versione.Restaurata.1080p.NF.WEB-DL.x264-UBi.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 56825,
+      "tmdb_title": "Compagni di scuola",
+      "tmdb_url": "https://www.themoviedb.org/movie/56825",
+      "year": 1988
+    },
+    "Arietty::I:\\FILM\\Corto.Circuito.(1986) ita-eng sub ita-eng [1080p] by Red_Dragon.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 2605,
+      "tmdb_title": "Corto circuito",
+      "tmdb_url": "https://www.themoviedb.org/movie/2605",
+      "year": 1986
+    },
+    "Arietty::I:\\FILM\\Corto.Circuito.2.(1988) ita-eng sub ita-eng [1080p] by Red_Dragon.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Drammatico",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 11966,
+      "tmdb_title": "Corto circuito 2",
+      "tmdb_url": "https://www.themoviedb.org/movie/11966",
+      "year": 1988
+    },
+    "Arietty::I:\\FILM\\Culo e camicia [1981] - Dvdrip - ITA - x264 - king76.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 42540,
+      "tmdb_title": "Culo e camicia",
+      "tmdb_url": "https://www.themoviedb.org/movie/42540",
+      "year": 1981
+    },
+    "Arietty::I:\\FILM\\D.A.R.Y.L.(1985).1080p.BDMux.ITA-ENG.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 16248,
+      "tmdb_title": "D.A.R.Y.L.",
+      "tmdb_url": "https://www.themoviedb.org/movie/16248",
+      "year": 1985
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 1\\Captain.America.-.Il.Primo.Vendicatore.-.2011.-.BDRip.-.1080p.-.AC3.iTA.AAC.eNG.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 1771,
+      "tmdb_title": "Captain America - Il primo vendicatore",
+      "tmdb_url": "https://www.themoviedb.org/movie/1771",
+      "year": 2011
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 2\\Ant-Man.2015.iTA.ENG.AC3.1080p.BluRay.x264-T4P3.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 102899,
+      "tmdb_title": "Ant-Man",
+      "tmdb_url": "https://www.themoviedb.org/movie/102899",
+      "year": 2015
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 2\\Avengers.Age.of.Ultron.2015.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 99861,
+      "tmdb_title": "Avengers: Age of Ultron",
+      "tmdb_url": "https://www.themoviedb.org/movie/99861",
+      "year": 2015
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 2\\Captain.America.The.Winter.Soldier.2014.BluRay.1080p.DTS.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 100402,
+      "tmdb_title": "Captain America: The Winter Soldier",
+      "tmdb_url": "https://www.themoviedb.org/movie/100402",
+      "year": 2014
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 3\\Ant.Man.and.the.Wasp.2018.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 363088,
+      "tmdb_title": "Ant-Man and the Wasp",
+      "tmdb_url": "https://www.themoviedb.org/movie/363088",
+      "year": 2018
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 3\\Avengers.Endgame.2019.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 299534,
+      "tmdb_title": "Avengers: Endgame",
+      "tmdb_url": "https://www.themoviedb.org/movie/299534",
+      "year": 2019
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 3\\Avengers.Infinity.War.2018.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 299536,
+      "tmdb_title": "Avengers: Infinity War",
+      "tmdb_url": "https://www.themoviedb.org/movie/299536",
+      "year": 2018
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 3\\Black.Panther.2018.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 284054,
+      "tmdb_title": "Black Panther",
+      "tmdb_url": "https://www.themoviedb.org/movie/284054",
+      "year": 2018
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 3\\Captain America Civil War 2016 Bluray 1080P Dts Ita Ac3 Eng Subs x264-Wgz.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 271110,
+      "tmdb_title": "Captain America: Civil War",
+      "tmdb_url": "https://www.themoviedb.org/movie/271110",
+      "year": 2016
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 3\\Captain.Marvel.2019.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 299537,
+      "tmdb_title": "Captain Marvel",
+      "tmdb_url": "https://www.themoviedb.org/movie/299537",
+      "year": 2019
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 4\\Black Panther - Wakanda Forever (2022) FullHD 1080p ITA AC3 ENG DTS+AC3 Subs.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 505642,
+      "tmdb_title": "Black Panther: Wakanda Forever",
+      "tmdb_url": "https://www.themoviedb.org/movie/505642",
+      "year": 2022
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 4\\Black.Widow.2021.BluRay.1080p.EAC3.AC3.ITA.AC3.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 497698,
+      "tmdb_title": "Black Widow",
+      "tmdb_url": "https://www.themoviedb.org/movie/497698",
+      "year": 2021
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 5\\Ant-Man.and.the.Wasp.Quantumania.2023.BluRay.1080p.DDP7.1.DD5.1.ITA.DDP7.1.DD5.1.ENG.Subs.x264-WGZ.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 640146,
+      "tmdb_title": "Ant-Man and the Wasp: Quantumania",
+      "tmdb_url": "https://www.themoviedb.org/movie/640146",
+      "year": 2023
+    },
+    "Arietty::I:\\FILM\\FILM MARVEL\\Marvel Cinematic Universe\\Fase 5\\Captain.America.Brave.New.World.2025.bdrip.1080p.x264.ita.eac3.ac3.eng.ac3.extra.audio.subs.fd.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Fantascienza",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 822119,
+      "tmdb_title": "Captain America: Brave New World",
+      "tmdb_url": "https://www.themoviedb.org/movie/822119",
+      "year": 2025
+    },
+    "Franky::F:\\FILM\\Bigfoot e i suoi amici (1987) Bdmux 1080p H264 Ita Ac3 Eng Aac - by T7ST.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Fantasy"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 8989,
+      "tmdb_title": "Bigfoot e i suoi amici",
+      "tmdb_url": "https://www.themoviedb.org/movie/8989",
+      "year": 1987
+    },
+    "Hikvision2TB::H:\\FILM\\Alien.Vs.Predator.Requiem.2007.BDRip.1080p.DTS.iTA.AC3.ENG.Subs.x264-BJL.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Fantascienza",
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 440,
+      "tmdb_title": "Aliens vs. Predator 2",
+      "tmdb_url": "https://www.themoviedb.org/movie/440",
+      "year": 2007
+    },
+    "Hikvision2TB::H:\\FILM\\Allarme.dallo.spazio.1956.SD.H265.DVDRip.Ac3.Eng.Sub.Ita-artemix.MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Fantascienza",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 70872,
+      "tmdb_title": "Allarme dallo spazio",
+      "tmdb_url": "https://www.themoviedb.org/movie/70872",
+      "year": 1956
+    },
+    "Hikvision2TB::H:\\FILM\\Attack of the Puppet People (1958) 1080p h264 Ac3 Eng Sub Ita Eng-MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Fantascienza",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 44585,
+      "tmdb_title": "Attack of the Puppet People",
+      "tmdb_url": "https://www.themoviedb.org/movie/44585",
+      "year": 1958
+    },
+    "NASWare::G:\\FILM\\A ciascuno il suo (1967) (Elio Petri) [1080p, x265][ITA, 2.0, DTS][ENG].mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 80441,
+      "tmdb_title": "A ciascuno il suo",
+      "tmdb_url": "https://www.themoviedb.org/movie/80441",
+      "year": 1967
+    },
+    "NASWare::G:\\FILM\\A qualsiasi prezzo (1968) Regia Emilio P. Miraglia con Klaus Kinski, Walter Pidgeon, Ira Fürstenberg, Corrado Olmi.avi": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 260896,
+      "tmdb_title": "A qualsiasi prezzo",
+      "tmdb_url": "https://www.themoviedb.org/movie/260896",
+      "year": 1968
+    },
+    "NASWare::G:\\FILM\\Assassinio.sul.Tevere.1979.Webdl.1080p.Eac3.Aac.Ita.sub.chaps.h264.NOMADS.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Commedia",
+        "Crime"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 62715,
+      "tmdb_title": "Assassinio sul Tevere",
+      "tmdb_url": "https://www.themoviedb.org/movie/62715",
+      "year": 1979
+    },
+    "NASWare::G:\\FILM\\Brainscan.1994.1080p.BluRay.ITA-ENG.SUB.ENG.x2642.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Fantascienza",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 14237,
+      "tmdb_title": "Brainscan - Il gioco della morte",
+      "tmdb_url": "https://www.themoviedb.org/movie/14237",
+      "year": 1994
+    },
+    "NASWare::G:\\FILM\\Città Violenta (1970) (1080p.ITA.ENG.Sub.ENG) (Ebleep).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Crime",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 31672,
+      "tmdb_title": "Città violenta",
+      "tmdb_url": "https://www.themoviedb.org/movie/31672",
+      "year": 1970
+    },
+    "NASWare::G:\\FILM\\Il cittadino si ribella (1974).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Crime"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 90092,
+      "tmdb_title": "Il cittadino si ribella",
+      "tmdb_url": "https://www.themoviedb.org/movie/90092",
+      "year": 1974
+    },
+    "NASWare::G:\\FILM\\Sbatti Il Mostro In Prima Pagina (1972).(1080p.ITA.Sub.ENG).(Ebleep).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Drammatico",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 68053,
+      "tmdb_title": "Sbatti il mostro in prima pagina",
+      "tmdb_url": "https://www.themoviedb.org/movie/68053",
+      "year": 1972
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\4 Mosche Di Velluto Grigio.1971.1080p.ITA.ENG.Subs.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 30689,
+      "tmdb_title": "4 mosche di velluto grigio",
+      "tmdb_url": "https://www.themoviedb.org/movie/30689",
+      "year": 1971
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\A Serbian Film - 2010 Bdrip 1080p h264 Srb DTS sub Ita Swe Dan Fin Nor by Pulce0000 - T7ST.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 73861,
+      "tmdb_title": "A Serbian Film",
+      "tmdb_url": "https://www.themoviedb.org/movie/73861",
+      "year": 2010
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Blood.On.Melies.Moon.2016.ITALIAN.1080p.BluRay.x264.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 335346,
+      "tmdb_title": "Blood on Méliès' Moon",
+      "tmdb_url": "https://www.themoviedb.org/movie/335346",
+      "year": 2016
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Brivido - (1986).1080p.HEVC.10bit.Ita.Ac3.2.0-Eng.Ac3.5.1.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Fantascienza",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 9980,
+      "tmdb_title": "Brivido",
+      "tmdb_url": "https://www.themoviedb.org/movie/9980",
+      "year": 1986
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Buio Omega 1979 1080p BluRay HEVC x265-SPINNA.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 5425,
+      "tmdb_title": "Buio Omega",
+      "tmdb_url": "https://www.themoviedb.org/movie/5425",
+      "year": 1979
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Cannibal Holocaust\\Cannibal Holocaust (1980) [ITA-ENG] [+C].mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 8689,
+      "tmdb_title": "Cannibal Holocaust",
+      "tmdb_url": "https://www.themoviedb.org/movie/8689",
+      "year": 1980
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Caramelle da uno sconosciuto (1987).avi": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 57115,
+      "tmdb_title": "Caramelle da uno sconosciuto",
+      "tmdb_url": "https://www.themoviedb.org/movie/57115",
+      "year": 1987
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Chi è sepolto in quella casa (1985) ITA-ENG Ac3 5.1 BDRip 1080p H264.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Fantasy",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 11415,
+      "tmdb_title": "Chi è sepolto in quella casa?",
+      "tmdb_url": "https://www.themoviedb.org/movie/11415",
+      "year": 1985
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Cimitero.Vivente.1989.BluRay.MuX.1080p.AC3.ITA-ENG.Subs.x264.Aln.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 8913,
+      "tmdb_title": "Cimitero vivente",
+      "tmdb_url": "https://www.themoviedb.org/movie/8913",
+      "year": 1989
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Contamination.1980.1080p.BluRay.ITA-ENG.x264.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Fantascienza",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 39916,
+      "tmdb_title": "Contamination - Alien arriva sulla terra",
+      "tmdb_url": "https://www.themoviedb.org/movie/39916",
+      "year": 1980
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Creepshow (1982) Uncut 1080p h264 Ac3 5.1 Ita Ac3 Eng-Sub Ita Eng-MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 16281,
+      "tmdb_title": "Creepshow",
+      "tmdb_url": "https://www.themoviedb.org/movie/16281",
+      "year": 1982
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Creepshow 2 (1987) 1080p h264 Ac3 Ita Eng Sub Ita Eng-MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Fantasy",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 16288,
+      "tmdb_title": "Creepshow 2",
+      "tmdb_url": "https://www.themoviedb.org/movie/16288",
+      "year": 1987
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Creepshow 3 (2006) 1080p h264 Ac3 Ita Eng Sub Ita-MIRCrew).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 16304,
+      "tmdb_title": "Creepshow 3",
+      "tmdb_url": "https://www.themoviedb.org/movie/16304",
+      "year": 2006
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Danza.macabra.1964.DVDRip.576p.x264.ITA-FRE.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 28532,
+      "tmdb_title": "Danza macabra",
+      "tmdb_url": "https://www.themoviedb.org/movie/28532",
+      "year": 1964
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\La morte negli occhi del gatto - (1973) SD h264 AC3 ITA ENG sub ENG.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 98027,
+      "tmdb_title": "La morte negli occhi del gatto",
+      "tmdb_url": "https://www.themoviedb.org/movie/98027",
+      "year": 1973
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\La.Casa.Dell'esorcismo.(1975).(1080p.ITA.ENG.Sub.GER) (Ebleep).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 262871,
+      "tmdb_title": "La casa dell'esorcismo",
+      "tmdb_url": "https://www.themoviedb.org/movie/262871",
+      "year": 1975
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\La.Casa.Dell.Esorcismo.1975.ITA-ENG.BRRip.720p.x264.L43.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 262871,
+      "tmdb_title": "La casa dell'esorcismo",
+      "tmdb_url": "https://www.themoviedb.org/movie/262871",
+      "year": 1975
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Venerdì 13  - (1980-2001) 1080p H265 ITA.ENG sub ita.eng\\Crystal.Lake.Memories.The.Complete.History.Of.Friday.The.13Th.2013.Part1.1080p.BluRay.x265-RARBG.mp4": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Documentario"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 222724,
+      "tmdb_title": "Crystal Lake Memories: The Complete History of Friday the 13th",
+      "tmdb_url": "https://www.themoviedb.org/movie/222724",
+      "year": 2013
+    },
+    "Seagate1TB::G:\\HORROR - THRILLER\\Venerdì 13  - (1980-2001) 1080p H265 ITA.ENG sub ita.eng\\Crystal.Lake.Memories.The.Complete.History.Of.Friday.The.13Th.2013.Part2.1080p.BluRay.H264.AAC-RARBG.mp4": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Documentario"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 222724,
+      "tmdb_title": "Crystal Lake Memories: The Complete History of Friday the 13th",
+      "tmdb_url": "https://www.themoviedb.org/movie/222724",
+      "year": 2013
+    },
+    "Seagate1TB::G:\\SCI-FI - FANTASY\\Alien 2 - Sulla Terra (1980) [1080p.x265.ITA-ENG] (by.phadron) MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Fantascienza",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 42872,
+      "tmdb_title": "Alien 2: Sulla Terra",
+      "tmdb_url": "https://www.themoviedb.org/movie/42872",
+      "year": 1980
+    },
+    "Seagate1TB::G:\\SCI-FI - FANTASY\\D.A.R.Y.L (1985).1080p.h264.ita.eng.sub.fre.eng.spa-MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Fantascienza"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 16248,
+      "tmdb_title": "D.A.R.Y.L.",
+      "tmdb_url": "https://www.themoviedb.org/movie/16248",
+      "year": 1985
+    },
+    "Usopp::H:\\FILM\\A Cena Col Vampiro (1989) (1080p.ITA.ENG.Comm.Sub.ENG).(Ebleep).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 25854,
+      "tmdb_title": "A cena col vampiro",
+      "tmdb_url": "https://www.themoviedb.org/movie/25854",
+      "year": 1988
+    },
+    "Usopp::H:\\FILM\\Bad.Pinocchio.1996.ITA-ENG.AMZN.WEB-DLRip.720p.x264-HD4ME.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 30926,
+      "tmdb_title": "Bad Pinocchio",
+      "tmdb_url": "https://www.themoviedb.org/movie/30926",
+      "year": 1996
+    },
+    "Usopp::H:\\FILM\\Cicciabomba - 1982.ITA.avi": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 312092,
+      "tmdb_title": "Cicciabomba",
+      "tmdb_url": "https://www.themoviedb.org/movie/312092",
+      "year": 1982
+    },
+    "Usopp::H:\\FILM\\Cymbaline (2007) AAC ITA VHSRip.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 845244,
+      "tmdb_title": "Cymbaline",
+      "tmdb_url": "https://www.themoviedb.org/movie/845244",
+      "year": 2007
+    },
+    "Usopp::H:\\FILM\\Il Cittadino Si Ribella 1974.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Crime"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 90092,
+      "tmdb_title": "Il cittadino si ribella",
+      "tmdb_url": "https://www.themoviedb.org/movie/90092",
+      "year": 1974
+    },
+    "Usopp::H:\\FILM\\La.Morte.negli.Occhi.del.Gatto.1973.1080p.BDMux.ITA-ENG.SUB.ENG.x264.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 98027,
+      "tmdb_title": "La morte negli occhi del gatto",
+      "tmdb_url": "https://www.themoviedb.org/movie/98027",
+      "year": 1973
+    },
+    "Usopp::H:\\FILM\\Puro cashmere (1986) [1080p.x264.ITA] (by.phadron) MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Crime"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 391114,
+      "tmdb_title": "Puro cashmere",
+      "tmdb_url": "https://www.themoviedb.org/movie/391114",
+      "year": 1986
+    },
+    "Usopp::H:\\FILM\\Sbatti.il.mostro.in.prima.pagina.1972.ITA.1080p. BDRemux.Walrus54.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Drammatico",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 68053,
+      "tmdb_title": "Sbatti il mostro in prima pagina",
+      "tmdb_url": "https://www.themoviedb.org/movie/68053",
+      "year": 1972
+    },
+    "WD659::I:\\FILM\\7, Hyden Park - La casa maledetta.1985.ITA.DVDRip.480p.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 85005,
+      "tmdb_title": "7, Hyden Park - La casa maledetta",
+      "tmdb_url": "https://www.themoviedb.org/movie/85005",
+      "year": 1985
+    },
+    "WD659::I:\\FILM\\A Ciascuno Il Suo (1967) (1080p.ITA.GER.Sub.GER.ENG) (Ebleep).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 80441,
+      "tmdb_title": "A ciascuno il suo",
+      "tmdb_url": "https://www.themoviedb.org/movie/80441",
+      "year": 1967
+    },
+    "WD659::I:\\FILM\\A.Better.Tomorrow.1986.1080p.BluRay.x265.hevc.10bit.AAC.7.1.commentary-HeVK.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Crime",
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 11471,
+      "tmdb_title": "A Better Tomorrow",
+      "tmdb_url": "https://www.themoviedb.org/movie/11471",
+      "year": 1986
+    },
+    "WD659::I:\\FILM\\A.Tutte.Le.Auto.Della.Polizia...1975.ITA.DVDRip.DD5.1.x264-UBi.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 104264,
+      "tmdb_title": "...a tutte le auto della polizia...",
+      "tmdb_url": "https://www.themoviedb.org/movie/104264",
+      "year": 1975
+    },
+    "WD659::I:\\FILM\\Animali.Fantastici.e.Dove.Trovarli.2016.BluRay.1080p.DTS.iTA.AC3.ENG.Subs.x264-BJL.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Fantasy"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 259316,
+      "tmdb_title": "Animali fantastici e dove trovarli",
+      "tmdb_url": "https://www.themoviedb.org/movie/259316",
+      "year": 2016
+    },
+    "WD659::I:\\FILM\\Animali.Fantastici.i.Crimini.di.Grindelwald.2018.BluRay.1080p.DTS.iTA.AC3.ENG.Subs.x264-BJL.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Fantasy"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 338952,
+      "tmdb_title": "Animali fantastici - I crimini di Grindelwald",
+      "tmdb_url": "https://www.themoviedb.org/movie/338952",
+      "year": 2018
+    },
+    "WD659::I:\\FILM\\Animali.Fantastici.i.segreti.di.Silente.2022.BluRay.1080p.DDP7.1.iTA.ENG.DD5.1.iTA.ENG.Subs.x264-BJL.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Fantasy"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 338953,
+      "tmdb_title": "Animali fantastici - I segreti di Silente",
+      "tmdb_url": "https://www.themoviedb.org/movie/338953",
+      "year": 2022
+    },
+    "WD659::I:\\FILM\\Bambi.La.Vendetta.2025.iTA.WEBDL.1080p.x264-CYBER.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 1049942,
+      "tmdb_title": "Bambi - La vendetta",
+      "tmdb_url": "https://www.themoviedb.org/movie/1049942",
+      "year": 2025
+    },
+    "WD659::I:\\FILM\\Banditi a Milano (1968)  [SD H264 ITA AAC] by jackerr [P&C] Poliziottesco.avi": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Drammatico"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 74657,
+      "tmdb_title": "Banditi a Milano",
+      "tmdb_url": "https://www.themoviedb.org/movie/74657",
+      "year": 1968
+    },
+    "WD659::I:\\FILM\\Cane.e.Gatto.(1983).1080p.BluRay.DTS.ITA.AC3.ENG.x264.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Commedia",
+        "Crime"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 11613,
+      "tmdb_title": "Cane e gatto",
+      "tmdb_url": "https://www.themoviedb.org/movie/11613",
+      "year": 1983
+    },
+    "WD659::I:\\FILM\\Caramelle.Da.Uno.Sconosciuto.1987.720p.HEVC.GRD.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Crime",
+        "Horror",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 57115,
+      "tmdb_title": "Caramelle da uno sconosciuto",
+      "tmdb_url": "https://www.themoviedb.org/movie/57115",
+      "year": 1987
+    },
+    "WD659::I:\\FILM\\City on Fire (1987) (1080p RM4K BluRay x265 10bit r00t).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Crime",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 42120,
+      "tmdb_title": "City on Fire",
+      "tmdb_url": "https://www.themoviedb.org/movie/42120",
+      "year": 1987
+    },
+    "WD659::I:\\FILM\\Colossus.-.The Forbin Project.1970.Bdmux.1080p.Ac3.Ita.Eng.Sub.Chaps.X264.NOMADS.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Fantascienza",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 14801,
+      "tmdb_title": "Colossus - The Forbin Project",
+      "tmdb_url": "https://www.themoviedb.org/movie/14801",
+      "year": 1970
+    },
+    "WD659::I:\\FILM\\Puro cashmere (1986) [1080p.x264.ITA] (by.phadron) MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Crime"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 391114,
+      "tmdb_title": "Puro cashmere",
+      "tmdb_url": "https://www.themoviedb.org/movie/391114",
+      "year": 1986
+    },
+    "Zoro::G:\\Cliffhanger.L'Ultima.Sfida.1993.BDRip.MUX.1080p.ITADTS.ENGAC3.Subs.Chaps.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Avventura",
+        "Azione",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 9350,
+      "tmdb_title": "Cliffhanger - L'ultima sfida",
+      "tmdb_url": "https://www.themoviedb.org/movie/9350",
+      "year": 1993
+    },
+    "Zoro::G:\\Codice Magnum 1986 BDRip ITA ENG 1080p x265 Paso77.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Crime",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 2099,
+      "tmdb_title": "Codice Magnum",
+      "tmdb_url": "https://www.themoviedb.org/movie/2099",
+      "year": 1986
+    },
+    "Zoro::G:\\FILM HORROR-THILLER\\Abraxas - Riti segreti dall'oltretomba (2001).mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 331647,
+      "tmdb_title": "Abraxas: Riti Segreti Dall'Oltretomba",
+      "tmdb_url": "https://www.themoviedb.org/movie/331647",
+      "year": 2001
+    },
+    "Zoro::G:\\FILM HORROR-THILLER\\Blade - (1998) - UNCUT - AC3 5.1 ITA.ENG 1080p H265 sub NUita.eng Sp33dy94-MIRCrew.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Azione",
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 36647,
+      "tmdb_title": "Blade",
+      "tmdb_url": "https://www.themoviedb.org/movie/36647",
+      "year": 1998
+    },
+    "Zoro::G:\\FILM HORROR-THILLER\\Cul-De-Sac.-.1966.-.iTA.ENG.AC3.CRiTERiON.1080p.BDRip.V2.by.M4iO.x264.mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Commedia",
+        "Crime",
+        "Thriller"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 4772,
+      "tmdb_title": "Cul de sac",
+      "tmdb_url": "https://www.themoviedb.org/movie/4772",
+      "year": 1966
+    },
+    "Zoro::G:\\FILM HORROR-THILLER\\La maschera del demonio (1960) (Mario Bava) [1080p, x265, AC3][ITA, ENG].mkv": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 27632,
+      "tmdb_title": "La maschera del demonio",
+      "tmdb_url": "https://www.themoviedb.org/movie/27632",
+      "year": 1960
+    },
+    "Zoro::G:\\FILM HORROR-THILLER\\La.maschera.del.demonio.1960.ITALIAN.1080p.BluRay.x265-VXT.mp4": {
+      "checked_at": "2026-10-23",
+      "genres": [
+        "Horror"
+      ],
+      "source": "TMDB",
+      "tmdb_id": 27632,
+      "tmdb_title": "La maschera del demonio",
+      "tmdb_url": "https://www.themoviedb.org/movie/27632",
+      "year": 1960
+    }
+  },
+  "version": 1
 }

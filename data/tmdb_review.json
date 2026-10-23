@@ -1,4 +1,227 @@
 {
-  "version": 1,
-  "da_verificare": []
+  "da_verificare": [
+    {
+      "anno": 1954,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "20000 Leghe sotto i mari - Leagues Under The Sea"
+    },
+    {
+      "anno": 1957,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "A 30 milioni di Km dalla Terra - 20 Million Miles To Earth"
+    },
+    {
+      "anno": 1987,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Aenigma"
+    },
+    {
+      "anno": 1969,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "All Monsters Attack"
+    },
+    {
+      "anno": 1982,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Assassinio al Cimitero Etrusco - The Scorpion with Two Tails"
+    },
+    {
+      "anno": 1970,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Atom il mostro della Galassia - Yog The Space Amoeba"
+    },
+    {
+      "anno": 1954,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Attacco alla base spaziale U S - Gog"
+    },
+    {
+      "anno": 2021,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "BLU 38"
+    },
+    {
+      "anno": 1983,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "BMX Bandits La Banda Della BMX"
+    },
+    {
+      "anno": 1964,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Base Luna chiama terra - First Men in the Moon"
+    },
+    {
+      "anno": 2002,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Blade 2"
+    },
+    {
+      "anno": 2004,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Blade 3 Trinity"
+    },
+    {
+      "anno": 1973,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Bud Spencer"
+    },
+    {
+      "anno": 1980,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "City Of The Living Dead"
+    },
+    {
+      "anno": 1966,
+      "copie": 1,
+      "motivo": "ambiguo",
+      "titolo": "Cyborg anno 2087 metà uomo metà macchina"
+    },
+    {
+      "anno": 1955,
+      "copie": 2,
+      "motivo": "ambiguo",
+      "titolo": "Il mostro dei mari - It Came from Beneath the Sea"
+    },
+    {
+      "anno": 1954,
+      "copie": 2,
+      "motivo": "ambiguo",
+      "titolo": "Tobor Il Re Dei Robot Tobor The Great"
+    },
+    {
+      "anno": 1988,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "A cena col vampiro - Lamberto Bava"
+    },
+    {
+      "anno": 1973,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Ai confini della realtà (Fukuda,"
+    },
+    {
+      "anno": 1983,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Al Bar dello Sport (L Banfi"
+    },
+    {
+      "anno": 1999,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Anabolyzer"
+    },
+    {
+      "anno": 2026,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Annabella Viaggio ad Oltranza"
+    },
+    {
+      "anno": 1982,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Borotalco (Carlo Verdone,"
+    },
+    {
+      "anno": 1978,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer"
+    },
+    {
+      "anno": 1981,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer"
+    },
+    {
+      "anno": 1968,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1970,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1971,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1972,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1974,
+      "copie": 2,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1977,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1979,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1981,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1983,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1984,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1985,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Bud Spencer & Terence Hill"
+    },
+    {
+      "anno": 1990,
+      "copie": 1,
+      "motivo": "non_trovato",
+      "titolo": "Cabal Director Cut"
+    }
+  ],
+  "version": 1
 }
