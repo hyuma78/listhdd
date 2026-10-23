@@ -1,4 +1,4 @@
-/* Vault 2.0 — Vanilla JS, nessuna dipendenza e nessuna richiesta a servizi esterni. */
+/* VAULT 3.0 — nessuna chiave TMDB nel browser: legge solo metadati JSON pubblicati. */
 (() => {
   'use strict';
   const $ = (selector) => document.querySelector(selector);
@@ -9,7 +9,7 @@
   const DEFAULT_MANIFEST = ['Arietty.json','Chopper.json','Hikvision2TB.json','Maxtor15G.json','NASWare.json','SOA.json','Seagate0FM.json','Seagate1TB.json','Seagate878.json','SeagateGMF.json','SeagateR9H.json','TR3NTON.json','Usopp.json','WD207.json','WD659.json','WD_Sarah_2TB.json','franky.json','nami.json','rufy.json','zoro.json'];
   const VIDEO_TYPES = ['mkv','mp4','avi','mov','wmv','m4v','mpg','mpeg','ts','m2ts','webm','flv','vob','3gp','divx','iso'];
   const GENRES = ['Azione','Avventura','Animazione','Biografico','Commedia','Crime','Documentario','Drammatico','Fantasy','Fantascienza','Guerra','Horror','Musicale','Romantico','Storico','Thriller','Western'];
-  const CURRENT_YEAR = 2026;
+  const CURRENT_YEAR = new Date().getFullYear();
   const TITLES = {overview:'Panoramica',drives:'I miei dischi',search:'Esplora file',favorites:'Preferiti',duplicates:'Doppioni potenziali'};
   const state = {
     page: 'overview', disks: new Map(), files: [], favorites: new Set(), query: '',
@@ -104,7 +104,18 @@
     if(!m||typeof m!=='object'||Array.isArray(m))return null;
     const year=m.year===''||m.year===null?null:Number(m.year);
     const genres=Array.isArray(m.genres)?m.genres.filter(g=>GENRES.includes(g)):[];
-    return {year:Number.isInteger(year)&&year>=1900&&year<=CURRENT_YEAR?year:null,genres,source:typeof m.source==='string'?m.source.slice(0,40):'Manuale'};
+    const source=typeof m.source==='string'?m.source.slice(0,40):'Manuale';
+    const tmdb=source.toLowerCase()==='tmdb' && Number.isInteger(m.tmdb_id) && m.tmdb_id>0;
+    const allowedPath=typeof m.poster_path==='string'&&/^\/[A-Za-z0-9_-]+\.(?:jpg|png|webp)$/i.test(m.poster_path);
+    return {year:Number.isInteger(year)&&year>=1900&&year<=CURRENT_YEAR?year:null,genres,source,
+      ...(tmdb?{type:m.type==='tv'?'tv':'movie',tmdb_id:m.tmdb_id,
+        tmdb_title:String(m.tmdb_title||'').slice(0,250),
+        overview:String(m.overview||'').slice(0,1800),poster_path:allowedPath?m.poster_path:'',
+        rating:Math.max(0,Math.min(10,Number(m.rating)||0)),votes:Math.max(0,Math.floor(Number(m.votes)||0)),
+        director:String(m.director||'').slice(0,200),
+        cast:Array.isArray(m.cast)?m.cast.slice(0,6).map(x=>String(x).slice(0,90)):[],
+        runtime:Number(m.runtime)||null,seasons:Number(m.seasons)||null,episodes:Number(m.episodes)||null,
+        checked_at:String(m.checked_at||'').slice(0,10)}:{})};
   }
   function enrichFile(f){
     const remote=state.publishedMetadata[f.key];
@@ -113,6 +124,7 @@
     f.year=selected?selected.year:f.guessedYear;
     f.genres=selected?selected.genres:f.guessedGenres;
     f.metadataSource=selected?selected.source:(f.guessedGenres.length?'Cartella':'Nome file');
+    f.tmdb=selected?.source?.toLowerCase()==='tmdb' ? selected : null;
     return f;
   }
   function applyAllMetadata(){for(const f of state.files)enrichFile(f);}
@@ -459,6 +471,14 @@
     $('#metaYear').value=f.year||'';
     $('#metaGenreList').innerHTML=GENRES.map(g=>`<label class="meta-option"><input type="checkbox" name="movieGenre" value="${html(g)}" ${f.genres.includes(g)?'checked':''}><span>${html(g)}</span></label>`).join('');
     $('#metaAllCopies').checked=false;
+    const d=f.tmdb, detail=$('#tmdbDetails');
+    if(!d){detail.hidden=true;detail.innerHTML='';}
+    else {
+      detail.hidden=false;
+      const poster=d.poster_path?`<img class="tmdb-poster" src="https://image.tmdb.org/t/p/w185${d.poster_path}" loading="lazy" alt="Locandina di ${html(d.tmdb_title||f.name)}">`:'';
+      const link=`https://www.themoviedb.org/${d.type}/${d.tmdb_id}`;
+      detail.innerHTML=`<div class="tmdb-detail-grid">${poster}<div class="tmdb-detail-body"><div class="tmdb-credit">${d.type==='tv'?'SERIE / ANIME':'FILM'} · TMDB${d.rating?' · ★ '+html(d.rating.toFixed(1))+'/10':''}</div><strong>${html(d.tmdb_title||f.name)}</strong><p>${html(d.overview||'Trama non disponibile in italiano.')}</p>${d.director?`<div class="tmdb-attribute"><b>${d.type==='tv'?'Creato da':'Regia'}</b> ${html(d.director)}</div>`:''}${d.cast?.length?`<div class="tmdb-attribute"><b>Cast</b> ${html(d.cast.join(', '))}</div>`:''}${d.seasons?`<div class="tmdb-attribute"><b>Stagioni</b> ${d.seasons}${d.episodes?' · Episodi '+d.episodes:''}</div>`:''}${d.runtime?`<div class="tmdb-attribute"><b>Durata</b> ${d.runtime} min</div>`:''}<a class="tmdb-link" href="${link}" target="_blank" rel="noopener noreferrer">Apri la scheda su TMDB ↗</a></div></div>`;
+    }
     $('#metadataDialog').showModal();
   }
   function saveMetadata(){

@@ -35,3 +35,17 @@
 .meta-copy-option{display:flex;gap:8px;align-items:start;margin:18px 0;color:var(--muted);font-size:11px;line-height:1.6}
 .meta-dialog-actions{display:flex;gap:10px;justify-content:flex-end}
 @media(max-width:520px){.meta-genres{grid-template-columns:repeat(2,minmax(0,1fr))}.metadata-toolbar{align-items:stretch}.metadata-actions{width:100%}.metadata-actions .btn{flex:1}.filter-panel .input-select{min-width:calc(50% - 6px)}}
+
+/* Schede TMDB opzionali, all'interno del dialog esistente: nessuna modifica alla dashboard */
+.tmdb-details[hidden]{display:none!important}
+.tmdb-details{border:1px solid var(--line);border-radius:12px;background:var(--panel-2);padding:13px;margin:12px 0}
+.tmdb-detail-grid{display:flex;align-items:flex-start;gap:15px}
+.tmdb-poster{width:110px;max-width:30%;height:auto;object-fit:cover;border-radius:8px;flex-shrink:0}
+.tmdb-detail-body{min-width:0;flex:1;font-size:12px;line-height:1.55}
+.tmdb-detail-body strong{font-size:15px;display:block;margin-bottom:7px}
+.tmdb-detail-body p{color:var(--muted);font-size:11px;line-height:1.6;max-height:155px;overflow:auto;white-space:pre-line;margin:0 0 12px}
+.tmdb-credit{color:var(--accent-light);font-size:10px;font-weight:700;letter-spacing:.035em;margin-bottom:5px}
+.tmdb-attribute{margin:7px 0;color:var(--muted);font-size:11px;overflow-wrap:anywhere}
+.tmdb-attribute b{color:var(--text)}
+.tmdb-link{display:inline-block;color:var(--accent-light);margin-top:7px;font-size:11px;font-weight:700}
+@media(max-width:520px){.tmdb-poster{width:80px}.tmdb-detail-grid{gap:10px}.tmdb-details{padding:10px}}

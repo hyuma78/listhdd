@@ -106,7 +106,8 @@
   <div class="modal-head"><div><span class="mini-label">LA MIA COLLEZIONE</span><h2>Modifica scheda</h2></div><button type="button" class="icon-btn" id="metaCancel" aria-label="Chiudi"><svg class="icon"><use href="#ico-x"/></svg></button></div>
   <p class="meta-file-name" id="metaFilename"></p><p class="meta-file-disk" id="metaDisk"></p>
   <input type="hidden" id="metaFileId">
-  <label class="meta-label" for="metaYear">Anno di uscita</label><input id="metaYear" type="number" min="1900" max="2026" step="1" placeholder="Es. 1987" class="filter-input meta-year">
+  <div id="tmdbDetails" class="tmdb-details" hidden></div>
+  <label class="meta-label" for="metaYear">Anno di uscita</label><input id="metaYear" type="number" min="1900" max="2100" step="1" placeholder="Es. 1987" class="filter-input meta-year">
   <div class="meta-label">Genere (puoi sceglierne più di uno)</div><div class="meta-genres" id="metaGenreList"></div>
   <label class="meta-copy-option"><input type="checkbox" id="metaAllCopies"> Applica anche alle copie con nome file identico</label>
   <div class="meta-dialog-actions"><button type="button" class="btn btn-soft" id="metaReset">Ripristina</button><button type="button" class="btn btn-primary" id="metaSave">Salva scheda</button></div>
