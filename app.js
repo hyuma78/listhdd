@@ -357,6 +357,7 @@
     return arr;
   }
   function selectHtml(id,value,options,aria){return `<select class="input-select" id="${id}" aria-label="${aria}">${options.map(([v,label])=>`<option value="${html(v)}" ${v===value?'selected':''}>${html(label)}</option>`).join('')}</select>`;}
+  const liveScan = window.createVaultLiveScan({state,render,enrichFile,notify:toast});
   function renderLibrary(page){
     const fav=page==='favorites',list=filterFiles(),visible=list.slice(0,state.pageLimit);
     const catOpts=[['','Tutte le categorie'],...['Film','Serie TV','Anime e cartoni','Documentari','Altro'].map(v=>[v,v])];
@@ -378,6 +379,7 @@
     </div>
     <div class="metadata-toolbar"><span>${icon('info')} Genere classificato per <strong>${formatCount(classified)}</strong> file su ${formatCount(state.files.length)}. Gli altri sono da classificare.</span>
       <span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
+    ${!fav?liveScan.panel():''}
     <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'file trovato':'file trovati'}${state.query?` per <strong>“${html(state.query)}”</strong>`:''}</span><span class="filter-summary-right">${state.diskFilter?`<span class="active-scope">${icon('drive')} ${html(state.diskFilter)} <button title="Rimuovi filtro disco" data-action="clear-disk">×</button></span>`:''}${(state.diskFilter||state.categoryFilter||state.extFilter||state.sizeFilter||state.genreFilter||state.yearFilter||state.qualityFilter||state.languageFilter||state.query)?`<button type="button" class="link-btn" data-action="clear-filters">Azzera filtri</button>`:''}</span></div>
     <div class="file-results">${visible.map(f=>renderFileCard(f)).join('')||emptyState(fav)}</div>
     ${visible.length<list.length?`<button class="load-more" data-action="more-files">Mostra altri ${formatCount(Math.min(MAX_PAGE,list.length-visible.length))} file (${formatCount(visible.length)} di ${formatCount(list.length)})</button>`:''}`;
@@ -538,7 +540,10 @@
     if(TITLES[action]){navigate(action);return;}
     if(action==='more-files'){state.pageLimit+=MAX_PAGE;render();return;}
     if(action==='more-folder'){state.folderLimit+=120;render();return;}
-    if(action==='clear-filters'){state.query='';state.diskFilter='';state.categoryFilter='';state.extFilter='';state.sizeFilter='';state.genreFilter='';state.yearFilter='';state.qualityFilter='';state.languageFilter='';state.pageLimit=MAX_PAGE;$('#globalSearch').value='';render();return;}
+    if(action==='scan-auth'){liveScan.setAdmin($('#vaultAdminCode')?.value||'');return;}
+    if(action==='scan-pause'){liveScan.pause();return;}
+    if(action==='scan-resume'){liveScan.resume();return;}
+    if(action==='clear-filters'){liveScan.begin('');state.query='';state.diskFilter='';state.categoryFilter='';state.extFilter='';state.sizeFilter='';state.genreFilter='';state.yearFilter='';state.qualityFilter='';state.languageFilter='';state.pageLimit=MAX_PAGE;$('#globalSearch').value='';render();return;}
     if(action==='clear-disk'){state.diskFilter='';render();return;}
     if(action==='import-meta'){$('#metaImportInput').click();return;}
     if(action==='export-meta'){exportMetadata();return;}
@@ -548,6 +553,7 @@
   function handleChange(e){
     const key={filterDisk:'diskFilter',filterCategory:'categoryFilter',filterExt:'extFilter',filterSize:'sizeFilter',filterGenre:'genreFilter',filterYear:'yearFilter',filterQuality:'qualityFilter',filterLanguage:'languageFilter',sortFiles:'sort',driveSort:'driveSort'}[e.target.id];
     if(!key)return;state[key]=e.target.value;state.pageLimit=MAX_PAGE;render();
+    if(['genreFilter','diskFilter','categoryFilter'].includes(key)){liveScan.begin(state.genreFilter);}
   }
   let debounce=null;
   function bind(){

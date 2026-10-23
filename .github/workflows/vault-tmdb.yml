@@ -1,76 +1,32 @@
-name: VAULT · TMDB automatico
+name: VAULT · Pubblica GitHub Pages (TMDB su richiesta)
 
 on:
-  workflow_dispatch:
-    inputs:
-      max_requests:
-        description: 'Massimo chiamate TMDB (ricerche + dettagli)'
-        required: false
-        default: '3000'
-        type: choice
-        options: ['500', '1500', '3000', '5000', '10000']
-  schedule:
-    - cron: '23 3 * * *' # Ore 03:23 UTC: esecuzione giornaliera, soggetta a ritardi GitHub
   push:
     branches: [main]
-    paths:
-      - 'index.html'
-      - 'app.js'
-      - 'styles.css'
-      - 'data/**'
-      - 'scripts/aggiorna_tmdb.py'
-      - '.github/workflows/vault-tmdb.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: vault-pages
   cancel-in-progress: false
 
 jobs:
-  aggiorna:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Scarica repository
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-      - name: Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Recupera TMDB (film, TV, anime)
-        env:
-          TMDB_READ_ACCESS_TOKEN: ${{ secrets.TMDB_READ_ACCESS_TOKEN }}
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-          MAX_REQUESTS: ${{ inputs.max_requests || '3000' }}
-        run: python scripts/aggiorna_tmdb.py --max-requests "$MAX_REQUESTS" --rps 5
-      - name: Salva metadati e stato nel repository
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/film_metadata.json data/tmdb_state.json data/tmdb_review.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'chore: aggiorna catalogo TMDB [skip ci]'
-            git push
-          else
-            echo 'Nessun aggiornamento da salvare.'
-          fi
-      - name: Prepara sito statico
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
   pubblica:
     runs-on: ubuntu-latest
-    needs: aggiorna
     permissions:
       pages: write
       id-token: write
+      contents: read
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Pubblica GitHub Pages
-        id: deploy
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
         uses: actions/deploy-pages@v4
