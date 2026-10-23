@@ -1,4 +1,4 @@
-/* VAULT 3.0 — nessuna chiave TMDB nel browser: legge solo metadati JSON pubblicati. */
+/* Vault 2.0 — Vanilla JS, nessuna dipendenza e nessuna richiesta a servizi esterni. */
 (() => {
   'use strict';
   const $ = (selector) => document.querySelector(selector);
@@ -9,7 +9,7 @@
   const DEFAULT_MANIFEST = ['Arietty.json','Chopper.json','Hikvision2TB.json','Maxtor15G.json','NASWare.json','SOA.json','Seagate0FM.json','Seagate1TB.json','Seagate878.json','SeagateGMF.json','SeagateR9H.json','TR3NTON.json','Usopp.json','WD207.json','WD659.json','WD_Sarah_2TB.json','franky.json','nami.json','rufy.json','zoro.json'];
   const VIDEO_TYPES = ['mkv','mp4','avi','mov','wmv','m4v','mpg','mpeg','ts','m2ts','webm','flv','vob','3gp','divx','iso'];
   const GENRES = ['Azione','Avventura','Animazione','Biografico','Commedia','Crime','Documentario','Drammatico','Fantasy','Fantascienza','Guerra','Horror','Musicale','Romantico','Storico','Thriller','Western'];
-  const CURRENT_YEAR = new Date().getFullYear();
+  const CURRENT_YEAR = 2026;
   const TITLES = {overview:'Panoramica',drives:'I miei dischi',search:'Esplora file',favorites:'Preferiti',duplicates:'Doppioni potenziali'};
   const state = {
     page: 'overview', disks: new Map(), files: [], favorites: new Set(), query: '',
@@ -104,18 +104,7 @@
     if(!m||typeof m!=='object'||Array.isArray(m))return null;
     const year=m.year===''||m.year===null?null:Number(m.year);
     const genres=Array.isArray(m.genres)?m.genres.filter(g=>GENRES.includes(g)):[];
-    const source=typeof m.source==='string'?m.source.slice(0,40):'Manuale';
-    const tmdb=source.toLowerCase()==='tmdb' && Number.isInteger(m.tmdb_id) && m.tmdb_id>0;
-    const allowedPath=typeof m.poster_path==='string'&&/^\/[A-Za-z0-9_-]+\.(?:jpg|png|webp)$/i.test(m.poster_path);
-    return {year:Number.isInteger(year)&&year>=1900&&year<=CURRENT_YEAR?year:null,genres,source,
-      ...(tmdb?{type:m.type==='tv'?'tv':'movie',tmdb_id:m.tmdb_id,
-        tmdb_title:String(m.tmdb_title||'').slice(0,250),
-        overview:String(m.overview||'').slice(0,1800),poster_path:allowedPath?m.poster_path:'',
-        rating:Math.max(0,Math.min(10,Number(m.rating)||0)),votes:Math.max(0,Math.floor(Number(m.votes)||0)),
-        director:String(m.director||'').slice(0,200),
-        cast:Array.isArray(m.cast)?m.cast.slice(0,6).map(x=>String(x).slice(0,90)):[],
-        runtime:Number(m.runtime)||null,seasons:Number(m.seasons)||null,episodes:Number(m.episodes)||null,
-        checked_at:String(m.checked_at||'').slice(0,10)}:{})};
+    return {year:Number.isInteger(year)&&year>=1900&&year<=CURRENT_YEAR?year:null,genres,source:typeof m.source==='string'?m.source.slice(0,40):'Manuale'};
   }
   function enrichFile(f){
     const remote=state.publishedMetadata[f.key];
@@ -124,7 +113,6 @@
     f.year=selected?selected.year:f.guessedYear;
     f.genres=selected?selected.genres:f.guessedGenres;
     f.metadataSource=selected?selected.source:(f.guessedGenres.length?'Cartella':'Nome file');
-    f.tmdb=selected?.source?.toLowerCase()==='tmdb' ? selected : null;
     return f;
   }
   function applyAllMetadata(){for(const f of state.files)enrichFile(f);}
@@ -228,7 +216,6 @@
     if(failures.length)$('#loadErrors').innerHTML=`${icon('alert')} <strong>Attenzione: ${failures.length} cataloghi non caricati.</strong> ${html(failures.join(' · '))}. Controlla i nomi dei file e i percorsi nella cartella data/.`;
     $('#footerMeta').textContent=`${formatCount(state.files.length)} file · ${state.disks.size} dischi · dati da scansioni locali`;
     render();
-    liveScan.init();
     if(!loaded.size)toast('Non riesco a leggere i JSON: controlla data/manifest.json e i file della cartella data/.',true);
   }
   function navigate(page){
@@ -261,7 +248,6 @@
     const biggest=[...state.files].filter(f=>Number.isFinite(f.size)).sort((a,b)=>b.size-a.size).slice(0,5);
     const pressure=disks.filter(d=>pct(d)>=90).slice(0,5);
     return `${renderStats()}
-      ${liveScan.panel()}
       <div class="section-head"><div><h2>Il mio archivio in numeri</h2><p>File, spazio e contenuti dei miei dischi.</p></div><button class="link-btn" data-action="drives">Esplora dischi ${icon('arrow')}</button></div>
       <div class="dashboard-grid">
         <section class="panel"><div class="panel-head"><h3>Capacità di archiviazione</h3><small>Totale di tutti i dischi</small></div><div class="total-usage-top"><strong>${fmtGB(s.used)}</strong><small>su ${fmtGB(s.total)}</small></div>${renderProgress(percent,percent>=95?'danger':percent>=90?'warning':'')}
@@ -359,7 +345,6 @@
     return arr;
   }
   function selectHtml(id,value,options,aria){return `<select class="input-select" id="${id}" aria-label="${aria}">${options.map(([v,label])=>`<option value="${html(v)}" ${v===value?'selected':''}>${html(label)}</option>`).join('')}</select>`;}
-  const liveScan = window.createVaultLiveScan({state,render,enrichFile,notify:toast});
   function renderLibrary(page){
     const fav=page==='favorites',list=filterFiles(),visible=list.slice(0,state.pageLimit);
     const catOpts=[['','Tutte le categorie'],...['Film','Serie TV','Anime e cartoni','Documentari','Altro'].map(v=>[v,v])];
@@ -381,7 +366,6 @@
     </div>
     <div class="metadata-toolbar"><span>${icon('info')} Genere classificato per <strong>${formatCount(classified)}</strong> file su ${formatCount(state.files.length)}. Gli altri sono da classificare.</span>
       <span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
-    ${!fav?liveScan.panel():''}
     <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'file trovato':'file trovati'}${state.query?` per <strong>“${html(state.query)}”</strong>`:''}</span><span class="filter-summary-right">${state.diskFilter?`<span class="active-scope">${icon('drive')} ${html(state.diskFilter)} <button title="Rimuovi filtro disco" data-action="clear-disk">×</button></span>`:''}${(state.diskFilter||state.categoryFilter||state.extFilter||state.sizeFilter||state.genreFilter||state.yearFilter||state.qualityFilter||state.languageFilter||state.query)?`<button type="button" class="link-btn" data-action="clear-filters">Azzera filtri</button>`:''}</span></div>
     <div class="file-results">${visible.map(f=>renderFileCard(f)).join('')||emptyState(fav)}</div>
     ${visible.length<list.length?`<button class="load-more" data-action="more-files">Mostra altri ${formatCount(Math.min(MAX_PAGE,list.length-visible.length))} file (${formatCount(visible.length)} di ${formatCount(list.length)})</button>`:''}`;
@@ -475,14 +459,6 @@
     $('#metaYear').value=f.year||'';
     $('#metaGenreList').innerHTML=GENRES.map(g=>`<label class="meta-option"><input type="checkbox" name="movieGenre" value="${html(g)}" ${f.genres.includes(g)?'checked':''}><span>${html(g)}</span></label>`).join('');
     $('#metaAllCopies').checked=false;
-    const d=f.tmdb, detail=$('#tmdbDetails');
-    if(!d){detail.hidden=true;detail.innerHTML='';}
-    else {
-      detail.hidden=false;
-      const poster=d.poster_path?`<img class="tmdb-poster" src="https://image.tmdb.org/t/p/w185${d.poster_path}" loading="lazy" alt="Locandina di ${html(d.tmdb_title||f.name)}">`:'';
-      const link=`https://www.themoviedb.org/${d.type}/${d.tmdb_id}`;
-      detail.innerHTML=`<div class="tmdb-detail-grid">${poster}<div class="tmdb-detail-body"><div class="tmdb-credit">${d.type==='tv'?'SERIE / ANIME':'FILM'} · TMDB${d.rating?' · ★ '+html(d.rating.toFixed(1))+'/10':''}</div><strong>${html(d.tmdb_title||f.name)}</strong><p>${html(d.overview||'Trama non disponibile in italiano.')}</p>${d.director?`<div class="tmdb-attribute"><b>${d.type==='tv'?'Creato da':'Regia'}</b> ${html(d.director)}</div>`:''}${d.cast?.length?`<div class="tmdb-attribute"><b>Cast</b> ${html(d.cast.join(', '))}</div>`:''}${d.seasons?`<div class="tmdb-attribute"><b>Stagioni</b> ${d.seasons}${d.episodes?' · Episodi '+d.episodes:''}</div>`:''}${d.runtime?`<div class="tmdb-attribute"><b>Durata</b> ${d.runtime} min</div>`:''}<a class="tmdb-link" href="${link}" target="_blank" rel="noopener noreferrer">Apri la scheda su TMDB ↗</a></div></div>`;
-    }
     $('#metadataDialog').showModal();
   }
   function saveMetadata(){
@@ -542,10 +518,7 @@
     if(TITLES[action]){navigate(action);return;}
     if(action==='more-files'){state.pageLimit+=MAX_PAGE;render();return;}
     if(action==='more-folder'){state.folderLimit+=120;render();return;}
-    if(action==='scan-auth'){liveScan.setAdmin($('#vaultAdminCode')?.value||'');return;}
-    if(action==='scan-pause'){liveScan.pause();return;}
-    if(action==='scan-resume'){liveScan.resume();return;}
-    if(action==='clear-filters'){liveScan.begin('');state.query='';state.diskFilter='';state.categoryFilter='';state.extFilter='';state.sizeFilter='';state.genreFilter='';state.yearFilter='';state.qualityFilter='';state.languageFilter='';state.pageLimit=MAX_PAGE;$('#globalSearch').value='';render();return;}
+    if(action==='clear-filters'){state.query='';state.diskFilter='';state.categoryFilter='';state.extFilter='';state.sizeFilter='';state.genreFilter='';state.yearFilter='';state.qualityFilter='';state.languageFilter='';state.pageLimit=MAX_PAGE;$('#globalSearch').value='';render();return;}
     if(action==='clear-disk'){state.diskFilter='';render();return;}
     if(action==='import-meta'){$('#metaImportInput').click();return;}
     if(action==='export-meta'){exportMetadata();return;}
@@ -555,7 +528,6 @@
   function handleChange(e){
     const key={filterDisk:'diskFilter',filterCategory:'categoryFilter',filterExt:'extFilter',filterSize:'sizeFilter',filterGenre:'genreFilter',filterYear:'yearFilter',filterQuality:'qualityFilter',filterLanguage:'languageFilter',sortFiles:'sort',driveSort:'driveSort'}[e.target.id];
     if(!key)return;state[key]=e.target.value;state.pageLimit=MAX_PAGE;render();
-    // La selezione di un genere non avvia più richieste TMDB.
   }
   let debounce=null;
   function bind(){
