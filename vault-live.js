@@ -3,7 +3,7 @@
   'use strict';
   const norm = s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim().replace(/\s+/g,' ');
   const escapeHTML = s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const EP = /(?:^|[\s._-])(?:s\d{1,3}[\s._-]*e\d{1,3}|\d{1,2}x\d{1,3}|(?:episodio|episode|ep|puntata|stage)[\s._-]*\d{1,4}|\d{1,2}[._-]\d{2}(?=[\s._-]))/i;
+  const EP = /(?:^|[\s._-])(?:s\d{1,3}[\s._-]*e\d{1,3}|\d{1,2}x\d{1,3}|e\d{1,3}(?=$|[\s._-])|(?:episodio|episode|ep|puntata|stage)[\s._-]*\d{1,4}|\d{1,2}[._-]\d{2}(?=[\s._-]))/i;
   const NUMBERED_EP = /(?:^|[\s._-])(?:\d{1,3})(?=[\s._-]+[A-Za-zÀ-ÿ]{2,})/;
   const TECH = /(?:^|[\s._-])(?:2160p|1080p|720p|576p|480p|4k|uhd|blu[ ._-]?ray|bdrip|bdmux|brrip|dvdrip|dvdmux|webrip|web[ ._-]?dl|webmux|remux|x264|x265|h[ ._-]?264|hevc|aac|ac3|eac3|dts|hdtv|hdr10|dovi|dual[ ._-]?audio|proper|repack|multi|subs?|ita(?:lian)?|eng(?:lish)?|jap(?:anese)?)(?=$|[\s._-])/i;
   const EXTRAS = /^(?:extras?(?:[ ._-]|$)|bonus(?:[ ._-]|$)|special features?|speciali|featurettes?|deleted scenes?|interviews?|making[ ._-]?of|behind the scenes|trailers?|teasers?|sample|campioni|menu)/i;
@@ -36,7 +36,29 @@
     const animContext=/(?:anime|cartoni animati)/i.test(folder);
     const movieContext=/(?:film|movies?|cinema|horror|thriller|fantascienza|fantasy|sci[ ._-]*fi|commedia)/i.test(folder);
     const rawBeforeTech=stem.split(TECH)[0].replace(/\[[^\]]*\]/g,' ');
-    const standardEpisode=EP.test(stem)||EP.test(folder);
+    // Esempio reale: Captain Tsubasa-J 39 [DVD Jap, x264,...].
+    // Il numero immediatamente prima dei tag di release e' un episodio,
+    // non parte del titolo. La regola numerica si applica solo in cartelle
+    // che indicano serie/anime, evitando di tagliare sequel di film.
+    const beforeRelease=stem.split(/\s*\[/)[0].replace(/[._]+/g,' ').trim();
+    const tailMatch=beforeRelease.match(/^(.*?)[\s._-]+(\d{1,3})\s*$/);
+    const tailPrefix=tailMatch?clean(tailMatch[1]):'';
+    const numberedTailEpisode=!!tailMatch&&(tvContext||animContext)
+      &&validTitle(tailPrefix,false)
+      &&!/\b(?:movie|film|special|volume|vol|part|parte)\b/i.test(tailPrefix);
+    // Secondo formato reale: 'Gurren Lagann - 01 - Titolo puntata'.
+    // Scartiamo il tag tecnico iniziale per esaminare il titolo leggibile.
+    const readableStem=stem.replace(/^\s*\[[^\]]{2,160}\][\s._-]*/, '').replace(/[._]+/g,' ');
+    // Non interpretare come episodi i numeri delle tracce audio (5.1),
+    // dell'anno o dei codec: limitiamo la ricerca a prima dei tag tecnici.
+    const numericScope=readableStem.split(TECH)[0].split(YEAR)[0];
+    const middleMatch=numericScope.match(/^(.+?)[\s._-]+(\d{1,3})[\s._-]+(?=[^\s._-])/);
+    const middlePrefix=middleMatch?clean(middleMatch[1]):'';
+    const numberedMiddleEpisode=!!middleMatch&&(tvContext||animContext)
+      &&validTitle(middlePrefix,false)
+      &&!/\b(?:movie|film|special|volume|vol|part|parte)\b/i.test(middlePrefix);
+    const explicitEpisode=EP.test(stem)||EP.test(folder);
+    const standardEpisode=explicitEpisode||numberedTailEpisode||numberedMiddleEpisode;
     const numericEpisode=standardEpisode?null:NUMBERED_EP.exec(rawBeforeTech);
     const numericPrefix=numericEpisode?clean(rawBeforeTech.slice(0,numericEpisode.index)):'';
     const episode=standardEpisode||((tvContext||animContext)&&!!numericEpisode&&((numericPrefix.length>=4&&(!/\b(?:movie|film|special)\b/i.test(numericPrefix)))||dirs.length>1&&!numericPrefix));
@@ -45,9 +67,11 @@
     let title='',year=null,kind=tv?'tv':'movie';
     if(tv){
       // Preferiamo il nome comune della serie, non il titolo di una singola puntata.
-      const before=stem.split(EP)[0];
+      const before=explicitEpisode?stem.split(EP)[0]:numberedTailEpisode?tailPrefix:numberedMiddleEpisode?middlePrefix:stem.split(EP)[0];
       let prefix=clean(before);
-      if(numericEpisode && numericPrefix.length>=4)prefix=numericPrefix;
+      if(!explicitEpisode && numberedTailEpisode)prefix=tailPrefix;
+      else if(!explicitEpisode && numberedMiddleEpisode)prefix=middlePrefix;
+      else if(numericEpisode && numericPrefix.length>=4)prefix=numericPrefix;
       if(validTitle(prefix,false)&&!GENERIC.test(prefix))title=prefix;
       else for(const d of [...dirs].reverse()){
         if(GENERIC.test(d.trim())||EP.test(d)||EXTRAS.test(d))continue;
@@ -166,7 +190,10 @@
     function setAdmin(code){
       if(!code||code.length<24){notify('Inserisci il codice privato di scansione (almeno 24 caratteri).',true);return;}
       adminKey=code;
-      if(['paused','error','auth-resume'].includes(progress.mode))control('resume');else if(progress.mode==='auth-pause')control('pause');else startScan();
+      // Se i titoli locali sono cambiati, aggiorna l'elenco della coda prima di ripartire.
+      if(progress.mode==='paused' && progress.fingerprint!==fingerprint)startScan();
+      else if(['paused','error','auth-resume'].includes(progress.mode))control('resume');
+      else if(progress.mode==='auth-pause')control('pause');else startScan();
     }
     async function control(action){
       if(!adminKey){progress.mode=action==='resume'?'auth-resume':'auth-pause';draw();return;}
@@ -208,6 +235,10 @@
       }else if(mode==='running'){
         title='Catalogazione TMDB in corso';message='Cloudflare continua automaticamente anche se chiudi questa pagina. I generi già riconosciuti sono filtrabili subito.';
         controls='<button type="button" class="btn btn-soft" data-action="scan-pause">Metti in pausa</button>';
+      }else if(mode==='paused'&&changed){
+        title='Nuova catalogazione da caricare';
+        message=`Ho riconosciuto una nuova struttura dei titoli (${format(groups.size)} candidati). Autorizza l'aggiornamento: i risultati TMDB validi verranno riutilizzati.`;
+        showCode=true;buttonText='Aggiorna catalogazione';
       }else if(mode==='paused'){
         title='Catalogazione in pausa';message='I risultati sono salvati. Puoi riprendere dal punto raggiunto.';
         if(adminKey)controls='<button type="button" class="btn btn-soft" data-action="scan-resume">Riprendi</button>';
