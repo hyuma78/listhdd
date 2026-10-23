@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="Catalogo locale e privato dei tuoi hard disk, film, serie e video.">
-  <title>Vault • Il tuo archivio media</title>
+  <meta name="description" content="Il mio archivio personale dei file conservati sui miei hard disk.">
+  <title>VAULT • Il mio archivio HDD</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script defer src="app.js"></script>
@@ -39,9 +39,9 @@
   <aside class="sidebar" id="sidebar" aria-label="Navigazione principale">
     <a class="brand" href="#overview" data-nav="overview" aria-label="Vault, panoramica">
       <span class="brand-mark"><svg class="icon"><use href="#ico-layers"/></svg></span>
-      <span class="brand-type"><strong>VAULT<span class="brand-dot">.</span></strong><small>MEDIA LIBRARY</small></span>
+      <span class="brand-type"><strong>VAULT<span class="brand-dot">.</span></strong><small>ARCHIVIO HDD</small></span>
     </a>
-    <div class="sidebar-caption">WORKSPACE</div>
+    <div class="sidebar-caption">IL MIO ARCHIVIO</div>
     <nav class="side-nav" aria-label="Sezioni">
       <button type="button" class="nav-link active" data-nav="overview"><svg class="icon"><use href="#ico-grid"/></svg><span>Panoramica</span></button>
       <button type="button" class="nav-link" data-nav="drives"><svg class="icon"><use href="#ico-drive"/></svg><span>I miei dischi</span><span class="nav-count" id="navDriveCount">—</span></button>
@@ -50,14 +50,14 @@
       <button type="button" class="nav-link" data-nav="duplicates"><svg class="icon"><use href="#ico-copy"/></svg><span>Doppioni potenziali</span></button>
     </nav>
     <div class="sidebar-bottom">
-      <div class="sidebar-note"><span class="privacy-dot"></span><span>Archivio locale<br><small>Nessun dato inviato online</small></span></div>
+      <div class="sidebar-note"><span class="privacy-dot"></span><span>Cataloghi consultabili<br><small>I video restano sui miei HDD</small></span></div>
       <button type="button" class="sidebar-help" id="shortcutsButton"><svg class="icon"><use href="#ico-keyboard"/></svg> Scorciatoie <kbd>?</kbd></button>
     </div>
   </aside>
 
   <div class="main-area">
     <header class="topbar">
-      <div class="breadcrumb-top"><span class="crumb-app">Workspace</span><svg class="icon"><use href="#ico-chevron"/></svg><strong id="crumbCurrent">Panoramica</strong></div>
+      <div class="breadcrumb-top"><span class="crumb-app">Il mio archivio</span><svg class="icon"><use href="#ico-chevron"/></svg><strong id="crumbCurrent">Panoramica</strong></div>
       <div class="topbar-actions">
         <button class="icon-btn" id="refreshButton" type="button" title="Ricarica i JSON" aria-label="Ricarica i dati"><svg class="icon"><use href="#ico-refresh"/></svg></button>
         <button class="icon-btn" id="themeButton" type="button" title="Cambia tema" aria-label="Cambia tema"><svg class="icon"><use href="#ico-sun"/></svg></button>
@@ -70,16 +70,16 @@
       <section class="hero">
         <div class="hero-glow"></div>
         <div class="hero-content">
-          <span class="eyebrow"><span class="eyebrow-indicator"></span> LA TUA VIDEOTECA, TUTTA IN UN POSTO</span>
-          <h1>Il tuo universo media.<br><span>Perfettamente organizzato.</span></h1>
-          <p>Trova qualsiasi video, scopri dove si trova e tieni sotto controllo tutti i tuoi hard disk.</p>
+          <span class="eyebrow"><span class="eyebrow-indicator"></span> IL MIO ARCHIVIO DIGITALE</span>
+          <h1>Il mio archivio digitale.<br><span>Dischi, cartelle e file.</span></h1>
+          <p>Da Rufy e Nami agli altri HDD: qui ritrovo i miei file e vedo subito su quale disco sono.</p>
           <div class="hero-search-wrap">
             <svg class="icon"><use href="#ico-search"/></svg>
-            <input type="search" id="globalSearch" placeholder="Cerca film, serie, cartelle o nomi file…" autocomplete="off" aria-label="Cerca nel catalogo">
+            <input type="search" id="globalSearch" placeholder="Cerca nei miei file e nelle cartelle…" autocomplete="off" aria-label="Cerca nel catalogo">
             <kbd class="search-shortcut">Ctrl K</kbd>
             <button type="button" id="searchGo" class="search-action" aria-label="Cerca"><svg class="icon"><use href="#ico-arrow"/></svg></button>
           </div>
-          <div class="hero-tags"><span>Prova:</span><button type="button" data-suggest="One Piece">One Piece</button><button type="button" data-suggest="1080p">1080p</button><button type="button" data-suggest=".mkv">MKV</button></div>
+          <div class="hero-tags"><span>Ricerche rapide:</span><button type="button" data-suggest="One Piece">One Piece</button><button type="button" data-suggest="1080p">1080p</button><button type="button" data-suggest=".mkv">MKV</button></div>
         </div>
         <div class="hero-art" aria-hidden="true"><div class="art-ring art-ring-1"></div><div class="art-ring art-ring-2"></div><div class="art-ring art-ring-3"></div><div class="art-disc"><div class="art-disc-inner"><svg class="icon"><use href="#ico-drive"/></svg></div></div><div class="art-spark spark-a"></div><div class="art-spark spark-b"></div><div class="art-spark spark-c"></div></div>
       </section>
@@ -88,7 +88,7 @@
       <div class="load-errors" id="loadErrors" hidden></div>
       <div id="pageContent"></div>
     </main>
-    <footer class="site-footer"><span>VAULT · Il tuo archivio, sotto controllo.</span><span id="footerMeta">Dati da scansioni locali · Nessuna sincronizzazione cloud</span></footer>
+    <footer class="site-footer"><span>VAULT · Il mio archivio HDD.</span><span id="footerMeta">File e dischi censiti nelle mie scansioni</span></footer>
   </div>
 </div>
 
@@ -98,7 +98,7 @@
   <div class="shortcut-row"><span>Cerca ovunque</span><div><kbd>Ctrl</kbd> + <kbd>K</kbd> oppure <kbd>/</kbd></div></div>
   <div class="shortcut-row"><span>Chiudi / annulla ricerca</span><div><kbd>Esc</kbd></div></div>
   <div class="shortcut-row"><span>Mostra questa finestra</span><div><kbd>?</kbd></div></div>
-  <p class="muted-modal">I preferiti e il tema sono memorizzati solo nel tuo browser. L'importazione dei JSON è temporanea: per aggiornamenti permanenti usa lo script incluso.</p>
+  <p class="muted-modal">Preferiti e tema restano salvati in questo browser. I JSON contengono l’elenco dei file, non i video. Se importo nuovi JSON, per renderli permanenti devo aggiornare il repository GitHub (oppure i file del sito locale).</p>
 </dialog>
 </body>
 </html>

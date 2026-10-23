@@ -132,10 +132,10 @@
     reindex();state.loading=false;
     $('#statusMessage').hidden=true;
     $('#loadErrors').hidden=!failures.length;
-    if(failures.length)$('#loadErrors').innerHTML=`${icon('alert')} <strong>Attenzione: ${failures.length} cataloghi non caricati.</strong> ${html(failures.join(' · '))}. Controlla nomi, percorso e avvio con un server locale.`;
+    if(failures.length)$('#loadErrors').innerHTML=`${icon('alert')} <strong>Attenzione: ${failures.length} cataloghi non caricati.</strong> ${html(failures.join(' · '))}. Controlla i nomi dei file e i percorsi nella cartella data/.`;
     $('#footerMeta').textContent=`${formatCount(state.files.length)} file · ${state.disks.size} dischi · dati da scansioni locali`;
     render();
-    if(!loaded.size)toast('Impossibile leggere i JSON. Avvia il server locale con Avvia_catalogo.bat.',true);
+    if(!loaded.size)toast('Non riesco a leggere i JSON: controlla data/manifest.json e i file della cartella data/.',true);
   }
   function navigate(page){
     state.page=ensurePage(page);state.pageLimit=MAX_PAGE;
@@ -153,8 +153,8 @@
   function renderStats(){
     const s=calculateStats(),usedPercent=s.total?clampPercent(100*s.used/s.total):0;
     const data=[
-      {title:'Video catalogati',value:formatCount(s.files),sub:'File disponibili nella ricerca',symbol:'film',color:''},
-      {title:'Hard disk',value:formatCount(s.drives),sub:'Unità nel tuo archivio',symbol:'drive',color:'cyan'},
+      {title:'I miei video',value:formatCount(s.files),sub:'File presenti nei cataloghi',symbol:'film',color:''},
+      {title:'I miei HDD',value:formatCount(s.drives),sub:'Dischi catalogati',symbol:'drive',color:'cyan'},
       {title:'Spazio occupato',value:fmtGB(s.used),sub:decimal.format(usedPercent)+'% della capacità totale',symbol:'trending',color:'green'},
       {title:'Spazio disponibile',value:fmtGB(s.free),sub:s.full?s.full+' dischi oltre il 90%':'Capacità ancora libera',symbol:'layers',color:'orange'}
     ];
@@ -167,14 +167,14 @@
     const biggest=[...state.files].filter(f=>Number.isFinite(f.size)).sort((a,b)=>b.size-a.size).slice(0,5);
     const pressure=disks.filter(d=>pct(d)>=90).slice(0,5);
     return `${renderStats()}
-      <div class="section-head"><div><h2>La tua libreria in numeri</h2><p>Una vista completa del tuo archivio digitale.</p></div><button class="link-btn" data-action="drives">Esplora dischi ${icon('arrow')}</button></div>
+      <div class="section-head"><div><h2>Il mio archivio in numeri</h2><p>File, spazio e contenuti dei miei dischi.</p></div><button class="link-btn" data-action="drives">Esplora dischi ${icon('arrow')}</button></div>
       <div class="dashboard-grid">
         <section class="panel"><div class="panel-head"><h3>Capacità di archiviazione</h3><small>Totale di tutti i dischi</small></div><div class="total-usage-top"><strong>${fmtGB(s.used)}</strong><small>su ${fmtGB(s.total)}</small></div>${renderProgress(percent,percent>=95?'danger':percent>=90?'warning':'')}
         <div class="usage-legend"><span><i class="legend-dot"></i>Occupato ${decimal.format(percent)}%</span><span><i class="legend-dot free"></i>Disponibile ${decimal.format(100-percent)}%</span></div>
         <div class="mini-drive-list">${disks.slice(0,6).map(d=>`<div class="mini-drive-row"><button data-open-disk="${html(d.name)}" title="Apri ${html(d.name)}">${html(d.name)}</button>${renderProgress(pct(d),diskColor(d))}<span class="percent">${decimal.format(pct(d))}%</span></div>`).join('')||'<p class="muted-modal">Nessuna capacità registrata.</p>'}</div></section>
         <section class="panel"><div class="panel-head"><h3>Cosa c'è nell'archivio</h3><small>Classificazione indicativa</small></div><div class="category-list">${topCategories.map(([cat,n])=>`<div class="category-row"><strong>${html(cat)}</strong><div class="category-bar"><span style="width:${Math.max(1,n/state.files.length*100)}%"></span></div><span class="number">${formatCount(n)}</span></div>`).join('')||'<p>Nessun file disponibile.</p>'}</div><div class="info-banner" style="margin-top:27px;margin-bottom:0">${icon('info')}<span>Le categorie sono dedotte dai nomi delle cartelle e dei file. Non sono metadati verificati.</span></div></section>
       </div>
-      <div class="section-head"><div><h2>Da tenere d'occhio</h2><p>File più grandi e dischi con poco spazio.</p></div></div>
+      <div class="section-head"><div><h2>Da controllare</h2><p>File più grandi e dischi con poco spazio.</p></div></div>
       <div class="overview-bottom"><section class="panel"><div class="panel-head"><h3>I file più pesanti</h3><button class="link-btn" data-action="search">Vedi tutti ${icon('arrow')}</button></div><div class="simple-list">${biggest.map(f=>`<div class="simple-list-item"><div class="simple-item-left"><span class="simple-file-icon">${icon('film')}</span><div class="simple-item-text"><strong title="${html(f.name)}">${html(f.name)}</strong><span>${html(f.disk)}</span></div></div><strong class="size">${fmtGB(f.size)}</strong></div>`).join('')||'Nessun file'}</div></section>
       <section class="panel"><div class="panel-head"><h3>Dischi quasi pieni</h3><button class="link-btn" data-action="drives">Vedi tutti ${icon('arrow')}</button></div><div class="simple-list">${pressure.map(d=>`<div class="simple-list-item"><div class="simple-item-left"><span class="simple-file-icon">${icon('drive')}</span><div class="simple-item-text"><strong>${html(d.name)}</strong><span>${fmtGB(d.free)} liberi su ${fmtGB(d.total)}</span></div></div><span class="small-pill ${status(d)}">${decimal.format(pct(d))}%</span></div>`).join('')||'<div class="empty-state"><h3>Nessun disco critico</h3><p>Non risultano unità occupate oltre il 90%.</p></div>'}</div></section></div>`;
   }
@@ -189,7 +189,7 @@
   }
   function renderDrives(){
     const arr=sortedDisks();
-    return `<div class="page-head"><div><span class="mini-label">GESTIONE ARCHIVIO</span><h2>I tuoi hard disk</h2><p>${formatCount(arr.length)} unità · scegli un disco per esplorare le cartelle.</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
+    return `<div class="page-head"><div><span class="mini-label">DISCHI CATALOGATI</span><h2>I miei hard disk</h2><p>${formatCount(arr.length)} unità · seleziona un disco per vedere le sue cartelle.</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
     <div id="driveInspector">${state.openDisk?renderInspector():''}</div>
     <div class="drive-toolbar"><span class="toolbar-label">Ordina per</span><select class="input-select" id="driveSort" aria-label="Ordina dischi">
     ${[['name','Nome (A–Z)'],['usage','Più pieni'],['free','Più spazio libero'],['capacity','Capacità maggiore'],['files','Più file']].map(([k,v])=>`<option value="${k}" ${state.driveSort===k?'selected':''}>${v}</option>`).join('')}</select><span class="toolbar-label" style="margin-left:auto">Occupazione basata sull'ultima scansione</span></div>
@@ -225,7 +225,7 @@
     const visible=entries.slice(0,state.folderLimit);
     const pathPrefix=state.folderPath.join('\\');
     return `<section class="drive-inspector" aria-label="Esplora ${html(d.name)}" id="inspectorPanel">
-      <div class="inspector-top"><div class="inspector-info"><span class="mini-label">FILE EXPLORER</span><h3>${html(d.name)}</h3><p>${formatCount(d.files.length)} video · ${fmtGB(d.free)} liberi · ${decimal.format(pct(d))}% occupato</p></div>
+      <div class="inspector-top"><div class="inspector-info"><span class="mini-label">CARTELLE DEL DISCO</span><h3>${html(d.name)}</h3><p>${formatCount(d.files.length)} video · ${fmtGB(d.free)} liberi · ${decimal.format(pct(d))}% occupato</p></div>
       <div class="inspector-action"><button class="btn btn-primary" data-search-disk="${html(d.name)}">${icon('search')} Cerca in questo disco</button><button class="icon-btn" data-close-disk="1" title="Chiudi esplora disco" aria-label="Chiudi esplora disco">${icon('x')}</button></div></div>
       <nav class="folder-toolbar" aria-label="Percorso cartelle"><button class="breadcrumb-button ${state.folderPath.length?'':'current'}" data-folder-level="0">${icon('drive')} ${html(d.name)}</button>${state.folderPath.map((part,i)=>`<span class="breadcrumb-separator">/</span><button class="breadcrumb-button ${i===state.folderPath.length-1?'current':''}" data-folder-level="${i+1}" title="${html(part)}">${html(part)}</button>`).join('')}</nav>
       <div class="folder-content"><div class="filter-summary"><span><strong>${formatCount(folders.length)}</strong> cartelle · <strong>${formatCount(files.length)}</strong> file in questa posizione</span>${pathPrefix?`<span class="active-scope">${icon('folder')} ${html(pathPrefix)}</span>`:''}</div>
@@ -260,7 +260,7 @@
     const fav=page==='favorites',list=filterFiles(),visible=list.slice(0,state.pageLimit);
     const catOpts=[['','Tutte le categorie'],...['Film','Serie TV','Anime e cartoni','Documentari','Altro'].map(v=>[v,v])];
     const exts=Array.from(new Set(state.files.map(f=>f.ext))).filter(x=>x!=='—').sort();
-    return `<div class="page-head"><div><span class="mini-label">${fav?'SALVATI PER TE':'RICERCA AVANZATA'}</span><h2>${fav?'I tuoi preferiti':'Esplora tutti i file'}</h2><p>${fav?'I tuoi contenuti contrassegnati, memorizzati in questo browser.':'Ricerca istantanea su nome, percorso e hard disk.'}</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
+    return `<div class="page-head"><div><span class="mini-label">${fav?'I MIEI SEGNALIBRI':'RICERCA NEL MIO ARCHIVIO'}</span><h2>${fav?'I miei preferiti':'Cerca nei miei file'}</h2><p>${fav?'I file che ho contrassegnato con il cuore, salvati in questo browser.':'Cerco per nome, cartella o hard disk.'}</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
     <div class="filter-panel">${selectHtml('filterDisk',state.diskFilter,[['','Tutti gli hard disk'],...diskEntries().map(d=>[d.name,d.name])],'Filtra per disco')}
     ${selectHtml('filterCategory',state.categoryFilter,catOpts,'Filtra per categoria')}
     ${selectHtml('filterExt',state.extFilter,[['','Tutti i formati'],...exts.map(x=>[x,x.toUpperCase()])],'Filtra per formato')}
@@ -285,8 +285,8 @@
   function emptyState(fav=false){return `<div class="empty-state">${icon(fav?'heart':'search')}<h3>${fav&&!state.favorites.size?'Non hai ancora preferiti':'Nessun file trovato'}</h3><p>${fav&&!state.favorites.size?'Premi il cuore accanto a un video per ritrovarlo qui.':'Prova a cambiare parole chiave o a rimuovere uno dei filtri.'}</p><button type="button" data-action="clear-filters" class="btn btn-soft">Azzera i filtri</button></div>`;}
   function renderDuplicates(){
     const groups=state.duplicateGroups,excess=groups.reduce((a,g)=>a+(g.length-1)*g[0].size,0);
-    return `<div class="page-head"><div><span class="mini-label">CONTROLLO ARCHIVIO</span><h2>Doppioni potenziali</h2><p>Stesso nome file e stessa dimensione arrotondata, su dischi diversi.</p></div><button class="btn btn-soft" data-action="export-dupes">${icon('download')} Esporta CSV</button></div>
-    <div class="stat-grid" style="margin-bottom:20px"><div class="stat-card"><div class="stat-title">Gruppi sospetti</div><div class="stat-value">${formatCount(groups.length)}</div><div class="stat-sub">Corrispondenza nome e dimensione</div></div><div class="stat-card"><div class="stat-title">Copie oltre la prima</div><div class="stat-value">${formatCount(groups.reduce((a,g)=>a+g.length-1,0))}</div><div class="stat-sub">Distribuite tra i tuoi dischi</div></div><div class="stat-card"><div class="stat-title">Spazio teorico duplicato</div><div class="stat-value">${fmtGB(excess)}</div><div class="stat-sub">Solo stima indicativa</div></div></div>
+    return `<div class="page-head"><div><span class="mini-label">CONTROLLO DEI MIEI FILE</span><h2>Doppioni potenziali</h2><p>Stesso nome file e stessa dimensione arrotondata, su dischi diversi.</p></div><button class="btn btn-soft" data-action="export-dupes">${icon('download')} Esporta CSV</button></div>
+    <div class="stat-grid" style="margin-bottom:20px"><div class="stat-card"><div class="stat-title">Gruppi sospetti</div><div class="stat-value">${formatCount(groups.length)}</div><div class="stat-sub">Corrispondenza nome e dimensione</div></div><div class="stat-card"><div class="stat-title">Copie oltre la prima</div><div class="stat-value">${formatCount(groups.reduce((a,g)=>a+g.length-1,0))}</div><div class="stat-sub">Presenti su dischi diversi</div></div><div class="stat-card"><div class="stat-title">Spazio teorico duplicato</div><div class="stat-value">${fmtGB(excess)}</div><div class="stat-sub">Solo stima indicativa</div></div></div>
     <div class="info-banner">${icon('info')}<span><strong>Non eliminare automaticamente nulla.</strong> I JSON riportano dimensioni arrotondate: queste sono soltanto possibili copie, non duplicati verificati con hash dei contenuti.</span></div>
     ${groups.map((g,i)=>`<section class="duplicate-group"><div class="duplicate-header"><strong>${html(g[0].name)}</strong><span class="small-pill warning">${g.length} copie · ${fmtGB(g[0].size)}</span></div><div class="duplicate-files">${g.map(f=>renderFileCard(f)).join('')}</div></section>`).join('')||`<div class="empty-state">${icon('check')}<h3>Nessun doppione individuato</h3><p>Nessun file su dischi diversi con identico nome e dimensione arrotondata.</p></div>`}`;
   }
