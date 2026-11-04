@@ -46,6 +46,10 @@
       "file": "Seagate878.json"
     },
     {
+      "nome": "SeagateCTF",
+      "file": "SeagateCTF.json"
+    },
+    {
       "nome": "SeagateGMF",
       "file": "SeagateGMF.json"
     },
@@ -64,10 +68,6 @@
     {
       "nome": "Usopp",
       "file": "usopp.json"
-    },
-    {
-      "nome": "WD207",
-      "file": "WD207.json"
     },
     {
       "nome": "WD659",

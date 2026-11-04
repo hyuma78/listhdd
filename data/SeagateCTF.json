@@ -76,26 +76,6 @@
             "percorso_completo": "F:\\FILM SERIETV\\8 Bit Generation - The Commodore Wars\\8.Bit.Generation.-.The.Commodore Wars.1080p.BluRayITA.ENG.SUB.ITA.mkv"
         },
         {
-            "nome": "Critters 1986 BluRay 10Bit 1080p DD5.1 H265.ITA-ENG.mkv",
-            "dimensione": "2.22 GB",
-            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 1986 BluRay 10Bit 1080p DD5.1 H265.ITA-ENG.mkv"
-        },
-        {
-            "nome": "Critters 2 1988 BluRay 10Bit 1080p AC3 H265-d3g.mkv",
-            "dimensione": "2.13 GB",
-            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 2 1988 BluRay 10Bit 1080p AC3 H265-d3g.mkv"
-        },
-        {
-            "nome": "Critters 3 (1991) BluRay 10Bit 1080p AC-3 H265-d3g.mkv",
-            "dimensione": "2.11 GB",
-            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 3 (1991) BluRay 10Bit 1080p AC-3 H265-d3g.mkv"
-        },
-        {
-            "nome": "Critters 4 (1992) BluRay 10Bit 1080p AC-3 H265-d3g.mkv",
-            "dimensione": "2.36 GB",
-            "percorso_completo": "F:\\FILM SERIETV\\Critters 1080p BluRay x265\\Critters 4 (1992) BluRay 10Bit 1080p AC-3 H265-d3g.mkv"
-        },
-        {
             "nome": "Game.Changers.Inside.The.Video.Game.Wars.2019.1080p.WEB-DL.x264.ITA-ENG.[Hyuma].mkv",
             "dimensione": "5.09 GB",
             "percorso_completo": "F:\\FILM SERIETV\\Game Changers - Inside The Video Game Wars [2019]\\Game.Changers.Inside.The.Video.Game.Wars.2019.1080p.WEB-DL.x264.ITA-ENG.[Hyuma].mkv"
@@ -380,9 +360,5 @@
             "dimensione": "2.99 GB",
             "percorso_completo": "F:\\FILM SERIETV\\Tin Star\\Tin.Star.2x10.The.Unseen.ITA.ENG.1080p.AMZN.WEB-DLMux.DD5.1.H.264-TRiADE.mkv"
         }
-    ],
-    "informazioni_disco": {
-        "totale": "465.76 GB",
-        "libero": "363.15 GB"
-    }
+    ]
 }
