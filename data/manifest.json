@@ -34,6 +34,10 @@
       "file": "Rufy.json"
     },
     {
+      "nome": "Sanji",
+      "file": "Sanji.json"
+    },
+    {
       "nome": "Seagate0FM",
       "file": "Seagate0FM.json"
     },
@@ -44,10 +48,6 @@
     {
       "nome": "Seagate878",
       "file": "Seagate878.json"
-    },
-    {
-      "nome": "SeagateCTF",
-      "file": "SeagateCTF.json"
     },
     {
       "nome": "SeagateGMF",
