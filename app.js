@@ -6,7 +6,7 @@
   const nf = new Intl.NumberFormat('it-IT');
   const decimal = new Intl.NumberFormat('it-IT', {maximumFractionDigits: 2});
   const MAX_PAGE = 70;
-  const DEFAULT_MANIFEST = ['Arietty.json','Chopper.json','Hikvision2TB.json','Maxtor15G.json','NASWare.json','SOA.json','Seagate0FM.json','Seagate1TB.json','Seagate878.json','SeagateGMF.json','SeagateR9H.json','TR3NTON.json','Usopp.json','SeagateCTF.json','WD659.json','WD_Sarah_2TB.json','franky.json','nami.json','rufy.json','zoro.json'];
+  const DEFAULT_MANIFEST = ['Arietty.json','Chopper.json','Hikvision2TB.json','Maxtor15G.json','NASWare.json','SOA.json','Seagate0FM.json','Seagate1TB.json','Seagate878.json','SeagateGMF.json','SeagateR9H.json','TR3NTON.json','Usopp.json','Sanji.json','WD659.json','WD_Sarah_2TB.json','franky.json','nami.json','rufy.json','zoro.json'];
   const VIDEO_TYPES = ['mkv','mp4','avi','mov','wmv','m4v','mpg','mpeg','ts','m2ts','webm','flv','vob','3gp','divx','iso'];
   const GENRES = ['Azione','Avventura','Animazione','Biografico','Commedia','Crime','Documentario','Drammatico','Fantasy','Fantascienza','Guerra','Horror','Musicale','Romantico','Storico','Thriller','Western'];
   const CURRENT_YEAR = 2026;
