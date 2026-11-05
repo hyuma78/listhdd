@@ -6,14 +6,13 @@
   const nf = new Intl.NumberFormat('it-IT');
   const decimal = new Intl.NumberFormat('it-IT', {maximumFractionDigits: 2});
   const MAX_PAGE = 70;
-  const VIDEO_TYPES = ['mkv','mp4','avi','mov','wmv','m4v','mpg','mpeg','ts','m2ts','webm','flv','vob','3gp','divx','iso'];
   const GENRES = ['Azione','Avventura','Animazione','Biografico','Commedia','Crime','Documentario','Drammatico','Fantasy','Fantascienza','Guerra','Horror','Musicale','Romantico','Storico','Thriller','Western'];
   const CURRENT_YEAR = 2026;
   const TITLES = {overview:'Panoramica',drives:'I miei dischi',search:'Esplora file',favorites:'Preferiti',duplicates:'Doppioni potenziali'};
   const state = {
     page: 'overview', disks: new Map(), files: [], favorites: new Set(), query: '',
     diskFilter: '', categoryFilter:'', extFilter:'', sizeFilter:'', yearFilter:'', qualityFilter:'', languageFilter:'', sort:'relevance', driveSort:'name',
-    publishedMetadata:{}, localMetadata:{}, metadataFromSite:false,
+    publishedMetadata:{}, localMetadata:{},
     pageLimit: MAX_PAGE, openDisk:'', folderPath:[], folderLimit:120, trees:new Map(),
     duplicateGroups:[], failed:[], temporaryImports:0, loading:false
   };
@@ -204,10 +203,9 @@
     try{
       const saved=await fetchJSON('data/film_metadata.json');
       state.publishedMetadata=(saved&&saved.files&&typeof saved.files==='object'&&!Array.isArray(saved.files))?saved.files:{};
-      state.metadataFromSite=true;
     }catch{
       // Il file metadati è opzionale: nessun errore se non ancora pubblicato.
-      state.publishedMetadata={};state.metadataFromSite=false;
+      state.publishedMetadata={};
     }
     reindex();state.loading=false;
     $('#statusMessage').hidden=true;
