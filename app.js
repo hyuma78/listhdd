@@ -6,12 +6,16 @@
   const nf = new Intl.NumberFormat('it-IT');
   const decimal = new Intl.NumberFormat('it-IT', {maximumFractionDigits: 2});
   const MAX_PAGE = 70;
-  const GENRES = ['Azione','Avventura','Animazione','Biografico','Commedia','Crime','Documentario','Drammatico','Fantasy','Fantascienza','Guerra','Horror','Musicale','Romantico','Storico','Thriller','Western'];
+  const GENRES = ['Azione','Avventura','Animazione','Biografico','Commedia','Crime','Documentario','Drammatico','Famiglia','Fantasy','Fantascienza','Guerra','Horror','Musicale','Mistero','Romantico','Storico','Thriller','Western'];
+  const GENRE_LABEL = {Crime:'Poliziesco'};
+  const genreLabel = g => GENRE_LABEL[g]||g;
+  const NO_GENRE = '__none';
   const CURRENT_YEAR = 2026;
-  const TITLES = {overview:'Panoramica',drives:'I miei dischi',search:'Esplora file',favorites:'Preferiti',duplicates:'Doppioni potenziali'};
+  const TITLES = {overview:'Panoramica',drives:'I miei dischi',film:'Film',search:'Esplora file',favorites:'Preferiti',duplicates:'Doppioni potenziali'};
   const state = {
     page: 'overview', disks: new Map(), files: [], favorites: new Set(), query: '',
-    diskFilter: '', categoryFilter:'', extFilter:'', sizeFilter:'', yearFilter:'', qualityFilter:'', languageFilter:'', sort:'relevance', driveSort:'name',
+    diskFilter: '', categoryFilter:'', extFilter:'', sizeFilter:'', yearFilter:'', qualityFilter:'', languageFilter:'', sort:'relevance', driveSort:'name', showExtras:false,
+    filmGenres:new Set(), filmDisk:'', filmYear:'', filmRating:'', filmSort:'title',
     publishedMetadata:{}, localMetadata:{},
     pageLimit: MAX_PAGE, openDisk:'', folderPath:[], folderLimit:120, trees:new Map(),
     duplicateGroups:[], failed:[], temporaryImports:0, loading:false
@@ -49,6 +53,15 @@
     if(/\b(film|cinema|movies|movie)\b/.test(s)||/\b(horror thriller|horror thiller|sci fi fantasy|fantascienza fantasy)\b/.test(s))return 'Film';
     return 'Altro';
   };
+  /* CLASSIFICAZIONE:INIZIO — la stessa logica è in scripts/arricchisci_tmdb.py: tenerle allineate. */
+  // Extra = cartella che si chiama proprio così (le cartelle "miste" tipo «Film + Extra» NON contano), oppure nome file da extra.
+  const EXTRA_DIR = /^(extras?|extra features?|bonus( features| disc| extra)?|special features?|featurettes?|deleted scenes?|scene eliminate|behind the scenes|making of|interviste?|interviews?|contenuti speciali|contenuti extra|extra (contenuti|speciali)|trailers?|backstage|inediti|speciali)( \d+)?$/;
+  const EXTRA_FILE = /\b(trailers?|sample|intervist[ae]|interviews?|featurettes?|making of|behind the scenes|deleted scenes?|scene eliminate|backstage)\b/;
+  const isExtraPath = (name, parts) => parts.slice(0,-1).some(p=>EXTRA_DIR.test(normalize(p))) || EXTRA_FILE.test(normalize(name));
+  // Film nella radice del disco (o a una cartella di profondità) senza una cartella "film": serve l'anno nel nome e nessuna traccia di episodi.
+  const EPISODE = /\bs\d{1,3}e\d{1,3}\b|\b\d{1,2}x\d{2,3}\b|\bs\d{1,3}\b|\bstagione\b|\bseason\b/i;
+  const isLooseFilm = (name, parts) => parts.length<=2 && !!inferYear(name,'','Altro') && !EPISODE.test(parts.join(' '));
+  /* CLASSIFICAZIONE:FINE */
   // I metadati dedotti dal nome del file NON sono una verifica del film.
   // Il genere viene dedotto SOLO da cartelle esplicitamente organizzate per genere.
   function inferYear(filename, path, category){
@@ -102,7 +115,17 @@
     if(!m||typeof m!=='object'||Array.isArray(m))return null;
     const year=m.year===''||m.year===null?null:Number(m.year);
     const genres=Array.isArray(m.genres)?m.genres.filter(g=>GENRES.includes(g)):[];
-    return {year:Number.isInteger(year)&&year>=1900&&year<=CURRENT_YEAR?year:null,genres,source:typeof m.source==='string'?m.source.slice(0,40):'Manuale'};
+    const text=(v,max)=>typeof v==='string'&&v.trim()?v.trim().slice(0,max):undefined;
+    const list=(v,n,max)=>Array.isArray(v)?v.filter(x=>typeof x==='string'&&x.trim()).slice(0,n).map(x=>x.trim().slice(0,max)):undefined;
+    const vote=m.vote_average==null||m.vote_average===''?NaN:Number(m.vote_average),id=Number(m.tmdb_id);
+    // Oltre a anno e generi si conservano i dati TMDB (titolo, voto, regista...) così l'esportazione non li perde.
+    return {year:Number.isInteger(year)&&year>=1900&&year<=CURRENT_YEAR?year:null,genres,source:typeof m.source==='string'?m.source.slice(0,40):'Manuale',
+      kind:m.kind==='movie'||m.kind==='tv'?m.kind:undefined,tmdb_id:Number.isInteger(id)&&id>0?id:undefined,
+      title:text(m.title,200),overview:text(m.overview,1500),poster_path:/^\/[\w.-]{3,80}$/.test(m.poster_path||'')?m.poster_path:undefined,
+      vote_average:Number.isFinite(vote)&&vote>=0&&vote<=10?Math.round(vote*10)/10:undefined,
+      directors:list(m.directors,5,100),cast:list(m.cast,8,100),
+      tmdb_url:typeof m.tmdb_url==='string'&&m.tmdb_url.startsWith('https://www.themoviedb.org/')?m.tmdb_url.slice(0,200):undefined,
+      review:m.review===true?true:undefined};
   }
   function enrichFile(f){
     const remote=state.publishedMetadata[f.key];
@@ -111,6 +134,9 @@
     f.year=selected?selected.year:f.guessedYear;
     f.genres=selected?selected.genres:f.guessedGenres;
     f.metadataSource=selected?selected.source:(f.guessedGenres.length?'Cartella':'Nome file');
+    f.title=selected?.title||'';f.rating=selected?.vote_average??null;f.directors=selected?.directors||[];
+    f.overview=selected?.overview||'';f.tmdbUrl=selected?.tmdb_url||'';f.review=!!selected?.review;
+    f.isFilm=!f.extra&&(f.category==='Film'||selected?.kind==='movie');
     return f;
   }
   function applyAllMetadata(){for(const f of state.files)enrichFile(f);}
@@ -138,9 +164,10 @@
     const ext=(name.match(/\.([^.\\/\s]+)$/)||[])[1]?.toLowerCase()||'—';
     const parts=path.replace(/\//g,'\\').split('\\').filter(Boolean);
     if(parts[0]&&/^[A-Za-z]:$/.test(parts[0]))parts.shift();
-    const category=fileCategory(path);
+    let category=fileCategory(path);
+    if(category==='Altro'&&isLooseFilm(name,parts))category='Film';
     const guessedYear=inferYear(name,path,category),guessedGenres=inferGenres(path);
-    const f={id:index,disk,name,path,formattedSize:String(raw.dimensione??'—'),size,ext,category,parts,
+    const f={id:index,disk,name,path,formattedSize:String(raw.dimensione??'—'),size,ext,category,parts,extra:isExtraPath(name,parts),
       key:disk+'::'+path,guessedYear,guessedGenres,year:guessedYear,genres:guessedGenres,
       quality:inferQuality(name,path),languages:inferLanguages(name),metadataSource:'',
       search:normalize(name+' '+path+' '+disk), nameSearch:normalize(name)};
@@ -225,7 +252,7 @@
   }
   function render(){
     if(state.loading)return;
-    const pages={overview:renderOverview,drives:renderDrives,search:()=>renderLibrary('search'),favorites:()=>renderLibrary('favorites'),duplicates:renderDuplicates};
+    const pages={overview:renderOverview,drives:renderDrives,film:renderFilms,search:()=>renderLibrary('search'),favorites:()=>renderLibrary('favorites'),duplicates:renderDuplicates};
     $page.innerHTML=pages[state.page]();
   }
   function renderStats(){
@@ -316,15 +343,14 @@
   }
   function filterFiles(){
     let list=state.page==='favorites'?state.files.filter(f=>state.favorites.has(f.key)):state.files;
+    if(state.page==='search'&&!state.showExtras)list=list.filter(f=>!f.extra);
     const terms=normalize(state.query).split(' ').filter(Boolean);
     if(terms.length)list=list.filter(f=>terms.every(t=>f.search.includes(t)));
     if(state.diskFilter)list=list.filter(f=>f.disk===state.diskFilter);
     if(state.categoryFilter)list=list.filter(f=>f.category===state.categoryFilter);
     if(state.extFilter)list=list.filter(f=>f.ext===state.extFilter);
     if(state.sizeFilter){list=list.filter(f=>Number.isFinite(f.size)&&(state.sizeFilter==='small'?f.size<1:state.sizeFilter==='medium'?f.size>=1&&f.size<4:state.sizeFilter==='large'?f.size>=4&&f.size<10:f.size>=10));}
-    if(state.yearFilter){
-      list=list.filter(f=>state.yearFilter==='unknown'?!f.year:state.yearFilter.startsWith('decade:')?f.year&&Math.floor(f.year/10)*10===Number(state.yearFilter.slice(7)):f.year===Number(state.yearFilter.slice(5)));
-    }
+    if(state.yearFilter)list=list.filter(f=>yearMatches(f,state.yearFilter));
     if(state.qualityFilter)list=list.filter(f=>state.qualityFilter==='unknown'?!f.quality:f.quality===state.qualityFilter);
     if(state.languageFilter)list=list.filter(f=>state.languageFilter==='unknown'?!f.languages.length:f.languages.includes(state.languageFilter));
     const arr=list.slice();
@@ -340,14 +366,18 @@
     }else arr.sort((a,b)=>a.name.localeCompare(b.name,'it',{sensitivity:'base',numeric:true}));
     return arr;
   }
+  const yearMatches=(f,v)=>!v||(v==='unknown'?!f.year:v.startsWith('decade:')?!!f.year&&Math.floor(f.year/10)*10===Number(v.slice(7)):f.year===Number(v.slice(5)));
+  function yearOptions(files){
+    const years=[...new Set(files.map(f=>f.year).filter(Boolean))].sort((a,b)=>b-a);
+    const decades=[...new Set(years.map(y=>Math.floor(y/10)*10))].sort((a,b)=>b-a);
+    return [['','Tutti gli anni'],['unknown','Anno non disponibile'],...decades.map(y=>['decade:'+y,'Anni '+y.toString().slice(2)]),...years.map(y=>['year:'+y,String(y)])];
+  }
   function selectHtml(id,value,options,aria){return `<select class="input-select" id="${id}" aria-label="${aria}">${options.map(([v,label])=>`<option value="${html(v)}" ${v===value?'selected':''}>${html(label)}</option>`).join('')}</select>`;}
   function renderLibrary(page){
     const fav=page==='favorites',list=filterFiles(),visible=list.slice(0,state.pageLimit);
     const catOpts=[['','Tutte le categorie'],...['Film','Serie TV','Anime e cartoni','Documentari','Altro'].map(v=>[v,v])];
     const exts=Array.from(new Set(state.files.map(f=>f.ext))).filter(x=>x!=='—').sort();
-    const years=[...new Set(state.files.map(f=>f.year).filter(Boolean))].sort((a,b)=>b-a);
-    const decades=[...new Set(years.map(y=>Math.floor(y/10)*10))].sort((a,b)=>b-a);
-    const yearOpts=[['','Tutti gli anni'],['unknown','Anno non disponibile'],...decades.map(y=>['decade:'+y,'Anni '+y.toString().slice(2)]),...years.map(y=>['year:'+y,String(y)])];
+    const yearOpts=yearOptions(state.files),extrasCount=state.files.filter(f=>f.extra).length;
     return `<div class="page-head"><div><span class="mini-label">${fav?'I MIEI SEGNALIBRI':'RICERCA NEL MIO ARCHIVIO'}</span><h2>${fav?'I miei preferiti':'Cerca nei miei file'}</h2><p>${fav?'I file che ho contrassegnato con il cuore, salvati in questo browser.':'Cerco per nome, cartella o hard disk.'}</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
     <div class="filter-panel">${selectHtml('filterDisk',state.diskFilter,[['','Tutti gli hard disk'],...diskEntries().map(d=>[d.name,d.name])],'Filtra per disco')}
     ${selectHtml('filterCategory',state.categoryFilter,catOpts,'Filtra per categoria')}
@@ -357,6 +387,7 @@
     ${selectHtml('filterSize',state.sizeFilter,[['','Tutte le dimensioni'],['small','Meno di 1 GB'],['medium','Da 1 a 4 GB'],['large','Da 4 a 10 GB'],['huge','Più di 10 GB']],'Filtra per dimensione')}
     ${selectHtml('sortFiles',state.sort,[['relevance','Rilevanza'],['name','Nome A–Z'],['year-desc','Anno più recente'],['year-asc','Anno meno recente'],['size-desc','Più grandi'],['size-asc','Più piccoli'],['disk','Nome disco']],'Ordina i file')}
     ${selectHtml('filterExt',state.extFilter,[['','Tutti i formati'],...exts.map(x=>[x,x.toUpperCase()])],'Filtra per formato')}
+    ${fav?'':`<label class="toggle-extra" title="Cartelle Featurettes, EXTRA, BONUS, Deleted Scenes, interviste, trailer…"><input type="checkbox" id="toggleExtras" ${state.showExtras?'checked':''}> Mostra extra (${formatCount(extrasCount)})</label>`}
     </div>
     <div class="metadata-toolbar"><span>${icon('info')} L’anno, quando disponibile, è ricavato dal nome del file e può essere corretto manualmente.</span>
       <span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
@@ -373,7 +404,49 @@
   }
   function renderFileCard(f){
     const fav=state.favorites.has(f.key);
-    return `<article class="file-card"><span class="file-icon-box">${icon('movie')}</span><div class="file-main"><strong>${highlight(f.name,state.query)}</strong><div class="file-meta-line"><span class="file-disk-badge">${html(f.disk)}</span><span>${fmtGB(f.size)}</span><span>·</span><span>${html(f.ext.toUpperCase())}</span><span>·</span><span>${html(f.category)}</span>${f.year?`<span class="file-detail-badge">${f.year}</span>`:''}${f.quality?`<span class="file-detail-badge">${html(f.quality)}</span>`:''}</div><div class="file-path" title="${html(f.path)}">${html(f.path)}</div></div><div class="file-actions"><button type="button" data-meta="${f.id}" title="Modifica anno" aria-label="Modifica anno">${icon('info')}</button><button type="button" data-copy="${f.id}" title="Copia percorso del file" aria-label="Copia percorso">${icon('copy')}</button><button type="button" data-fav="${f.id}" class="${fav?'is-fav':''}" title="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}" aria-label="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}">${icon('heart')}</button></div></article>`;
+    return `<article class="file-card"><span class="file-icon-box">${icon('movie')}</span><div class="file-main"><strong>${highlight(f.name,state.query)}</strong><div class="file-meta-line"><span class="file-disk-badge">${html(f.disk)}</span><span>${fmtGB(f.size)}</span><span>·</span><span>${html(f.ext.toUpperCase())}</span><span>·</span><span>${html(f.category)}</span>${f.year?`<span class="file-detail-badge">${f.year}</span>`:''}${f.quality?`<span class="file-detail-badge">${html(f.quality)}</span>`:''}</div><div class="file-path" title="${html(f.path)}">${html(f.path)}</div></div><div class="file-actions"><button type="button" data-meta="${f.id}" title="Modifica anno e generi" aria-label="Modifica anno e generi">${icon('info')}</button><button type="button" data-copy="${f.id}" title="Copia percorso del file" aria-label="Copia percorso">${icon('copy')}</button><button type="button" data-fav="${f.id}" class="${fav?'is-fav':''}" title="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}" aria-label="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}">${icon('heart')}</button></div></article>`;
+  }
+  const filmList = () => state.files.filter(f=>f.isFilm);
+  function filterFilms(skipGenre=false){
+    let list=filmList();
+    if(state.filmDisk)list=list.filter(f=>f.disk===state.filmDisk);
+    if(state.filmYear)list=list.filter(f=>yearMatches(f,state.filmYear));
+    if(state.filmRating)list=list.filter(f=>f.rating!==null&&f.rating>=Number(state.filmRating));
+    if(!skipGenre&&state.filmGenres.size)list=list.filter(f=>[...state.filmGenres].every(g=>g===NO_GENRE?!f.genres.length:f.genres.includes(g)));
+    const label=f=>f.title||f.name,byName=(a,b)=>label(a).localeCompare(label(b),'it',{sensitivity:'base',numeric:true});
+    const arr=list.slice();
+    if(state.filmSort==='year-desc')arr.sort((a,b)=>(b.year||0)-(a.year||0)||byName(a,b));
+    else if(state.filmSort==='year-asc')arr.sort((a,b)=>(a.year||9999)-(b.year||9999)||byName(a,b));
+    else if(state.filmSort==='rating')arr.sort((a,b)=>(b.rating??-1)-(a.rating??-1)||byName(a,b));
+    else if(state.filmSort==='size-desc')arr.sort((a,b)=>(b.size||0)-(a.size||0)||byName(a,b));
+    else arr.sort(byName);
+    return arr;
+  }
+  function renderFilmCard(f){
+    const fav=state.favorites.has(f.key);
+    const genres=f.genres.map(g=>`<span class="genre-badge">${html(genreLabel(g))}</span>`).join('');
+    return `<article class="file-card film-card"><span class="file-icon-box">${icon('movie')}</span><div class="file-main"><strong title="${html(f.name)}">${html(f.title||f.name)}</strong>${genres?`<div class="genre-badges">${genres}</div>`:''}<div class="file-meta-line"><span class="file-disk-badge">${html(f.disk)}</span>${f.year?`<span class="file-detail-badge">${f.year}</span>`:''}${f.rating!==null?`<span class="file-detail-badge film-rating" title="Voto TMDB">★ ${decimal.format(f.rating)}</span>`:''}<span>${fmtGB(f.size)}</span>${f.quality?`<span class="file-detail-badge">${html(f.quality)}</span>`:''}${f.directors.length?`<span>· ${html(f.directors.slice(0,2).join(', '))}</span>`:''}${f.review?`<span class="small-pill warning" title="Abbinamento TMDB incerto: controlla titolo e anno">Da verificare</span>`:''}</div>${f.overview?`<p class="film-overview">${html(f.overview)}</p>`:''}<div class="file-path" title="${html(f.path)}">${html(f.path)}</div></div><div class="file-actions"><button type="button" data-meta="${f.id}" title="Modifica anno e generi" aria-label="Modifica anno e generi">${icon('info')}</button><button type="button" data-copy="${f.id}" title="Copia percorso del file" aria-label="Copia percorso">${icon('copy')}</button><button type="button" data-fav="${f.id}" class="${fav?'is-fav':''}" title="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}" aria-label="${fav?'Rimuovi dai preferiti':'Aggiungi ai preferiti'}">${icon('heart')}</button></div></article>`;
+  }
+  function renderFilms(){
+    const all=filmList(),base=filterFilms(true),list=filterFilms(),visible=list.slice(0,state.pageLimit);
+    const counts=new Map();for(const f of base)for(const g of f.genres)counts.set(g,(counts.get(g)||0)+1);
+    for(const g of state.filmGenres)if(g!==NO_GENRE&&!counts.has(g))counts.set(g,0);
+    const noGenre=base.filter(f=>!f.genres.length).length;
+    const chip=(g,text,n)=>`<button type="button" class="genre-chip ${state.filmGenres.has(g)?'on':''}" data-genre="${html(g)}" aria-pressed="${state.filmGenres.has(g)}">${html(text)}<span>${formatCount(n)}</span></button>`;
+    const chips=[...counts].sort((a,b)=>b[1]-a[1]||genreLabel(a[0]).localeCompare(genreLabel(b[0]),'it')).map(([g,n])=>chip(g,genreLabel(g),n)).join('')
+      +(noGenre||state.filmGenres.has(NO_GENRE)?chip(NO_GENRE,'Senza genere',noGenre):'');
+    const withGenre=all.filter(f=>f.genres.length).length,filtered=state.filmGenres.size||state.filmDisk||state.filmYear||state.filmRating;
+    return `<div class="page-head"><div><span class="mini-label">LA MIA CINETECA</span><h2>I miei film</h2><p>${formatCount(all.length)} film nei miei dischi. Extra, interviste e contenuti speciali sono esclusi.</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
+    ${all.length&&withGenre<all.length?`<div class="info-banner">${icon('info')}<span><strong>${formatCount(all.length-withGenre)} film su ${formatCount(all.length)} non hanno ancora il genere.</strong> Per generare le schede lancia <code>scripts/arricchisci_tmdb.py</code> dal PC, oppure assegnali a mano con il pulsante <em>info</em> di ogni film.</span></div>`:''}
+    <div class="genre-chips" role="group" aria-label="Filtra per genere">${chips||'<span class="muted-modal">Nessun genere disponibile.</span>'}</div>
+    <div class="filter-panel">${selectHtml('filmDisk',state.filmDisk,[['','Tutti gli hard disk'],...diskEntries().map(d=>[d.name,d.name])],'Filtra per disco')}
+    ${selectHtml('filmYear',state.filmYear,yearOptions(all),'Filtra per anno o decennio')}
+    ${selectHtml('filmRating',state.filmRating,[['','Qualsiasi voto'],['6','Voto 6 o più'],['7','Voto 7 o più'],['8','Voto 8 o più']],'Filtra per voto')}
+    ${selectHtml('filmSort',state.filmSort,[['title','Titolo A–Z'],['year-desc','Anno più recente'],['year-asc','Anno meno recente'],['rating','Voto più alto'],['size-desc','Più grandi']],'Ordina i film')}</div>
+    <div class="metadata-toolbar"><span>${icon('info')} Generi, voto e regista arrivano da TMDB. Si possono correggere a mano e si salvano in questo browser.</span><span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
+    <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'film trovato':'film trovati'}${state.filmGenres.size?` · ${[...state.filmGenres].map(g=>g===NO_GENRE?'senza genere':genreLabel(g)).join(' + ')}`:''}</span><span class="filter-summary-right">${filtered?`<button type="button" class="link-btn" data-action="clear-film-filters">Azzera filtri</button>`:''}</span></div>
+    <div class="file-results">${visible.map(renderFilmCard).join('')||`<div class="empty-state">${icon('film')}<h3>Nessun film trovato</h3><p>Prova a togliere un genere o un altro filtro.</p><button type="button" data-action="clear-film-filters" class="btn btn-soft">Azzera i filtri</button></div>`}</div>
+    ${visible.length<list.length?`<button class="load-more" data-action="more-files">Mostra altri ${formatCount(Math.min(MAX_PAGE,list.length-visible.length))} film (${formatCount(visible.length)} di ${formatCount(list.length)})</button>`:''}`;
   }
   function emptyState(fav=false){return `<div class="empty-state">${icon(fav?'heart':'search')}<h3>${fav&&!state.favorites.size?'Non hai ancora preferiti':'Nessun file trovato'}</h3><p>${fav&&!state.favorites.size?'Premi il cuore accanto a un video per ritrovarlo qui.':'Prova a cambiare parole chiave o a rimuovere uno dei filtri.'}</p><button type="button" data-action="clear-filters" class="btn btn-soft">Azzera i filtri</button></div>`;}
   function renderDuplicates(){
@@ -413,7 +486,7 @@
   }
   function exportCSV(items,filename){
     if(!items.length){toast('Non ci sono file da esportare.',true);return;}
-    const lines=[['Disco','Nome','Dimensione (GB)','Formato','Categoria','Anno','Risoluzione indicata','Sigle lingua','Percorso completo'],...items.map(f=>[f.disk,f.name,Number.isFinite(f.size)?f.size.toFixed(2):'',f.ext,f.category,f.year||'',f.quality,f.languages.join(', '),f.path])];
+    const lines=[['Disco','Nome','Dimensione (GB)','Formato','Categoria','Anno','Generi','Voto','Risoluzione indicata','Sigle lingua','Percorso completo'],...items.map(f=>[f.disk,f.name,Number.isFinite(f.size)?f.size.toFixed(2):'',f.ext,f.category,f.year||'',f.genres.map(genreLabel).join(', '),f.rating??'',f.quality,f.languages.join(', '),f.path])];
     const csv='\ufeff'+lines.map(row=>row.map(quoteCSV).join(';')).join('\r\n');
     const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);
     const link=document.createElement('a');link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -451,6 +524,7 @@
     $('#metaFilename').textContent=f.name;
     $('#metaDisk').textContent=f.disk;
     $('#metaYear').value=f.year||'';
+    $('#metaGenres').innerHTML=GENRES.map(g=>`<label class="meta-genre"><input type="checkbox" value="${html(g)}" ${f.genres.includes(g)?'checked':''}> ${html(genreLabel(g))}</label>`).join('');
     $('#metaAllCopies').checked=false;
     $('#metadataDialog').showModal();
   }
@@ -458,8 +532,10 @@
     const f=state.files[Number($('#metaFileId').value)];if(!f)return;
     const raw=$('#metaYear').value.trim();const year=raw?Number(raw):null;
     if(year!==null&&(!Number.isInteger(year)||year<1900||year>CURRENT_YEAR)){toast('Inserisci un anno compreso tra 1900 e '+CURRENT_YEAR,true);return;}
-    // Conserva eventuali generi presenti nei metadati preesistenti, senza mostrarli.
-    const item={year,genres:f.genres.slice(),source:'Manuale'};
+    const genres=[...document.querySelectorAll('#metaGenres input:checked')].map(i=>i.value);
+    // Si parte dalla scheda esistente (titolo, voto, regista…) e si cambiano solo anno e generi.
+    const base=validMetadata(state.localMetadata[f.key]||state.publishedMetadata[f.key])||{};
+    const item={...base,year,genres,source:'Manuale',review:undefined};
     const same=!!$('#metaAllCopies').checked;
     let edited=0;
     for(const candidate of state.files){
@@ -505,6 +581,11 @@
     if(target.hasAttribute('data-meta')){editMetadata(target.dataset.meta);return;}
     if(target.hasAttribute('data-copy')){copyPath(target.dataset.copy);return;}
     if(target.hasAttribute('data-fav')){toggleFavorite(target.dataset.fav);return;}
+    if(target.hasAttribute('data-genre')){
+      const g=target.dataset.genre;
+      if(state.filmGenres.has(g))state.filmGenres.delete(g);else state.filmGenres.add(g);
+      state.pageLimit=MAX_PAGE;render();return;
+    }
     if(target.hasAttribute('data-search-disk')){state.diskFilter=target.dataset.searchDisk;state.query='';$('#globalSearch').value='';navigate('search');return;}
     const action=target.dataset.action;
     if(!action)return;
@@ -512,14 +593,16 @@
     if(action==='more-files'){state.pageLimit+=MAX_PAGE;render();return;}
     if(action==='more-folder'){state.folderLimit+=120;render();return;}
     if(action==='clear-filters'){state.query='';state.diskFilter='';state.categoryFilter='';state.extFilter='';state.sizeFilter='';state.yearFilter='';state.qualityFilter='';state.languageFilter='';state.pageLimit=MAX_PAGE;$('#globalSearch').value='';render();return;}
+    if(action==='clear-film-filters'){state.filmGenres.clear();state.filmDisk='';state.filmYear='';state.filmRating='';state.pageLimit=MAX_PAGE;render();return;}
     if(action==='clear-disk'){state.diskFilter='';render();return;}
     if(action==='import-meta'){$('#metaImportInput').click();return;}
     if(action==='export-meta'){exportMetadata();return;}
-    if(action==='export'){exportCSV(state.page==='search'||state.page==='favorites'?filterFiles():state.files,'vault-catalogo.csv');return;}
+    if(action==='export'){exportCSV(state.page==='film'?filterFilms():state.page==='search'||state.page==='favorites'?filterFiles():state.files,state.page==='film'?'vault-film.csv':'vault-catalogo.csv');return;}
     if(action==='export-dupes'){exportCSV(state.duplicateGroups.flat(),'vault-possibili-doppioni.csv');return;}
   }
   function handleChange(e){
-    const key={filterDisk:'diskFilter',filterCategory:'categoryFilter',filterExt:'extFilter',filterSize:'sizeFilter',filterYear:'yearFilter',filterQuality:'qualityFilter',filterLanguage:'languageFilter',sortFiles:'sort',driveSort:'driveSort'}[e.target.id];
+    if(e.target.id==='toggleExtras'){state.showExtras=e.target.checked;state.pageLimit=MAX_PAGE;render();return;}
+    const key={filmDisk:'filmDisk',filmYear:'filmYear',filmRating:'filmRating',filmSort:'filmSort',filterDisk:'diskFilter',filterCategory:'categoryFilter',filterExt:'extFilter',filterSize:'sizeFilter',filterYear:'yearFilter',filterQuality:'qualityFilter',filterLanguage:'languageFilter',sortFiles:'sort',driveSort:'driveSort'}[e.target.id];
     if(!key)return;state[key]=e.target.value;state.pageLimit=MAX_PAGE;render();
   }
   let debounce=null;
