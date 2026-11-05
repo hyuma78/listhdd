@@ -1,0 +1,39 @@
+name: Aggiorna manifest dei dischi
+
+# Ogni volta che si aggiunge, modifica o elimina un JSON in data/,
+# il manifest viene rigenerato e committato in automatico.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/*.json'
+      - '!data/manifest.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: manifest
+  cancel-in-progress: false
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rigenera data/manifest.json
+        run: python3 scripts/aggiorna_manifest.py
+
+      - name: Commit del manifest se è cambiato
+        run: |
+          if git diff --quiet -- data/manifest.json; then
+            echo "Nessuna modifica al manifest."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/manifest.json
+          git commit -m "Aggiorna manifest dei dischi"
+          git push
