@@ -31,6 +31,45 @@
   const icon = name => `<svg class="icon" aria-hidden="true"><use href="#ico-${name}"></use></svg>`;
   const html = v => String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   const normalize = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('it-IT').replace(/[^\p{L}\p{N}]+/gu,' ').trim().replace(/\s+/g,' ');
+
+  // Riconoscimento duplicati: il TMDB ID è prioritario; in assenza di ID si
+  // confrontano titolo e anno, ignorando estensione e tag tecnici del file.
+  const RELEASE_TAG = /(?:^|[^A-Za-z0-9])(2160p|1080[pi]?|720p?|576p|480p|4k|uhd|blu-?ray|bdrip|bdmux|brrip|bdremux|remux|dvdrip|dvdmux|dvd|webrip|web-?dl|webmux|hdtv|satrip|hdmux|hdrip|mux|x264|x265|h ?26[45]|hevc|avc|xvid|divx|ac3|eac3|dts|aac|ita|italian|eng|english|multi|sub|subs)(?=$|[^A-Za-z0-9])/i;
+  const EDITION_TAG = /\b(director'?s cut|extended( cut| edition)?|versione (estesa|integrale|restaurata)|special edition|edizione speciale|ultimate [a-z ]*edition|[a-z]+ edition|remaster(ed)?|restaurat[ao]|theatrical( cut)?)\b.*$/i;
+  const DURATION_START = /^\s*(?:durata\s*)?(?:\d{1,3}\s*(?:min(?:uti)?|minutes?)\b|\d{1,3}\s*m\b|\d{1,2}\s*h(?:\s*\d{1,2}\s*m)?\b)/i;
+  const YEAR_PATTERN = /(?:^|[^0-9])(19[0-9]{2}|20[0-2][0-9])(?=$|[^0-9])/g;
+  function cleanDuplicateTitle(value){
+    let t=String(value||'');
+    if((t.match(/\(/g)||[]).length>(t.match(/\)/g)||[]).length)t=t.slice(0,t.lastIndexOf('('));
+    t=t.replace(/\([^)]*\)/g,' ').replace(/\[[^\]]*\]/g,' ');
+    return t.replace(/\s+/g,' ').trim().replace(/^[-–—+,:;()[\]\s]+|[-–—+,:;()[\]\s]+$/g,'');
+  }
+  function extractDuplicateTitle(filename){
+    let base=String(filename||'').replace(/\.[A-Za-z0-9]{2,4}$/,'').replace(/[._]+/g,' ');
+    const tag=RELEASE_TAG.exec(base);
+    let head=tag&&tag.index>2?base.slice(0,tag.index):base;
+    head=head.replace(/\[(?!\s*(?:19|20)\d\d\s*\])[^\]]*\]/g,' ');
+    if((head.match(/\[/g)||[]).length>(head.match(/\]/g)||[]).length)head=head.slice(0,head.lastIndexOf('['));
+    const years=[...head.matchAll(YEAR_PATTERN)].map(m=>({year:Number(m[1]),position:m.index+m[0].length-m[1].length})).filter(x=>x.year>=1900&&x.year<=CURRENT_YEAR);
+    if(years.length>1&&years[0].position===0)years.shift();
+    if(years.length){
+      const position=years[years.length-1].position;
+      const before=cleanDuplicateTitle(head.slice(0,position));
+      const after=cleanDuplicateTitle(head.slice(position+4));
+      const duration=DURATION_START.test(after);
+      const dash=/[-–—]\s*$/.test(head.slice(0,position));
+      return (duration||!(before.length<2||(dash&&after.length>=3)))?before:after;
+    }
+    return cleanDuplicateTitle(head)||String(filename||'');
+  }
+  function duplicateIdentity(file){
+    const pathBase=String(file.path||file.name||'').replace(/[\\/]+/g,'/').split('/').pop()||file.name;
+    const title=String(file.tmdbTitle||extractDuplicateTitle(pathBase)).trim();
+    const year=file.year||file.guessedYear||null;
+    const cleanTitle=title.replace(EDITION_TAG,'').trim();
+    const normalizedTitle=normalize(cleanTitle);
+    return {title:cleanTitle,year,key:normalizedTitle.length>=2?normalizedTitle+'|'+(year||''):''};
+  }
   const sizeGB = value => {
     if(typeof value === 'number')return Number.isFinite(value)?value:NaN;
     const found = String(value ?? '').trim().match(/([\d.,]+)\s*(T[BIO]?|G[BIO]?|M[BIO]?|K[BIO]?|B)?/i);
@@ -134,9 +173,9 @@
     f.year=selected?selected.year:f.guessedYear;
     f.genres=selected?selected.genres:f.guessedGenres;
     f.metadataSource=selected?selected.source:(f.guessedGenres.length?'Cartella':'Nome file');
-    f.title=selected?.title||'';f.rating=selected?.vote_average??null;f.directors=selected?.directors||[];
+    f.title=selected?.title||'';f.tmdbTitle=selected?.title||'';f.tmdbId=selected?.kind==='movie'?selected.tmdb_id||null:null;f.contentKind=selected?.kind||'';f.rating=selected?.vote_average??null;f.directors=selected?.directors||[];
     f.overview=selected?.overview||'';f.tmdbUrl=selected?.tmdb_url||'';f.review=!!selected?.review;
-    f.isFilm=!f.extra&&(f.category==='Film'||selected?.kind==='movie');
+    f.isFilm=!f.extra&&selected?.kind!=='tv'&&(f.category==='Film'||selected?.kind==='movie');
     return f;
   }
   function applyAllMetadata(){for(const f of state.files)enrichFile(f);}
@@ -179,14 +218,45 @@
       d.files = (d.rawFiles||[]).filter(f=>f&&typeof f==='object'&&typeof f.nome==='string'&&typeof f.percorso_completo==='string').map(f=>makeFile(d.name,d.id,f,counter++));
       state.files.push(...d.files);
     }
-    const groups = new Map();
-    for(const f of state.files){
-      if(!f.name||!Number.isFinite(f.size))continue;
-      const key=normalize(f.name)+'|'+f.size.toFixed(2);
-      if(!groups.has(key))groups.set(key,[]);
-      groups.get(key).push(f);
+
+    // I gruppi TMDB sono certi quanto all'identità del film. Per gli altri
+    // usiamo titolo + anno, come nello script Python, senza confrontare peso o estensione.
+    const films=state.files.filter(f=>f.isFilm&&!f.extra&&f.contentKind!=='tv');
+    const parent=films.map((_,i)=>i);
+    const find=i=>{while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i];}return i;};
+    const unite=(a,b)=>{const ra=find(a),rb=find(b);if(ra!==rb)parent[rb]=ra;};
+    const byTmdb=new Map(),byTitleYear=new Map();
+    films.forEach((f,i)=>{
+      if(f.tmdbId){
+        const id=String(f.tmdbId);
+        if(!byTmdb.has(id))byTmdb.set(id,[]);
+        byTmdb.get(id).push(i);
+      }
+      const identity=duplicateIdentity(f);
+      f.duplicateTitle=identity.title;
+      f.duplicateYear=identity.year;
+      if(identity.key){
+        if(!byTitleYear.has(identity.key))byTitleYear.set(identity.key,[]);
+        byTitleYear.get(identity.key).push(i);
+      }
+    });
+    for(const indices of byTmdb.values())for(let i=1;i<indices.length;i++)unite(indices[0],indices[i]);
+    for(const indices of byTitleYear.values()){
+      // Se lo stesso titolo/anno è già associato a TMDB ID diversi, non fondiamo
+      // automaticamente quei film: potrebbero essere remake o abbinamenti distinti.
+      const ids=new Set(indices.map(i=>films[i].tmdbId).filter(Boolean).map(String));
+      if(ids.size<=1)for(let i=1;i<indices.length;i++)unite(indices[0],indices[i]);
     }
-    state.duplicateGroups=Array.from(groups.values()).filter(g=>g.length>1&&new Set(g.map(f=>f.disk)).size>1).sort((a,b)=>b[0].size-a[0].size);
+    const grouped=new Map();
+    films.forEach((f,i)=>{
+      const root=find(i);
+      if(!grouped.has(root))grouped.set(root,[]);
+      grouped.get(root).push(f);
+    });
+    state.duplicateGroups=Array.from(grouped.values())
+      .filter(g=>g.length>1&&new Set(g.map(f=>f.disk)).size>1)
+      .map(g=>g.sort((a,b)=>(Number.isFinite(b.size)?b.size:-1)-(Number.isFinite(a.size)?a.size:-1)))
+      .sort((a,b)=>b.length-a.length||(b[0].size||0)-(a[0].size||0));
     $('#navDriveCount').textContent=state.disks.size;
     updateFavoriteCount();
   }
@@ -476,11 +546,12 @@
   }
   function emptyState(fav=false){return `<div class="empty-state">${icon(fav?'heart':'search')}<h3>${fav&&!state.favorites.size?'Non hai ancora preferiti':'Nessun file trovato'}</h3><p>${fav&&!state.favorites.size?'Premi il cuore accanto a un video per ritrovarlo qui.':'Prova a cambiare parole chiave o a rimuovere uno dei filtri.'}</p><button type="button" data-action="clear-filters" class="btn btn-soft">Azzera i filtri</button></div>`;}
   function renderDuplicates(){
-    const groups=state.duplicateGroups,excess=groups.reduce((a,g)=>a+(g.length-1)*g[0].size,0);
-    return `<div class="page-head"><div><span class="mini-label">CONTROLLO DEI MIEI FILE</span><h2>Doppioni potenziali</h2><p>Stesso nome file e stessa dimensione arrotondata, su dischi diversi.</p></div><button class="btn btn-soft" data-action="export-dupes">${icon('download')} Esporta CSV</button></div>
-    <div class="stat-grid" style="margin-bottom:20px"><div class="stat-card"><div class="stat-title">Gruppi sospetti</div><div class="stat-value">${formatCount(groups.length)}</div><div class="stat-sub">Corrispondenza nome e dimensione</div></div><div class="stat-card"><div class="stat-title">Copie oltre la prima</div><div class="stat-value">${formatCount(groups.reduce((a,g)=>a+g.length-1,0))}</div><div class="stat-sub">Presenti su dischi diversi</div></div><div class="stat-card"><div class="stat-title">Spazio teorico duplicato</div><div class="stat-value">${fmtGB(excess)}</div><div class="stat-sub">Solo stima indicativa</div></div></div>
-    <div class="info-banner">${icon('info')}<span><strong>Non eliminare automaticamente nulla.</strong> I JSON riportano dimensioni arrotondate: queste sono soltanto possibili copie, non duplicati verificati con hash dei contenuti.</span></div>
-    ${groups.map((g,i)=>`<section class="duplicate-group"><div class="duplicate-header"><strong>${html(g[0].name)}</strong><span class="small-pill warning">${g.length} copie · ${fmtGB(g[0].size)}</span></div><div class="duplicate-files">${g.map(f=>renderFileCard(f)).join('')}</div></section>`).join('')||`<div class="empty-state">${icon('check')}<h3>Nessun doppione individuato</h3><p>Nessun file su dischi diversi con identico nome e dimensione arrotondata.</p></div>`}`;
+    const groups=state.duplicateGroups;
+    const excess=groups.reduce((sum,g)=>sum+g.slice(1).reduce((n,f)=>n+(Number.isFinite(f.size)?f.size:0),0),0);
+    return `<div class="page-head"><div><span class="mini-label">CONTROLLO DEI MIEI FILE</span><h2>Doppioni potenziali</h2><p>Stesso film riconosciuto tramite TMDB oppure titolo e anno. Formato ed estensione possono essere diversi.</p></div><button class="btn btn-soft" data-action="export-dupes">${icon('download')} Esporta CSV</button></div>
+    <div class="stat-grid" style="margin-bottom:20px"><div class="stat-card"><div class="stat-title">Film presenti su più dischi</div><div class="stat-value">${formatCount(groups.length)}</div><div class="stat-sub">Raggruppati per identità del film</div></div><div class="stat-card"><div class="stat-title">File da confrontare</div><div class="stat-value">${formatCount(groups.reduce((a,g)=>a+g.length,0))}</div><div class="stat-sub">Copie e versioni trovate</div></div><div class="stat-card"><div class="stat-title">Spazio delle versioni aggiuntive</div><div class="stat-value">${fmtGB(excess)}</div><div class="stat-sub">Stima tenendo una sola versione per gruppo</div></div></div>
+    <div class="info-banner">${icon('info')}<span><strong>Non sono duplicati verificati byte per byte.</strong> Il sito individua lo stesso film, non lo stesso file: confronta nome, formato, dimensione, risoluzione e percorso prima di decidere quale versione conservare. Una versione più grande non è necessariamente migliore.</span></div>
+    ${groups.map(g=>`<section class="duplicate-group"><div class="duplicate-header"><strong>${html(g[0].duplicateTitle||g[0].tmdbTitle||g[0].name)}${g[0].duplicateYear?` (${g[0].duplicateYear})`:''}</strong><span class="small-pill warning">${g.length} file · ${new Set(g.map(f=>f.disk)).size} dischi</span></div><div class="duplicate-files">${g.map(f=>renderFileCard(f)).join('')}</div></section>`).join('')||`<div class="empty-state">${icon('check')}<h3>Nessun doppione individuato</h3><p>Non risultano film riconosciuti su più dischi.</p></div>`}`;
   }
   function openDisk(name){
     if(!state.disks.has(name))return;
