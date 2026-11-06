@@ -53,7 +53,7 @@
     if(/\b(film|cinema|movies|movie)\b/.test(s)||/\b(horror thriller|horror thiller|sci fi fantasy|fantascienza fantasy)\b/.test(s))return 'Film';
     return 'Altro';
   };
-  /* CLASSIFICAZIONE:INIZIO — la stessa logica è in scripts/arricchisci_tmdb.py: tenerle allineate. */
+  /* CLASSIFICAZIONE:INIZIO — la stessa logica è in scripts/assegna_generi.py: tenerle allineate. */
   // Extra = cartella che si chiama proprio così (le cartelle "miste" tipo «Film + Extra» NON contano), oppure nome file da extra.
   const EXTRA_DIR = /^(extras?|extra features?|bonus( features| disc| extra)?|special features?|featurettes?|deleted scenes?|scene eliminate|behind the scenes|making of|interviste?|interviews?|contenuti speciali|contenuti extra|extra (contenuti|speciali)|trailers?|backstage|inediti|speciali)( \d+)?$/;
   const EXTRA_FILE = /\b(trailers?|sample|intervist[ae]|interviews?|featurettes?|making of|behind the scenes|deleted scenes?|scene eliminate|backstage)\b/;
@@ -437,13 +437,13 @@
       +(noGenre||state.filmGenres.has(NO_GENRE)?chip(NO_GENRE,'Senza genere',noGenre):'');
     const withGenre=all.filter(f=>f.genres.length).length,filtered=state.filmGenres.size||state.filmDisk||state.filmYear||state.filmRating;
     return `<div class="page-head"><div><span class="mini-label">LA MIA CINETECA</span><h2>I miei film</h2><p>${formatCount(all.length)} film nei miei dischi. Extra, interviste e contenuti speciali sono esclusi.</p></div><button class="btn btn-soft" data-action="export">${icon('download')} Esporta CSV</button></div>
-    ${all.length&&withGenre<all.length?`<div class="info-banner">${icon('info')}<span><strong>${formatCount(all.length-withGenre)} film su ${formatCount(all.length)} non hanno ancora il genere.</strong> Per generare le schede lancia <code>scripts/arricchisci_tmdb.py</code> dal PC, oppure assegnali a mano con il pulsante <em>info</em> di ogni film.</span></div>`:''}
+    ${all.length&&withGenre<all.length?`<div class="info-banner">${icon('info')}<span><strong>${formatCount(all.length-withGenre)} film su ${formatCount(all.length)} non hanno ancora il genere.</strong> Dal PC lancia <code>python scripts\assegna_generi.py</code> per assegnarli film per film, oppure usa il pulsante <em>info</em> di ogni film.</span></div>`:''}
     <div class="genre-chips" role="group" aria-label="Filtra per genere">${chips||'<span class="muted-modal">Nessun genere disponibile.</span>'}</div>
     <div class="filter-panel">${selectHtml('filmDisk',state.filmDisk,[['','Tutti gli hard disk'],...diskEntries().map(d=>[d.name,d.name])],'Filtra per disco')}
     ${selectHtml('filmYear',state.filmYear,yearOptions(all),'Filtra per anno o decennio')}
     ${selectHtml('filmRating',state.filmRating,[['','Qualsiasi voto'],['6','Voto 6 o più'],['7','Voto 7 o più'],['8','Voto 8 o più']],'Filtra per voto')}
     ${selectHtml('filmSort',state.filmSort,[['title','Titolo A–Z'],['year-desc','Anno più recente'],['year-asc','Anno meno recente'],['rating','Voto più alto'],['size-desc','Più grandi']],'Ordina i film')}</div>
-    <div class="metadata-toolbar"><span>${icon('info')} Generi, voto e regista arrivano da TMDB. Si possono correggere a mano e si salvano in questo browser.</span><span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
+    <div class="metadata-toolbar"><span>${icon('info')} I generi si assegnano con <code>scripts\assegna_generi.py</code> oppure a mano dal pulsante <em>info</em> (in questo caso si salvano solo in questo browser: poi usa «Esporta schede JSON»).</span><span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
     <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'film trovato':'film trovati'}${state.filmGenres.size?` · ${[...state.filmGenres].map(g=>g===NO_GENRE?'senza genere':genreLabel(g)).join(' + ')}`:''}</span><span class="filter-summary-right">${filtered?`<button type="button" class="link-btn" data-action="clear-film-filters">Azzera filtri</button>`:''}</span></div>
     <div class="file-results">${visible.map(renderFilmCard).join('')||`<div class="empty-state">${icon('film')}<h3>Nessun film trovato</h3><p>Prova a togliere un genere o un altro filtro.</p><button type="button" data-action="clear-film-filters" class="btn btn-soft">Azzera i filtri</button></div>`}</div>
     ${visible.length<list.length?`<button class="load-more" data-action="more-files">Mostra altri ${formatCount(Math.min(MAX_PAGE,list.length-visible.length))} film (${formatCount(visible.length)} di ${formatCount(list.length)})</button>`:''}`;
