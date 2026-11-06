@@ -24,7 +24,7 @@ Uso, dalla radice del repo (nessun pacchetto da installare):
     python scripts\\assegna_generi_tmdb.py
 Opzioni:
     --key CHIAVE       alternativa alla variabile TMDB_API_KEY
-    --senza-tmdb       non usa TMDB (suggerisce solo dalle cartelle, come assegna_generi.py)
+    --senza-tmdb       non usa TMDB (usa solo i generi suggeriti dalle cartelle)
     --disco NOME       propone solo i film di quel disco (nome del JSON senza .json)
     --rivedi-saltati   ripropone anche i film che avevi saltato con "s"
     --stato            mostra a che punto sei e quanti film ci sono per genere, poi esce
