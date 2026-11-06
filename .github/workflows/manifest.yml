@@ -8,6 +8,8 @@ on:
     paths:
       - 'data/*.json'
       - '!data/manifest.json'
+      - '!data/film_metadata.json'
+      - '!data/tv_metadata.json'
   workflow_dispatch:
 
 permissions:
