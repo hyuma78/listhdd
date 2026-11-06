@@ -15,7 +15,7 @@ from pathlib import Path
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 MANIFEST = DATA / "manifest.json"
-ESCLUSI = {"manifest.json", "film_metadata.json"}
+ESCLUSI = {"manifest.json", "film_metadata.json", "tv_metadata.json"}
 
 
 def carica_manifest_esistente():
@@ -23,7 +23,7 @@ def carica_manifest_esistente():
         dischi = json.loads(MANIFEST.read_text(encoding="utf-8")).get("dischi", [])
     except (OSError, ValueError):
         return {}
-    return {e["file"]: e["nome"] for e in dischi if isinstance(e, dict) and "file" in e and "nome" in e}
+    return {str(e["file"]).casefold(): e["nome"] for e in dischi if isinstance(e, dict) and "file" in e and "nome" in e}
 
 
 def e_catalogo_valido(percorso):
@@ -44,7 +44,7 @@ def main():
     for p in sorted(DATA.glob("*.json")):
         if p.name in ESCLUSI or not e_catalogo_valido(p):
             continue
-        dischi.append({"nome": nomi.get(p.name, p.stem), "file": p.name})
+        dischi.append({"nome": nomi.get(p.name.casefold(), p.stem), "file": p.name})
     dischi.sort(key=lambda e: e["nome"].casefold())
 
     testo = json.dumps({"version": 2, "dischi": dischi}, indent=2, ensure_ascii=False) + "\n"

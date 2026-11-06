@@ -69,7 +69,7 @@ RADICE = Path(__file__).resolve().parent.parent
 DATA = RADICE / "data"
 FILE_SCHEDE = DATA / "film_metadata.json"
 FILE_PROGRESSO = Path(__file__).resolve().parent / ".progresso_generi.json"   # locale, non va su GitHub
-ESCLUSI = {"manifest.json", "film_metadata.json"}
+ESCLUSI = {"manifest.json", "film_metadata.json", "tv_metadata.json"}
 ANNO_CORRENTE = 2026
 STORICO_MAX = 100
 

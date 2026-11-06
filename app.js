@@ -159,7 +159,7 @@
     $('#themeButton').innerHTML=icon(mode==='light'?'moon':'sun');
     $('#themeButton').title=mode==='light'?'Passa al tema scuro':'Passa al tema chiaro';
   }
-  function makeFile(disk, raw, index){
+  function makeFile(disk, diskId, raw, index){
     const name=String(raw.nome??''),path=String(raw.percorso_completo??name),size=sizeGB(raw.dimensione);
     const ext=(name.match(/\.([^.\\/\s]+)$/)||[])[1]?.toLowerCase()||'—';
     const parts=path.replace(/\//g,'\\').split('\\').filter(Boolean);
@@ -168,7 +168,7 @@
     if(category==='Altro'&&isLooseFilm(name,parts))category='Film';
     const guessedYear=inferYear(name,path,category),guessedGenres=inferGenres(path);
     const f={id:index,disk,name,path,formattedSize:String(raw.dimensione??'—'),size,ext,category,parts,extra:isExtraPath(name,parts),
-      key:disk+'::'+path,guessedYear,guessedGenres,year:guessedYear,genres:guessedGenres,
+      key:diskId+'::'+path,guessedYear,guessedGenres,year:guessedYear,genres:guessedGenres,
       quality:inferQuality(name,path),languages:inferLanguages(name),metadataSource:'',
       search:normalize(name+' '+path+' '+disk), nameSearch:normalize(name)};
     return enrichFile(f);
@@ -176,7 +176,7 @@
   function reindex(){
     let counter=0;state.files=[];state.trees.clear();
     for(const d of diskEntries()){
-      d.files = (d.rawFiles||[]).filter(f=>f&&typeof f==='object'&&typeof f.nome==='string'&&typeof f.percorso_completo==='string').map(f=>makeFile(d.name,f,counter++));
+      d.files = (d.rawFiles||[]).filter(f=>f&&typeof f==='object'&&typeof f.nome==='string'&&typeof f.percorso_completo==='string').map(f=>makeFile(d.name,d.id,f,counter++));
       state.files.push(...d.files);
     }
     const groups = new Map();
@@ -191,13 +191,13 @@
     updateFavoriteCount();
   }
   function updateFavoriteCount(){ $('#navFavCount').textContent=state.files.filter(f=>state.favorites.has(f.key)).length; }
-  function mapDisk(name, json){
+  function mapDisk(name, id, json){
     if(!json || !Array.isArray(json.catalogo_video))throw Error('Manca catalogo_video (array)');
     const diskInfo = json.informazioni_disco || {};
     const total=sizeGB(diskInfo.totale),freeReported=sizeGB(diskInfo.libero);
     const free=Number.isFinite(freeReported)&&freeReported>=0 ? Math.min(freeReported, Number.isFinite(total)?total:Infinity) : NaN;
     const used = Number.isFinite(total)&&Number.isFinite(free) ? Math.max(0,total-free) : NaN;
-    return {name,rawFiles:json.catalogo_video,total,free,used,reportedTotal:diskInfo.totale??'—',reportedFree:diskInfo.libero??'—'};
+    return {name,id,rawFiles:json.catalogo_video,total,free,used,reportedTotal:diskInfo.totale??'—',reportedFree:diskInfo.libero??'—'};
   }
   async function fetchJSON(url){
     const response=await fetch(url,{cache:'no-store'});
@@ -215,11 +215,34 @@
       entries=Array.isArray(manifest.dischi)?manifest.dischi:[];
     } catch { /* Gestito sotto: se l'elenco è vuoto viene mostrato un errore. */ }
     if(!entries.length)failures.push('data/manifest.json mancante o vuoto');
-    entries=entries.filter(e=>e&&typeof e.file==='string'&&/^[\w\-.]+\.json$/i.test(e.file)&&e.file.toLowerCase()!=='manifest.json');
+    entries=entries.filter(e=>e&&typeof e.file==='string'&&/^[\w\-.]+\.json$/i.test(e.file)&&!['manifest.json','film_metadata.json','tv_metadata.json'].includes(e.file.toLowerCase()));
+    // Le chiavi persistenti usano lo stem del JSON, non il nome descrittivo del manifest.
+    // Migra anche preferiti e modifiche locali salvati dal sito nelle versioni precedenti.
+    const idByAlias=new Map();
+    for(const item of entries){
+      const id=item.file.replace(/\.json$/i,'');
+      idByAlias.set(id.toLowerCase(),id);
+      idByAlias.set(String(item.nome||id).toLowerCase(),id);
+    }
+    const migrateDiskKey=key=>{
+      const value=String(key),sep=value.indexOf('::');
+      if(sep<0)return value;
+      const id=idByAlias.get(value.slice(0,sep).toLowerCase());
+      return id?id+value.slice(sep):value;
+    };
+    state.favorites=new Set([...state.favorites].map(migrateDiskKey));
+    store.set('favorites',[...state.favorites]);
+    const localMigrated={};
+    for(const [key,value] of Object.entries(state.localMetadata)){
+      const next=migrateDiskKey(key);
+      if(next===key||!(next in localMigrated))localMigrated[next]=value;
+    }
+    state.localMetadata=localMigrated;
+    store.set('movie-metadata',state.localMetadata);
     const results=await Promise.allSettled(entries.map(async item=>{
       const data=await fetchJSON('data/'+item.file);
       const name=String(item.nome||item.file.replace(/\.json$/i,''));
-      return mapDisk(name,data);
+      return mapDisk(name,String(item.file).replace(/\.json$/i,''),data);
     }));
     results.forEach((res,i)=>{
       if(res.status==='fulfilled'){const d=res.value;loaded.set(d.name,d);}
@@ -229,7 +252,10 @@
     state.failed=failures;
     try{
       const saved=await fetchJSON('data/film_metadata.json');
-      state.publishedMetadata=(saved&&saved.files&&typeof saved.files==='object'&&!Array.isArray(saved.files))?saved.files:{};
+      const [savedTv]=await Promise.all([fetchJSON('data/tv_metadata.json').catch(()=>null)]);
+      const filmFiles=(saved&&saved.files&&typeof saved.files==='object'&&!Array.isArray(saved.files))?saved.files:{};
+      const tvFiles=(savedTv&&savedTv.files&&typeof savedTv.files==='object'&&!Array.isArray(savedTv.files))?savedTv.files:{};
+      state.publishedMetadata={...tvFiles,...filmFiles};
     }catch{
       // Il file metadati è opzionale: nessun errore se non ancora pubblicato.
       state.publishedMetadata={};
@@ -390,7 +416,7 @@
     ${fav?'':`<label class="toggle-extra" title="Cartelle Featurettes, EXTRA, BONUS, Deleted Scenes, interviste, trailer…"><input type="checkbox" id="toggleExtras" ${state.showExtras?'checked':''}> Mostra extra (${formatCount(extrasCount)})</label>`}
     </div>
     <div class="metadata-toolbar"><span>${icon('info')} L’anno, quando disponibile, è ricavato dal nome del file e può essere corretto manualmente.</span>
-      <span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
+      <span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta-film">Esporta film JSON</button><button type="button" class="btn btn-soft" data-action="export-meta-tv">Esporta TV JSON</button></span></div>
     <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'file trovato':'file trovati'}${state.query?` per <strong>“${html(state.query)}”</strong>`:''}</span><span class="filter-summary-right">${state.diskFilter?`<span class="active-scope">${icon('drive')} ${html(state.diskFilter)} <button title="Rimuovi filtro disco" data-action="clear-disk">×</button></span>`:''}${(state.diskFilter||state.categoryFilter||state.extFilter||state.sizeFilter||state.yearFilter||state.qualityFilter||state.languageFilter||state.query)?`<button type="button" class="link-btn" data-action="clear-filters">Azzera filtri</button>`:''}</span></div>
     <div class="file-results">${visible.map(f=>renderFileCard(f)).join('')||emptyState(fav)}</div>
     ${visible.length<list.length?`<button class="load-more" data-action="more-files">Mostra altri ${formatCount(Math.min(MAX_PAGE,list.length-visible.length))} file (${formatCount(visible.length)} di ${formatCount(list.length)})</button>`:''}`;
@@ -443,7 +469,7 @@
     ${selectHtml('filmYear',state.filmYear,yearOptions(all),'Filtra per anno o decennio')}
     ${selectHtml('filmRating',state.filmRating,[['','Qualsiasi voto'],['6','Voto 6 o più'],['7','Voto 7 o più'],['8','Voto 8 o più']],'Filtra per voto')}
     ${selectHtml('filmSort',state.filmSort,[['title','Titolo A–Z'],['year-desc','Anno più recente'],['year-asc','Anno meno recente'],['rating','Voto più alto'],['size-desc','Più grandi']],'Ordina i film')}</div>
-    <div class="metadata-toolbar"><span>${icon('info')} I generi si assegnano con <code>scripts\assegna_generi.py</code> oppure a mano dal pulsante <em>info</em> (in questo caso si salvano solo in questo browser: poi usa «Esporta schede JSON»).</span><span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta">Esporta schede JSON</button></span></div>
+    <div class="metadata-toolbar"><span>${icon('info')} I generi si assegnano con <code>scripts\assegna_generi.py</code> oppure a mano dal pulsante <em>info</em> (in questo caso si salvano solo in questo browser: poi usa «Esporta schede JSON»).</span><span class="metadata-actions"><button type="button" class="btn btn-soft" data-action="import-meta">Importa schede</button><button type="button" class="btn btn-soft" data-action="export-meta-film">Esporta film JSON</button><button type="button" class="btn btn-soft" data-action="export-meta-tv">Esporta TV JSON</button></span></div>
     <div class="filter-summary"><span><strong>${formatCount(list.length)}</strong> ${list.length===1?'film trovato':'film trovati'}${state.filmGenres.size?` · ${[...state.filmGenres].map(g=>g===NO_GENRE?'senza genere':genreLabel(g)).join(' + ')}`:''}</span><span class="filter-summary-right">${filtered?`<button type="button" class="link-btn" data-action="clear-film-filters">Azzera filtri</button>`:''}</span></div>
     <div class="file-results">${visible.map(renderFilmCard).join('')||`<div class="empty-state">${icon('film')}<h3>Nessun film trovato</h3><p>Prova a togliere un genere o un altro filtro.</p><button type="button" data-action="clear-film-filters" class="btn btn-soft">Azzera i filtri</button></div>`}</div>
     ${visible.length<list.length?`<button class="load-more" data-action="more-files">Mostra altri ${formatCount(Math.min(MAX_PAGE,list.length-visible.length))} film (${formatCount(visible.length)} di ${formatCount(list.length)})</button>`:''}`;
@@ -496,11 +522,16 @@
     const blob=new Blob([JSON.stringify(obj,null,2)+'\n'],{type:'application/json;charset=utf-8'});
     const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1100);
   }
-  function exportMetadata(){
+  function exportMetadata(kind='film'){
     const files={...state.publishedMetadata,...state.localMetadata};
-    const valid={};for(const [key,item] of Object.entries(files)){const m=validMetadata(item);if(m)valid[key]=m;}
-    downloadJSON({version:1,files:valid},'film_metadata.json');
-    toast(`${formatCount(Object.keys(valid).length)} schede esportate. Carica il file in data/ su GitHub per sincronizzarle.`);
+    const valid={};
+    for(const [key,item] of Object.entries(files)){
+      const m=validMetadata(item);if(!m)continue;
+      if((kind==='tv')===(m.kind==='tv'))valid[key]=m;
+    }
+    const filename=kind==='tv'?'tv_metadata.json':'film_metadata.json';
+    downloadJSON({version:1,files:valid},filename);
+    toast(formatCount(Object.keys(valid).length)+' schede '+(kind==='tv'?'TV':'film')+' esportate in '+filename+'. Carica il file in data/ su GitHub.');
   }
   async function importMetadata(input){
     const file=input.files?.[0];input.value='';if(!file)return;
@@ -596,7 +627,8 @@
     if(action==='clear-film-filters'){state.filmGenres.clear();state.filmDisk='';state.filmYear='';state.filmRating='';state.pageLimit=MAX_PAGE;render();return;}
     if(action==='clear-disk'){state.diskFilter='';render();return;}
     if(action==='import-meta'){$('#metaImportInput').click();return;}
-    if(action==='export-meta'){exportMetadata();return;}
+    if(action==='export-meta-film'){exportMetadata('film');return;}
+    if(action==='export-meta-tv'){exportMetadata('tv');return;}
     if(action==='export'){exportCSV(state.page==='film'?filterFilms():state.page==='search'||state.page==='favorites'?filterFiles():state.files,state.page==='film'?'vault-film.csv':'vault-catalogo.csv');return;}
     if(action==='export-dupes'){exportCSV(state.duplicateGroups.flat(),'vault-possibili-doppioni.csv');return;}
   }
