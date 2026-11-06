@@ -22,20 +22,20 @@
       "file": "Maxtor15G.json"
     },
     {
-      "nome": "Nami",
-      "file": "Nami.json"
+      "nome": "nami",
+      "file": "nami.json"
     },
     {
       "nome": "NASWare",
       "file": "NASWare.json"
     },
     {
-      "nome": "Rufy",
-      "file": "Rufy.json"
+      "nome": "rufy",
+      "file": "rufy.json"
     },
     {
-      "nome": "Sanji",
-      "file": "Sanji.json"
+      "nome": "sanji",
+      "file": "sanji.json"
     },
     {
       "nome": "Seagate0FM",
@@ -67,7 +67,7 @@
     },
     {
       "nome": "Usopp",
-      "file": "usopp.json"
+      "file": "Usopp.json"
     },
     {
       "nome": "WD659",
@@ -78,8 +78,8 @@
       "file": "WD_Sarah_2TB.json"
     },
     {
-      "nome": "Zoro",
-      "file": "Zoro.json"
+      "nome": "zoro",
+      "file": "zoro.json"
     }
   ]
 }
