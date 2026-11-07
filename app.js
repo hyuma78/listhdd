@@ -297,8 +297,15 @@
     const migrateDiskKey=key=>{
       const value=String(key),sep=value.indexOf('::');
       if(sep<0)return value;
-      const id=idByAlias.get(value.slice(0,sep).toLowerCase());
-      return id?id+value.slice(sep):value;
+      const oldDisk=value.slice(0,sep);
+      const id=idByAlias.get(oldDisk.toLowerCase())||oldDisk;
+      // I cataloghi aggiornati usano percorsi relativi alla radice dell'HDD.
+      // Migra preferiti e metadati locali dalle vecchie chiavi con lettera (es. D:\\FILM\\...).
+      const relative=value.slice(sep+2)
+        .replace(/^[A-Za-z]:[\\\\/]/,'')
+        .replace(/^[\\\\/]+/,'')
+        .replace(/\\//g,'\\\\');
+      return id+'::'+relative;
     };
     state.favorites=new Set([...state.favorites].map(migrateDiskKey));
     store.set('favorites',[...state.favorites]);
@@ -561,8 +568,10 @@
   }
   function copyPath(id){
     const f=state.files[Number(id)];if(!f)return;
-    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(f.path).then(()=>toast('Percorso copiato negli appunti')).catch(()=>fallbackCopy(f.path));}
-    else fallbackCopy(f.path);
+    // Il percorso non contiene piu' la lettera Windows: copia insieme il nome HDD.
+    const location='Disco: '+f.disk+'\\nPercorso: '+f.path;
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(location).then(()=>toast('Disco e percorso copiati negli appunti')).catch(()=>fallbackCopy(location));}
+    else fallbackCopy(location);
   }
   function fallbackCopy(text){
     const field=document.createElement('textarea');field.value=text;field.style.position='fixed';field.style.opacity='0';document.body.append(field);field.select();
